@@ -10,4 +10,5 @@
     </padding>
 
     <Label fx:id="welcomeText" />
+   <Button mnemonicParsing="false" text="Button" />
 </VBox>
