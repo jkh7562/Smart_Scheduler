@@ -9,11 +9,6 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <ComboBox prefWidth="150.0" />
-   <ButtonBar prefHeight="40.0" prefWidth="200.0">
-     <buttons>
-       <Button mnemonicParsing="false" text="Button" />
-     </buttons>
-   </ButtonBar>
 
     <Label fx:id="welcomeText" />
    <Button mnemonicParsing="false" text="Button" />
