@@ -11,4 +11,5 @@
 
     <Label fx:id="welcomeText" />
    <Button mnemonicParsing="false" text="Button" />
+   <BorderPane prefHeight="200.0" prefWidth="200.0" />
 </VBox>
