@@ -52,6 +52,7 @@
          <children>
             <Pane layoutX="390.0" layoutY="70.0" prefHeight="130.0" prefWidth="150.0">
                <children>
+                  <CheckBox layoutX="10.0" layoutY="110.0" mnemonicParsing="false" text="일정중요한 진짜" />
                   <CheckBox alignment="CENTER" layoutX="10.0" layoutY="35.0" mnemonicParsing="false" text="중요중요한 일정" />
                   <Label alignment="CENTER" layoutX="10.0" text="중요한 일정">
                      <font>
@@ -59,6 +60,7 @@
                      </font>
                   </Label>
                   <CheckBox layoutX="10.0" layoutY="60.0" mnemonicParsing="false" text="진짜진짜중요한 일정" />
+                  <CheckBox layoutX="10.0" layoutY="85.0" mnemonicParsing="false" text="일정일정한 중요" />
                </children>
             </Pane>
             <Label layoutX="25.0" layoutY="15.0" text="Today">
