@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="200.0" fitWidth="182.0" layoutX="-10.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="C:\Users\User\IdeaProjects\Smart_Scheduler\src\main\resources\com\Schedule-real.png" />
+            <Image url="@../../../Schedule-real.png" />
          </image></ImageView>
       <Label layoutX="57.0" layoutY="123.0" text="Find Your ID">
          <font>
