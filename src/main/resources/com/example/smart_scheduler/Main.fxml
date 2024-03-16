@@ -13,7 +13,7 @@
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="@//C:/Users/준호/Pictures/Saved%20Pictures/다운로드.jpg" />
+                        <Image url="@//C:/Users/준호/IdeaProjects/Smart_Scheduler/src/main/resources/다운로드.jpg" />
                      </image>
                   </ImageView>
                   <TextField layoutX="55.0" layoutY="20.0" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #c8c4ff;" text="User Name........">
@@ -32,7 +32,7 @@
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="@//C:/Users/준호/Pictures/Saved%20Pictures/Scheduler.png" />
+                        <Image url="@//C:/Users/준호/IdeaProjects/Smart_Scheduler/src/main/resources/Scheduler.png" />
                      </image>
                   </ImageView>
                </graphic></Button>
@@ -98,7 +98,7 @@
                   </Label>
                   <ImageView fitHeight="45.0" fitWidth="50.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="C:\Users\준호\Pictures\Saved Pictures\um.png" />
+                        <Image url="C:\Users\준호\IdeaProjects\Smart_Scheduler\src\main\resources\um.png" />
                      </image></ImageView>
                   <Label alignment="CENTER" layoutX="7.0" layoutY="47.0" text="추천">
                      <font>
@@ -107,12 +107,12 @@
                   </Label>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="50.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="C:\Users\준호\Pictures\Saved Pictures\sun.png" />
+                        <Image url="C:\Users\준호\IdeaProjects\Smart_Scheduler\src\main\resources\sun.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="100.0" pickOnBounds="true" smooth="false">
                      <image>
-                        <Image url="C:\Users\준호\Pictures\Saved Pictures\mask.png" />
+                        <Image url="C:\Users\준호\IdeaProjects\Smart_Scheduler\src\main\resources\mask.png" />
                      </image>
                   </ImageView>
                   <Label alignment="CENTER" layoutX="56.0" layoutY="47.0" text="추천">
@@ -140,7 +140,7 @@
                <graphic>
                   <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="C:\Users\준호\Pictures\Saved Pictures\weather-icons-set\CLOUDS\png clouds\001lighticons-18.png" />
+                        <Image url="C:\Users\준호\IdeaProjects\Smart_Scheduler\src\main\resources\001lighticons-18.png" />
                      </image>
                   </ImageView>
                </graphic>
