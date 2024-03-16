@@ -9,7 +9,7 @@
    <children>
       <ImageView fitHeight="200.0" fitWidth="182.0" layoutX="-12.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="C:\Users\User\IdeaProjects\Smart_Scheduler\src\main\resources\com\Schedule-real.png" />
+            <Image url="@../../../Schedule-real.png" />
          </image></ImageView>
       <Label layoutX="54.0" layoutY="149.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="188.0" text="Fill the form for registration" textFill="#a1a1a1">
          <font>

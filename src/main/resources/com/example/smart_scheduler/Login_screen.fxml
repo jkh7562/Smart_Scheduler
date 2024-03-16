@@ -16,7 +16,7 @@
             <children>
                <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="50.0" layoutY="94.0" pickOnBounds="true" smooth="false">
                   <image>
-                     <Image url="C:\Users\User\IdeaProjects\Smart_Scheduler\src\main\resources\com\Schedule2.png" />
+                     <Image url="@../../../Schedule2.png" />
                   </image></ImageView>
                <Label layoutX="166.0" layoutY="298.0" text="Welcome To" textFill="WHITE">
                   <font>
@@ -31,9 +31,9 @@
             </children></Pane>
          <ImageView fitHeight="200.0" fitWidth="182.0" layoutX="400.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FFFFFF;">
             <image>
-               <Image url="C:\Users\User\IdeaProjects\Smart_Scheduler\src\main\resources\com\Schedule-real.png" />
+               <Image url="@../../../Schedule-real.png" />
             </image></ImageView>
-         <Label layoutX="432.0" layoutY="99.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Welcome Back,">
+         <Label layoutX="432.0" layoutY="99.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Welcome Back">
             <font>
                <Font name="Ebrima Bold" size="20.0" />
             </font></Label>
