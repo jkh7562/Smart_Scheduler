@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.MembershipSystem">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="182.0" layoutX="-12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="C:\Users\User\IdeaProjects\Smart_Scheduler\src\main\resources\com\Schedule-real.png" />
+         </image></ImageView>
+      <Label layoutX="54.0" layoutY="149.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="188.0" text="Fill the form for registration" textFill="#a1a1a1">
+         <font>
+            <Font name="Ebrima Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="54.0" layoutY="123.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="171.0" text="Registration Form">
+         <font>
+            <Font name="Ebrima Bold" size="20.0" />
+         </font></Label>
+      <TextField layoutX="50.0" layoutY="264.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="220.0" promptText="ID">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField layoutX="50.0" layoutY="208.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Enter Email/Phone number">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <PasswordField layoutX="50.0" layoutY="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Password">
+         <font>
+            <Font size="14.0" />
+         </font></PasswordField>
+      <PasswordField layoutX="50.0" layoutY="376.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Confirm Password">
+         <font>
+            <Font size="14.0" />
+         </font></PasswordField>
+      <Button layoutX="50.0" layoutY="428.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="Login" textFill="WHITE">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font></Button>
+      <Button layoutX="290.0" layoutY="264.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="Check" textFill="#ababab">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
