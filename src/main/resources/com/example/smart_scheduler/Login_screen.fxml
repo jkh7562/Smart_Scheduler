@@ -33,7 +33,7 @@
             <image>
                <Image url="@../../../Schedule-real.png" />
             </image></ImageView>
-         <Label layoutX="432.0" layoutY="99.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Welcome Back">
+         <Label layoutX="432.0" layoutY="99.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Welcome Back,">
             <font>
                <Font name="Ebrima Bold" size="20.0" />
             </font></Label>
