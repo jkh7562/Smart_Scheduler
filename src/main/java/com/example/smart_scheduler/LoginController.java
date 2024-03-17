@@ -7,6 +7,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -19,6 +20,10 @@ public class LoginController {
     private Label idfinder_label;
     @FXML
     private Label passfinder_label;
+    @FXML
+    private TextField id_textfield;
+    @FXML
+    private TextField pass_textfield;
 
     @FXML
     private void signupLabelClicked(MouseEvent event){
@@ -88,5 +93,7 @@ public class LoginController {
             }
         }
     }
+
+
 
 }
