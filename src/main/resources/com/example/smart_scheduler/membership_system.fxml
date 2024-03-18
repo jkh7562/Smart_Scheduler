@@ -49,7 +49,7 @@
             <Font size="14.0" />
          </font>
       </TextField>
-      <ImageView fx:id="back_image" fitHeight="22.0" fitWidth="22.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="back_image" fitHeight="22.0" fitWidth="22.0" layoutX="14.0" layoutY="26.0" onMouseClicked="#backimageClicked" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../back.png" />
          </image>
