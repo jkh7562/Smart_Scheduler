@@ -18,6 +18,13 @@ public class MainController {
         // 현재 시간 가져오기
         LocalTime now = LocalTime.now();
 
+        // 현재 시간을 30분 간격으로 조정
+        if (now.getMinute() >= 30) {
+            now = now.plusHours(1).withMinute(0);
+        } else {
+            now = now.withMinute(30);
+        }
+
         // 날짜를 YYYYMMDD 형식으로 변환
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
         String baseDate = today.format(dateFormatter);
@@ -66,5 +73,3 @@ public class MainController {
         return sb.toString(); // 반환 값을 추가합니다.
     }
 }
-
-
