@@ -225,7 +225,7 @@
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
-            <TableView layoutX="15.0" layoutY="320.0" prefHeight="250.0" prefWidth="520.0">
+            <TableView layoutX="15.0" layoutY="305.0" prefHeight="270.0" prefWidth="520.0">
               <columns>
                 <TableColumn prefWidth="65.0" text="주차" />
                 <TableColumn prefWidth="65.0" text="월" />
@@ -247,6 +247,90 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
+            <Pane layoutX="15.0" layoutY="80.0" prefHeight="240.0" prefWidth="520.0">
+               <children>
+                  <Button layoutY="185.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="60.0" text="공유">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../share.png" />
+                           </image></ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="63.0" layoutY="185.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" text="팀원 추가">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../invite.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+                  <Pane layoutX="230.0" prefHeight="225.0" prefWidth="295.0">
+                     <children>
+                        <Label layoutX="10.0" layoutY="5.0" prefHeight="30.0" prefWidth="150.0" text="추천 회의 시간">
+                           <font>
+                              <Font size="20.0" />
+                           </font></Label>
+                        <TableView layoutX="10.0" layoutY="35.0" prefHeight="180.0" prefWidth="280.0">
+                          <columns>
+                            <TableColumn prefWidth="35.0" text="주차" />
+                            <TableColumn minWidth="20.0" prefWidth="35.0" text="월" />
+                              <TableColumn minWidth="20.0" prefWidth="35.0" text="화" />
+                              <TableColumn minWidth="20.0" prefWidth="35.0" text="수" />
+                              <TableColumn minWidth="20.0" prefWidth="35.0" text="목" />
+                              <TableColumn minWidth="20.0" prefWidth="35.0" text="금" />
+                              <TableColumn minWidth="20.0" prefWidth="35.0" text="토" />
+                              <TableColumn minWidth="20.0" prefWidth="35.0" text="일" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </Pane>
+                  <Button layoutX="153.0" layoutY="185.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="85.0" text="일정삭제">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../delete.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </Button>
+                  <Pane layoutY="55.0" prefHeight="100.0" prefWidth="240.0">
+                     <children>
+                        <Label prefHeight="30.0" prefWidth="150.0" text="프로젝트 진척률">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <TableView layoutY="35.0" prefHeight="50.0" prefWidth="220.0">
+                          <columns>
+                            <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="10" />
+                            <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="20" />
+                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="30" />
+                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="40" />
+                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="50" />
+                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="60" />
+                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="70" />
+                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="80" />
+                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="90" />
+                              <TableColumn prefWidth="25.0" style="-fx-background-color: #eaeaea;" text="100" />
+                              <TableColumn prefWidth="15.0" style="-fx-background-color: #eaeaea;" text="\%" />
+                          </columns>
+                        </TableView>
+                        <Button layoutX="140.0" layoutY="5.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" text="진척률 수정" />
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>
