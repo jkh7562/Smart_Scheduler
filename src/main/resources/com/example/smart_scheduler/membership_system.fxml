@@ -35,11 +35,11 @@
          <font>
             <Font size="14.0" />
          </font></PasswordField>
-      <Button fx:id="login_button" layoutX="50.0" layoutY="464.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="Login" textFill="WHITE">
+      <Button fx:id="signup_button" layoutX="50.0" layoutY="464.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="sign up" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="14.0" />
          </font></Button>
-      <Button fx:id="check_button" layoutX="290.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="Check" textFill="#ababab">
+      <Button fx:id="check_button" layoutX="290.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="60.0" text="Check">
          <font>
             <Font size="14.0" />
          </font>
