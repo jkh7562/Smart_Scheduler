@@ -71,9 +71,10 @@ public class MembershipController {
                 try {
                     // 사용자 정보를 서버로 보내기
                     userID = id_textfield.getText();
-
-                    // 추가: 이미 존재하는 아이디인지 확인
-                    if (isUserExist(userID)) {
+                    if(userID.isEmpty()){
+                        return;
+                    }// 추가: 이미 존재하는 아이디인지 확인
+                    else if (isUserExist(userID)) {
                         System.out.println("이미 존재하는 아이디입니다.");
                         checkid = false;
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("checkfail.fxml"));
@@ -109,7 +110,7 @@ public class MembershipController {
     private boolean isUserExist(String userID) {
         try {
             // 서버의 PHP 스크립트 URL로 설정
-            String serverURL = "http://jkh75622.dothome.co.kr/CheckUser.php"; // 아이디 확인용 서버 URL
+            String serverURL = "http://hbr2024.dothome.co.kr/CheckUser.php"; // 아이디 확인용 서버 URL
             String params = "userID=" + userID; // 전달할 파라미터
 
             URL url = new URL(serverURL + "?" + params);
