@@ -247,8 +247,8 @@ public class MembershipController {
 
                                 connection.disconnect();
                             }else{
-                                System.out.println("이미 존재하는 아이디입니다.");
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("checkfail.fxml"));
+                                System.out.println("아이디 중복체크가 완료되지 않았습니다.");
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("signfail.fxml"));
                                 Parent root = loader.load();
                                 Scene scene = new Scene(root);
 
