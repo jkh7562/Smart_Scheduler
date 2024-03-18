@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.MainController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff;">
          <children>
-            <Pane layoutX="10.0" layoutY="460.0" prefHeight="130.0" prefWidth="180.0">
+            <Pane layoutX="10.0" layoutY="80.0" prefHeight="130.0" prefWidth="180.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
                      <graphic>
@@ -57,7 +57,6 @@
                   </Label>
                </children>
             </Pane>
-            <Pane layoutX="10.0" layoutY="280.0" prefHeight="30.0" prefWidth="180.0" />
             <Pane layoutX="5.0" layoutY="10.0" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
@@ -77,7 +76,7 @@
                   </Button>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="220.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="일정 추가">
+            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="220.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="일정 추가">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
                      <image>
@@ -85,14 +84,6 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="260.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="월간 일정">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true">
-                     <image>
-                        <Image url="@../../../img.png" />
-                     </image></ImageView>
-               </graphic>
-            </Button>
             <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
@@ -119,17 +110,8 @@
                      </font></Button>
                </children>
             </Pane>
-            <Pane layoutX="10.0" layoutY="80.0" prefHeight="130.0" prefWidth="180.0">
+            <Pane layoutX="10.0" layoutY="460.0" prefHeight="130.0" prefWidth="180.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="오늘 일정">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
-                           <image>
-                              <Image url="@../../../Schedule.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
                   <Label layoutX="30.0" layoutY="40.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 1">
                      <graphic>
                         <Label prefHeight="10.0" prefWidth="10.0" text="#">
@@ -142,7 +124,18 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Schedule.png" />
+                           </image></ImageView>
+                     </graphic>
+                  </Button>
                   <Label layoutX="30.0" layoutY="70.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 2">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                      <graphic>
                         <Label prefHeight="10.0" prefWidth="10.0" text="#">
                            <font>
@@ -150,21 +143,18 @@
                            </font>
                         </Label>
                      </graphic>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
                   </Label>
                   <Label layoutX="30.0" layoutY="100.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 3">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                      <graphic>
-                        <Label prefHeight="10.0" prefWidth="10.0" text="#">
+                        <Label text="#">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
                      </graphic>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
                   </Label>
                </children>
             </Pane>
@@ -175,32 +165,29 @@
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../works.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Label layoutX="30.0" layoutY="40.0" prefHeight="30.0" prefWidth="90.0" text="출근">
+                           </image></ImageView>
+                     </graphic></Button>
+                  <Label layoutX="30.0" layoutY="40.0" prefHeight="30.0" prefWidth="80.0" text="출근">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
                      <graphic>
                         <Label prefHeight="10.0" prefWidth="10.0" text="#">
                            <font>
                               <Font size="20.0" />
-                           </font></Label>
-                     </graphic>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="130.0" layoutY="40.0" prefHeight="30.0" prefWidth="50.0" text="09:00">
+                           </font>
+                        </Label>
+                     </graphic></Label>
+                  <Label layoutX="130.0" layoutY="40.0" prefHeight="30.0" prefWidth="50.0" text="09:30">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="30.0" layoutY="70.0" prefHeight="30.0" prefWidth="90.0" text="회의시작">
+                     </font></Label>
+                  <Label layoutX="30.0" layoutY="70.0" prefHeight="30.0" prefWidth="80.0" text="회의시작">
                      <font>
                         <Font size="15.0" />
                      </font>
                      <graphic>
-                        <Label prefHeight="10.0" prefWidth="10.0" text="#">
+                        <Label text="#">
                            <font>
                               <Font size="20.0" />
                            </font>
@@ -212,147 +199,54 @@
                         <Font name="Arial Rounded MT Bold" size="15.0" />
                      </font>
                   </Label>
-                  <Label layoutX="30.0" layoutY="100.0" prefHeight="30.0" prefWidth="90.0" text="퇴근">
+                  <Label layoutX="30.0" layoutY="100.0" prefHeight="30.0" prefWidth="80.0" text="퇴근">
                      <font>
                         <Font size="15.0" />
                      </font>
                      <graphic>
-                        <Label prefHeight="10.0" prefWidth="10.0" text="#">
+                        <Label text="#">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                     </graphic>
-                  </Label>
+                     </graphic></Label>
                   <Label layoutX="130.0" layoutY="100.0" prefHeight="30.0" prefWidth="50.0" text="18:30">
                      <font>
                         <Font name="Arial Rounded MT Bold" size="15.0" />
                      </font>
                   </Label>
-               </children>
-            </Pane>
+               </children></Pane>
          </children>
       </Pane>
       <Pane layoutX="225.0" layoutY="10.0" prefHeight="580.0" prefWidth="550.0" style="-fx-background-color: #dbdbdb;">
          <children>
-            <Pane layoutX="390.0" layoutY="80.0" prefHeight="130.0" prefWidth="150.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="10.0" text="외출 시간 계산">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Label layoutX="25.0" layoutY="40.0" text="Today">
+            <Label layoutX="25.0" layoutY="40.0" text="Project">
                <font>
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
-            <Pane layoutX="30.0" layoutY="180.0" prefHeight="30.0" prefWidth="300.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="165.0" layoutY="10.0" text="대기질 : ">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutY="10.0" text="자외선지수 :">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" layoutX="230.0" layoutY="10.0" text="매우 나쁨">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Label>
-                  <Label alignment="CENTER" layoutX="90.0" layoutY="10.0" text="매우 높음">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Label>
-               </children>
-            </Pane>
-            <Pane layoutX="220.0" layoutY="105.0" prefHeight="80.0" prefWidth="150.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="25.0" prefWidth="100.0" text="[ 추천 아이템 ]">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="25.0" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../../../um.png" />
-                     </image></ImageView>
-                  <Label alignment="CENTER" layoutY="60.0" text="아이템">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="50.0" layoutY="25.0" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../../../sun.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" layoutX="50.0" layoutY="60.0" text="선크림">
-                     <font>
-                        <Font size="15.0" />
-                     </font></Label>
-                  <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="100.0" layoutY="25.0" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../../../mask.png" />
-                     </image>
-                  </ImageView>
-                  <Label alignment="CENTER" layoutX="100.0" layoutY="60.0" text="마스크">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <Label layoutX="25.0" layoutY="90.0" prefHeight="50.0" prefWidth="170.0" text="비">
-               <graphic>
-                  <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../001lighticons-18.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
-               <font>
-                  <Font size="35.0" />
-               </font></Label>
-            <TableView layoutX="15.0" layoutY="230.0" prefHeight="330.0" prefWidth="520.0">
+            <TableView layoutX="15.0" layoutY="320.0" prefHeight="250.0" prefWidth="520.0">
               <columns>
-                <TableColumn prefWidth="63.0" text="시간" />
-                <TableColumn prefWidth="460.0" text="일정" />
+                <TableColumn prefWidth="65.0" text="주차" />
+                <TableColumn prefWidth="65.0" text="월" />
+                  <TableColumn prefWidth="65.0" text="화" />
+                  <TableColumn prefWidth="65.0" text="수" />
+                  <TableColumn prefWidth="65.0" text="목" />
+                  <TableColumn prefWidth="65.0" text="금" />
+                  <TableColumn prefWidth="65.0" text="토" />
+                  <TableColumn prefWidth="65.0" text="일" />
               </columns>
             </TableView>
-            <Pane layoutX="30.0" layoutY="160.0" prefHeight="25.0" prefWidth="175.0">
-               <children>
-                  <Label alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="최고 : ">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="90.0" prefHeight="25.0" prefWidth="60.0" text="최저 : ">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="60.0" layoutY="-2.0" text="15">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label alignment="CENTER" layoutX="150.0" layoutY="-2.0" text="3">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="475.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../logo.png" />
                </image>
             </ImageView>
+            <Button alignment="CENTER" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-background-color: #dbdbdb;" text="&lt;  Back">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+            </Button>
          </children>
       </Pane>
    </children>
