@@ -19,16 +19,16 @@
          <font>
             <Font name="Ebrima Bold" size="12.0" />
          </font></Label>
-      <TextField layoutX="57.0" layoutY="205.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Phone number">
+      <TextField fx:id="phone_textfield" layoutX="57.0" layoutY="265.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Phone number">
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <PasswordField layoutX="57.0" layoutY="274.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Authentication number">
+      <PasswordField fx:id="auth_textfield" layoutX="57.0" layoutY="386.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="인증번호를 입력하세요.">
          <font>
             <Font size="14.0" />
          </font>
       </PasswordField>
-      <Button layoutX="57.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="Enter" textFill="WHITE">
+      <Button fx:id="enter_button" layoutX="57.0" layoutY="440.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="Enter" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="14.0" />
          </font></Button>
@@ -37,5 +37,7 @@
             <Image url="@../../../back.png" />
          </image>
       </ImageView>
+      <TextField fx:id="name_textfield" layoutX="57.0" layoutY="207.0" prefHeight="40.0" prefWidth="300.0" promptText="Name" />
+      <Button fx:id="auth_button" layoutX="57.0" layoutY="314.0" mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="인증번호 보내기" textFill="WHITE" />
    </children>
 </AnchorPane>
