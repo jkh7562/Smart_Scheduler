@@ -38,6 +38,6 @@
          </image>
       </ImageView>
       <TextField fx:id="name_textfield" layoutX="57.0" layoutY="207.0" prefHeight="40.0" prefWidth="300.0" promptText="Name" />
-      <Button fx:id="auth_button" layoutX="57.0" layoutY="314.0" mnemonicParsing="false" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="인증번호 보내기" textFill="WHITE" />
+      <Button fx:id="auth_button" layoutX="57.0" layoutY="314.0" mnemonicParsing="false" onAction="#authButtonAction" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="인증번호 보내기" textFill="WHITE" />
    </children>
 </AnchorPane>
