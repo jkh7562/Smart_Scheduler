@@ -151,14 +151,14 @@ public class LoginController {
 
                             try{
 
-                                String serverURL1 = "http://jkh75622.dothome.co.kr/primary.php"; // 서버 URL
+                                String serverURL1 = "http://hbr2024.dothome.co.kr/primary.php"; // 서버 URL
 
                                 URL url1 = new URL(serverURL1);
                                 HttpURLConnection connection1 = (HttpURLConnection) url1.openConnection();
                                 connection1.setRequestMethod("POST");
                                 connection1.setDoOutput(true);
 
-                                String postData1 = "priid=" + userID + "&tableName = pri";
+                                String postData1 = "priid=" + userID;
                                 OutputStream os1 = connection1.getOutputStream();
                                 os1.write(postData1.getBytes("UTF-8"));
                                 os1.close();
