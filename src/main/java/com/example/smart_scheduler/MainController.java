@@ -20,7 +20,7 @@ public class MainController {
         LocalDate today = LocalDate.now();
 
         // 현재 시간 가져오기
-        LocalTime now = LocalTime.of(20, 59); // 오늘 8시 59분
+        LocalTime now = LocalTime.now(); // 오늘 8시 59분
 
         // 날짜를 YYYYMMDD 형식으로 변환
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
