@@ -19,16 +19,11 @@
          <font>
             <Font name="Ebrima Bold" size="12.0" />
          </font></Label>
-      <TextField fx:id="phone_textfield" layoutX="57.0" layoutY="265.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Phone number">
+      <TextField fx:id="phone_textfield" layoutX="53.0" layoutY="277.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Phone number">
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <PasswordField fx:id="auth_textfield" layoutX="57.0" layoutY="386.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="인증번호를 입력하세요.">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </PasswordField>
-      <Button fx:id="enter_button" layoutX="57.0" layoutY="440.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="Enter" textFill="WHITE">
+      <Button fx:id="enter_button" layoutX="53.0" layoutY="393.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enterButtonAction" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="Enter" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="14.0" />
          </font></Button>
@@ -37,7 +32,11 @@
             <Image url="@../../../back.png" />
          </image>
       </ImageView>
-      <TextField fx:id="name_textfield" layoutX="57.0" layoutY="207.0" prefHeight="40.0" prefWidth="300.0" promptText="Name" />
-      <Button fx:id="auth_button" layoutX="57.0" layoutY="314.0" mnemonicParsing="false" onAction="#authButtonAction" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="인증번호 보내기" textFill="WHITE" />
+      <TextField fx:id="name_textfield" layoutX="53.0" layoutY="214.0" prefHeight="40.0" prefWidth="300.0" promptText="Name" />
+      <Label fx:id="error_label" layoutX="53.0" layoutY="326.0" textFill="#f20101">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
