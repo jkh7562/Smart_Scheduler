@@ -154,7 +154,7 @@
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
             </Label>
-            <TableView layoutX="15.0" layoutY="230.0" prefHeight="330.0" prefWidth="520.0">
+            <TableView layoutX="15.0" layoutY="270.0" prefHeight="300.0" prefWidth="520.0">
               <columns>
                 <TableColumn prefWidth="65.0" text="시간" />
                 <TableColumn prefWidth="65.0" text="월" />
@@ -176,6 +176,27 @@
                   <Font name="Arial Rounded MT Bold" size="12.0" />
                </font>
             </Button>
+            <Pane layoutX="235.0" layoutY="60.0" prefHeight="200.0" prefWidth="300.0">
+               <children>
+                  <TableView layoutY="50.0" prefHeight="150.0" prefWidth="300.0">
+                    <columns>
+                      <TableColumn prefWidth="35.0" text="시간" />
+                      <TableColumn prefWidth="37.5" text="월" />
+                        <TableColumn prefWidth="37.5" text="화" />
+                        <TableColumn prefWidth="37.5" text="수" />
+                        <TableColumn prefWidth="37.5" text="목" />
+                        <TableColumn prefWidth="37.5" text="금" />
+                        <TableColumn prefWidth="37.5" text="토" />
+                        <TableColumn prefWidth="37.5" text="일" />
+                    </columns>
+                  </TableView>
+                  <Label layoutX="10.0" layoutY="15.0" prefHeight="30.0" prefWidth="130.0" text="여유시간 확인">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
          </children>
       </Pane>
    </children>
