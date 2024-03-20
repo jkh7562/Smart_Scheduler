@@ -16,6 +16,12 @@ public class SigncptController {
     private Button okay_button;
 
     @FXML
+    private void initialize() {
+        // login_button에 대한 엔터 키 핸들러 등록
+        okay_button.setDefaultButton(true);
+    }
+
+    @FXML
     public void okayButtonAction(ActionEvent event) {
         if (event.getSource() instanceof Button) {
             Button clickedButton = (Button) event.getSource();
