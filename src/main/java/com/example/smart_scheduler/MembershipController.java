@@ -41,6 +41,13 @@ public class MembershipController {
     String userCPass;
     boolean checkid = false;
 
+
+    @FXML
+    private void initialize() {
+        // login_button에 대한 엔터 키 핸들러 등록
+        signup_button.setDefaultButton(true);
+    }
+
     @FXML
     private void backimageClicked(MouseEvent event){
         if(event.getSource() instanceof ImageView){

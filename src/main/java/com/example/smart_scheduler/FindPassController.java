@@ -35,6 +35,12 @@ public class FindPassController {
     private Label error_label;
 
     @FXML
+    private void initialize() {
+        // login_button에 대한 엔터 키 핸들러 등록
+        enter_button.setDefaultButton(true);
+    }
+
+    @FXML
     private void backimageClicked(MouseEvent event){
         if(event.getSource() instanceof ImageView){
             ImageView clickedImageView = (ImageView) event.getSource();
@@ -110,10 +116,26 @@ public class FindPassController {
                                 os1.close();
 
                                 // 서버 응답 처리
-                                // (이 부분은 생략합니다)
+                                int responseCode1 = connection1.getResponseCode();
+                                if (responseCode1 == HttpURLConnection.HTTP_OK) {
+                                    BufferedReader in1 = new BufferedReader(new InputStreamReader(connection1.getInputStream()));
+                                    StringBuilder response1 = new StringBuilder();
+                                    String inputLine1;
+
+                                    while ((inputLine1 = in1.readLine()) != null) {
+                                        response1.append(inputLine1);
+                                    }
+                                    in1.close();
+
+                                    System.out.println("Server Response: " + response1.toString());
+                                } else {
+                                    System.out.println("Server Response Code: " + responseCode1);
+                                }
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+
+
 
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("findpasssuccess.fxml"));
