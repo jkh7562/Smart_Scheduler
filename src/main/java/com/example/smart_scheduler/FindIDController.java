@@ -8,15 +8,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStreamWriter;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Random;
@@ -30,15 +29,9 @@ public class FindIDController {
     @FXML
     private TextField phone_textfield;
     @FXML
-    private Button auth_button;
-    @FXML
-    private TextField auth_textfield;
-    @FXML
     private Button enter_button;
-    // 설정 파일 또는 환경 변수에서 불러오세요.
-    private String apiKey = System.getenv("API_KEY");
-    private String sender = System.getenv("SENDER_PHONE");
-    private String apiEndpoint = System.getenv("API_ENDPOINT");
+    @FXML
+    private Label error_label;
 
     @FXML
     private void backimageClicked(MouseEvent event) {
@@ -54,60 +47,83 @@ public class FindIDController {
     }
 
     @FXML
-    private void authButtonAction(ActionEvent event) {
-        String userPhone = phone_textfield.getText().trim(); // 공백 제거
-        if (userPhone.startsWith("0")) {
-            userPhone = "+82" + userPhone.substring(1);
-        }
-        String verificationCode = generateVerificationCode();
+    private void enterButtonAction(ActionEvent event) {
+        if(event.getSource() instanceof Button) {
+            Button clickedButton = (Button) event.getSource();
+            if (clickedButton.getId().equals("enter_button")) {
+                String userName = name_textfield.getText();
+                String phoneNumber = phone_textfield.getText();
 
-        try {
-            URL url = new URL(apiEndpoint.trim()); // 공백 제거
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            conn.setRequestMethod("POST");
-            conn.setRequestProperty("Content-Type", "application/json;charset=UTF-8");
-            conn.setRequestProperty("Authorization", "Bearer " + apiKey.trim()); // 공백 제거
+                try {
+                    // 서버의 PHP 스크립트 URL로 설정
+                    String serverURL = "http://hbr2024.dothome.co.kr/IdFinder.php";
 
-            String postData = String.format("{\"sender\":\"%s\",\"to\":\"%s\",\"content\":\"Your verification code is: %s\"}", sender, userPhone, verificationCode);
-            conn.setDoOutput(true);
+                    URL url = new URL(serverURL);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("POST");
+                    connection.setDoOutput(true);
 
-            try (OutputStreamWriter osw = new OutputStreamWriter(conn.getOutputStream(), "UTF-8")) {
-                osw.write(postData);
-                osw.flush();
-            }
+                    String postData = "userName=" + userName + "&phoneNumber=" + phoneNumber;
+                    OutputStream os = connection.getOutputStream();
+                    os.write(postData.getBytes("UTF-8"));
+                    os.close();
 
-            int responseCode = conn.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                try (BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
-                    String inputLine;
-                    StringBuilder response = new StringBuilder();
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+
+                        // 서버 응답 처리
+                        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        StringBuilder response = new StringBuilder();
+                        String inputLine;
+
+                        while ((inputLine = in.readLine()) != null) {
+                            response.append(inputLine);
+                        }
+
+                        System.out.println("Server Response: " + response.toString());
+
+                        // JSON 파싱
+                        JSONObject jsonResponse = new JSONObject(response.toString());
+                        boolean IDfindSuccess = jsonResponse.getBoolean("success");
+
+                        if (IDfindSuccess) {
+                            // 데이터의 id 값을 얻어옴
+                            String userID = jsonResponse.getString("userID");
+                            error_label.setText("");
+
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("findidsuccess.fxml"));
+                                Parent root = loader.load();
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setScene(scene);
+                                stage.show();
+
+                                FindidsuccessController findidsuccessController = loader.getController();
+                                findidsuccessController.initData(userID);
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+
+                            // 여기에서 userId 값을 사용하여 필요한 작업 수행
+                            System.out.println("사용자 ID: " + userID);
+                        } else {
+                            error_label.setText("정보를 잘못 입력하셨습니다.");
+                            // 응답이 없거나 비어있는 경우
+                            System.out.println("데이터가 존재하지 않습니다.");
+                        }
+                    } else {
+                        // 에러 처리
+                        System.out.println("HTTP Error Code: " + responseCode);
                     }
-                    // 여기에 성공적으로 SMS를 보냈음을 알리는 코드를 추가하세요.
-                    showAlert(AlertType.INFORMATION, "SMS Sent", "Verification code sent successfully!");
+
+                    connection.disconnect();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } else {
-                // 여기에 실패했음을 알리는 코드를 추가하세요.
-                showAlert(AlertType.ERROR, "SMS Failed", "Failed to send verification code!");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-            showAlert(AlertType.ERROR, "Error", "An error occurred: " + e.getMessage());
         }
     }
 
-    private String generateVerificationCode() {
-        Random random = new Random();
-        int code = 1000 + random.nextInt(9000);
-        return String.valueOf(code);
-    }
-
-    private void showAlert(AlertType alertType, String title, String message) {
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
-        alert.setContentText(message);
-        alert.setHeaderText(null);
-        alert.showAndWait();
-    }
 }
