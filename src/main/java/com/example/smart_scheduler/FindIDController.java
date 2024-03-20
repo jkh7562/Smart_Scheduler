@@ -34,6 +34,12 @@ public class FindIDController {
     private Label error_label;
 
     @FXML
+    private void initialize() {
+        // login_button에 대한 엔터 키 핸들러 등록
+        enter_button.setDefaultButton(true);
+    }
+
+    @FXML
     private void backimageClicked(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Login_screen.fxml"));
