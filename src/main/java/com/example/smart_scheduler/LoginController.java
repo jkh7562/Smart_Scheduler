@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
@@ -32,6 +33,12 @@ public class LoginController {
     private TextField pass_textfield;
     @FXML
     private Button login_button;
+    @FXML
+    private ImageView naver_image;
+    @FXML
+    private ImageView google_image;
+    @FXML
+    private ImageView kakao_image;
 
     @FXML
     private void initialize() {
@@ -210,5 +217,26 @@ public class LoginController {
             }
         }
     }
+    @FXML
+    private void naverimageClicked(MouseEvent event){
+        if(event.getSource() instanceof ImageView){
+            ImageView clickedImageView = (ImageView) event.getSource();
+            if (clickedImageView.getId().equals("naver_image")){
+                try {
+                    // FXML 파일을 로드합니다.
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("naver_login.fxml"));
+                    Parent root = loader.load();
 
+                    // 현재 Stage를 가져옵니다.
+                    Stage currentStage = (Stage) clickedImageView.getScene().getWindow();
+
+                    // 현재 Stage의 Scene을 새로운 Scene으로 교체합니다.
+                    currentStage.setScene(new Scene(root));
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
