@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.MainCommon">
+   <children>
+      <ImageView fitHeight="22.0" fitWidth="22.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../back.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="200.0" fitWidth="182.0" layoutX="619.0" layoutY="-43.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Schedule-real.png" />
+         </image>
+      </ImageView>
+      <Line endX="699.0" layoutX="100.0" layoutY="86.0" startX="-100.0" stroke="#eac4ff" />
+      <TextField layoutY="86.0" prefHeight="61.0" prefWidth="801.0" promptText="등록된 일정이 없습니다.">
+         <font>
+            <Font name="Ebrima Bold" size="20.0" />
+         </font>
+      </TextField>
+      <Label alignment="TOP_LEFT" layoutY="149.0" prefHeight="39.0" prefWidth="800.0" text="   세부사항" textFill="#c92fbf">
+         <font>
+            <Font name="Ebrima Bold" size="20.0" />
+         </font>
+      </Label>
+      <Line endX="699.0" layoutX="101.0" layoutY="188.0" startX="-100.0" stroke="#eac4ff" />
+      <TextField alignment="TOP_LEFT" layoutY="188.0" prefHeight="346.0" prefWidth="800.0" promptText="여기에 입력하세요." />
+      <Button layoutY="534.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="801.0" style="-fx-background-color: #c8c4ff;" text="일정삭제" textFill="WHITE">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font></Button>
+   </children>
+</AnchorPane>
