@@ -347,5 +347,6 @@
             </Pane>
          </children>
       </Pane>
+      <Pane layoutX="-207.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
