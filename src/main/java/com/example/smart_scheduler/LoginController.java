@@ -40,11 +40,6 @@ public class LoginController {
     @FXML
     private ImageView kakao_image;
 
-    @FXML
-    private void initialize() {
-        // login_button에 대한 엔터 키 핸들러 등록
-        login_button.setDefaultButton(true);
-    }
 
     @FXML
     private void initialize() {
