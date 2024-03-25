@@ -150,7 +150,7 @@
       </Pane>
       <Pane layoutX="225.0" layoutY="10.0" prefHeight="580.0" prefWidth="550.0" style="-fx-background-color: #dbdbdb;">
          <children>
-            <Pane layoutX="400.0" layoutY="105.0" prefHeight="130.0" prefWidth="150.0">
+            <Pane layoutX="400.0" layoutY="80.0" prefHeight="130.0" prefWidth="140.0">
                <children>
                   <Label alignment="CENTER" text="외출 시간 계산">
                      <font>
@@ -161,7 +161,7 @@
                      <font>
                         <Font size="11.0" />
                      </font></TextField>
-                  <Button layoutX="95.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                  <Button layoutX="95.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -170,7 +170,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                  <Button layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
                      <graphic>
                         <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -179,7 +179,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button layoutX="40.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                  <Button layoutX="40.0" layoutY="100.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -188,7 +188,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label layoutY="60.0" text="소요시간 :">
+                  <Label layoutY="80.0" text="소요시간 :">
                      <graphic>
                         <Label text="( 자전거 )">
                            <font>
@@ -199,7 +199,12 @@
                      <font>
                         <Font size="11.0" />
                      </font></Label>
-                  <Label layoutX="105.0" layoutY="60.0" text="N분" />
+                  <Label layoutX="105.0" layoutY="80.0" text="N분" />
+                  <TextField layoutY="55.0" prefWidth="130.0" promptText="출발지를 입력하세요. . .">
+                     <font>
+                        <Font size="11.0" />
+                     </font>
+                  </TextField>
                </children>
             </Pane>
             <Label layoutX="25.0" layoutY="40.0" text="Today">
