@@ -43,11 +43,14 @@
             <artifactId>json</artifactId>
             <version>20210307</version>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-web</artifactId>
             <version>17.0.2</version>
         </dependency>
+=======
+>>>>>>> 6463b142b88672096a85feb4ef572e0644dafbd0
     </dependencies>
 
     <build>
