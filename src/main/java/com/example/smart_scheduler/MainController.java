@@ -1,6 +1,5 @@
 package com.example.smart_scheduler;
 
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
