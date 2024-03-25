@@ -150,13 +150,56 @@
       </Pane>
       <Pane layoutX="225.0" layoutY="10.0" prefHeight="580.0" prefWidth="550.0" style="-fx-background-color: #dbdbdb;">
          <children>
-            <Pane layoutX="390.0" layoutY="80.0" prefHeight="130.0" prefWidth="150.0">
+            <Pane layoutX="400.0" layoutY="105.0" prefHeight="130.0" prefWidth="150.0">
                <children>
-                  <Label alignment="CENTER" layoutX="10.0" text="외출 시간 계산">
+                  <Label alignment="CENTER" text="외출 시간 계산">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
+                  <TextField layoutY="30.0" prefHeight="20.0" prefWidth="130.0" promptText="목적지를 입력하세요. . .">
+                     <font>
+                        <Font size="11.0" />
+                     </font></TextField>
+                  <Button layoutX="95.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../bus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../walking.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button layoutX="40.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../bicycle.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Label layoutY="60.0" text="소요시간 :">
+                     <graphic>
+                        <Label text="( 자전거 )">
+                           <font>
+                              <Font size="11.0" />
+                           </font>
+                        </Label>
+                     </graphic>
+                     <font>
+                        <Font size="11.0" />
+                     </font></Label>
+                  <Label layoutX="105.0" layoutY="60.0" text="N분" />
                </children>
             </Pane>
             <Label layoutX="25.0" layoutY="40.0" text="Today">
@@ -270,6 +313,5 @@
             </ImageView>
          </children>
       </Pane>
-      <Pane layoutX="-200.0" layoutY="32.0" prefHeight="200.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

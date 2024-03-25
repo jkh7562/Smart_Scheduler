@@ -49,32 +49,6 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
-               <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../다운로드.jpg" />
-                     </image></ImageView>
-                  <Label layoutX="55.0" layoutY="15.0" prefWidth="115.0" text="User Name. . ." />
-                  <Label layoutX="55.0" layoutY="40.0" text="dlwnsgh0530@naver.com">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Button alignment="CENTER" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="정보수정">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Button>
-                  <Button alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="탈퇴">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Button>
-               </children>
-            </Pane>
             <Pane layoutX="10.0" layoutY="550.0" prefHeight="130.0" prefWidth="180.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
@@ -145,6 +119,32 @@
                      </font>
                   </Label>
                </children></Pane>
+            <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../다운로드.jpg" />
+                     </image></ImageView>
+                  <Label layoutX="55.0" layoutY="15.0" prefWidth="115.0" text="User Name. . ." />
+                  <Label layoutX="55.0" layoutY="40.0" text="dlwnsgh0530@naver.com">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Button alignment="CENTER" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="정보수정">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Button>
+                  <Button alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="탈퇴">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Button>
+               </children>
+            </Pane>
          </children>
       </Pane>
       <Pane layoutX="225.0" layoutY="10.0" prefHeight="580.0" prefWidth="550.0" style="-fx-background-color: #dbdbdb;">
