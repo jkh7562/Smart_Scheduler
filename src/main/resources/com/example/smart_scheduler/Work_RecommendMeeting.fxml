@@ -41,14 +41,6 @@
                   </Button>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="260.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="회의 시간 추천">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../../../sparetime.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
 
              <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="220.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="전체 일정 보기">
                  <graphic>
@@ -159,7 +151,7 @@
       </Pane>
       <Pane layoutX="202.5" layoutY="2.5" prefHeight="595.0" prefWidth="595.0" style="-fx-background-color: #dbdbdb;">
          <children>
-            <Label layoutX="25.0" layoutY="40.0" text="남는 시간">
+            <Label layoutX="25.0" layoutY="40.0" prefHeight="40.0" prefWidth="220.0" text="회의시간 추천">
                <font>
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
@@ -1382,6 +1374,32 @@
                </children>
             </GridPane>
             <ScrollBar layoutX="575.0" layoutY="95.0" orientation="VERTICAL" prefHeight="490.0" prefWidth="20.0" style="-fx-background-color: #cccccc;" />
+            <Pane layoutX="250.0" layoutY="90.0" prefHeight="250.0" prefWidth="220.0" style="-fx-background-color: #eeeeee; -fx-border-color: #000000;">
+               <children>
+                  <ListView layoutX="10.0" layoutY="40.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF; -fx-border-color: #000000;" />
+                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="55.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;" text="&lt; 완료">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <TextField layoutX="110.0" layoutY="10.0" prefHeight="10.0" prefWidth="100.0" promptText="인원추가. . ." style="-fx-background-color: #ffffff; -fx-border-color: #000000;">
+                     <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                     </font></TextField>
+               </children>
+            </Pane>
+            <Button layoutX="250.0" layoutY="50.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="125.0" text="회의시간 추천">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../sparetime.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <Separator layoutX="-40.0" layoutY="122.0" orientation="VERTICAL" prefHeight="200.0" />

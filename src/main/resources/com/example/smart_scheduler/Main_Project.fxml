@@ -324,19 +324,19 @@
                               </Button>
                            </graphic>
                         </Label>
-                        <Pane layoutX="-20.0" layoutY="80.0" prefHeight="190.0" prefWidth="315.0" style="-fx-background-color: #bdbdbd;">
+                        <Pane layoutX="-20.0" layoutY="80.0" prefHeight="190.0" prefWidth="315.0" style="-fx-background-color: #bdbdbd; -fx-border-color: #000000;">
                            <children>
-                              <TextField layoutX="180.0" layoutY="35.0" prefHeight="22.0" prefWidth="130.0" promptText="추가할 이름을 입력하세요.">
+                              <TextField layoutX="180.0" layoutY="35.0" prefHeight="22.0" prefWidth="130.0" promptText="추가할 이름을 입력하세요." style="-fx-border-color: #000000; -fx-background-color: #ffffff;">
                                  <font>
                                     <Font size="10.0" />
                                  </font></TextField>
-                              <ListView layoutX="5.0" layoutY="65.0" prefHeight="120.0" prefWidth="305.0" />
-                              <Button layoutX="5.0" layoutY="5.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" style="-fx-background-color: #dbdbdb;" text="&lt; 수정 완료">
+                              <ListView layoutX="5.0" layoutY="65.0" prefHeight="120.0" prefWidth="305.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;" />
+                              <Button layoutX="5.0" layoutY="5.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;" text="&lt; 수정 완료">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="12.0" />
                                  </font>
                               </Button>
-                              <TextField layoutX="5.0" layoutY="35.0" prefHeight="22.0" prefWidth="170.0" promptText="프로잭트 명을 입력하세요 . . .">
+                              <TextField layoutX="5.0" layoutY="35.0" prefHeight="22.0" prefWidth="170.0" promptText="프로잭트 명을 입력하세요 . . ." style="-fx-border-color: #000000; -fx-background-color: #ffffff;">
                                  <font>
                                     <Font size="10.0" />
                                  </font></TextField>
