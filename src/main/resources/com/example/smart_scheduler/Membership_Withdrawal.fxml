@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Pane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff;">
+            <children>
+                <Pane layoutX="10.0" layoutY="550.0" prefHeight="130.0" prefWidth="180.0" />
+                <Pane layoutX="10.0" layoutY="280.0" prefHeight="30.0" prefWidth="180.0" />
+                <Pane layoutX="5.0" layoutY="10.0" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
+                    <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
+                            <image>
+                                <Image url="@../../../다운로드.jpg" />
+                            </image>
+                        </ImageView>
+                        <TextField layoutX="55.0" layoutY="20.0" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #c8c4ff;" text="User Name........">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </TextField>
+                        <Button layoutX="150.0" layoutY="25.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
+                            <font>
+                                <Font size="10.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </Pane>
+                <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
+                    <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../다운로드.jpg" />
+                            </image></ImageView>
+                        <Label layoutX="55.0" layoutY="15.0" prefWidth="115.0" text="User Name. . ." />
+                        <Label layoutX="55.0" layoutY="40.0" text="dlwnsgh0530@naver.com">
+                            <font>
+                                <Font size="10.0" />
+                            </font></Label>
+                        <Button alignment="CENTER" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
+                            <font>
+                                <Font size="10.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="정보수정">
+                            <font>
+                                <Font size="10.0" />
+                            </font></Button>
+                        <Button alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="탈퇴">
+                            <font>
+                                <Font size="10.0" />
+                            </font></Button>
+                    </children>
+                </Pane>
+            <Button layoutX="64.0" layoutY="539.0" mnemonicParsing="false" style="-fx-background-color: #827fdd;" text="뒤로 가기" textFill="WHITE">
+               <font>
+                  <Font name="Ebrima" size="14.0" />
+               </font>
+            </Button>
+            </children>
+        </Pane>
+        <Pane layoutX="225.0" layoutY="10.0" prefHeight="580.0" prefWidth="550.0" style="-fx-background-color: #dbdbdb;">
+            <children>
+                <Pane layoutX="390.0" layoutY="80.0" prefHeight="130.0" prefWidth="150.0" />
+                <Label layoutX="25.0" layoutY="40.0" text="회원탈퇴">
+                    <font>
+                        <Font name="Arial Rounded MT Bold" size="35.0" />
+                    </font>
+                </Label>
+                <Label layoutX="25.0" layoutY="93.0" prefHeight="70.0" prefWidth="300.0" text="User Name">
+                    <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../다운로드.jpg" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font size="35.0" />
+                    </font></Label>
+                <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="475.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../logo.png" />
+                    </image>
+                </ImageView>
+            <Label layoutX="98.0" layoutY="320.0" prefHeight="25.0" prefWidth="356.0" text="회원 탈퇴시 가입하신 모든 정보가 삭제되어 복구가 불가능합니다." />
+            <CheckBox layoutX="423.0" layoutY="361.0" mnemonicParsing="false" text="동의합니다." />
+            <PasswordField layoutX="88.0" layoutY="278.0" prefHeight="25.0" prefWidth="375.0" promptText="계정을 삭제하시려면 현재 사용 중인 비밀번호를 입력하세요." />
+            <Label layoutX="88.0" layoutY="252.0" prefHeight="19.0" prefWidth="77.0" text="현재 비밀번호" />
+            <Button layoutX="126.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="탈퇴하기" textFill="WHITE">
+               <font>
+                  <Font name="Ebrima Bold" size="14.0" />
+               </font></Button>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
