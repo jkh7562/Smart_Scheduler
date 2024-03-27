@@ -22,6 +22,7 @@
                   </Button>
                </children>
             </Pane>
+
             <Pane layoutX="10.0" layoutY="280.0" prefHeight="30.0" prefWidth="180.0" />
             <Pane layoutX="5.0" layoutY="10.0" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
                <children>
@@ -133,6 +134,7 @@
                   </Label>
                </children>
             </Pane>
+
             <Pane layoutX="10.0" layoutY="500.0" prefHeight="130.0" prefWidth="180.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
