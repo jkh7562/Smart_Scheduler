@@ -5,9 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.MainController">
     <children>
-        <Pane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff;">
+        <Pane prefHeight=com.example.smart_scheduler.MainController"600.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff;">
             <children>
                 <Pane layoutX="10.0" layoutY="550.0" prefHeight="130.0" prefWidth="180.0">
                     <children>
