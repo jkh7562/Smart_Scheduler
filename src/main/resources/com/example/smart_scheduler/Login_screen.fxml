@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.LoginController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+    </padding>
+    <Pane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #FFFFFF;">
+        <children>
+            <Pane prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #c8c4ff;">
+                <children>
+                    <ImageView fitHeight="300.0" fitWidth="300.0" layoutX="50.0" layoutY="94.0" pickOnBounds="true" smooth="false">
+                        <image>
+                            <Image url="@../../../Schedule2.png" />
+                        </image></ImageView>
+                    <Label layoutX="166.0" layoutY="298.0" text="Welcome To" textFill="WHITE">
+                        <font>
+                            <Font name="Ebrima Bold" size="15.0" />
+                        </font>
+                    </Label>
+                    <Label layoutX="140.0" layoutY="317.0" prefHeight="32.0" prefWidth="150.0" text="SCHEDULER" textFill="WHITE">
+                        <font>
+                            <Font name="Ebrima Bold" size="25.0" />
+                        </font>
+                    </Label>
+                </children></Pane>
+            <ImageView fitHeight="200.0" fitWidth="182.0" layoutX="400.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FFFFFF;">
+                <image>
+                    <Image url="@../../../Schedule-real.png" />
+                </image></ImageView>
+            <Label layoutX="432.0" layoutY="99.0" prefHeight="26.0" prefWidth="150.0" style="-fx-background-color: #FFFFFF;" text="Welcome Back,">
+                <font>
+                    <Font name="Ebrima Bold" size="20.0" />
+                </font></Label>
+            <Label layoutX="432.0" layoutY="125.0" prefHeight="9.0" prefWidth="116.0" text="Sign in to contiue" textFill="#a1a1a1">
+                <font>
+                    <Font name="Ebrima Bold" size="12.0" />
+                </font>
+            </Label>
+            <TextField fx:id="id_textfield" layoutX="432.0" layoutY="198.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="ID">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </TextField>
+            <PasswordField fx:id="pass_textfield" layoutX="432.0" layoutY="251.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Password">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </PasswordField>
+            <Label fx:id="passfinder_label" layoutX="639.0" layoutY="315.0" onMouseClicked="#passfinderLabelClicked" prefHeight="19.0" prefWidth="106.0" text="Forget Password?" textFill="#a1a1a1">
+                <font>
+                    <Font name="Ebrima Bold" size="12.0" />
+                </font>
+            </Label>
+            <Button layoutX="432.0" layoutY="349.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="Login" textFill="WHITE">
+                <font>
+                    <Font name="Ebrima Bold" size="14.0" />
+                </font></Button>
+            <Label layoutX="526.0" layoutY="509.0" text="New User?" textFill="#a1a1a1">
+                <font>
+                    <Font name="Ebrima Bold" size="13.0" />
+                </font>
+            </Label>
+            <Label fx:id="signup_label" layoutX="596.0" layoutY="509.0" onMouseClicked="#signupLabelClicked" text="Signup" textFill="#bdb8fc">
+                <font>
+                    <Font name="Ebrima Bold" size="13.0" />
+                </font>
+            </Label>
+            <Label fx:id="idfinder_label" layoutX="675.0" layoutY="300.0" onMouseClicked="#idfinderLabelClicked" text="Forget Id?" textFill="#a1a1a1">
+                <font>
+                    <Font name="Ebrima Bold" size="12.0" />
+                </font>
+            </Label>
+            <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="464.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../googlelogo.png" />
+                </image>
+            </ImageView>
+            <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="552.0" layoutY="421.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../Naverlogo.png" />
+                </image>
+            </ImageView>
+            <ImageView fitHeight="55.0" fitWidth="55.0" layoutX="648.0" layoutY="423.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../../../Kakaolog.png" />
+                </image>
+            </ImageView>
+        </children></Pane>
+</VBox>
