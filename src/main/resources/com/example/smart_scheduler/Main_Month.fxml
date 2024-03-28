@@ -9,19 +9,7 @@
     <children>
         <Pane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff;">
             <children>
-                <Pane layoutX="10.0" layoutY="550.0" prefHeight="130.0" prefWidth="180.0">
-                    <children>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
-                            <graphic>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
-                                    <image>
-                                        <Image url="@../../../work.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                        </Button>
-                    </children>
-                </Pane>
+                <Pane layoutX="10.0" layoutY="550.0" prefHeight="130.0" prefWidth="180.0" />
 
                 <Pane layoutX="10.0" layoutY="280.0" prefHeight="30.0" prefWidth="180.0" />
                 <Pane layoutX="5.0" layoutY="10.0" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
@@ -146,7 +134,7 @@
         <Pane layoutX="202.5" layoutY="2.5" prefHeight="595.0" prefWidth="595.0" style="-fx-background-color: #dbdbdb;">
 
             <children>
-                <Label layoutX="24.0" layoutY="67.0" text="Daily">
+                <Label layoutX="24.0" layoutY="81.0" prefHeight="42.0" prefWidth="110.0" text="Month">
                     <font>
                         <Font name="Arial Rounded MT Bold" size="35.0" />
                     </font>
@@ -161,7 +149,7 @@
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                     </font>
                 </Button>
-                <GridPane layoutX="11.0" layoutY="196.0" prefWidth="574.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;">
+                <GridPane layoutX="24.0" layoutY="202.0" prefHeight="321.0" prefWidth="548.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
@@ -556,7 +544,7 @@
                                 </TextField>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                        <Pane prefHeight="200.0" prefWidth="91.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="5">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -591,7 +579,6 @@
 
                     </children>
                 </GridPane>
-                <ScrollBar layoutX="575.0" layoutY="95.0" orientation="VERTICAL" prefHeight="490.0" prefWidth="20.0" style="-fx-background-color: #cccccc;" />
             </children>
         </Pane>
         <Separator layoutX="-40.0" layoutY="122.0" orientation="VERTICAL" prefHeight="200.0" />
