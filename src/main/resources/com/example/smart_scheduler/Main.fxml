@@ -1,0 +1,423 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Pane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff;">
+            <children>
+                <Pane layoutX="10.0" layoutY="550.0" prefHeight="130.0" prefWidth="180.0">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
+                                    <image>
+                                        <Image url="@../../../work.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </Pane>
+
+                <Pane layoutX="10.0" layoutY="280.0" prefHeight="30.0" prefWidth="180.0" />
+                <Pane layoutX="5.0" layoutY="10.0" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
+                    <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
+                            <image>
+                                <Image url="@../../../다운로드.jpg" />
+                            </image>
+                        </ImageView>
+                        <TextField layoutX="55.0" layoutY="20.0" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #c8c4ff;" text="User Name........">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </TextField>
+                        <Button layoutX="150.0" layoutY="25.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
+                            <font>
+                                <Font size="10.0" />
+                            </font>
+                        </Button>
+                    </children>
+                </Pane>
+                <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="220.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="일정 추가">
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
+                            <image>
+                                <Image url="@../../../add.png" />
+                            </image>
+                        </ImageView>
+                    </graphic></Button>
+                <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="260.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="월간 일정">
+                    <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true">
+                            <image>
+                                <Image url="@../../../img.png" />
+                            </image></ImageView>
+                    </graphic>
+                </Button>
+                <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
+                    <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../다운로드.jpg" />
+                            </image></ImageView>
+                        <Label layoutX="55.0" layoutY="15.0" prefWidth="115.0" text="User Name. . ." />
+                        <Label layoutX="55.0" layoutY="40.0" text="dlwnsgh0530@naver.com">
+                            <font>
+                                <Font size="10.0" />
+                            </font></Label>
+                        <Button alignment="CENTER" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
+                            <font>
+                                <Font size="10.0" />
+                            </font>
+                        </Button>
+                        <Button alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="정보수정">
+                            <font>
+                                <Font size="10.0" />
+                            </font></Button>
+                        <Button alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="탈퇴">
+                            <font>
+                                <Font size="10.0" />
+                            </font></Button>
+                    </children>
+                </Pane>
+                <Pane layoutX="10.0" layoutY="80.0" prefHeight="130.0" prefWidth="180.0">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="오늘 일정">
+                            <graphic>
+                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
+                                    <image>
+                                        <Image url="@../../../Schedule.1.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                        <Label layoutX="30.0" layoutY="40.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 1">
+                            <graphic>
+                                <Label prefHeight="10.0" prefWidth="10.0" text="#">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                            </graphic>
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="70.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 2">
+                            <graphic>
+                                <Label prefHeight="10.0" prefWidth="10.0" text="#">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                            </graphic>
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="30.0" layoutY="100.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 3">
+                            <graphic>
+                                <Label prefHeight="10.0" prefWidth="10.0" text="#">
+                                    <font>
+                                        <Font size="20.0" />
+                                    </font>
+                                </Label>
+                            </graphic>
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+
+                <Pane layoutX="10.0" layoutY="500.0" prefHeight="130.0" prefWidth="180.0">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../works.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </Pane>
+            </children>
+        </Pane>
+        <Pane layoutX="225.0" layoutY="10.0" prefHeight="580.0" prefWidth="550.0" style="-fx-background-color: #dbdbdb;">
+            <children>
+                <Pane layoutX="390.0" layoutY="80.0" prefHeight="130.0" prefWidth="150.0">
+                    <children>
+                        <Label alignment="CENTER" layoutX="10.0" text="외출 시간 계산">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Label layoutX="25.0" layoutY="40.0" text="Today">
+                    <font>
+                        <Font name="Arial Rounded MT Bold" size="35.0" />
+                    </font>
+                </Label>
+                <Pane layoutX="30.0" layoutY="180.0" prefHeight="30.0" prefWidth="300.0">
+                    <children>
+                        <Label alignment="CENTER" layoutX="165.0" layoutY="10.0" text="대기질 : ">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutY="10.0" text="자외선지수 :">
+                            <font>
+                                <Font size="15.0" />
+                            </font></Label>
+                        <Label alignment="CENTER" layoutX="230.0" layoutY="10.0" text="매우 나쁨">
+                            <font>
+                                <Font size="15.0" />
+                            </font></Label>
+                        <Label alignment="CENTER" layoutX="90.0" layoutY="10.0" text="매우 높음">
+                            <font>
+                                <Font size="15.0" />
+                            </font></Label>
+                    </children>
+                </Pane>
+                <Pane layoutX="220.0" layoutY="105.0" prefHeight="80.0" prefWidth="150.0">
+                    <children>
+                        <Label alignment="CENTER" layoutX="25.0" prefWidth="100.0" text="[ 추천 아이템 ]">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutY="25.0" pickOnBounds="true" smooth="false">
+                            <image>
+                                <Image url="@../../../um.png" />
+                            </image></ImageView>
+                        <Label alignment="CENTER" layoutY="60.0" text="아이템">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="50.0" layoutY="25.0" pickOnBounds="true" smooth="false">
+                            <image>
+                                <Image url="@../../../sun.png" />
+                            </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="50.0" layoutY="60.0" text="선크림">
+                            <font>
+                                <Font size="15.0" />
+                            </font></Label>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="100.0" layoutY="25.0" pickOnBounds="true" smooth="false">
+                            <image>
+                                <Image url="@../../../mask.png" />
+                            </image>
+                        </ImageView>
+                        <Label alignment="CENTER" layoutX="100.0" layoutY="60.0" text="마스크">
+                            <font>
+                                <Font size="15.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Label layoutX="25.0" layoutY="90.0" prefHeight="50.0" prefWidth="170.0" text="비">
+                    <graphic>
+                        <ImageView fitHeight="70.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../../../001lighticons-18.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                    <font>
+                        <Font size="35.0" />
+                    </font></Label>
+                <Pane layoutX="30.0" layoutY="160.0" prefHeight="25.0" prefWidth="175.0">
+                    <children>
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="60.0" text="최고 : ">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="90.0" prefHeight="25.0" prefWidth="60.0" text="최저 : ">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="60.0" layoutY="-2.0" text="15">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                        <Label alignment="CENTER" layoutX="150.0" layoutY="-2.0" text="3">
+                            <font>
+                                <Font size="20.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="475.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../logo.png" />
+                    </image>
+                </ImageView>
+                <GridPane layoutX="19.0" layoutY="256.0" prefHeight="323.0" prefWidth="512.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="270.0" minWidth="10.0" prefWidth="114.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="495.0" minWidth="10.0" prefWidth="436.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="1">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" text="08:30~10:30" textAlignment="CENTER" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="2">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" text="10:30~12:30" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="3">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" text="12:30~14:30" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="4">
+                            <children>
+                                <Label text="14:30~16:30" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="5">
+                            <children>
+                                <Label text="16:30~18:30" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="6">
+                            <children>
+                                <Label text="18:30~20:30" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1">
+                            <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" graphicTextGap="3.0" text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                            <children>
+                                <Label text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                            <children>
+                                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="입력" />
+                                    </children>
+                                </HBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                            <children>
+                                <Label text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                            <children>
+                                <Label text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                            <children>
+                                <Label text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                            <children>
+                                <Label text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="7">
+                            <children>
+                                <Label text="20:30~22:30" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="8">
+                            <children>
+                                <Label text="22:30~00:30" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="9">
+                            <children>
+                                <Label text="00:30~02:30" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="10">
+                            <children>
+                                <Label text="02:30~04:30" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                            <children>
+                                <Label text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                            <children>
+                                <Label text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                            <children>
+                                <Label text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                            <children>
+                                <Label text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.rowIndex="11">
+                            <children>
+                                <Label text="04:30~06:30" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                            <children>
+                                <Label text="입력" />
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="97.0" style="-fx-border-color: #000000; -fx-background-color: #FFFFFF;">
+                            <children>
+                                <Label text="06:30~08:30" />
+                            </children>
+                        </HBox>
+                    </children>
+                </GridPane>
+                <Pane layoutX="19.0" layoutY="223.0" prefHeight="33.0" prefWidth="512.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #000000;">
+                    <children>
+                        <Label layoutX="215.0" layoutY="1.0" prefHeight="27.0" prefWidth="105.0" text="오늘의 할 일" />
+                        <Label layoutX="45.0" layoutY="12.0" />
+                        <Label layoutX="66.0" layoutY="13.0" />
+                        <Label layoutX="94.0" layoutY="12.0" />
+                    </children></Pane>
+            </children>
+        </Pane>
+    </children>
+</AnchorPane>
