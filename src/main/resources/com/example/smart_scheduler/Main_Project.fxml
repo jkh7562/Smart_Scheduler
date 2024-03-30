@@ -109,21 +109,9 @@
                         <Font size="10.0" />
                      </font></Button>
                </children>
-            </Pane>
-            <Pane layoutX="10.0" layoutY="460.0" prefHeight="130.0" prefWidth="180.0">
+   </Pane>
+            <Pane layoutX="10.0" layoutY="550.0" prefHeight="130.0" prefWidth="180.0">
                <children>
-                  <Label layoutX="30.0" layoutY="40.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 1">
-                     <graphic>
-                        <Label prefHeight="10.0" prefWidth="10.0" text="#">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </graphic>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
@@ -132,33 +120,9 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Label layoutX="30.0" layoutY="70.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 2">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <graphic>
-                        <Label prefHeight="10.0" prefWidth="10.0" text="#">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </graphic>
-                  </Label>
-                  <Label layoutX="30.0" layoutY="100.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 3">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <graphic>
-                        <Label text="#">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </graphic>
-                  </Label>
                </children>
             </Pane>
-            <Pane layoutX="10.0" layoutY="310.0" prefHeight="130.0" prefWidth="180.0">
+            <Pane layoutX="10.0" layoutY="500.0" prefHeight="130.0" prefWidth="180.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
                      <graphic>
@@ -167,55 +131,16 @@
                               <Image url="@../../../works.png" />
                            </image></ImageView>
                      </graphic></Button>
-                  <Label layoutX="30.0" layoutY="40.0" prefHeight="30.0" prefWidth="80.0" text="출근">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <graphic>
-                        <Label prefHeight="10.0" prefWidth="10.0" text="#">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </graphic></Label>
-                  <Label layoutX="130.0" layoutY="40.0" prefHeight="30.0" prefWidth="50.0" text="09:30">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font></Label>
-                  <Label layoutX="30.0" layoutY="70.0" prefHeight="30.0" prefWidth="80.0" text="회의시작">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <graphic>
-                        <Label text="#">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </graphic>
-                  </Label>
-                  <Label layoutX="130.0" layoutY="70.0" prefHeight="30.0" prefWidth="50.0" text="12:30">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="30.0" layoutY="100.0" prefHeight="30.0" prefWidth="80.0" text="퇴근">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <graphic>
-                        <Label text="#">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </graphic></Label>
-                  <Label layoutX="130.0" layoutY="100.0" prefHeight="30.0" prefWidth="50.0" text="18:30">
-                     <font>
-                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                     </font>
-                  </Label>
                </children></Pane>
+            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #b9d8b9;" text="여유시간 활용">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../teatime.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <Pane layoutX="215.0" layoutY="5.0" prefHeight="590.0" prefWidth="560.0" style="-fx-background-color: #dbdbdb;">

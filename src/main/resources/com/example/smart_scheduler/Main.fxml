@@ -145,9 +145,29 @@
                      </graphic>
                   </Button>
                </children>
+
+               <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #b9d8b9;" text="여유시간 활용">
+                  <graphic>
+                     <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../../../teatime.png" />
+                        </image>
+                     </ImageView>
+                  </graphic></Button>
             </Pane>
+            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="450.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #b9d8b9;" text="여유시간 활용">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../teatime.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
+
+
       <Pane layoutX="205.0" prefHeight="600.0" prefWidth="590.0" style="-fx-background-color: #dbdbdb;">
          <children>
             <Pane layoutX="430.0" layoutY="80.0" prefHeight="130.0" prefWidth="140.0">
