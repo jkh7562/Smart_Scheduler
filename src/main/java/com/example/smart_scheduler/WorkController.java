@@ -50,9 +50,10 @@ public class WorkController {
 
     // 클릭한 팬의 요일과 시간을 확인하는 메서드
     private void handlePaneClick(Pane clickedPane) {
-        int columnIndex = GridPane.getColumnIndex(clickedPane); // 열 인덱스
-        int rowIndex = GridPane.getRowIndex(clickedPane); // 행 인덱스
+        int columnIndex = GridPane.getColumnIndex(clickedPane) != null ? GridPane.getColumnIndex(clickedPane) : 0;
+        int rowIndex = GridPane.getRowIndex(clickedPane) != null ? GridPane.getRowIndex(clickedPane) : 0;
 
+        columnIndex -= 1;
         // 요일과 시간 계산
         DayOfWeek day = DayOfWeek.values()[columnIndex]; // 열 인덱스에 해당하는 요일
         int hour = rowIndex + START_HOUR; // 행 인덱스에 해당하는 시간

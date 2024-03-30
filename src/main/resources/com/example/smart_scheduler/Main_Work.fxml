@@ -258,7 +258,7 @@
 
                     </children>
                 </GridPane>
-                <ScrollPane layoutX="2.0" layoutY="140.0" prefWidth="589.0">
+                <ScrollPane layoutX="2.0" layoutY="140.0" prefHeight="457.0" prefWidth="589.0">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="902.0" prefWidth="572.0">
                             <children>
