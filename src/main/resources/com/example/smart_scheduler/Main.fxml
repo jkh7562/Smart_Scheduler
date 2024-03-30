@@ -320,36 +320,36 @@
                   </Label>
                </children>
             </Pane>
-            <ScrollPane layoutX="5.0" layoutY="240.0" prefHeight="635.0" prefWidth="565.0">
+            <GridPane layoutX="5.0" layoutY="240.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="500.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="50.0" text="시간" />
+                     </children>
+                  </Pane>
+                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1">
+                     <children>
+                        <Label alignment="CENTER" prefHeight="20.0" prefWidth="500.0" text="일정">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="12.0" />
+                           </font>
+                               </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </GridPane>
+            <ScrollPane layoutX="5.0" layoutY="260.0" prefHeight="600.0" prefWidth="567.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="635.0" prefWidth="551.0">
                      <children>
-                        <GridPane>
-                          <columnConstraints>
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="500.0" minWidth="10.0" prefWidth="500.0" />
-                          </columnConstraints>
-                          <rowConstraints>
-                            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
-                          </rowConstraints>
-                           <children>
-                              <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;">
-                                 <children>
-                                    <Label alignment="CENTER" prefHeight="20.0" prefWidth="50.0" text="시간" />
-                                 </children>
-                              </Pane>
-                              <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1">
-                                 <children>
-                                    <Label alignment="CENTER" prefHeight="20.0" prefWidth="500.0" text="일정">
-                                       <font>
-                                          <Font name="Arial Rounded MT Bold" size="12.0" />
-                                       </font>
-                                    </Label>
-                                 </children>
-                              </Pane>
-                           </children>
-                        </GridPane>
-                        <GridPane layoutY="20.0" prefHeight="600.0" prefWidth="550.0">
+                        <GridPane prefHeight="600.0" prefWidth="550.0">
                           <columnConstraints>
                             <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
                             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
