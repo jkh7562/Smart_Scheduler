@@ -19,18 +19,24 @@
          <font>
             <Font name="Ebrima Bold" size="12.0" />
          </font></Label>
-      <TextField layoutX="57.0" layoutY="205.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Email/Phone number">
+      <TextField fx:id="phone_textfield" layoutX="53.0" layoutY="277.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Phone number">
          <font>
             <Font size="14.0" />
          </font></TextField>
-      <PasswordField layoutX="57.0" layoutY="274.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Authentication number">
-         <font>
-            <Font size="14.0" />
-         </font>
-      </PasswordField>
-      <Button layoutX="57.0" layoutY="423.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="Enter" textFill="WHITE">
+      <Button fx:id="enter_button" layoutX="53.0" layoutY="393.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#enterButtonAction" prefHeight="50.0" prefWidth="300.0" style="-fx-background-color: #c8c4ff;" text="Enter" textFill="WHITE">
          <font>
             <Font name="Ebrima Bold" size="14.0" />
          </font></Button>
+      <ImageView fx:id="back_image" fitHeight="22.0" fitWidth="22.0" layoutX="14.0" layoutY="26.0" onMouseClicked="#backimageClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../back.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="name_textfield" layoutX="53.0" layoutY="214.0" prefHeight="40.0" prefWidth="300.0" promptText="Name" />
+      <Label fx:id="error_label" layoutX="53.0" layoutY="326.0" textFill="#f20101">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

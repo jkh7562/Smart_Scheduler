@@ -37,7 +37,7 @@
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                     </font>
                 </Button>
-                <GridPane layoutX="10.0" layoutY="115.0" prefHeight="475.0" prefWidth="780.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;">
+                <GridPane layoutX="10.0" layoutY="85.0" prefHeight="500.0" prefWidth="780.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="105.0" prefWidth="110.0" />
@@ -49,6 +49,7 @@
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="105.0" prefWidth="110.0" />
                     </columnConstraints>
                     <rowConstraints>
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="94.0" minHeight="94.0" prefHeight="94.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="94.0" minHeight="94.0" prefHeight="94.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="94.0" minHeight="94.0" prefHeight="94.0" vgrow="SOMETIMES" />
@@ -56,8 +57,68 @@
                         <RowConstraints maxHeight="94.0" minHeight="94.0" prefHeight="94.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee; -fx-background-color: #c8c4ff;" />
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee; -fx-background-color: #c8c4ff;" GridPane.columnIndex="1">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Mon">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                            </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee; -fx-background-color: #c8c4ff;" GridPane.columnIndex="2">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Tue">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                                    </font></Label>
+                            </children></Pane>
+
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee; -fx-background-color: #c8c4ff;" GridPane.columnIndex="3">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Wed">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee; -fx-background-color: #c8c4ff;" GridPane.columnIndex="4">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Thu">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                                    </font></Label>
+                            </children></Pane>
+
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee; -fx-background-color: #c8c4ff;" GridPane.columnIndex="5">
+
+                            <children>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Fri">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                                    </font></Label>
+                            </children></Pane>
+
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee; -fx-background-color: #c8c4ff;" GridPane.columnIndex="6">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Sat" textFill="#5555ff">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                                    </font></Label>
+                            </children></Pane>
+
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee; -fx-background-color: #c8c4ff;" GridPane.columnIndex="7">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Sun" textFill="#ff5555">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                                    </font></Label>
+                            </children></Pane>
+
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="1">
                             <children>
                                 <Label alignment="CENTER" prefHeight="95.0" prefWidth="40.0" text="1주차">
                                     <font>
@@ -66,7 +127,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="1">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="2">
                             <children>
                                 <Label alignment="CENTER" prefHeight="95.0" prefWidth="40.0" text="2주차">
                                     <font>
@@ -75,7 +136,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="2">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="3">
                             <children>
                                 <Label alignment="CENTER" prefHeight="95.0" prefWidth="40.0" text="3주차">
                                     <font>
@@ -84,7 +145,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="3">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="4">
                             <children>
                                 <Label alignment="CENTER" prefHeight="95.0" prefWidth="40.0" text="4주차">
                                     <font>
@@ -93,7 +154,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="4">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="5">
                             <children>
                                 <Label alignment="CENTER" prefHeight="95.0" prefWidth="40.0" text="5주차">
                                     <font>
@@ -110,7 +171,7 @@
 
 
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -124,7 +185,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -138,7 +199,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="1">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -152,7 +213,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="1">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -166,7 +227,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="1">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -180,7 +241,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="1">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -194,7 +255,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="1">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -208,7 +269,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -222,7 +283,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -237,7 +298,7 @@
                             </children></Pane>
 
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -252,7 +313,7 @@
                             </children></Pane>
 
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -266,7 +327,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -280,7 +341,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="2">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -294,7 +355,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="2">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -308,7 +369,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="2">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -322,7 +383,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="2">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -336,7 +397,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="1">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="2">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -350,7 +411,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="3">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -364,7 +425,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="3">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -378,7 +439,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="3">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -392,7 +453,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="3">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -406,7 +467,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="3">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -420,7 +481,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="2">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="3">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -434,7 +495,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="4">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -448,7 +509,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="5">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -462,7 +523,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="4">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -476,7 +537,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="5">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -490,7 +551,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="4">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -504,7 +565,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="5">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -518,7 +579,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="4">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -532,7 +593,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="5">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -546,7 +607,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="4">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -560,7 +621,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="5">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -574,7 +635,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="3">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="4">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -588,7 +649,7 @@
                                 </Label>
                             </children></Pane>
 
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="4">
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="5">
                             <children>
                                 <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="10.0" prefHeight="80.0" prefWidth="103.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
                                     <font>
@@ -628,94 +689,6 @@
 
                     </children>
                 </GridPane>
-            <GridPane layoutX="10.0" layoutY="85.0" prefHeight="30.0" prefWidth="780.0" style="-fx-border-color: #000000;">
-              <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
-                <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="105.0" prefWidth="110.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="105.0" prefWidth="110.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="105.0" prefWidth="110.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="105.0" prefWidth="110.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="105.0" prefWidth="110.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="105.0" prefWidth="110.0" />
-                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="105.0" prefWidth="110.0" />
-              </columnConstraints>
-              <rowConstraints>
-                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-              </rowConstraints>
-               <children>
-                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" />
-                  <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1">
-                     <children>
-                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Mon">
-                           <font>
-                              <Font name="Arial Rounded MT Bold" size="12.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </Pane>
-
-                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2">
-                       <children>
-                           <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Tue">
-                               <font>
-                                   <Font name="Arial Rounded MT Bold" size="12.0" />
-                               </font>
-                           </Label>
-                       </children>
-                   </Pane>
-
-                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3">
-                       <children>
-                           <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Wed">
-                               <font>
-                                   <Font name="Arial Rounded MT Bold" size="12.0" />
-                               </font>
-                           </Label>
-                       </children>
-                   </Pane>
-
-                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4">
-                       <children>
-                           <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Thu">
-                               <font>
-                                   <Font name="Arial Rounded MT Bold" size="12.0" />
-                               </font>
-                           </Label>
-                       </children>
-                   </Pane>
-
-                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5">
-                       <children>
-                           <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Fri">
-                               <font>
-                                   <Font name="Arial Rounded MT Bold" size="12.0" />
-                               </font>
-                           </Label>
-                       </children>
-                   </Pane>
-
-                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6">
-                       <children>
-                           <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Sat">
-                               <font>
-                                   <Font name="Arial Rounded MT Bold" size="12.0" />
-                               </font>
-                           </Label>
-                       </children>
-                   </Pane>
-
-                   <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="7">
-                       <children>
-                           <Label alignment="CENTER" prefHeight="30.0" prefWidth="110.0" text="Sun">
-                               <font>
-                                   <Font name="Arial Rounded MT Bold" size="12.0" />
-                               </font>
-                           </Label>
-                       </children>
-                   </Pane>
-
-               </children>
-            </GridPane>
             </children>
         </Pane>
         <Separator layoutX="-40.0" layoutY="122.0" orientation="VERTICAL" prefHeight="200.0" />
