@@ -2,7 +2,6 @@ module com.example.smart_scheduler {
     requires javafx.controls;
     requires javafx.fxml;
     requires org.json;
-
     requires javafx.web;
 
 
