@@ -1,9 +1,17 @@
 package com.example.smart_scheduler;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class WorkController {
 
@@ -24,6 +32,8 @@ public class WorkController {
     private Pane Sat08,Sat09,Sat10,Sat11,Sat12,Sat13,Sat14,Sat15,Sat16,Sat17,Sat18,Sat19,Sat20,Sat21,Sat22;
     @FXML
     private Pane Sun08,Sun09,Sun10,Sun11,Sun12,Sun13,Sun14,Sun15,Sun16,Sun17,Sun18,Sun19,Sun20,Sun21,Sun22;
+    @FXML
+    private Button plus_button;
 
     // 팬을 요일과 시간에 따라 구분하기 위한 변수 정의
     enum DayOfWeek { Mon, Tue, Wed, Thu, Fri, Sat, Sun }
@@ -70,6 +80,18 @@ public class WorkController {
             System.out.println("Pane not found for ID: " + paneId);
         }
         return pane;
+    }
+    @FXML
+    private void plusButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Work_detail.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) plus_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
+        }
     }
 
 }

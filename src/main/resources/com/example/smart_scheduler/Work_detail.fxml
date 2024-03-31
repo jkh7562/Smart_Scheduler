@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="588.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.WorkDetail">
+<AnchorPane prefHeight="588.0" prefWidth="502.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.WorkdetailController">
    <children>
       <Pane prefHeight="47.0" prefWidth="502.0" style="-fx-background-color: #c8c4ff;" />
+      <MenuButton layoutX="392.0" layoutY="91.0" mnemonicParsing="false" text="시간 선택">
+        <items>
+          <MenuItem mnemonicParsing="false" text="08 ~ 09" />
+          <MenuItem mnemonicParsing="false" text="09 ~ 10" />
+          <MenuItem mnemonicParsing="false" text="10 ~ 11" />
+          <MenuItem mnemonicParsing="false" text="11 ~ 12" />
+          <MenuItem mnemonicParsing="false" text="12 ~ 13" />
+          <MenuItem mnemonicParsing="false" text="13 ~ 14" />
+           <MenuItem mnemonicParsing="false" text="14 ~ 15" />
+           <MenuItem mnemonicParsing="false" text="15 ~ 16" />
+           <MenuItem mnemonicParsing="false" text="16 ~ 17" />
+           <MenuItem mnemonicParsing="false" text="17 ~ 18" />
+           <MenuItem mnemonicParsing="false" text="18 ~ 19" />
+           <MenuItem mnemonicParsing="false" text="19 ~ 20" />
+           <MenuItem mnemonicParsing="false" text="20 ~ 21" />
+           <MenuItem mnemonicParsing="false" text="21 ~ 22" />
+           <MenuItem mnemonicParsing="false" text="22 ~ 23" />
+        </items>
+      </MenuButton>
    </children>
 </AnchorPane>
