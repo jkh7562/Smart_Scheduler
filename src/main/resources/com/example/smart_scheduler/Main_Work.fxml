@@ -62,7 +62,7 @@
 
                 <Pane layoutX="10.0" layoutY="550.0" prefHeight="42.0" prefWidth="180.0">
                     <children>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
+                        <Button fx:id="main_button" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mainButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
                             <graphic>
                                 <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
