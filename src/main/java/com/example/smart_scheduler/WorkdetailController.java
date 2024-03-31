@@ -46,15 +46,11 @@ public class WorkdetailController {
     }
     @FXML
     private void backimageClicked(MouseEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Work.fxml"));
-            Parent root = loader.load();
-            Stage currentStage = (Stage) back_image.getScene().getWindow();
-            currentStage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-            // 사용자에게 오류 메시지 표시
-        }
+        // 현재 창(Stage)을 가져옵니다.
+        Stage currentStage = (Stage) back_image.getScene().getWindow();
+        // 현재 창을 닫습니다.
+        currentStage.close();
     }
+
 
 }
