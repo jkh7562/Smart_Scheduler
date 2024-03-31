@@ -692,6 +692,17 @@
                         </AnchorPane>
                     </content>
                 </ScrollPane>
+            <Button fx:id="plus_button" layoutX="479.0" layoutY="73.0" mnemonicParsing="false" style="-fx-background-color: #ffffff;" text="일정추가">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../plus_icon.png" />
+                     </image></ImageView>
+               </graphic>
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font>
+            </Button>
             </children>
         </Pane>
     </children>
