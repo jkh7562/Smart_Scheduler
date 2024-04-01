@@ -23,6 +23,20 @@
                     </children>
                 </Pane>
 
+                <Pane layoutX="10.0" layoutY="450.0" prefHeight="130.0" prefWidth="180.0">
+                    <children>
+                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #b9d8b9;" text="여유시간">
+                            <graphic>
+                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
+                                    <image>
+                                        <Image url="@../../../teatime.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </Pane>
+
                 <Pane layoutX="10.0" layoutY="550.0" prefHeight="130.0" prefWidth="180.0">
                     <children>
                         <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
