@@ -8,7 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -24,6 +24,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class WorkController {
 
@@ -138,6 +139,8 @@ public class WorkController {
                     );
                     workItems.add(item);
                 }
+                // 로그 추가: 파싱된 데이터 개수 출력
+                System.out.println("Fetched " + workItems.size() + " work items.");
 
                 // UI 업데이트는 JavaFX 스레드에서 실행
                 Platform.runLater(() -> updateUI());
@@ -150,9 +153,57 @@ public class WorkController {
         }
     }
 
+    private DayOfWeek convertToDayOfWeek(String koreanDay) {
+        switch (koreanDay) {
+            case "월":
+                return DayOfWeek.Mon;
+            case "화":
+                return DayOfWeek.Tue;
+            case "수":
+                return DayOfWeek.Wed;
+            case "목":
+                return DayOfWeek.Thu;
+            case "금":
+                return DayOfWeek.Fri;
+            case "토":
+                return DayOfWeek.Sat;
+            case "일":
+                return DayOfWeek.Sun;
+            default:
+                throw new IllegalArgumentException("Invalid day of the week: " + koreanDay);
+        }
+    }
+
     private void updateUI() {
-        // workItems 리스트를 바탕으로 UI 업데이트 로직 구현
-        // 예: gridPane에 작업 항목을 추가
+        Random rand = new Random(); // Random 객체 생성
+
+        // GridPane에 작업 항목을 표시하기 위한 UI 업데이트 로직
+        for (WorkItem item : workItems) {
+            DayOfWeek dayOfWeek = convertToDayOfWeek(item.week);
+            int startHour = Integer.parseInt(item.start.split(":")[0]);
+            int endHour = Integer.parseInt(item.end.split(":")[0]);
+            int startHourIndex = startHour - START_HOUR;
+            int duration = endHour - startHour;
+
+            // 해당 요일과 시간에 맞는 Pane 찾기
+            Pane pane = panes[dayOfWeek.ordinal()][startHourIndex];
+
+            // Pane 내에 표시할 Label 생성
+            Label label = new Label(item.content);
+            pane.getChildren().add(label); // Pane에 Label 추가
+
+            // RGB 값이 128~255 범위인 밝은 색상 코드 생성
+            int r = rand.nextInt(128) + 128; // 128~255
+            int g = rand.nextInt(128) + 128; // 128~255
+            int b = rand.nextInt(128) + 128; // 128~255
+            String colorCode = String.format("#%02X%02X%02X", r, g, b);
+
+            // 생성된 색상 코드로 Pane의 배경색 설정
+            pane.setStyle("-fx-background-color: " + colorCode + "; -fx-border-color: black;");
+
+            // Duration 처리 (여러 시간에 걸쳐있는 경우)
+            GridPane.setRowSpan(pane, duration);
+        }
     }
 
     // 클릭한 팬의 요일과 시간을 확인하는 메서드
