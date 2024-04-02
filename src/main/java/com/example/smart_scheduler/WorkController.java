@@ -43,12 +43,7 @@ public class WorkController {
     @FXML
     private Button main_button;
 
-    private String Id = primary();
-    private String week = null;
-    private String start = null;
-    private String end = null;
-    private int time = 0;
-
+    private String Id;
 
     // 팬을 요일과 시간에 따라 구분하기 위한 변수 정의
     enum DayOfWeek { Mon, Tue, Wed, Thu, Fri, Sat, Sun }
@@ -62,6 +57,11 @@ public class WorkController {
     // FXML에서 정의한 각 팬에 대한 초기화 메서드
     @FXML
     private void initialize() {
+        Id = primary();
+        String week = SharedData.getWeek();
+        String start = SharedData.getStart();
+        String end = SharedData.getEnd();
+        int time = SharedData.getTime();
         // 각 요일과 시간에 대한 팬을 배열에 할당
         for (DayOfWeek day : DayOfWeek.values()) {
             for (int hour = START_HOUR; hour <= END_HOUR; hour++) {
@@ -71,7 +71,11 @@ public class WorkController {
                 panes[day.ordinal()][hour - START_HOUR] = pane;
             }
         }
-        System.out.printf(Id,week,start,end,time);
+        System.out.printf(Id);
+        System.out.printf(week);
+        System.out.printf(start);
+        System.out.printf(end);
+        System.out.printf(String.valueOf(time));
     }
 
     // 클릭한 팬의 요일과 시간을 확인하는 메서드
@@ -123,13 +127,6 @@ public class WorkController {
             e.printStackTrace();
             // 사용자에게 오류 메시지 표시
         }
-    }
-
-    public void setData(String week, String start, String end, int time) {
-        this.week = week;
-        this.start = start;
-        this.end = end;
-        this.time = time;
     }
 
     public String primary() {

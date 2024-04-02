@@ -134,9 +134,10 @@ public class WorkdetailController {
             e.printStackTrace();
         }
        //여기에서 WorkController로 개체 보내기
-        if (workController != null) {
-            workController.setData(week, start, end, time);
-        }
+        SharedData.setWeek(week);
+        SharedData.setStart(start);
+        SharedData.setEnd(end);
+        SharedData.setTime(time);
     }
 
     public String primary() {
@@ -185,10 +186,5 @@ public class WorkdetailController {
         System.out.println(primaryid);
 
         return primaryid;
-    }
-    private WorkController workController;
-
-    public void setWorkController(WorkController workController) {
-        this.workController = workController;
     }
 }
