@@ -264,7 +264,7 @@ public class WorkController {
     @FXML
     private void plusButtonAction(ActionEvent event) {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("Work_detail.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Work_add.fxml"));
             Parent root = loader.load();
 
             Stage newStage = new Stage();
