@@ -35,7 +35,13 @@ public class WorkdetailController {
     private Button add_button;
     @FXML
     private TextField content_textfield;
-    private String Id;
+    public static String Id;
+    public static String week;
+    public static String start;
+    public static String end;
+    public static String content;
+    public static int time;
+
 
     @FXML
     private void weekSelection(ActionEvent event) {
@@ -84,11 +90,11 @@ public class WorkdetailController {
             }
         }
         Id = primary();
-        String week = week_button.getText();
-        String start = ftime_button.getText();
-        String end = etime_button.getText();
-        String content = content_textfield.getText();
-        int time = Integer.parseInt(end) - Integer.parseInt(start);
+        week = week_button.getText();
+        start = ftime_button.getText();
+        end = etime_button.getText();
+        content = content_textfield.getText();
+        time = Integer.parseInt(end) - Integer.parseInt(start);
 
         try {
             // 서버의 PHP 스크립트 URL로 설정
@@ -126,6 +132,10 @@ public class WorkdetailController {
             connection.disconnect();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+       //여기에서 WorkController로 개체 보내기
+        if (workController != null) {
+            workController.setData(week, start, end, time);
         }
     }
 
@@ -176,5 +186,9 @@ public class WorkdetailController {
 
         return primaryid;
     }
+    private WorkController workController;
 
+    public void setWorkController(WorkController workController) {
+        this.workController = workController;
+    }
 }

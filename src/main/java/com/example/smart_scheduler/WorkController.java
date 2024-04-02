@@ -11,7 +11,13 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 public class WorkController {
 
@@ -37,6 +43,12 @@ public class WorkController {
     @FXML
     private Button main_button;
 
+    private String Id = primary();
+    private String week = null;
+    private String start = null;
+    private String end = null;
+    private int time = 0;
+
 
     // 팬을 요일과 시간에 따라 구분하기 위한 변수 정의
     enum DayOfWeek { Mon, Tue, Wed, Thu, Fri, Sat, Sun }
@@ -59,6 +71,7 @@ public class WorkController {
                 panes[day.ordinal()][hour - START_HOUR] = pane;
             }
         }
+        System.out.printf(Id,week,start,end,time);
     }
 
     // 클릭한 팬의 요일과 시간을 확인하는 메서드
@@ -112,4 +125,58 @@ public class WorkController {
         }
     }
 
+    public void setData(String week, String start, String end, int time) {
+        this.week = week;
+        this.start = start;
+        this.end = end;
+        this.time = time;
+    }
+
+    public String primary() {
+        String primaryid = null;
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/priget.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "&tableName=pri";
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 서버 응답 처리
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                StringBuilder response = new StringBuilder(); // response 초기화 추가
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                // 데이터 파싱 (단순한 문자열을 ,로 분리하여 사용)
+                String[] data = response.toString().split(",");
+                if (data.length > 0) {
+                    primaryid = data[0];
+                    System.out.println(primaryid);
+                } else {
+                    System.out.println("데이터가 존재하지 않습니다.");
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(primaryid);
+
+        return primaryid;
+    }
 }
