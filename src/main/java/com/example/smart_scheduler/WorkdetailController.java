@@ -133,11 +133,6 @@ public class WorkdetailController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-       //여기에서 WorkController로 개체 보내기
-        SharedData.setWeek(week);
-        SharedData.setStart(start);
-        SharedData.setEnd(end);
-        SharedData.setTime(time);
     }
 
     public String primary() {

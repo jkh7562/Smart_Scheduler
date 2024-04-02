@@ -1,5 +1,7 @@
 package com.example.smart_scheduler;
 
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +12,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +22,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class WorkController {
 
@@ -25,19 +31,19 @@ public class WorkController {
     private GridPane gridPane; // 그리드 팬에 대한 참조
 
     @FXML
-    private Pane Mon08,Mon09,Mon10,Mon11,Mon12,Mon13,Mon14,Mon15,Mon16,Mon17,Mon18,Mon19,Mon20,Mon21,Mon22;
+    private Pane Mon08, Mon09, Mon10, Mon11, Mon12, Mon13, Mon14, Mon15, Mon16, Mon17, Mon18, Mon19, Mon20, Mon21, Mon22;
     @FXML
-    private Pane Tue08,Tue09,Tue10,Tue11,Tue12,Tue13,Tue14,Tue15,Tue16,Tue17,Tue18,Tue19,Tue20,Tue21,Tue22;
+    private Pane Tue08, Tue09, Tue10, Tue11, Tue12, Tue13, Tue14, Tue15, Tue16, Tue17, Tue18, Tue19, Tue20, Tue21, Tue22;
     @FXML
-    private Pane Wen08,Wen09,Wen10,Wen11,Wen12,Wen13,Wen14,Wen15,Wen16,Wen17,Wen18,Wen19,Wen20,Wen21,Wen22;
+    private Pane Wen08, Wen09, Wen10, Wen11, Wen12, Wen13, Wen14, Wen15, Wen16, Wen17, Wen18, Wen19, Wen20, Wen21, Wen22;
     @FXML
-    private Pane Thu08,Thu09,Thu10,Thu11,Thu12,Thu13,Thu14,Thu15,Thu16,Thu17,Thu18,Thu19,Thu20,Thu21,Thu22;
+    private Pane Thu08, Thu09, Thu10, Thu11, Thu12, Thu13, Thu14, Thu15, Thu16, Thu17, Thu18, Thu19, Thu20, Thu21, Thu22;
     @FXML
-    private Pane Fri08,Fri09,Fri10,Fri11,Fri12,Fri13,Fri14,Fri15,Fri16,Fri17,Fri18,Fri19,Fri20,Fri21,Fri22;
+    private Pane Fri08, Fri09, Fri10, Fri11, Fri12, Fri13, Fri14, Fri15, Fri16, Fri17, Fri18, Fri19, Fri20, Fri21, Fri22;
     @FXML
-    private Pane Sat08,Sat09,Sat10,Sat11,Sat12,Sat13,Sat14,Sat15,Sat16,Sat17,Sat18,Sat19,Sat20,Sat21,Sat22;
+    private Pane Sat08, Sat09, Sat10, Sat11, Sat12, Sat13, Sat14, Sat15, Sat16, Sat17, Sat18, Sat19, Sat20, Sat21, Sat22;
     @FXML
-    private Pane Sun08,Sun09,Sun10,Sun11,Sun12,Sun13,Sun14,Sun15,Sun16,Sun17,Sun18,Sun19,Sun20,Sun21,Sun22;
+    private Pane Sun08, Sun09, Sun10, Sun11, Sun12, Sun13, Sun14, Sun15, Sun16, Sun17, Sun18, Sun19, Sun20, Sun21, Sun22;
     @FXML
     private Button plus_button;
     @FXML
@@ -46,22 +52,34 @@ public class WorkController {
     private String Id;
 
     // 팬을 요일과 시간에 따라 구분하기 위한 변수 정의
-    enum DayOfWeek { Mon, Tue, Wed, Thu, Fri, Sat, Sun }
+    enum DayOfWeek {Mon, Tue, Wed, Thu, Fri, Sat, Sun}
 
     private final int START_HOUR = 8;
     private final int END_HOUR = 22;
 
+    // WorkItem 클래스 정의
+    class WorkItem {
+        String week;
+        String start;
+        String end;
+        String content;
+
+        public WorkItem(String week, String start, String end, String content) {
+            this.week = week;
+            this.start = start;
+            this.end = end;
+            this.content = content;
+        }
+    }
+
     // 각 요일과 시간에 대한 팬 배열 정의
     private Pane[][] panes = new Pane[DayOfWeek.values().length][END_HOUR - START_HOUR + 1];
 
-    // FXML에서 정의한 각 팬에 대한 초기화 메서드
+        // FXML에서 정의한 각 팬에 대한 초기화 메서드
     @FXML
     private void initialize() {
         Id = primary();
-        String week = SharedData.getWeek();
-        String start = SharedData.getStart();
-        String end = SharedData.getEnd();
-        int time = SharedData.getTime();
+        fetchWorkItemsAsync();
         // 각 요일과 시간에 대한 팬을 배열에 할당
         for (DayOfWeek day : DayOfWeek.values()) {
             for (int hour = START_HOUR; hour <= END_HOUR; hour++) {
@@ -71,11 +89,70 @@ public class WorkController {
                 panes[day.ordinal()][hour - START_HOUR] = pane;
             }
         }
-        System.out.printf(Id);
-        System.out.printf(week);
-        System.out.printf(start);
-        System.out.printf(end);
-        System.out.printf(String.valueOf(time));
+        //여기에 추가해줘
+    }
+    private void fetchWorkItemsAsync() {
+        Task<Void> task = new Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                fetchWorkItems();
+                return null;
+            }
+        };
+        new Thread(task).start();
+    }
+
+    private List<WorkItem> workItems = new ArrayList<>();
+
+    private void fetchWorkItems() {
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/getwork.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String Id = primary(); // 여기에 Id를 할당하거나 다른 방식으로 Id를 설정해야 합니다.
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                JSONArray jsonArray = new JSONArray(response.toString());
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    WorkItem item = new WorkItem(
+                            jsonObject.getString("week"),
+                            jsonObject.getString("start"),
+                            jsonObject.getString("end"),
+                            jsonObject.getString("content")
+                    );
+                    workItems.add(item);
+                }
+
+                // UI 업데이트는 JavaFX 스레드에서 실행
+                Platform.runLater(() -> updateUI());
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+            connection.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void updateUI() {
+        // workItems 리스트를 바탕으로 UI 업데이트 로직 구현
+        // 예: gridPane에 작업 항목을 추가
     }
 
     // 클릭한 팬의 요일과 시간을 확인하는 메서드
@@ -101,6 +178,7 @@ public class WorkController {
         }
         return pane;
     }
+
     @FXML
     private void plusButtonAction(ActionEvent event) {
         try {
