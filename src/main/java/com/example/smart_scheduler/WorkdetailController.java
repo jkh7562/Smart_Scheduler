@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 public class WorkdetailController {
@@ -34,6 +35,7 @@ public class WorkdetailController {
     private Button add_button;
     @FXML
     private TextField content_textfield;
+    private String Id;
 
     @FXML
     private void weekSelection(ActionEvent event) {
@@ -81,7 +83,7 @@ public class WorkdetailController {
                 newStage.show();
             }
         }
-
+        Id = primary();
         String week = week_button.getText();
         String start = ftime_button.getText();
         String end = etime_button.getText();
@@ -90,14 +92,14 @@ public class WorkdetailController {
 
         try {
             // 서버의 PHP 스크립트 URL로 설정
-            String serverURL = "http://hbr2024.dothome.co.kr/IdFinder.php";
+            String serverURL = "http://hbr2024.dothome.co.kr/workadd.php";
 
             URL url = new URL(serverURL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
 
-            String postData = "userName=" + userName + "&phoneNumber=" + phoneNumber;
+            String postData = "Id=" + Id + "&week=" + week + "&start=" + start + "&end=" + end + "&content=" + content + "&time=" + time;
             OutputStream os = connection.getOutputStream();
             os.write(postData.getBytes("UTF-8"));
             os.close();
@@ -125,9 +127,54 @@ public class WorkdetailController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
 
+    public String primary() {
+        String primaryid = null;
 
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/priget.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
 
+            String postData = "&tableName=pri";
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 서버 응답 처리
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                StringBuilder response = new StringBuilder(); // response 초기화 추가
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                // 데이터 파싱 (단순한 문자열을 ,로 분리하여 사용)
+                String[] data = response.toString().split(",");
+                if (data.length > 0) {
+                    primaryid = data[0];
+                    System.out.println(primaryid);
+                } else {
+                    System.out.println("데이터가 존재하지 않습니다.");
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(primaryid);
+
+        return primaryid;
     }
 
 }
