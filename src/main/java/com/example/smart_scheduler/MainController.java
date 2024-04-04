@@ -73,7 +73,7 @@ public class MainController {
 
     @FXML
     public void initialize() {
-        // 화면이 로드되고 초기화된 후에 호출되는 메소드
+        /*// 화면이 로드되고 초기화된 후에 호출되는 메소드
 
         // 오늘 날짜 가져오기
         LocalDate today = LocalDate.now();
@@ -93,10 +93,10 @@ public class MainController {
         LocalTime closestTime = availableTimes[0]; // 초기화
         LocalTime secondClosestTime = availableTimes[0]; // 두 번째로 가까운 시간 초기화
         long minDifference = Long.MAX_VALUE; // 최소값을 찾기 위해 최대값으로 초기화
-        long secondMinDifference = Long.MAX_VALUE; // 두 번째 최소값을 찾기 위해 최대값으로 초기화
+        long secondMinDifference = Long.MAX_VALUE; // 두 번째 최소값을 찾기 위해 최대값으로 초기화*/
 
 // 현재 시간과 가장 가까운 시간을 찾음
-        for (LocalTime availableTime : availableTimes) {
+        /*for (LocalTime availableTime : availableTimes) {
             long difference = Duration.between(now, availableTime).abs().toMinutes();
             if (difference < minDifference) {
                 secondMinDifference = minDifference; // 기존 최소값을 두 번째 최소값으로 설정
@@ -107,10 +107,10 @@ public class MainController {
                 secondMinDifference = difference; // 두 번째 최소값을 업데이트
                 secondClosestTime = availableTime; // 두 번째로 가까운 시간을 업데이트
             }
-        }
+        }*/
 
         // System.out.println("가장 가까운 이전 시간: " + closestTime.format(timeFormatter));
-        System.out.println("두 번째로 가까운 이전 시간: " + secondClosestTime.format(timeFormatter));
+        /*System.out.println("두 번째로 가까운 이전 시간: " + secondClosestTime.format(timeFormatter));
 
 
         System.out.println("가장 가까운 이전 시간: " + closestTime.format(timeFormatter));
@@ -135,28 +135,28 @@ public class MainController {
 
             // 날씨 이미지 업데이트
             updateWeatherImage(SKY);
-            System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());
+            System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());*/
 
             //최고, 최저 기온업데이트
             // System.out.println("TMX 값"+TMX +"TMN값" + TMN);
             //hightemp.setText(TMX);*/
 
-        } catch (IOException e) {
+        /*} catch (IOException e) {
             e.printStackTrace();
-        }
+        }*/
     }
 
-    private static String getApiResponse(String baseDate, String baseTime) throws IOException {  // 현재 시간을 기반한 api 데이터
+    /*private static String getApiResponse(String baseDate, String baseTime) throws IOException {  // 현재 시간을 기반한 api 데이터
         System.out.println(baseTime);
-        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=d7Mf01XLXPGGPlYQ8Itqst7R%2FFwiXNOaxoRkW39DZwzgXLW7SnyZ85l73m%2BOcmsY%2FXYWYQYjMQnbYJmNLHtD%2Fg%3D%3D"); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); /*한 페이지 결과 수*/
-        urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
-        urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); /*‘21년 6월 28일 발표*/
-        urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode(baseTime, "UTF-8")); /*06시 발표(정시단위) */
-        urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode("61", "UTF-8")); /*예보지점의 X 좌표값*/
-        urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode("110", "UTF-8")); /*예보지점의 Y 좌표값*/
+        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); *//*URL*//*
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=d7Mf01XLXPGGPlYQ8Itqst7R%2FFwiXNOaxoRkW39DZwzgXLW7SnyZ85l73m%2BOcmsY%2FXYWYQYjMQnbYJmNLHtD%2Fg%3D%3D"); *//*Service Key*//*
+        urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); *//*페이지번호*//*
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); *//*한 페이지 결과 수*//*
+        urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); *//*요청자료형식(XML/JSON) Default: XML*//*
+        urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); *//*‘21년 6월 28일 발표*//*
+        urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode(baseTime, "UTF-8")); *//*06시 발표(정시단위) *//*
+        urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode("61", "UTF-8")); *//*예보지점의 X 좌표값*//*
+        urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode("110", "UTF-8")); *//*예보지점의 Y 좌표값*//*
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -179,7 +179,7 @@ public class MainController {
 
         // 반환 값을 추가합니다.
         return sb.toString();
-    }
+    }*/
 
     /*//최고, 최소 기온을 위한 api 정보
     private static String getApiTM(String baseDate, String baseTime) throws IOException{
@@ -218,7 +218,7 @@ public class MainController {
     }
 */
 
-    private static void parseResponse(String responseData) { //api 데이터 정보들 중에서 현재 시간에 해당하는 데이터를 변수에 할당
+    /*private static void parseResponse(String responseData) { //api 데이터 정보들 중에서 현재 시간에 해당하는 데이터를 변수에 할당
         try {
 
             // 현재 날짜와 시간을 받아오기
@@ -336,7 +336,7 @@ public class MainController {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     //최대/최소 기온값 파싱
    /* private static void parseTM(String responseData) { //api 데이터 정보들 중에서 현재 시간에 해당하는 데이터를 변수에 할당
@@ -384,16 +384,16 @@ public class MainController {
         }
     }*/
 
-    public class UVapi //자외선 지수
+    /*public class UVapi //자외선 지수
     {
         public static void main(String[] args) throws IOException
         {
-            StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/LivingWthrIdxServiceV4/getUVIdxV4"); /*URL*/
-            urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=서비스키"); /*Service Key*/
-            urlBuilder.append("&" + URLEncoder.encode("serviceKey","UTF-8") + "=" + URLEncoder.encode("d7Mf01XLXPGGPlYQ8Itqst7R%2FFwiXNOaxoRkW39DZwzgXLW7SnyZ85l73m%2BOcmsY%2FXYWYQYjMQnbYJmNLHtD%2Fg%3D%3D", "UTF-8")); /*공공데이터포털에서 받은 인증키*/
-            urlBuilder.append("&" + URLEncoder.encode("areaNo","UTF-8") + "=" + URLEncoder.encode("1100000000", "UTF-8")); /*서울지점*/
-            urlBuilder.append("&" + URLEncoder.encode("time","UTF-8") + "=" + URLEncoder.encode("2022071118", "UTF-8")); /*2022년7월11일18시*/
-            urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("xml", "UTF-8")); /*xml, json 선택(미입력시 xml)*/
+            StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/LivingWthrIdxServiceV4/getUVIdxV4"); *//*URL*//*
+            urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=서비스키"); *//*Service Key*//*
+            urlBuilder.append("&" + URLEncoder.encode("serviceKey","UTF-8") + "=" + URLEncoder.encode("d7Mf01XLXPGGPlYQ8Itqst7R%2FFwiXNOaxoRkW39DZwzgXLW7SnyZ85l73m%2BOcmsY%2FXYWYQYjMQnbYJmNLHtD%2Fg%3D%3D", "UTF-8")); *//*공공데이터포털에서 받은 인증키*//*
+            urlBuilder.append("&" + URLEncoder.encode("areaNo","UTF-8") + "=" + URLEncoder.encode("1100000000", "UTF-8")); *//*서울지점*//*
+            urlBuilder.append("&" + URLEncoder.encode("time","UTF-8") + "=" + URLEncoder.encode("2022071118", "UTF-8")); *//*2022년7월11일18시*//*
+            urlBuilder.append("&" + URLEncoder.encode("dataType","UTF-8") + "=" + URLEncoder.encode("xml", "UTF-8")); *//*xml, json 선택(미입력시 xml)*//*
             URL url = new URL(urlBuilder.toString());
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
@@ -418,11 +418,11 @@ public class MainController {
             conn.disconnect();
             System.out.println(sb.toString());
         }
-    }
+    }*/
 
 
 
-    @FXML  //날씨 사진 바꾸기
+   /* @FXML  //날씨 사진 바꾸기
     public void updateWeatherImage(String SKY) {
         System.out.println(SKY);
         String imagePath;
@@ -504,7 +504,7 @@ public class MainController {
                 item3.setImage(new Image(itemImg3));
                 break;
         }
-    }
+    }*/
 
     /*@FXML  //최저, 최고기온 업데이트
     public void updateTemperature(String TMX, String TMN)
