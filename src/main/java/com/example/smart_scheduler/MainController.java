@@ -1,27 +1,37 @@
 package com.example.smart_scheduler;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import java.io.InputStream;
-
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Stage;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.Duration;
-
 import java.time.format.DateTimeFormatter;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class MainController {
+
+
+    @FXML
+    private Button work_button;
     @FXML
     private ImageView weather;
     @FXML
@@ -116,11 +126,11 @@ public class MainController {
         // getApiResponse 함수 호출하여 현재 시간의 데이터 가져오기
         try {
             String responseData = getApiResponse(baseDate, baseTime);//전체 단기예보 데이터
-            // String responseTM = getApiTM(baseDate, "0200"); //TMX 와 TMN 을 위한 데이터
+            String responseTM = getApiTM(baseDate, "0200"); //TMX 와 TMN 을 위한 데이터
             // 가져온 데이터를 파싱하여 출력
             parseResponse(responseData);
             System.out.println("SKY 값 =" + SKY);
-            // parseTM(responseTM);
+            parseTM(responseTM);
 
 
             // 날씨 이미지 업데이트
@@ -128,7 +138,8 @@ public class MainController {
             System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());
 
             //최고, 최저 기온업데이트
-            // System.out.println("TMX 값"+TMX +"TMN값" + TMN);
+            System.out.println("TMX 값"+TMX +"TMN값" + TMN);
+            updateTemperature(TMX,TMN);
             //hightemp.setText(TMX);*/
 
         } catch (IOException e) {
@@ -175,14 +186,14 @@ public class MainController {
     private static String getApiTM(String baseDate, String baseTime) throws IOException{
         System.out.println(baseTime);
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=d7Mf01XLXPGGPlYQ8Itqst7R%2FFwiXNOaxoRkW39DZwzgXLW7SnyZ85l73m%2BOcmsY%2FXYWYQYjMQnbYJmNLHtD%2Fg%3D%3D"); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); /*한 페이지 결과 수*/
-        urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
-        urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); /*‘21년 6월 28일 발표*/
-        urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode(baseTime, "UTF-8")); /*06시 발표(정시단위) */
-        urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode("61", "UTF-8")); /*예보지점의 X 좌표값*/
-        urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode("110", "UTF-8")); /*예보지점의 Y 좌표값*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=d7Mf01XLXPGGPlYQ8Itqst7R%2FFwiXNOaxoRkW39DZwzgXLW7SnyZ85l73m%2BOcmsY%2FXYWYQYjMQnbYJmNLHtD%2Fg%3D%3D"); //*Service Key*//*
+        urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); //*페이지번호*//*
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); //*한 페이지 결과 수*//*
+        urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); //*요청자료형식(XML/JSON) Default: XML*//*
+        urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); //*‘21년 6월 28일 발표*//*
+        urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode("0200", "UTF-8")); //*06시 발표(정시단위) *//*
+        urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode("61", "UTF-8")); //*예보지점의 X 좌표값*//*
+        urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode("110", "UTF-8")); //*예보지점의 Y 좌표값*//*
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -329,7 +340,7 @@ public class MainController {
     }
 
     //최대/최소 기온값 파싱
-   /* private static void parseTM(String responseData) { //api 데이터 정보들 중에서 현재 시간에 해당하는 데이터를 변수에 할당
+    private static void parseTM(String responseData) { //api 데이터 정보들 중에서 현재 시간에 해당하는 데이터를 변수에 할당
         try {
 
             // 현재 날짜와 시간을 받아오기
@@ -372,7 +383,7 @@ public class MainController {
         }catch (JSONException e) {
             e.printStackTrace();
         }
-    }*/
+    }
 
     public class UVapi //자외선 지수
     {
@@ -496,10 +507,24 @@ public class MainController {
         }
     }
 
-    /*@FXML  //최저, 최고기온 업데이트
+    @FXML  //최저, 최고기온 업데이트
     public void updateTemperature(String TMX, String TMN)
     {
         hightemp.setText(TMX);
         lowtemp.setText(TMN);
-    }*/
+    }
+
+
+    @FXML
+    private void workButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Work.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) work_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
+        }
+    }
 }
