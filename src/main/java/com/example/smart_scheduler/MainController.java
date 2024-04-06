@@ -126,6 +126,7 @@ public class MainController {
         // getApiResponse 함수 호출하여 현재 시간의 데이터 가져오기
         try {
             String responseData = getApiResponse(baseDate, baseTime);//전체 단기예보 데이터
+            System.out.println("----------------------------------지금 부터는 최고 최저기온 API------------------------------------");
             String responseTM = getApiTM(baseDate, "0200"); //TMX 와 TMN 을 위한 데이터
             // 가져온 데이터를 파싱하여 출력
             parseResponse(responseData);
@@ -140,7 +141,7 @@ public class MainController {
             //최고, 최저 기온업데이트
             System.out.println("TMX 값"+TMX +"TMN값" + TMN);
             updateTemperature(TMX,TMN);
-            //hightemp.setText(TMX);*/
+
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -298,13 +299,14 @@ public class MainController {
                                 break;
                             case "SKY":
                                 SKY = fcstValue;
+                                //if(POP)
                                 break;
                             case "PTY":
                                 PTY = fcstValue;
                                 break;
-                            case "POP":
+                            /*case "POP":
                                 POP = fcstValue;
-                                break;
+                                break;*/
                             case "WAV":
                                 WAV = fcstValue;
                                 break;
@@ -371,13 +373,14 @@ public class MainController {
 
                 if (fcstdate.equals((formattedDate))) {
                     switch (category) {
-                        case "TMP":
+                        case "TMX":
                             TMX = fcstValue;
                             break;
-                        case "UUU":
+                        case "TMN":
                             TMN = fcstValue;
                             break;
-                    }
+                        case "POP":
+                    } System.out.println("Category: " + category + ", Forecast Value: " + fcstValue +" 예정 날짜: "+ fcstdate +" 예보 시간: "+ fcsttime );
                 }
             }
         }catch (JSONException e) {
@@ -428,7 +431,7 @@ public class MainController {
         System.out.println(SKY);
         String imagePath;
         String itemImg1, itemImg2, itemImg3;
-        switch (SKY){
+        switch ("2"){
             case "1":
                 imagePath = "001lighticons-02.png"; // 맑은 날씨 이미지 경로
                 itemImg1 = "001lighticons-18.png"; //추천 아이템 1
@@ -439,7 +442,7 @@ public class MainController {
                 break;
             case "2":
                 imagePath = "001lighticons-18.png"; // 비 오는 날씨 이미지 경로
-                itemImg1 = "001lighticons-18.png"; //추천 아이템 1
+                itemImg1 = "um.png"; //추천 아이템 1
                 itemImg2 = "001lighticons-18.png";  //추천 아이템 2
                 itemImg3 = "001lighticons-18.png";  //추천아이템 3
                 weather.setImage(new Image(imagePath));
