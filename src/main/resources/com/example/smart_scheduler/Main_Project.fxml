@@ -231,6 +231,73 @@
                   <Image url="@../../../logo.png" />
                </image>
             </ImageView>
+            <HBox alignment="CENTER" layoutY="170.0" prefWidth="560.0">
+               <children>
+                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../chevron_left_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <HBox style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                     <children>
+                        <Label text="2024">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="년">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label text="월">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../right_arrow_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
             <Pane layoutX="6.0" layoutY="4.0" prefHeight="590.0" prefWidth="560.0">
                <children>
                   <Pane layoutY="55.0" prefHeight="100.0" prefWidth="400.0">
@@ -676,9 +743,9 @@
 
                      </children>
                   </GridPane>
-                  <Pane layoutX="240.0" layoutY="100.0" prefHeight="161.0" prefWidth="303.0">
+                  <Pane layoutX="240.0" layoutY="110.0" prefHeight="161.0" prefWidth="303.0">
                      <children>
-                        <Pane layoutX="-1.0" layoutY="32.0" prefHeight="214.0" prefWidth="309.0" style="-fx-background-color: #bdbdbd; -fx-border-color: #000000;" visible="false">
+                        <Pane layoutX="-1.0" layoutY="32.0" prefHeight="214.0" prefWidth="309.0" style="-fx-background-color: #bdbdbd; -fx-border-color: #000000;">
                            <children>
                               <HBox layoutX="154.0" layoutY="43.0">
                                  <children>
@@ -757,80 +824,13 @@
                            </font></Button>
                      </children>
                   </Pane>
-                  <Button layoutX="400.0" layoutY="55.0" mnemonicParsing="false" text="프로젝트 관리">
+                  <Button layoutX="400.0" layoutY="60.0" mnemonicParsing="false" text="프로젝트 관리">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Button>
                </children>
             </Pane>
-            <HBox alignment="CENTER" layoutY="170.0" prefWidth="560.0">
-               <children>
-                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../chevron_left_icon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets right="20.0" />
-                     </HBox.margin>
-                  </Button>
-                  <HBox style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
-                     <children>
-                        <Label text="2024">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets left="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label text="년">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Label>
-                        <Label text="0">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                        </Label>
-                        <Label text="월">
-                           <font>
-                              <Font size="30.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../right_arrow_icon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
          </children>
       </Pane>
    </children>
