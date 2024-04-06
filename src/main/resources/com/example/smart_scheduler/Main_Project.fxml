@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -232,38 +233,26 @@
             </ImageView>
             <Pane layoutX="6.0" layoutY="4.0" prefHeight="590.0" prefWidth="560.0">
                <children>
-                  <Button layoutX="433.0" layoutY="186.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="프로젝트 삭제">
-                     <graphic>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../delete.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <font>
-                        <Font size="11.0" />
-                     </font>
-                  </Button>
-                  <Pane layoutY="55.0" prefHeight="100.0" prefWidth="240.0">
+                  <Pane layoutY="55.0" prefHeight="100.0" prefWidth="400.0">
                      <children>
                         <Label prefHeight="30.0" prefWidth="150.0" text="프로젝트 진척률">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <TableView layoutY="35.0" prefHeight="50.0" prefWidth="220.0">
+                        <TableView layoutY="35.0" prefHeight="50.0" prefWidth="380.0">
                           <columns>
-                            <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="10" />
-                            <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="20" />
-                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="30" />
-                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="40" />
-                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="50" />
-                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="60" />
-                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="70" />
-                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="80" />
-                              <TableColumn prefWidth="20.0" style="-fx-background-color: #eaeaea;" text="90" />
-                              <TableColumn prefWidth="25.0" style="-fx-background-color: #eaeaea;" text="100" />
-                              <TableColumn prefWidth="15.0" style="-fx-background-color: #eaeaea;" text="\%" />
+                            <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="10" />
+                            <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="20" />
+                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="30" />
+                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="40" />
+                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="50" />
+                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="60" />
+                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="70" />
+                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="80" />
+                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="90" />
+                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="100" />
+                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="\%" />
                           </columns>
                         </TableView>
                         <Button layoutX="140.0" layoutY="5.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" text="진척률 수정" />
@@ -687,21 +676,9 @@
 
                      </children>
                   </GridPane>
-                  <Pane layoutX="240.0" layoutY="25.0" prefHeight="161.0" prefWidth="303.0">
+                  <Pane layoutX="240.0" layoutY="100.0" prefHeight="161.0" prefWidth="303.0">
                      <children>
-                        <Label layoutX="30.0" text="팀원관리">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <graphic>
-                              <Button mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #dbdbdb;" text="▼">
-                                 <font>
-                                    <Font size="10.0" />
-                                 </font>
-                              </Button>
-                           </graphic>
-                        </Label>
-                        <Pane layoutX="-1.0" layoutY="25.0" prefHeight="214.0" prefWidth="309.0" style="-fx-background-color: #bdbdbd; -fx-border-color: #000000;">
+                        <Pane layoutX="-1.0" layoutY="32.0" prefHeight="214.0" prefWidth="309.0" style="-fx-background-color: #bdbdbd; -fx-border-color: #000000;" visible="false">
                            <children>
                               <HBox layoutX="154.0" layoutY="43.0">
                                  <children>
@@ -764,10 +741,96 @@
                               </Button>
                            </children>
                         </Pane>
+                        <Button layoutX="197.0" mnemonicParsing="false" style="-fx-background-color: #dbdbdb;" text="▼">
+                           <graphic>
+                              <Label text="팀원관리">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="5.0" />
+                                 </padding>
+                              </Label>
+                           </graphic>
+                           <font>
+                              <Font size="10.0" />
+                           </font></Button>
                      </children>
                   </Pane>
+                  <Button layoutX="400.0" layoutY="55.0" mnemonicParsing="false" text="프로젝트 관리">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
+            <HBox alignment="CENTER" layoutY="170.0" prefWidth="560.0">
+               <children>
+                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../chevron_left_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <HBox style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                     <children>
+                        <Label text="2024">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="년">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label text="월">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../right_arrow_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </Pane>
    </children>
