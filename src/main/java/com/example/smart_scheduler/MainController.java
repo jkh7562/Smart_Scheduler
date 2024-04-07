@@ -140,15 +140,18 @@ public class MainController {
             updateTemperature(TMX,TMN);
 
             System.out.println("pop 값: "+popint);
-            // 날씨 이미지 업데이트
+            //오늘 비가 올 확률 애 따른 판단
             if(popint >= 40){
                 itememg1 = true;
+            }else {
+                itememg1 = false;
             }
+            //현재 시간을 기준으로 비가 오는지 판단
             int nowpopInt = Integer.parseInt(POP);
             if (nowpopInt >= 40) {
                 SKY = "2";
             }
-
+            // 날씨 이미지 업데이트
             updateWeatherImage(SKY);
             System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());
 
@@ -458,7 +461,7 @@ public class MainController {
         switch (SKY){
             case "1":
                 imagePath = "001lighticons-02.png"; // 맑은 날씨 이미지 경로
-                itemImg1 = "001lighticons-18.png"; //추천 아이템 1
+                updateWeatherItem1();//비가 올 경우 우산 추천
                 itemImg2 = "001lighticons-18.png";  //추천 아이템 2
                 itemImg3 = "001lighticons-18.png";  //추천아이템 3
                 weather.setImage(new Image(imagePath));
@@ -477,45 +480,41 @@ public class MainController {
                 break;
             case "3":
                 imagePath = "001lighticons-08.png"; // 구름 많음
-                itemImg1 = "001lighticons-18.png"; //추천 아이템 1
+                updateWeatherItem1();//오늘 비가 올경우 우산 추천
                 itemImg2 = "001lighticons-18.png";  //추천 아이템 2
                 itemImg3 = "001lighticons-18.png";  //추천아이템 3
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("흐림");
-                item1.setImage(new Image(itemImg1));
                 item2.setImage(new Image(itemImg2));
                 item3.setImage(new Image(itemImg3));
                 break;
             case "4":
                 imagePath = "001lighticons-14.png"; // 흐림 날씨 이미지 경로
-                itemImg1 = "001lighticons-18.png"; //추천 아이템 1
+                updateWeatherItem1(); //추천 아이템 1
                 itemImg2 = "001lighticons-18.png";  //추천 아이템 2
                 itemImg3 = "001lighticons-18.png";  //추천아이템 3
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("구름");
-                item1.setImage(new Image(itemImg1));
                 item2.setImage(new Image(itemImg2));
                 item3.setImage(new Image(itemImg3));
                 break;
             case "5":
                 imagePath = "001lighticons-08.png"; // 비와 눈이 같이 오는 날씨 이미지 경로
-                itemImg1 = "001lighticons-18.png"; //추천 아이템 1
+                updateWeatherItem1();
                 itemImg2 = "001lighticons-18.png";  //추천 아이템 2
                 itemImg3 = "001lighticons-18.png";  //추천아이템 3
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("진눈깨비");
-                item1.setImage(new Image(itemImg1));
                 item2.setImage(new Image(itemImg2));
                 item3.setImage(new Image(itemImg3));
                 break;
             case "6":
                 imagePath = "001lighticons-24.png"; // 눈 오는 날씨 이미지 경로
-                itemImg1 = "001lighticons-18.png"; //추천 아이템 1
+                updateWeatherItem1();
                 itemImg2 = "001lighticons-18.png";  //추천 아이템 2
                 itemImg3 = "001lighticons-18.png";  //추천아이템 3
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("눈");
-                item1.setImage(new Image(itemImg1));
                 item2.setImage(new Image(itemImg2));
                 item3.setImage(new Image(itemImg3));
                 break;
@@ -544,9 +543,14 @@ public class MainController {
     @FXML//비가 올 확률이 40% 이상인 경우 우산아이템 추천
     public void updateWeatherItem1(){
         String itemImg1;
-        if(popint>=40){
+        if(itememg1){
             itemImg1 = "um.png";
             item1.setImage(new Image(itemImg1));
+            itemLabel1.setText("우산");
+        }else {
+            itemImg1 = "001lighticons-18.png";
+            item1.setImage(new Image(itemImg1));
+            itemLabel1.setText("");
         }
     }
 
