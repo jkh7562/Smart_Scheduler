@@ -68,6 +68,8 @@ public class MainController {
     private static String SNO;
     private static String TMX;
     private static String TMN;
+    private static int popint;
+    private static boolean itememg1;
 
     private static String weatherPic;
 
@@ -133,14 +135,23 @@ public class MainController {
             System.out.println("SKY 값 =" + SKY);
             parseTM(responseTM);
 
-
-            // 날씨 이미지 업데이트
-            updateWeatherImage(SKY);
-            System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());
-
             //최고, 최저 기온업데이트
             System.out.println("TMX 값"+TMX +"TMN값" + TMN);
             updateTemperature(TMX,TMN);
+
+            System.out.println("pop 값: "+popint);
+            // 날씨 이미지 업데이트
+            if(popint >= 40){
+                itememg1 = true;
+            }
+            int nowpopInt = Integer.parseInt(POP);
+            if (nowpopInt >= 40) {
+                SKY = "2";
+            }
+
+            updateWeatherImage(SKY);
+            System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());
+
 
 
         } catch (IOException e) {
@@ -265,6 +276,8 @@ public class MainController {
             JSONObject items = body.getJSONObject("items");
             JSONArray itemList = items.getJSONArray("item");
 
+            int highestPOPValue = Integer.MIN_VALUE;// POP 카테고리의 가장 높은 값을 저장할 변수
+
             // 필요한 정보 추출
             for (int i = 0; i < itemList.length(); i++) {
                 JSONObject item = itemList.getJSONObject(i);
@@ -274,12 +287,21 @@ public class MainController {
                 String category = item.getString("category");
                 String fcstValue = item.getString("fcstValue");
 
+
                 //System.out.println("Category: " + category + ", Forecast Value: " + fcstValue +" 예정 날짜: "+ fcstdate +" 예보 시간: "+ fcsttime );
 
                 //System.out.println(fcstdate + fcsttime);
 
                 // 원하는 작업 수행
                 if(fcstdate.equals((formattedDate))){
+                    if (category.equals("POP")) {
+                        // "fcstValue" 값을 가져와 정수로 변환
+                        String popfcstValue = item.getString("fcstValue");
+                        int popValue = Integer.parseInt(popfcstValue);
+
+                        // 현재까지의 최댓값보다 크면 갱신
+                        highestPOPValue = Math.max(highestPOPValue, popValue);
+                    }
                     if (fcsttime.equals(closestTimeString)){
                         switch (category) {
                             case "TMP":
@@ -299,14 +321,13 @@ public class MainController {
                                 break;
                             case "SKY":
                                 SKY = fcstValue;
-                                //if(POP)
                                 break;
                             case "PTY":
                                 PTY = fcstValue;
                                 break;
-                            /*case "POP":
+                            case "POP":
                                 POP = fcstValue;
-                                break;*/
+                                break;
                             case "WAV":
                                 WAV = fcstValue;
                                 break;
@@ -335,7 +356,7 @@ public class MainController {
 
                 // 받은 모든 데이터 출력
                 //System.out.println("Category: " + category + ", Forecast Value: " + fcstValue +" 예정 날짜: "+ fcstdate +" 예보 시간: "+ fcsttime );
-            }
+            } popint = highestPOPValue;
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -362,6 +383,7 @@ public class MainController {
             JSONObject items = body.getJSONObject("items");
             JSONArray itemList = items.getJSONArray("item");
 
+
             // 필요한 정보 추출
             for (int i = 0; i < itemList.length(); i++) {
                 JSONObject item = itemList.getJSONObject(i);
@@ -371,6 +393,8 @@ public class MainController {
                 String category = item.getString("category");
                 String fcstValue = item.getString("fcstValue");
 
+
+
                 if (fcstdate.equals((formattedDate))) {
                     switch (category) {
                         case "TMX":
@@ -379,10 +403,10 @@ public class MainController {
                         case "TMN":
                             TMN = fcstValue;
                             break;
-                        case "POP":
-                    } System.out.println("Category: " + category + ", Forecast Value: " + fcstValue +" 예정 날짜: "+ fcstdate +" 예보 시간: "+ fcsttime );
+                    } //System.out.println("Category: " + category + ", Forecast Value: " + fcstValue +" 예정 날짜: "+ fcstdate +" 예보 시간: "+ fcsttime );
                 }
             }
+
         }catch (JSONException e) {
             e.printStackTrace();
         }
@@ -431,7 +455,7 @@ public class MainController {
         System.out.println(SKY);
         String imagePath;
         String itemImg1, itemImg2, itemImg3;
-        switch ("2"){
+        switch (SKY){
             case "1":
                 imagePath = "001lighticons-02.png"; // 맑은 날씨 이미지 경로
                 itemImg1 = "001lighticons-18.png"; //추천 아이템 1
@@ -515,6 +539,15 @@ public class MainController {
     {
         hightemp.setText(TMX);
         lowtemp.setText(TMN);
+    }
+
+    @FXML//비가 올 확률이 40% 이상인 경우 우산아이템 추천
+    public void updateWeatherItem1(){
+        String itemImg1;
+        if(popint>=40){
+            itemImg1 = "um.png";
+            item1.setImage(new Image(itemImg1));
+        }
     }
 
 
