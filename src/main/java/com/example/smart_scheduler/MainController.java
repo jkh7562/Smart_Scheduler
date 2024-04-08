@@ -52,6 +52,8 @@ public class MainController {
     private Label itemLabel2;
     @FXML
     private Label itemLabel3;
+    @FXML
+    private Button project_button;
 
 
     private static String TMP;
@@ -520,6 +522,19 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Work.fxml"));
             Parent root = loader.load();
             Stage currentStage = (Stage) work_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
+        }
+    }
+
+    @FXML
+    private void projectButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Project.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) project_button.getScene().getWindow();
             currentStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
