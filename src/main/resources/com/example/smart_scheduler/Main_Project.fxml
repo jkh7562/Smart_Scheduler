@@ -270,7 +270,7 @@
                      <children>
                         <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;">
                            <children>
-                              <Label fx:id="mon_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Mon">
+                              <Label fx:id="sun_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Sun" textFill="#ff5555">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
@@ -279,7 +279,7 @@
                         </Pane>
                         <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1">
                            <children>
-                              <Label fx:id="tue_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Tue">
+                              <Label fx:id="mon_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Mon">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
@@ -288,7 +288,7 @@
                         </Pane>
                         <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2">
                            <children>
-                              <Label fx:id="wed_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Wed">
+                              <Label fx:id="tue_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Tue">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
@@ -297,7 +297,7 @@
                         </Pane>
                         <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3">
                            <children>
-                              <Label fx:id="thu_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Thu">
+                              <Label fx:id="wed_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Wed">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
@@ -306,7 +306,7 @@
                         </Pane>
                         <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4">
                            <children>
-                              <Label fx:id="fri_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Fri">
+                              <Label fx:id="thu_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Thu">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
@@ -315,7 +315,7 @@
                         </Pane>
                         <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5">
                            <children>
-                              <Label fx:id="sat_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Sat" textFill="#5555ff">
+                              <Label fx:id="fri_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Fri">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>
@@ -324,7 +324,7 @@
                         </Pane>
                         <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6">
                            <children>
-                              <Label fx:id="sun_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Sun" textFill="#ff5555">
+                              <Label fx:id="sat_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Sat" textFill="#5555ff">
                                  <font>
                                     <Font name="Arial Rounded MT Bold" size="15.0" />
                                  </font>

@@ -113,10 +113,9 @@ public class ProjectController {
         LocalDate firstDayOfMonth = LocalDate.of(year, month, 1);
 
         boolean isLeapYear = firstDayOfMonth.isLeapYear();
-
         int daysInFebruary = isLeapYear ? 29 : 28;
 
-        int startDayOfWeek = (firstDayOfMonth.getDayOfWeek().getValue()) % 7 + 1;
+        int startDayOfWeek = (firstDayOfMonth.getDayOfWeek().getValue()) % 7;
 
         // 해당 월의 일수를 구합니다.
         int daysInMonth;
@@ -135,12 +134,7 @@ public class ProjectController {
         }
 
         // 1주차의 시작 부분을 살펴봅니다.
-        int dayIndex = startDayOfWeek - 1; // 0부터 시작하도록 조정
-
-        // 1주차의 시작 부분까지는 빈 칸으로 처리합니다.
-        for (int i = 0; i < dayIndex; i++) {
-            setDayLabel(dayLabels[i], "");
-        }
+        int dayIndex = startDayOfWeek; // 0부터 시작하도록 조정
 
         // 1주차의 시작 부분부터 해당 월의 일수만큼 날짜 레이블에 숫자를 표시합니다.
         for (int day = 1; day <= daysInMonth; day++) {
