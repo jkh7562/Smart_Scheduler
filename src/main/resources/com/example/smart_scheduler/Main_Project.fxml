@@ -331,7 +331,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan01" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="1">
+                        <Pane fx:id="pan01" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="1">
                            <children>
                               <Label fx:id="day01_label">
                                  <font>
@@ -340,7 +340,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan11" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <Pane fx:id="pan11" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                            <children>
                               <Label fx:id="day11_label">
                                  <font>
@@ -349,7 +349,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan21" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                        <Pane fx:id="pan21" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="1">
                            <children>
                               <Label fx:id="day21_label">
                                  <font>
@@ -358,7 +358,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan31" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                        <Pane fx:id="pan31" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="1">
                            <children>
                               <Label fx:id="day31_label">
                                  <font>
@@ -367,7 +367,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan41" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                        <Pane fx:id="pan41" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="1">
                            <children>
                               <Label fx:id="day41_label">
                                  <font>
@@ -376,7 +376,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan51" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                        <Pane fx:id="pan51" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="1">
                            <children>
                               <Label fx:id="day51_label">
                                  <font>
@@ -385,7 +385,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan61" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                        <Pane fx:id="pan61" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="1">
                            <children>
                               <Label fx:id="day61_label">
                                  <font>
@@ -394,7 +394,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan02" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="2">
+                        <Pane fx:id="pan02" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="2">
                            <children>
                               <Label fx:id="day02_label">
                                  <font>
@@ -403,7 +403,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan12" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                        <Pane fx:id="pan12" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                            <children>
                               <Label fx:id="day12_label">
                                  <font>
@@ -412,7 +412,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan22" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                        <Pane fx:id="pan22" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="2">
                            <children>
                               <Label fx:id="day22_label">
                                  <font>
@@ -421,7 +421,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan32" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                        <Pane fx:id="pan32" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="2">
                            <children>
                               <Label fx:id="day32_label">
                                  <font>
@@ -430,7 +430,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan42" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                        <Pane fx:id="pan42" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="2">
                            <children>
                               <Label fx:id="day42_label">
                                  <font>
@@ -439,7 +439,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan52" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                        <Pane fx:id="pan52" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="2">
                            <children>
                               <Label fx:id="day52_label">
                                  <font>
@@ -448,7 +448,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan62" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                        <Pane fx:id="pan62" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="2">
                            <children>
                               <Label fx:id="day62_label">
                                  <font>
@@ -457,7 +457,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan03" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="3">
+                        <Pane fx:id="pan03" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="3">
                            <children>
                               <Label fx:id="day03_label">
                                  <font>
@@ -466,7 +466,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan13" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                        <Pane fx:id="pan13" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <children>
                               <Label fx:id="day13_label">
                                  <font>
@@ -475,7 +475,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan23" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                        <Pane fx:id="pan23" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="3">
                            <children>
                               <Label fx:id="day23_label">
                                  <font>
@@ -484,7 +484,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan33" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                        <Pane fx:id="pan33" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="3">
                            <children>
                               <Label fx:id="day33_label">
                                  <font>
@@ -493,7 +493,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan43" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                        <Pane fx:id="pan43" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="3">
                            <children>
                               <Label fx:id="day43_label">
                                  <font>
@@ -502,7 +502,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan53" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                        <Pane fx:id="pan53" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="3">
                            <children>
                               <Label fx:id="day53_label">
                                  <font>
@@ -511,7 +511,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan63" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                        <Pane fx:id="pan63" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="3">
                            <children>
                               <Label fx:id="day63_label">
                                  <font>
@@ -521,7 +521,7 @@
                            </children>
                         </Pane>
 
-                        <Pane fx:id="pan04" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="4">
+                        <Pane fx:id="pan04" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="4">
                            <children>
                               <Label fx:id="day04_label">
                                  <font>
@@ -530,7 +530,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan14" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <Pane fx:id="pan14" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <children>
                               <Label fx:id="day14_label">
                                  <font>
@@ -539,7 +539,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan24" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                        <Pane fx:id="pan24" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="4">
                            <children>
                               <Label fx:id="day24_label">
                                  <font>
@@ -548,7 +548,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan34" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                        <Pane fx:id="pan34" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="4">
                            <children>
                               <Label fx:id="day34_label">
                                  <font>
@@ -557,7 +557,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan44" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                        <Pane fx:id="pan44" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="4">
                            <children>
                               <Label fx:id="day44_label">
                                  <font>
@@ -566,7 +566,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan54" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                        <Pane fx:id="pan54" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="4">
                            <children>
                               <Label fx:id="day54_label">
                                  <font>
@@ -575,7 +575,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan64" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                        <Pane fx:id="pan64" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="4">
                            <children>
                               <Label fx:id="day64_label">
                                  <font>
@@ -585,7 +585,7 @@
                            </children>
                         </Pane>
 
-                        <Pane fx:id="pan05" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="5">
+                        <Pane fx:id="pan05" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="5">
                            <children>
                               <Label fx:id="day05_label">
                                  <font>
@@ -594,7 +594,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan15" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                        <Pane fx:id="pan15" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
                               <Label fx:id="day15_label">
                                  <font>
@@ -603,7 +603,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan25" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                        <Pane fx:id="pan25" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="5">
                            <children>
                               <Label fx:id="day25_label">
                                  <font>
@@ -612,7 +612,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan35" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                        <Pane fx:id="pan35" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="5">
                            <children>
                               <Label fx:id="day35_label">
                                  <font>
@@ -621,7 +621,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan45" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                        <Pane fx:id="pan45" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="5">
                            <children>
                               <Label fx:id="day45_label">
                                  <font>
@@ -630,7 +630,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan55" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                        <Pane fx:id="pan55" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="5">
                            <children>
                               <Label fx:id="day55_label">
                                  <font>
@@ -639,7 +639,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan65" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                        <Pane fx:id="pan65" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="5">
                            <children>
                               <Label fx:id="day65_label">
                                  <font>
@@ -648,7 +648,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan06" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                        <Pane fx:id="pan06" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="0" GridPane.rowIndex="6">
                            <children>
                               <Label fx:id="day06_label">
                                  <font>
@@ -657,7 +657,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane fx:id="pan16" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                        <Pane fx:id="pan16" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="6">
                            <children>
                               <Label fx:id="day16_label">
                                  <font>
@@ -665,7 +665,7 @@
                                  </font>
                               </Label>
                            </children>
-                        </Pane><Pane fx:id="pan26" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                        </Pane><Pane fx:id="pan26" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="6">
                         <children>
                            <Label fx:id="day26_label">
                               <font>
@@ -673,7 +673,7 @@
                               </font>
                            </Label>
                         </children>
-                     </Pane><Pane fx:id="pan36" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                     </Pane><Pane fx:id="pan36" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="6">
                         <children>
                            <Label fx:id="day36_label">
                               <font>
@@ -681,7 +681,7 @@
                               </font>
                            </Label>
                         </children>
-                     </Pane><Pane fx:id="pan46" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                     </Pane><Pane fx:id="pan46" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="6">
                         <children>
                            <Label fx:id="day46_label">
                               <font>
@@ -689,7 +689,7 @@
                               </font>
                            </Label>
                         </children>
-                     </Pane><Pane fx:id="pan56" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                     </Pane><Pane fx:id="pan56" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="6">
                         <children>
                            <Label fx:id="day56_label">
                               <font>
@@ -697,7 +697,7 @@
                               </font>
                            </Label>
                         </children>
-                     </Pane><Pane fx:id="pan66" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="6">
+                     </Pane><Pane fx:id="pan66" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="6">
                         <children>
                            <Label fx:id="day66_label">
                               <font>

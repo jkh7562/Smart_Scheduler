@@ -91,7 +91,7 @@ public class ProjectController {
         int rowIndex = GridPane.getRowIndex(pane) == null ? 0 : GridPane.getRowIndex(pane);
         int colIndex = GridPane.getColumnIndex(pane) == null ? 0 : GridPane.getColumnIndex(pane);
 
-        Label dayLabel = dayLabels[rowIndex * 7 + colIndex]; // 1차원 배열을 2차원 배열로 변경
+        Label dayLabel = dayLabels[rowIndex * 7 + colIndex-7]; // 1차원 배열을 2차원 배열로 변경
         String date = (String) pane.getUserData();
         System.out.println("클릭한 상자의 위치: 행 = " + colIndex + ", 열 = " + rowIndex);
         System.out.println("날짜 레이블의 값: " + dayLabel.getText());
