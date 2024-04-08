@@ -825,7 +825,7 @@
             </ImageView>
             <HBox alignment="CENTER" layoutY="170.0" prefWidth="560.0">
                <children>
-                  <Button fx:id="previous_button" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#handlePreviousAction" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                  <Button fx:id="previous_button" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onPreviousMonthButtonClick" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -873,7 +873,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onNextMonthButtonClick" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
                      <font>
                         <Font size="20.0" />
                      </font>

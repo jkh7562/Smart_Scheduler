@@ -1,118 +1,215 @@
 package com.example.smart_scheduler;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
+import java.net.URL;
 import java.time.LocalDate;
-import java.time.YearMonth;
-import java.util.HashMap;
-import java.util.Map;
 
 public class ProjectController {
+
     @FXML
-    private GridPane calendar;
+    private Label year_label;
+
+    @FXML
+    private Label month_label;
     @FXML
     private Pane pan01, pan11, pan21, pan31, pan41, pan51, pan61, pan02, pan12, pan22, pan32, pan42, pan52, pan62, pan03, pan13, pan23, pan33, pan43, pan53, pan63, pan04, pan14, pan24, pan34, pan44, pan54, pan64, pan05, pan15, pan25, pan35, pan45, pan55, pan65, pan06, pan16, pan26, pan36, pan46, pan56, pan66;
     @FXML
     private Label day01_label, day11_label, day21_label, day31_label, day41_label, day51_label, day61_label, day02_label, day12_label, day22_label, day32_label, day42_label, day52_label, day62_label, day03_label, day13_label, day23_label, day33_label, day43_label, day53_label, day63_label, day04_label, day14_label, day24_label, day34_label, day44_label, day54_label, day64_label, day05_label, day15_label, day25_label, day35_label, day45_label, day55_label, day65_label, day06_label, day16_label, day26_label, day36_label, day46_label, day56_label, day66_label;
-    @FXML
-    private Label year_label, month_label;
-    @FXML
-    private Button previous_button;
 
-    // A map to hold day Labels for easy access
-    private Map<Integer, Label> dayLabels = new HashMap<>();
-    private Map<Integer, Pane> dayPanes = new HashMap<>();
-    private YearMonth currentMonth;
+    private int currentYear;
+    private int currentMonth;
 
+    private Label[] dayLabels;
+    private Pane[][] panes;
+    private String clickyear, clickmonth, clickday;
+
+    @FXML
+    private Button[][] dayButtons = new Button[6][7];
+
+    // 다른 필요한 필드 및 메서드들을 추가할 수 있습니다.
+
+    // 예시로 몇 가지 초기화 메서드를 추가합니다.
     @FXML
     private void initialize() {
-        mapLabelsAndPanes();
-        currentMonth = YearMonth.now(); // Initialize currentMonth
-        fillCalendar();
+        dayLabels = new Label[]{
+                day01_label, day11_label, day21_label, day31_label, day41_label, day51_label,
+                day61_label, day02_label, day12_label, day22_label, day32_label, day42_label,
+                day52_label, day62_label, day03_label, day13_label, day23_label, day33_label,
+                day43_label, day53_label, day63_label, day04_label, day14_label, day24_label,
+                day34_label, day44_label, day54_label, day64_label, day05_label, day15_label,
+                day25_label, day35_label, day45_label, day55_label, day65_label, day06_label,
+                day16_label, day26_label, day36_label, day46_label, day56_label, day66_label
+        };
+        panes = new Pane[][]{
+                {pan01, pan11, pan21, pan31, pan41, pan51, pan61},
+                {pan02, pan12, pan22, pan32, pan42, pan52, pan62},
+                {pan03, pan13, pan23, pan33, pan43, pan53, pan63},
+                {pan04, pan14, pan24, pan34, pan44, pan54, pan64},
+                {pan05, pan15, pan25, pan35, pan45, pan55, pan65},
+                {pan06, pan16, pan26, pan36, pan46, pan56, pan66}
+        };
+
+
+        LocalDate localDate = LocalDate.now();
+        currentYear = localDate.getYear();
+        currentMonth = localDate.getMonthValue();
+
+        updateDayLabels(currentYear, currentMonth);
+
+        year_label.setText(Integer.toString(currentYear));
+        month_label.setText(Integer.toString(currentMonth));
+
     }
 
-    private void mapLabelsAndPanes() {
-        dayLabels.put(1, day01_label); dayPanes.put(1, pan01);
-        dayLabels.put(2, day11_label); dayPanes.put(2, pan11);
-        dayLabels.put(3, day21_label); dayPanes.put(3, pan21);
-        dayLabels.put(4, day31_label); dayPanes.put(4, pan31);
-        dayLabels.put(5, day41_label); dayPanes.put(5, pan41);
-        dayLabels.put(6, day51_label); dayPanes.put(6, pan51);
-        dayLabels.put(7, day61_label); dayPanes.put(7, pan61);
-        dayLabels.put(8, day02_label); dayPanes.put(8, pan02);
-        dayLabels.put(9, day12_label); dayPanes.put(9, pan12);
-        dayLabels.put(10, day22_label); dayPanes.put(10, pan22);
-        dayLabels.put(11, day32_label); dayPanes.put(11, pan32);
-        dayLabels.put(12, day42_label); dayPanes.put(12, pan42);
-        dayLabels.put(13, day52_label); dayPanes.put(13, pan52);
-        dayLabels.put(14, day62_label); dayPanes.put(14, pan62);
-        dayLabels.put(15, day03_label); dayPanes.put(15, pan03);
-        dayLabels.put(16, day13_label); dayPanes.put(16, pan13);
-        dayLabels.put(17, day23_label); dayPanes.put(17, pan23);
-        dayLabels.put(18, day33_label); dayPanes.put(18, pan33);
-        dayLabels.put(19, day43_label); dayPanes.put(19, pan43);
-        dayLabels.put(20, day53_label); dayPanes.put(20, pan53);
-        dayLabels.put(21, day63_label); dayPanes.put(21, pan63);
-        dayLabels.put(22, day04_label); dayPanes.put(22, pan04);
-        dayLabels.put(23, day14_label); dayPanes.put(23, pan14);
-        dayLabels.put(24, day24_label); dayPanes.put(24, pan24);
-        dayLabels.put(25, day34_label); dayPanes.put(25, pan34);
-        dayLabels.put(26, day44_label); dayPanes.put(26, pan44);
-        dayLabels.put(27, day54_label); dayPanes.put(27, pan54);
-        dayLabels.put(28, day64_label); dayPanes.put(28, pan64);
-        dayLabels.put(29, day05_label); dayPanes.put(29, pan05);
-        dayLabels.put(30, day15_label); dayPanes.put(30, pan15);
-        dayLabels.put(31, day25_label); dayPanes.put(31, pan25);
-        dayLabels.put(32, day35_label); dayPanes.put(32, pan35);
-        dayLabels.put(33, day45_label); dayPanes.put(33, pan45);
-        dayLabels.put(34, day55_label); dayPanes.put(34, pan55);
-        dayLabels.put(35, day65_label); dayPanes.put(35, pan65);
-        dayLabels.put(36, day06_label); dayPanes.put(36, pan06);
-        dayLabels.put(37, day16_label); dayPanes.put(37, pan16);
-        dayLabels.put(38, day26_label); dayPanes.put(38, pan26);
-        dayLabels.put(39, day36_label); dayPanes.put(39, pan36);
-        dayLabels.put(40, day46_label); dayPanes.put(40, pan46);
-        dayLabels.put(41, day56_label); dayPanes.put(41, pan56);
-        dayLabels.put(42, day66_label); dayPanes.put(42, pan66);
+    @FXML
+    private void boxMouseClick(MouseEvent event) {
+        // 클릭한 상자의 행 및 열 값을 얻음
+        Pane pane = (Pane) event.getSource();
+
+        // GridPane의 행과 열 제약 조건을 이용하여 인덱스를 추정
+        int rowIndex = GridPane.getRowIndex(pane) == null ? 0 : GridPane.getRowIndex(pane);
+        int colIndex = GridPane.getColumnIndex(pane) == null ? 0 : GridPane.getColumnIndex(pane);
+
+        Label dayLabel = dayLabels[rowIndex * 7 + colIndex]; // 1차원 배열을 2차원 배열로 변경
+        String date = (String) pane.getUserData();
+        System.out.println("클릭한 상자의 위치: 행 = " + colIndex + ", 열 = " + rowIndex);
+        System.out.println("날짜 레이블의 값: " + dayLabel.getText());
+
+
+        String dayLabelText = dayLabel.getText();
+        if (!dayLabelText.isEmpty()) {
+            clickday = dayLabel.getText();
+            System.out.println("날짜 레이블의 값: " + clickday);
+            clickyear = String.valueOf(currentYear);
+            clickmonth = String.valueOf(currentMonth);
+        }
     }
 
-    private void fillCalendar() {
-        // Set year and month labels
-        year_label.setText(String.valueOf(currentMonth.getYear()));
-        month_label.setText(String.format("%02d", currentMonth.getMonthValue())); // 월을 숫자 형태로 설정
+    private void updateDayLabels(int year, int month) {
+        for (Label label : dayLabels) {
+            setDayLabel(label, ""); // 텍스트를 빈 문자열로 설정하여 일자 정보를 없앰
+        }
+        LocalDate firstDayOfMonth = LocalDate.of(year, month, 1);
 
-        clearLabels();
+        boolean isLeapYear = firstDayOfMonth.isLeapYear();
 
-        LocalDate firstOfMonth = currentMonth.atDay(1);
-        int dayOfWeekIndex = firstOfMonth.getDayOfWeek().getValue() % 7;
-        int daysInMonth = currentMonth.lengthOfMonth();
+        int daysInFebruary = isLeapYear ? 29 : 28;
 
-        // 날짜 레이블 설정 및 이벤트 핸들러 추가 로직 구현...
+        int startDayOfWeek = (firstDayOfMonth.getDayOfWeek().getValue()) % 7 + 1;
+
+        // 해당 월의 일수를 구합니다.
+        int daysInMonth;
+        switch (month) {
+            case 2:
+                daysInMonth = daysInFebruary;
+                break;
+            case 4:
+            case 6:
+            case 9:
+            case 11:
+                daysInMonth = 30;
+                break;
+            default:
+                daysInMonth = 31;
+        }
+
+        // 1주차의 시작 부분을 살펴봅니다.
+        int dayIndex = startDayOfWeek - 1; // 0부터 시작하도록 조정
+
+        // 1주차의 시작 부분까지는 빈 칸으로 처리합니다.
+        for (int i = 0; i < dayIndex; i++) {
+            setDayLabel(dayLabels[i], "");
+        }
+
+        // 1주차의 시작 부분부터 해당 월의 일수만큼 날짜 레이블에 숫자를 표시합니다.
         for (int day = 1; day <= daysInMonth; day++) {
-            LocalDate date = firstOfMonth.plusDays(day - 1);
-            Pane pane = dayPanes.get(day);
-            Label label = dayLabels.get(day);
-            if (pane != null && label != null) {
-                label.setText(String.valueOf(date.getDayOfMonth()));
-                pane.setOnMouseClicked(event -> System.out.println("Date clicked: " + date));
+            setDayLabel(dayLabels[dayIndex], Integer.toString(day));
+            dayIndex++;
+        }
+    }
+
+    private void setDayLabel(Label label, String text) {
+        if (label != null) {
+            label.setText(text);
+        }
+    }
+
+    private void setDayLabelsVisibility(boolean visible, Label[] dayLabels) {
+        for (Label label : dayLabels) {
+            if (label != null) {
+                label.setVisible(visible);
             }
         }
     }
 
-    private void clearLabels() {
-        dayLabels.values().forEach(label -> label.setText(""));
+    @FXML
+    private void onPreviousMonthButtonClick(ActionEvent event) {
+
+        // 현재 월을 이전 월로 감소시킴
+        currentMonth--;
+        if (currentMonth < 1) {
+            // 현재 월이 1월보다 작으면 연도를 감소시키고 12월로 설정
+            currentMonth = 12;
+            currentYear--;
+        }
+
+        for (Label label : dayLabels) {
+            setDayLabel(label, ""); // 텍스트를 빈 문자열로 설정하여 일자 정보를 없앰
+        }
+
+        // 연도와 월을 기반으로 달력을 갱신
+        updateDayLabels(currentYear, currentMonth);
+
+        // 레이블에 연도와 월을 업데이트
+        year_label.setText(Integer.toString(currentYear));
+        month_label.setText(Integer.toString(currentMonth));
+
+        setDayLabelsVisibility(true, dayLabels);
     }
 
     @FXML
-    private void handlePreviousAction() {
-        currentMonth = currentMonth.minusMonths(1);
-        clearLabels(); // 이전 달의 날짜 레이블을 지웁니다.
-        fillCalendar(); // 새로운 달로 캘린더를 다시 그립니다.
+    private void onNextMonthButtonClick(ActionEvent event) {
+
+        // 현재 월을 다음 월로 증가시킴
+        currentMonth++;
+        if (currentMonth > 12) {
+            // 현재 월이 12월보다 크면 연도를 증가시키고 1월로 설정
+            currentMonth = 1;
+            currentYear++;
+        }
+
+        for (Label label : dayLabels) {
+            setDayLabel(label, ""); // 텍스트를 빈 문자열로 설정하여 일자 정보를 없앰
+        }
+
+        // 연도와 월을 기반으로 달력을 갱신
+        updateDayLabels(currentYear, currentMonth);
+
+        // 레이블에 연도와 월을 업데이트
+        year_label.setText(Integer.toString(currentYear));
+        month_label.setText(Integer.toString(currentMonth));
+
+        setDayLabelsVisibility(true, dayLabels);
     }
-
-
 }
