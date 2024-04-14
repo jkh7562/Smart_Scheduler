@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -75,64 +76,75 @@ public class WorkaddController {
         if (event.getSource() instanceof Button) {
             Button clickedButton = (Button) event.getSource();
             if (clickedButton.getId().equals("add_button")) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("work_cpt.fxml"));
-                Parent root = null;
+                Id = primary();
+                week = week_button.getText();
+                start = ftime_button.getText();
+                end = etime_button.getText();
+                content = content_textfield.getText();
+                time = Integer.parseInt(end) - Integer.parseInt(start);
+
                 try {
-                    root = loader.load();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
+                    // 서버에 데이터를 보내고 응답을 받는 부분
+                    String serverURL = "http://hbr2024.dothome.co.kr/workadd.php";
+                    URL url = new URL(serverURL);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("POST");
+                    connection.setDoOutput(true);
+                    System.out.println(Id);
+                    System.out.println(week);
+                    // POST 데이터 설정
+                    String postData = "Id=" + Id + "&week=" + week + "&start=" + start + "&end=" + end + "&content=" + content + "&time=" + time;
+                    OutputStream os = connection.getOutputStream();
+                    os.write(postData.getBytes("UTF-8"));
+                    os.close();
+
+                    // 서버 응답 처리
+                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                    StringBuilder response = new StringBuilder();
+                    String inputLine;
+                    while ((inputLine = in.readLine()) != null) {
+                        response.append(inputLine);
+                    }
+
+                    String serverResponse = response.toString(); // 서버 응답 저장
+
+                    System.out.println(serverResponse);
+                    System.out.println(serverResponse);
+                    System.out.println(serverResponse);
+                    System.out.println(serverResponse);
+
+                    if (serverResponse.equals("overlap")) {
+                        System.out.println("겹치는 일정이 있습니다.");
+                        // 겹치는 일정이 있을 때 처리할 내용 추가
+                    } else if (serverResponse.equals("saved")) {
+                        System.out.println("일정이 저장되었습니다.");
+                        if (clickedButton.getId().equals("add_button")) {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("work_cpt.fxml"));
+                            Parent root = null;
+                            try {
+                                root = loader.load();
+                            } catch (IOException e) {
+                                throw new RuntimeException(e);
+                            }
+
+                            Stage newStage = new Stage();
+                            newStage.setScene(new Scene(root));
+                            newStage.show();
+                        }
+                    } else {
+                        System.out.println("알 수 없는 서버 응답: " + serverResponse);
+                        // 예상치 못한 서버 응답이 있을 때 처리할 내용 추가
+                    }
+
+                    connection.disconnect(); // 연결 종료
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-
-                Stage newStage = new Stage();
-                newStage.setScene(new Scene(root));
-                newStage.show();
             }
-        }
-        Id = primary();
-        week = week_button.getText();
-        start = ftime_button.getText();
-        end = etime_button.getText();
-        content = content_textfield.getText();
-        time = Integer.parseInt(end) - Integer.parseInt(start);
-
-        try {
-            // 서버의 PHP 스크립트 URL로 설정
-            String serverURL = "http://hbr2024.dothome.co.kr/workadd.php";
-
-            URL url = new URL(serverURL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
-
-            String postData = "Id=" + Id + "&week=" + week + "&start=" + start + "&end=" + end + "&content=" + content + "&time=" + time;
-            OutputStream os = connection.getOutputStream();
-            os.write(postData.getBytes("UTF-8"));
-            os.close();
-
-            int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-
-                // 서버 응답 처리
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String inputLine;
-
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-
-                System.out.println("Server Response: " + response.toString());
-
-            } else {
-                // 에러 처리
-                System.out.println("HTTP Error Code: " + responseCode);
-            }
-
-            connection.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
+
+
 
     public String primary() {
         String primaryid = null;
