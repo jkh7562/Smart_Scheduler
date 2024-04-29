@@ -108,16 +108,47 @@ public class WorkaddController {
 
                     String serverResponse = response.toString(); // 서버 응답 저장
 
-                    System.out.println(serverResponse);
-                    System.out.println(serverResponse);
-                    System.out.println(serverResponse);
-                    System.out.println(serverResponse);
 
                     if (serverResponse.equals("overlap")) {
                         System.out.println("겹치는 일정이 있습니다.");
-                        // 겹치는 일정이 있을 때 처리할 내용 추가
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("work_fail.fxml"));
+                        Parent root = loader.load();
+                        Scene scene = new Scene(root);
+
+                        // 새로운 Stage를 생성하여 로그인 실패 창을 표시
+                        Stage failStage = new Stage();
+                        failStage.setScene(scene);
+                        failStage.show();
+
                     } else if (serverResponse.equals("saved")) {
                         System.out.println("일정이 저장되었습니다.");
+                        try {
+                            // 서버에 데이터를 보내고 응답을 받는 부분
+                            String serverURL1 = "http://hbr2024.dothome.co.kr/rcmdworkadd.php";
+                            URL url1 = new URL(serverURL1);
+                            HttpURLConnection connection1 = (HttpURLConnection) url1.openConnection();
+                            connection1.setRequestMethod("POST");
+                            connection1.setDoOutput(true);
+                            System.out.println(Id);
+                            System.out.println(week);
+                            // POST 데이터 설정
+                            String postData1 = "Id=" + Id + "&week=" + week + "&start=" + start + "&end=" + end + "&content=" + content + "&time=" + time;
+                            OutputStream os1 = connection1.getOutputStream();
+                            os1.write(postData1.getBytes("UTF-8"));
+                            os1.close();
+
+                            // 서버 응답 처리
+                            BufferedReader in1 = new BufferedReader(new InputStreamReader(connection1.getInputStream()));
+                            StringBuilder response1 = new StringBuilder();
+                            String inputLine1;
+                            while ((inputLine1 = in1.readLine()) != null) {
+                                response.append(inputLine1);
+                            }
+
+                            connection.disconnect(); // 연결 종료
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         if (clickedButton.getId().equals("add_button")) {
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("work_cpt.fxml"));
                             Parent root = null;
@@ -140,6 +171,7 @@ public class WorkaddController {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
             }
         }
     }
