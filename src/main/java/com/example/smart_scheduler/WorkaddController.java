@@ -5,12 +5,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import org.json.JSONObject;
 
@@ -34,7 +32,13 @@ public class WorkaddController {
     @FXML
     private Button add_button;
     @FXML
+    private Button search_button;
+    @FXML
     private TextField content_textfield;
+    @FXML
+    private Label rcmdfail_label;
+    @FXML
+    private HBox rcmd_hbox;
     public static String Id;
     public static String week;
     public static String start;
@@ -176,6 +180,21 @@ public class WorkaddController {
         }
     }
 
+    @FXML
+    private void searchButtonAction(ActionEvent event) {
+        if (event.getSource() instanceof Button) {
+            Button clickedButton = (Button) event.getSource();
+            if (clickedButton.getId().equals("search_button")) {
+                Id = primary();
+                content = content_textfield.getText();
+                if(content == ""){
+
+                }else{
+
+                }
+            }
+        }
+    }
 
 
     public String primary() {
