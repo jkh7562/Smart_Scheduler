@@ -39,6 +39,10 @@ public class WorkaddController {
     private Label rcmdfail_label;
     @FXML
     private HBox rcmd_hbox;
+    @FXML
+    private Label content_label;
+    @FXML
+    private Label time_label;
     public static String Id;
     public static String week;
     public static String start;
@@ -87,95 +91,126 @@ public class WorkaddController {
                 content = content_textfield.getText();
                 time = Integer.parseInt(end) - Integer.parseInt(start);
 
-                try {
-                    // 서버에 데이터를 보내고 응답을 받는 부분
-                    String serverURL = "http://hbr2024.dothome.co.kr/workadd.php";
-                    URL url = new URL(serverURL);
-                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                    connection.setRequestMethod("POST");
-                    connection.setDoOutput(true);
-                    System.out.println(Id);
-                    System.out.println(week);
-                    // POST 데이터 설정
-                    String postData = "Id=" + Id + "&week=" + week + "&start=" + start + "&end=" + end + "&content=" + content + "&time=" + time;
-                    OutputStream os = connection.getOutputStream();
-                    os.write(postData.getBytes("UTF-8"));
-                    os.close();
-
-                    // 서버 응답 처리
-                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    StringBuilder response = new StringBuilder();
-                    String inputLine;
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
+                if(start.equals(end)){
+                    //오류처리
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("work_fail.fxml"));
+                    Parent root = null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
                     }
+                    Scene scene = new Scene(root);
 
-                    String serverResponse = response.toString(); // 서버 응답 저장
+                    Stage failStage = new Stage();
+                    failStage.setScene(scene);
+                    failStage.show();
 
-
-                    if (serverResponse.equals("overlap")) {
-                        System.out.println("겹치는 일정이 있습니다.");
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("work_fail.fxml"));
-                        Parent root = loader.load();
-                        Scene scene = new Scene(root);
-
-                        // 새로운 Stage를 생성하여 로그인 실패 창을 표시
-                        Stage failStage = new Stage();
-                        failStage.setScene(scene);
-                        failStage.show();
-
-                    } else if (serverResponse.equals("saved")) {
-                        System.out.println("일정이 저장되었습니다.");
-                        try {
-                            // 서버에 데이터를 보내고 응답을 받는 부분
-                            String serverURL1 = "http://hbr2024.dothome.co.kr/rcmdworkadd.php";
-                            URL url1 = new URL(serverURL1);
-                            HttpURLConnection connection1 = (HttpURLConnection) url1.openConnection();
-                            connection1.setRequestMethod("POST");
-                            connection1.setDoOutput(true);
-                            System.out.println(Id);
-                            System.out.println(week);
-                            // POST 데이터 설정
-                            String postData1 = "Id=" + Id + "&week=" + week + "&start=" + start + "&end=" + end + "&content=" + content + "&time=" + time;
-                            OutputStream os1 = connection1.getOutputStream();
-                            os1.write(postData1.getBytes("UTF-8"));
-                            os1.close();
-
-                            // 서버 응답 처리
-                            BufferedReader in1 = new BufferedReader(new InputStreamReader(connection1.getInputStream()));
-                            StringBuilder response1 = new StringBuilder();
-                            String inputLine1;
-                            while ((inputLine1 = in1.readLine()) != null) {
-                                response.append(inputLine1);
-                            }
-
-                            connection.disconnect(); // 연결 종료
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        if (clickedButton.getId().equals("add_button")) {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("work_cpt.fxml"));
-                            Parent root = null;
-                            try {
-                                root = loader.load();
-                            } catch (IOException e) {
-                                throw new RuntimeException(e);
-                            }
-
-                            Stage newStage = new Stage();
-                            newStage.setScene(new Scene(root));
-                            newStage.show();
-                        }
-                    } else {
-                        System.out.println("알 수 없는 서버 응답: " + serverResponse);
-                        // 예상치 못한 서버 응답이 있을 때 처리할 내용 추가
-                    }
-
-                    connection.disconnect(); // 연결 종료
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
+                else if(Integer.parseInt(start) > Integer.parseInt(end)){
+                    //오류처리
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("work_fail.fxml"));
+                    Parent root = null;
+                    try {
+                        root = loader.load();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    Scene scene = new Scene(root);
 
+                    Stage failStage = new Stage();
+                    failStage.setScene(scene);
+                    failStage.show();
+
+                }else {
+                    try {
+                        // 서버에 데이터를 보내고 응답을 받는 부분
+                        String serverURL = "http://hbr2024.dothome.co.kr/workadd.php";
+                        URL url = new URL(serverURL);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setRequestMethod("POST");
+                        connection.setDoOutput(true);
+                        System.out.println(Id);
+                        System.out.println(week);
+                        // POST 데이터 설정
+                        String postData = "Id=" + Id + "&week=" + week + "&start=" + start + "&end=" + end + "&content=" + content + "&time=" + time;
+                        OutputStream os = connection.getOutputStream();
+                        os.write(postData.getBytes("UTF-8"));
+                        os.close();
+
+                        // 서버 응답 처리
+                        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        StringBuilder response = new StringBuilder();
+                        String inputLine;
+                        while ((inputLine = in.readLine()) != null) {
+                            response.append(inputLine);
+                        }
+
+                        String serverResponse = response.toString(); // 서버 응답 저장
+
+
+                        if (serverResponse.equals("overlap")) {
+                            System.out.println("겹치는 일정이 있습니다.");
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("work_overlap.fxml"));
+                            Parent root = loader.load();
+                            Scene scene = new Scene(root);
+
+                            Stage failStage = new Stage();
+                            failStage.setScene(scene);
+                            failStage.show();
+
+                        } else if (serverResponse.equals("saved")) {
+                            System.out.println("일정이 저장되었습니다.");
+                            try {
+                                // 서버에 데이터를 보내고 응답을 받는 부분
+                                String serverURL1 = "http://hbr2024.dothome.co.kr/rcmdworkadd.php";
+                                URL url1 = new URL(serverURL1);
+                                HttpURLConnection connection1 = (HttpURLConnection) url1.openConnection();
+                                connection1.setRequestMethod("POST");
+                                connection1.setDoOutput(true);
+                                System.out.println(Id);
+                                System.out.println(week);
+                                // POST 데이터 설정
+                                String postData1 = "Id=" + Id + "&week=" + week + "&start=" + start + "&end=" + end + "&content=" + content + "&time=" + time;
+                                OutputStream os1 = connection1.getOutputStream();
+                                os1.write(postData1.getBytes("UTF-8"));
+                                os1.close();
+
+                                // 서버 응답 처리
+                                BufferedReader in1 = new BufferedReader(new InputStreamReader(connection1.getInputStream()));
+                                StringBuilder response1 = new StringBuilder();
+                                String inputLine1;
+                                while ((inputLine1 = in1.readLine()) != null) {
+                                    response.append(inputLine1);
+                                }
+
+                                connection.disconnect(); // 연결 종료
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            if (clickedButton.getId().equals("add_button")) {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("work_cpt.fxml"));
+                                Parent root = null;
+                                try {
+                                    root = loader.load();
+                                } catch (IOException e) {
+                                    throw new RuntimeException(e);
+                                }
+
+                                Stage newStage = new Stage();
+                                newStage.setScene(new Scene(root));
+                                newStage.show();
+                            }
+                        } else {
+                            System.out.println("알 수 없는 서버 응답: " + serverResponse);
+                            // 예상치 못한 서버 응답이 있을 때 처리할 내용 추가
+                        }
+
+                        connection.disconnect(); // 연결 종료
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
             }
         }
     }
@@ -187,10 +222,69 @@ public class WorkaddController {
             if (clickedButton.getId().equals("search_button")) {
                 Id = primary();
                 content = content_textfield.getText();
-                if(content == ""){
-
+                if(content.isEmpty()){
+                    rcmd_hbox.setVisible(false);
+                    rcmdfail_label.setVisible(true);
                 }else{
+                    try {
+                        // 서버의 PHP 스크립트 URL로 설정
+                        String serverURL = "http://hbr2024.dothome.co.kr/rcmdwork.php";
 
+                        URL url = new URL(serverURL);
+                        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                        connection.setRequestMethod("POST");
+                        connection.setDoOutput(true);
+
+                        String postData = "Id=" + Id + "&content=" + content;
+                        OutputStream os = connection.getOutputStream();
+                        os.write(postData.getBytes("UTF-8"));
+                        os.close();
+
+                        int responseCode = connection.getResponseCode();
+                        if (responseCode == HttpURLConnection.HTTP_OK) {
+
+                            // 서버 응답 처리
+                            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                            StringBuilder response = new StringBuilder();
+                            String inputLine;
+
+                            while ((inputLine = in.readLine()) != null) {
+                                response.append(inputLine);
+                            }
+
+                            System.out.println("Server Response: " + response.toString());
+
+                            // JSON 파싱
+                            JSONObject jsonResponse = new JSONObject(response.toString());
+                            boolean Success = jsonResponse.getBoolean("success");
+
+                            if (Success) {
+                                String userID = jsonResponse.getString("userID");
+
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("findidsuccess.fxml"));
+                                    Parent root = loader.load();
+                                    Scene scene = new Scene(root);
+                                    Stage stage = new Stage();
+                                    stage.setScene(scene);
+                                    stage.show();
+
+                                    FindidsuccessController findidsuccessController = loader.getController();
+                                    findidsuccessController.initData(userID);
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                System.out.println("데이터가 존재하지 않습니다.");
+                            }
+                        } else {
+                            System.out.println("HTTP Error Code: " + responseCode);
+                        }
+                        connection.disconnect();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
