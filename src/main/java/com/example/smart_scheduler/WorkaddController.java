@@ -59,6 +59,7 @@ public class WorkaddController {
             week_button.setText(selectedMenuWItem.getText());
         }
     }
+
     @FXML
     private void handleTimeSelection(ActionEvent event) {
         if (event.getSource() instanceof MenuItem) {

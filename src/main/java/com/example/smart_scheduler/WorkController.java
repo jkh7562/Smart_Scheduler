@@ -244,12 +244,88 @@ public class WorkController {
 
         columnIndex -= 1;
         // 요일과 시간 계산
-        DayOfWeek day = DayOfWeek.values()[columnIndex]; // 열 인덱스에 해당하는 요일
+        DayOfWeek weektmp = DayOfWeek.values()[columnIndex]; // 열 인덱스에 해당하는 요일
         int hour = rowIndex + START_HOUR; // 행 인덱스에 해당하는 시간
 
         // 클릭한 팬의 요일과 시간 출력
-        System.out.println("Clicked pane represents " + day + " at " + hour + ":00");
+        System.out.println("Clicked pane represents " + weektmp + " at " + hour + ":00");
+        try {
+            String week = convertToKoreanDay(weektmp);
+            System.out.printf(Id);
+            System.out.printf(week);
+            System.out.printf("%d",hour);
+            System.out.println();
+            System.out.println();
+
+            // 서버의 PHP 스크립트 URL로 설정
+            String serverURL = "http://hbr2024.dothome.co.kr/get_workschedule.php";
+
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            // 요청 데이터 설정
+            String postData = "Id=" + Id + "&week=" + week + "&hour=" + hour;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 서버 응답 처리
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                // JSON 파싱
+                JSONObject jsonResponse = new JSONObject(response.toString());
+                String day = jsonResponse.getString("week");
+                String startTime = jsonResponse.getString("start");
+                String endTime = jsonResponse.getString("end");
+                String content = jsonResponse.getString("content");
+                String memo = jsonResponse.optString("memo","");
+
+                System.out.printf(day);
+                System.out.printf(startTime);
+                System.out.printf(endTime);
+                System.out.printf(memo);
+                System.out.println();
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+            connection.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    private String convertToKoreanDay(DayOfWeek dayOfWeek) {
+        switch (dayOfWeek) {
+            case Mon:
+                return "월";
+            case Tue:
+                return "화";
+            case Wed:
+                return "수";
+            case Thu:
+                return "목";
+            case Fri:
+                return "금";
+            case Sat:
+                return "토";
+            case Sun:
+                return "일";
+            default:
+                throw new IllegalArgumentException("Invalid day of the week: " + dayOfWeek);
+        }
+    }
+
 
     // 요일과 시간에 따라 해당하는 팬을 반환하는 메서드
     private Pane getPane(DayOfWeek day, int hour) {
