@@ -51,6 +51,8 @@ public class WorkController {
     private Button plus_button;
     @FXML
     private Button main_button;
+    @FXML
+    Button delete_button;
 
     private String Id;
 
@@ -379,6 +381,49 @@ public class WorkController {
         } catch (IOException e) {
             e.printStackTrace();
             // 사용자에게 오류 메시지 표시
+        }
+    }
+
+    @FXML
+    private void deleteButtonAction(ActionEvent event) {
+        Id = primary();
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/delete_allwork.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("work_alldelete.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+                Stage failStage = new Stage();
+                failStage.setScene(scene);
+                failStage.show();
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

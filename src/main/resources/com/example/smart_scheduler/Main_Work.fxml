@@ -692,7 +692,7 @@
                         </AnchorPane>
                     </content>
                 </ScrollPane>
-            <Button fx:id="plus_button" layoutX="479.0" layoutY="73.0" mnemonicParsing="false" onAction="#plusButtonAction" style="-fx-background-color: #ffffff;" text="일정추가">
+            <Button fx:id="plus_button" layoutX="378.0" layoutY="73.0" mnemonicParsing="false" onAction="#plusButtonAction" style="-fx-background-color: #ffffff;" text="일정추가">
                <graphic>
                   <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -703,6 +703,11 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Button>
+                <Button fx:id="delete_button" layoutX="481.0" layoutY="72.0" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="33.0" prefWidth="95.0" style="-fx-background-color: #DD3030;" text="일정 초기화" textFill="WHITE">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Button>
             </children>
         </Pane>
     </children>
