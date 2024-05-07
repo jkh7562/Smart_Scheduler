@@ -293,9 +293,26 @@ public class WorkController {
                 System.out.printf(day);
                 System.out.printf(startTime);
                 System.out.printf(endTime);
+                System.out.printf(content);
                 System.out.printf(memo);
                 System.out.println();
 
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Work_detail.fxml"));
+                    Parent root = loader.load();
+
+                    // 현재 창을 닫음
+                    Stage stage = (Stage) clickedPane.getScene().getWindow();
+                    stage.setScene(new Scene(root));
+                    stage.show();
+
+                    // 새로 열린 창에 데이터를 전달합니다.
+                    WorkDetail workDetailController = loader.getController();
+                    workDetailController.initData(day, startTime, endTime, content, memo);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
             }

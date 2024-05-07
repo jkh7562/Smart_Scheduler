@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.WorkDetail">
     <children>
         <Pane layoutY="2.5" prefHeight="595.0" prefWidth="800.0" style="-fx-background-color: #dbdbdb;">
             <children>
@@ -15,7 +15,7 @@
                         <Image url="@../../../logo.png" />
                     </image>
                 </ImageView>
-                <Button fx:id="back_button" alignment="CENTER" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-background-color: #dbdbdb;" text="&lt;  Back">
+                <Button fx:id="back_button" alignment="CENTER" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="10.0" prefWidth="60.0" style="-fx-background-color: #dbdbdb;" text="&lt;  Back">
                     <font>
                         <Font name="Arial Rounded MT Bold" size="12.0" />
                     </font>
@@ -41,7 +41,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </ImageView>
-                                    <Label fx:id="title_label" text="일정 제목">
+                                    <Label fx:id="content_label" text="일정 제목">
                                        <font>
                                           <Font size="25.0" />
                                        </font></Label>
@@ -97,7 +97,7 @@
                         </Pane>
                         <HBox layoutX="585.0" layoutY="83.0">
                            <children>
-                              <Button fx:id="save_button" mnemonicParsing="false" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #219653;" text="저장" textFill="WHITE">
+                              <Button fx:id="save_button" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #219653;" text="저장" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -105,7 +105,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </Button>
-                               <Button fx:id="delete_button" mnemonicParsing="false" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #DD3030;" text="삭제" textFill="WHITE">
+                               <Button fx:id="delete_button" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #DD3030;" text="삭제" textFill="WHITE">
                                    <font>
                                        <Font name="System Bold" size="15.0" />
                                    </font>
@@ -113,7 +113,7 @@
                            </children>
                         </HBox>
                      </children></Pane>
-                  <TextArea fx:id="content_area" layoutX="10.0" layoutY="119.0" prefHeight="377.0" prefWidth="740.0" promptText="메모를 입력하세요.">
+                  <TextArea fx:id="memo_area" layoutX="10.0" layoutY="119.0" prefHeight="377.0" prefWidth="740.0" promptText="메모를 입력하세요.">
                      <font>
                         <Font size="20.0" />
                      </font>
