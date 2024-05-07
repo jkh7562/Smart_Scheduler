@@ -270,6 +270,8 @@ public class WorkaddController {
                                 time_label.setText(rcmdtime);
 
                             } else {
+                                rcmd_hbox.setVisible(false);
+                                rcmdfail_label.setVisible(true);
                                 System.out.println("데이터가 존재하지 않습니다.");
                             }
                         } else {
