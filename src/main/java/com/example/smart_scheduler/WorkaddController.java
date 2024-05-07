@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -150,7 +151,7 @@ public class WorkaddController {
 
 
                         if (serverResponse.equals("overlap")) {
-                            System.out.println("겹치는 일정이 있습니다.");
+                            // 겹치는 일정이 있음을 사용자에게 알림
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("work_overlap.fxml"));
                             Parent root = loader.load();
                             Scene scene = new Scene(root);
@@ -259,22 +260,15 @@ public class WorkaddController {
                             boolean Success = jsonResponse.getBoolean("success");
 
                             if (Success) {
-                                String userID = jsonResponse.getString("userID");
+                                rcmd_hbox.setVisible(true);
+                                rcmdfail_label.setVisible(false);
 
-                                try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("findidsuccess.fxml"));
-                                    Parent root = loader.load();
-                                    Scene scene = new Scene(root);
-                                    Stage stage = new Stage();
-                                    stage.setScene(scene);
-                                    stage.show();
+                                String rcmdcontent = jsonResponse.getString("content");
+                                String rcmdtime = jsonResponse.getString("time");
 
-                                    FindidsuccessController findidsuccessController = loader.getController();
-                                    findidsuccessController.initData(userID);
+                                content_label.setText(rcmdcontent);
+                                time_label.setText(rcmdtime);
 
-                                } catch (IOException e) {
-                                    e.printStackTrace();
-                                }
                             } else {
                                 System.out.println("데이터가 존재하지 않습니다.");
                             }
