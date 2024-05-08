@@ -71,6 +71,7 @@ public class MainController {
     private static String TMN;
     private static int popint;
     private static boolean itememg1;
+    private static String Dust;
 
 
     private static String weatherPic;
@@ -123,7 +124,7 @@ public class MainController {
 
 
 
-        String baseTime = secondClosestTime.format(timeFormatter);
+        String baseTime = closestTime.format(timeFormatter);
         System.out.println(baseTime);
 
         //자외선 지수 api 를 위한 시간 값
@@ -135,6 +136,10 @@ public class MainController {
         // 포맷터를 사용하여 날짜와 시간을 지정된 형식으로 출력
         String formattedDateTime = Now.format(formatter);
 
+        //미세먼지를 위한 시간값
+        DateTimeFormatter dustdateformatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        String dustdate = Now.format(dustdateformatter);
+
 
 
 
@@ -145,11 +150,14 @@ public class MainController {
             String responseTM = getApiTM(baseDate, "0200"); //TMX 와 TMN 을 위한 데이터
             System.out.println("----------------------------------지금 부터는 최고 자외선 API------------------------------------");
             String responseUV = UVapi(formattedDateTime);
+            System.out.println("----------------------------------지금 부터는 미세먼지 API------------------------------------");
+            String responsedust = dustapi(dustdate);
             // 가져온 데이터를 파싱하여 출력
             parseResponse(responseData);
             System.out.println("SKY 값 =" + SKY);
             parseTM(responseTM);
             parseUV(responseUV);
+            parseDust(responsedust);
 
 
             //최고, 최저 기온업데이트
@@ -495,9 +503,109 @@ public class MainController {
 
         }
     }
+    //미세먼지 api 정보 받아오기
+    public static String dustapi(String dustdate) throws IOException{
+        StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth"); /*URL*/
+        urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=Hf9Z%2B7fF9N0l2bEfuOAvHN1sxacStyg1c2OdJHO6XE80dGsvI3ms50Wg5pz638TSwTPVy5z%2FPoIe2ex1dCjvyQ%3D%3D"); /*Service Key*/
+        urlBuilder.append("&" + URLEncoder.encode("returnType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*xml 또는 json*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수(조회 날짜로 검색 시 사용 안함)*/
+        urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호(조회 날짜로 검색 시 사용 안함)*/
+        urlBuilder.append("&" + URLEncoder.encode("searchDate","UTF-8") + "=" + URLEncoder.encode(dustdate, "UTF-8")); /*통보시간 검색(조회 날짜 입력이 없을 경우 한달동안 예보통보 발령 날짜의 리스트 정보를 확인)*/
+        urlBuilder.append("&" + URLEncoder.encode("InformCode","UTF-8") + "=" + URLEncoder.encode("PM10", "UTF-8")); /*통보코드검색(PM10, PM25, O3)*/
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+        }
+        rd.close();
+        conn.disconnect();
+        System.out.println(sb.toString());
+        return sb.toString();
+    }
+
+   /* private static void parseDust(String responseData) {
+        try {
+            LocalDate today = LocalDate.now();
+            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            String baseDate = today.format(dateFormatter);
+
+            JSONObject jsonObject = new JSONObject(responseData);
+            JSONObject responseBody = jsonObject.getJSONObject("response").getJSONObject("body");
+            JSONArray items = responseBody.getJSONArray("items");
+
+            // 충남 아산시의 미세먼지 정보 찾기
+            String asanPM10Grade = "";
+            String asanPM25Grade = "";
+            for (int i = 0; i < items.length(); i++) {
+                JSONObject item = items.getJSONObject(i);
+                String informData = item.getString("informData");
+                if (informData.equals(baseDate)) {
+                    String informGrade = item.getString("informGrade");
+                    String[] grades = informGrade.split(",");
+                    for (String grade : grades) {
+                        if (grade.contains("충남")) {
+                            String[] parts = grade.split(":");
+                            asanPM10Grade = parts[1].trim();
+                            asanPM25Grade = parts[2].trim();
+                            break;
+                        }
+                    }
+                    break;
+                }
+            }
+
+            System.out.println("2024년 4월 12일 충남 아산시의 미세먼지(PM10) 등급: " + asanPM10Grade);
+            System.out.println("2024년 4월 12일 충남 아산시의 초미세먼지(PM2.5) 등급: " + asanPM25Grade);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }*/
 
 
-    @FXML  //날씨 사진 바꾸기
+        public static void parseDust(String responseData) {
+            // 응답 JSON 문자열
+            String jsonResponse = "{ \"response\": { \"body\": { \"items\": [ { \"informData\": \"2024-05-08\", \"informGrade\": \"서울 : 좋음,제주 : 좋음,전남 : 좋음,전북 : 좋음,광주 : 좋음,경남 : 좋음,경북 : 좋음,울산 : 좋음,대구 : 좋음,부산 : 좋음,충남 : 좋음,충북 : 좋음,세종 : 좋음,대전 : 좋음,영동 : 좋음,영서 : 좋음,경기남부 : 좋음,경기북부 : 좋음,인천 : 좋음\" } ] } } }";
+
+            // JSON 파싱
+            JSONObject jsonObject = new JSONObject(jsonResponse);
+            // 첫 번째 항목의 informGrade 값 추출
+            String informGrade = jsonObject.getJSONObject("response")
+                    .getJSONObject("body")
+                    .getJSONArray("items")
+                    .getJSONObject(0)
+                    .getString("informGrade");
+
+            // informGrade에서 충남의 값을 찾음
+            String[] grades = informGrade.split(",");
+            String chungnamGrade = "";
+            for (String grade : grades) {
+                if (grade.trim().startsWith("충남")) {
+                    chungnamGrade = grade.split(":")[1].trim();
+                    break;
+                }
+            }
+
+            // 충남의 값을 출력
+            System.out.println("충남의 값: " + chungnamGrade);
+            Dust = chungnamGrade;
+        }
+
+
+
+
+
+        @FXML  //날씨 사진 바꾸기
     public void updateWeatherImage(String SKY) {
         System.out.println(SKY);
         String imagePath;
