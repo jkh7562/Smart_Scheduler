@@ -38,12 +38,6 @@ public class WorkprtyController {
     @FXML
     Label content3_label;
     @FXML
-    Button content1_delete;
-    @FXML
-    Button content2_delete;
-    @FXML
-    Button content3_delete;
-    @FXML
     Button content1_save;
     @FXML
     Button content2_save;
@@ -115,6 +109,62 @@ public class WorkprtyController {
         currentStage.close();
     }
 
+    @FXML
+    private void content1saveButtonAction(ActionEvent event) {
+        // 현재 선택된 아이템의 인덱스를 가져옵니다.
+        int selectedIndex = list.getSelectionModel().getSelectedIndex();
+
+        // 선택된 아이템이 없는 경우 -1을 반환하므로 체크합니다.
+        if (selectedIndex != -1) {
+            // 선택된 아이템의 텍스트 값을 가져옵니다.
+            String selectedItemText = (String) list.getSelectionModel().getSelectedItem();
+
+            // 가져온 값으로 원하는 작업을 수행합니다.
+            System.out.println("선택된 아이템의 텍스트 값: " + selectedItemText);
+            content1_label.setText(selectedItemText);
+        } else {
+            // 선택된 아이템이 없을 때 처리할 내용을 여기에 추가합니다.
+            System.out.println("아이템이 선택되지 않았습니다.");
+        }
+    }
+
+    @FXML
+    private void content2saveButtonAction(ActionEvent event) {
+        // 현재 선택된 아이템의 인덱스를 가져옵니다.
+        int selectedIndex = list.getSelectionModel().getSelectedIndex();
+
+        // 선택된 아이템이 없는 경우 -1을 반환하므로 체크합니다.
+        if (selectedIndex != -1) {
+            // 선택된 아이템의 텍스트 값을 가져옵니다.
+            String selectedItemText = (String) list.getSelectionModel().getSelectedItem();
+
+            // 가져온 값으로 원하는 작업을 수행합니다.
+            System.out.println("선택된 아이템의 텍스트 값: " + selectedItemText);
+            content2_label.setText(selectedItemText);
+        } else {
+            // 선택된 아이템이 없을 때 처리할 내용을 여기에 추가합니다.
+            System.out.println("아이템이 선택되지 않았습니다.");
+        }
+    }
+    @FXML
+    private void content3saveButtonAction(ActionEvent event) {
+        // 현재 선택된 아이템의 인덱스를 가져옵니다.
+        int selectedIndex = list.getSelectionModel().getSelectedIndex();
+
+        // 선택된 아이템이 없는 경우 -1을 반환하므로 체크합니다.
+        if (selectedIndex != -1) {
+            // 선택된 아이템의 텍스트 값을 가져옵니다.
+            String selectedItemText = (String) list.getSelectionModel().getSelectedItem();
+
+            // 가져온 값으로 원하는 작업을 수행합니다.
+            System.out.println("선택된 아이템의 텍스트 값: " + selectedItemText);
+            content3_label.setText(selectedItemText);
+        } else {
+            // 선택된 아이템이 없을 때 처리할 내용을 여기에 추가합니다.
+            System.out.println("아이템이 선택되지 않았습니다.");
+        }
+    }
+
     public String primary() {
         String primaryid = null;
 
@@ -163,13 +213,59 @@ public class WorkprtyController {
         return primaryid;
     }
 
-    /*@FXML
+    @FXML
     private void saveButtonAction(ActionEvent event) {
-        if (event.getSource() instanceof Button) {
-            Button clickedButton = (Button) event.getSource();
-            if (clickedButton.getId().equals("save_button")) {
+        Id = primary();
+        String content1 = content1_label.getText();
+        String content2 = content2_label.getText();
+        String content3 = content3_label.getText();
+        System.out.println(Id);
+        System.out.printf(content1);
+        System.out.println();
+        System.out.printf(content2);
+        System.out.println();
+        System.out.printf(content3);
+        System.out.println();
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/saveprtywork.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
 
+            String postData = "Id=" + Id + "&content1=" + content1 + "&content2=" + content2 + "&content3=" + content3;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("work_save.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+
+                    Stage failStage = new Stage();
+                    failStage.setScene(scene);
+                    failStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-    }*/
+    }
 }
