@@ -53,6 +53,8 @@ public class WorkController {
     private Button main_button;
     @FXML
     Button delete_button;
+    @FXML
+    Button prty_button;
 
     private String Id;
 
@@ -424,6 +426,21 @@ public class WorkController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void prtyButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Work_prty.fxml"));
+            Parent root = loader.load();
+
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
         }
     }
 
