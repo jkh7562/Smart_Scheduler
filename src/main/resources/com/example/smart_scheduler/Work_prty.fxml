@@ -6,9 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="307.0" prefWidth="471.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.WorkaddController">
+<AnchorPane prefHeight="344.0" prefWidth="471.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.WorkaddController">
    <children>
-      <Pane layoutX="5.0" layoutY="41.0" prefHeight="262.0" prefWidth="461.0" style="-fx-background-color: #dbdbdb; -fx-background-radius: 10;">
+      <Pane layoutX="5.0" layoutY="41.0" prefHeight="298.0" prefWidth="461.0" style="-fx-background-color: #dbdbdb; -fx-background-radius: 10;">
          <children>
             <Pane layoutX="5.0" layoutY="31.0" prefHeight="225.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
                <children>
@@ -32,7 +32,7 @@
                                     <Insets right="10.0" />
                                  </HBox.margin>
                               </ImageView>
-                              <Label text="가나다라">
+                              <Label fx:id="content1_label" text="가나다라">
                                  <font>
                                     <Font size="15.0" />
                                  </font></Label>
@@ -54,7 +54,7 @@
                                          <Insets right="10.0" />
                                      </HBox.margin>
                                  </ImageView>
-                                 <Label text="가나다라">
+                                 <Label fx:id="content2_label" text="가나다라">
                                  <font>
                                     <Font size="15.0" />
                                  </font></Label>
@@ -76,7 +76,7 @@
                                          <Insets right="10.0" />
                                      </HBox.margin>
                                  </ImageView>
-                                 <Label text="가나다라">
+                                 <Label fx:id="content3_label" text="가나다라">
                                  <font>
                                     <Font size="15.0" />
                                  </font></Label>
@@ -85,6 +85,33 @@
                      </children></VBox>
                </children>
             </Pane>
+            <Pane layoutX="231.0" layoutY="31.0" prefHeight="225.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+               <children>
+                  <Label layoutX="72.0" layoutY="3.0" text="현재 일정">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane layoutX="10.0" layoutY="26.0">
+                     <content>
+                        <ListView fx:id="list" prefHeight="195.0" prefWidth="200.0" />
+                     </content>
+                  </ScrollPane>
+               </children></Pane>
+            <HBox layoutX="7.0" layoutY="262.0">
+               <children>
+                  <Button fx:id="content1_delete" mnemonicParsing="false" text="1순위 삭제" />
+                  <Button fx:id="content2_delete" mnemonicParsing="false" text="2순위 삭제" />
+                  <Button fx:id="content3_delete" mnemonicParsing="false" text="3순위 삭제" />
+               </children>
+            </HBox>
+            <HBox layoutX="233.0" layoutY="262.0">
+               <children>
+                  <Button fx:id="content1_save" mnemonicParsing="false" text="1순위 저장" />
+                  <Button fx:id="content2_save" mnemonicParsing="false" text="2순위 저장" />
+                  <Button fx:id="content3_save" mnemonicParsing="false" text="3순위 저장" />
+               </children>
+            </HBox>
          </children></Pane>
       <Pane prefHeight="37.0" prefWidth="471.0" style="-fx-background-color: #c8c4ff;">
          <children>
