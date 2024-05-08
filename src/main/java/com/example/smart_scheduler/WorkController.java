@@ -55,6 +55,15 @@ public class WorkController {
     Button delete_button;
     @FXML
     Button prty_button;
+    @FXML
+    Label content1_label;
+    @FXML
+    Label content2_label;
+    @FXML
+    Label content3_label;
+    String content1;
+    String content2;
+    String content3;
 
     private String Id;
 
@@ -96,7 +105,47 @@ public class WorkController {
                 panes[day.ordinal()][hour - START_HOUR] = pane;
             }
         }
-        //여기에 추가해줘
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/getprtywork.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+
+                // 응답에서 쉼표로 구분된 값을 가져와서 각각의 변수에 할당
+                String[] contents = response.toString().split(",");
+                String content1 = contents[0];
+                String content2 = contents[1];
+                String content3 = contents[2];
+
+                // 가져온 값을 각각의 라벨에 설정
+                content1_label.setText(content1);
+                content2_label.setText(content2);
+                content3_label.setText(content3);
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
     private void fetchWorkItemsAsync() {
         Task<Void> task = new Task<Void>() {
