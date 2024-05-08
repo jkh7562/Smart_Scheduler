@@ -45,6 +45,8 @@ public class StartApp extends Application {
 
                 in.close();
                 System.out.println("Response: " + response.toString());
+
+
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
             }

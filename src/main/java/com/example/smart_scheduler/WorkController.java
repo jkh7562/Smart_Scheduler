@@ -131,21 +131,48 @@ public class WorkController {
 
                 // 응답에서 쉼표로 구분된 값을 가져와서 각각의 변수에 할당
                 String[] contents = response.toString().split(",");
-                String content1 = contents[0];
-                String content2 = contents[1];
-                String content3 = contents[2];
+                if (contents.length >= 3) { // 적어도 3개의 값이 있어야 함
+                    String content1 = contents[0];
+                    String content2 = contents[1];
+                    String content3 = contents[2];
 
-                // 가져온 값을 각각의 라벨에 설정
-                content1_label.setText(content1);
-                content2_label.setText(content2);
-                content3_label.setText(content3);
+                    // 가져온 값을 각각의 라벨에 설정
+                    content1_label.setText(content1);
+                    content2_label.setText(content2);
+                    content3_label.setText(content3);
+                } else {
+                    // 가져온 값이 3개 미만인 경우에는 해당 값으로 라벨을 설정하고 나머지 라벨은 비움
+                    for (int i = 0; i < contents.length; i++) {
+                        switch (i) {
+                            case 0:
+                                content1_label.setText(contents[i]);
+                                break;
+                            case 1:
+                                content2_label.setText(contents[i]);
+                                break;
+                            case 2:
+                                content3_label.setText(contents[i]);
+                                break;
+                        }
+                    }
+                    // 3개 미만인 경우에는 나머지 라벨을 비움
+                    for (int i = contents.length; i < 3; i++) {
+                        switch (i) {
+                            case 1:
+                                content2_label.setText("");
+                                break;
+                            case 2:
+                                content3_label.setText("");
+                                break;
+                        }
+                    }
+                }
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     private void fetchWorkItemsAsync() {
         Task<Void> task = new Task<Void>() {
