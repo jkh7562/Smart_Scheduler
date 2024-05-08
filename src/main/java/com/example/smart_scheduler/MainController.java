@@ -42,6 +42,10 @@ public class MainController {
     @FXML
     private Label weatherLabel;
     @FXML
+    private Label uv;
+    @FXML
+    private Label dust;
+    @FXML
     private ImageView item1;
     @FXML
     private ImageView item2;
@@ -168,17 +172,28 @@ public class MainController {
             //오늘 비가 올 확률 애 따른 판단
             if(popint >= 40){
                 itememg1 = true;
+                SKY ="2";
             }else {
                 itememg1 = false;
             }
+
+
             //현재 시간을 기준으로 비가 오는지 판단
-            int nowpopInt = Integer.parseInt(POP);
+            /*int nowpopInt = Integer.parseInt(POP);
             if (nowpopInt >= 40) {
                 SKY = "2";
-            }
+            }*/
+
+
             // 날씨 이미지 업데이트
             updateWeatherImage(SKY);
             System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());
+
+            //자외선 지수 텍스트 업데이트
+            updateUVtext(UV);
+
+            //미세먼지 텍스트 업데이트
+            updateDUSTText(Dust);
 
 
 
@@ -574,8 +589,8 @@ public class MainController {
 
 
         public static void parseDust(String responseData) {
-            // 응답 JSON 문자열
-            String jsonResponse = "{ \"response\": { \"body\": { \"items\": [ { \"informData\": \"2024-05-08\", \"informGrade\": \"서울 : 좋음,제주 : 좋음,전남 : 좋음,전북 : 좋음,광주 : 좋음,경남 : 좋음,경북 : 좋음,울산 : 좋음,대구 : 좋음,부산 : 좋음,충남 : 좋음,충북 : 좋음,세종 : 좋음,대전 : 좋음,영동 : 좋음,영서 : 좋음,경기남부 : 좋음,경기북부 : 좋음,인천 : 좋음\" } ] } } }";
+            // 예시 데이터
+            String jsonResponse = "{ \"response\": { \"body\": { \"items\": [ { \"informData\": \"2024-05-08\", \"informGrade\": \"서울 : 좋음,제주 : 좋음,전남 : 좋음,전북 : 좋음,광주 : 좋음,경남 : 좋음,경북 : 좋음,울산 : 좋음,대구 : 좋음,부산 : 좋음,충남 : 나쁨,충북 : 좋음,세종 : 좋음,대전 : 좋음,영동 : 좋음,영서 : 좋음,경기남부 : 좋음,경기북부 : 좋음,인천 : 좋음\" } ] } } }";
 
             // JSON 파싱
             JSONObject jsonObject = new JSONObject(jsonResponse);
@@ -602,9 +617,6 @@ public class MainController {
         }
 
 
-
-
-
         @FXML  //날씨 사진 바꾸기
     public void updateWeatherImage(String SKY) {
         System.out.println(SKY);
@@ -615,7 +627,7 @@ public class MainController {
                 imagePath = "001lighticons-02.png"; // 맑은 날씨 이미지 경로
                 updateWeatherItem1();//비가 올 경우 우산 추천
                 updateWeatherItem2();  //자외선이 쎌 경우 썬크림 추천
-                itemImg3 = "001lighticons-18.png";  //추천아이템 3
+                updateWeatherItem3();// 미세먼지 나쁘면 마스크 추천
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("맑음");
                 break;
@@ -623,11 +635,11 @@ public class MainController {
                 imagePath = "001lighticons-18.png"; // 비 오는 날씨 이미지 경로
                 itemImg1 = "um.png"; //추천 아이템 1
                 updateWeatherItem2();  //자외선이 쎌 경우 썬크림 추천
+                updateWeatherItem3();// 미세먼지 나쁘면 마스크 추천
                 itemImg3 = "001lighticons-18.png";  //추천아이템 3
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("비");
                 item1.setImage(new Image(itemImg1));
-                item3.setImage(new Image(itemImg3));
                 break;
             case "3":
                 imagePath = "001lighticons-08.png"; // 구름 많음
@@ -686,9 +698,30 @@ public class MainController {
         lowtemp.setText(TMN);
     }
 
-    @FXML
-    public void updateUVtext(int uv){
+    @FXML// 자외선 지수 텍스트 업데이트
+    public void updateDUSTText(String Dust)
+    {
+        dust.setText(Dust);
+    }
 
+
+
+    @FXML
+    public void updateUVtext(int u)
+    {
+        int uu;
+        uu = UV;
+        if(uu >= 11){
+            uv.setText("위험");
+        } else if(uu <= 10 && uu >= 8){
+            uv.setText(("매우 높음"));
+        } else if(uu <= 7  && uu >= 6){
+            uv.setText("높음");
+        } else if(uu <= 5 && uu >= 3){
+            uv.setText("보통");
+        } else if(uu <= 2 && uu >= 0){
+            uv.setText("낮음");
+        }
     }
 
     @FXML//비가 올 확률이 40% 이상인 경우 우산아이템 추천
@@ -716,6 +749,21 @@ public class MainController {
             itemImg2 = "";
             item2.setImage(new Image(itemImg2));
             itemLabel2.setText("");
+        }
+    }
+    @FXML
+    public void updateWeatherItem3(){
+        String itemImg3;
+        String dd;
+        dd = Dust;
+        if(dd.equals("나쁨")){
+            itemImg3 = "mask.png";
+            item3.setImage(new Image(itemImg3));
+            itemLabel3.setText("마스크");
+        }else {
+            itemImg3 = "001lighticons-18.png";
+            item3.setImage(new Image(itemImg3));
+            itemLabel3.setText("");
         }
     }
 

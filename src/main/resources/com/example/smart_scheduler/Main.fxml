@@ -175,11 +175,11 @@
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                  <Label alignment="CENTER" layoutX="230.0" layoutY="10.0" text="매우 나쁨">
+                  <Label fx:id ="dust" alignment="CENTER" layoutX="230.0" layoutY="10.0" text="매우 나쁨">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
-                  <Label alignment="CENTER" layoutX="90.0" layoutY="10.0" text="매우 높음">
+                  <Label fx:id = "uv" alignment="CENTER" layoutX="90.0" layoutY="10.0" text="매우 높음">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
