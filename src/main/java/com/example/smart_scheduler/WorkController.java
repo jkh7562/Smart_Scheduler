@@ -95,7 +95,6 @@ public class WorkController {
     @FXML
     private void initialize() {
         Id = primary();
-        fetchWorkItemsAsync();
         // 각 요일과 시간에 대한 팬을 배열에 할당
         for (DayOfWeek day : DayOfWeek.values()) {
             for (int hour = START_HOUR; hour <= END_HOUR; hour++) {
@@ -173,6 +172,7 @@ public class WorkController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        fetchWorkItemsAsync();
     }
     private void fetchWorkItemsAsync() {
         Task<Void> task = new Task<Void>() {
