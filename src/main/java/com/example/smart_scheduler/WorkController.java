@@ -65,6 +65,9 @@ public class WorkController {
     String content2;
     String content3;
 
+    @FXML
+    Button project_button;
+
     private String Id;
 
     // 팬을 요일과 시간에 따라 구분하기 위한 변수 정의
@@ -514,6 +517,19 @@ public class WorkController {
             Stage newStage = new Stage();
             newStage.setScene(new Scene(root));
             newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
+        }
+    }
+
+    @FXML
+    private void projectButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Project.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) project_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
             // 사용자에게 오류 메시지 표시

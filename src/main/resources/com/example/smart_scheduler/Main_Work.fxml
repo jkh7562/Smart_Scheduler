@@ -12,7 +12,7 @@
             <children>
                 <Pane layoutX="10.0" layoutY="500.0" prefHeight="130.0" prefWidth="180.0">
                     <children>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
+                        <Button fx:id="project_button" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#projectButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
                             <graphic>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
                                     <image>

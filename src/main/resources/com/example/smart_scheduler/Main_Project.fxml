@@ -85,7 +85,7 @@
                      </image>
                   </ImageView>
                </graphic></Button>
-            <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;">
+            <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -125,7 +125,7 @@
                         <Font size="15.0" />
                      </font>
                   </Label>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
+                  <Button fx:id="main_button" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mainButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -161,7 +161,7 @@
             </Pane>
             <Pane layoutX="10.0" layoutY="310.0" prefHeight="130.0" prefWidth="180.0">
                <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
+                  <Button fx:id="work_button" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#workButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
                      <graphic>
                         <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
