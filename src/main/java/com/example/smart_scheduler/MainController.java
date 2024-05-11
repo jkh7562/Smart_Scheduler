@@ -27,6 +27,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class MainController {
 
@@ -129,6 +130,9 @@ public class MainController {
 
 
         String baseTime = closestTime.format(timeFormatter);
+        if(SKY == null){
+            baseTime = secondClosestTime.format(timeFormatter);
+        }
         System.out.println(baseTime);
 
         //자외선 지수 api 를 위한 시간 값
@@ -200,6 +204,12 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static int convertTimeToMinutes(String timeString) {
+        int hours = Integer.parseInt(timeString.substring(0, 2));
+        int minutes = Integer.parseInt(timeString.substring(2, 4));
+        return hours * 60 + minutes;
     }
 
     private static String getApiResponse(String baseDate, String baseTime) throws IOException {  // 현재 시간을 기반한 api 데이터
@@ -344,6 +354,16 @@ public class MainController {
 
                         // 현재까지의 최댓값보다 크면 갱신
                         highestPOPValue = Math.max(highestPOPValue, popValue);
+
+                        //현재 시간과 가장 가까운 깞
+                        String fcsttimeclose = item.getString("fcstTime");
+
+                        // fcsttime과 closestTimeString을 분 단위로 변환합니다.
+                        int fcsttimeMinutes = convertTimeToMinutes(fcsttime);
+                        int closestTimeMinutes = convertTimeToMinutes(closestTimeString);
+
+                        // fcsttime과 closestTimeString 사이의 시간 차이를 계산합니다.
+                        int timeDifference = Math.abs(fcsttimeMinutes - closestTimeMinutes);
                     }
                     if (fcsttime.equals(closestTimeString)){
                         switch (category) {
@@ -523,9 +543,9 @@ public class MainController {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/B552584/ArpltnInforInqireSvc/getMinuDustFrcstDspth"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey","UTF-8") + "=Hf9Z%2B7fF9N0l2bEfuOAvHN1sxacStyg1c2OdJHO6XE80dGsvI3ms50Wg5pz638TSwTPVy5z%2FPoIe2ex1dCjvyQ%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("returnType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*xml 또는 json*/
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("100", "UTF-8")); /*한 페이지 결과 수(조회 날짜로 검색 시 사용 안함)*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수(조회 날짜로 검색 시 사용 안함)*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호(조회 날짜로 검색 시 사용 안함)*/
-        urlBuilder.append("&" + URLEncoder.encode("searchDate","UTF-8") + "=" + URLEncoder.encode(dustdate, "UTF-8")); /*통보시간 검색(조회 날짜 입력이 없을 경우 한달동안 예보통보 발령 날짜의 리스트 정보를 확인)*/
+        urlBuilder.append("&" + URLEncoder.encode("searchDate","UTF-8") + "=" + URLEncoder.encode("2024-05-11", "UTF-8")); /*통보시간 검색(조회 날짜 입력이 없을 경우 한달동안 예보통보 발령 날짜의 리스트 정보를 확인)*/
         urlBuilder.append("&" + URLEncoder.encode("InformCode","UTF-8") + "=" + URLEncoder.encode("PM10", "UTF-8")); /*통보코드검색(PM10, PM25, O3)*/
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -593,27 +613,34 @@ public class MainController {
             String jsonResponse = "{ \"response\": { \"body\": { \"items\": [ { \"informData\": \"2024-05-08\", \"informGrade\": \"서울 : 좋음,제주 : 좋음,전남 : 좋음,전북 : 좋음,광주 : 좋음,경남 : 좋음,경북 : 좋음,울산 : 좋음,대구 : 좋음,부산 : 좋음,충남 : 나쁨,충북 : 좋음,세종 : 좋음,대전 : 좋음,영동 : 좋음,영서 : 좋음,경기남부 : 좋음,경기북부 : 좋음,인천 : 좋음\" } ] } } }";
 
             // JSON 파싱
-            JSONObject jsonObject = new JSONObject(jsonResponse);
-            // 첫 번째 항목의 informGrade 값 추출
-            String informGrade = jsonObject.getJSONObject("response")
-                    .getJSONObject("body")
-                    .getJSONArray("items")
-                    .getJSONObject(0)
-                    .getString("informGrade");
+            try {
+                JSONObject jsonObject = new JSONObject(responseData);
+                // 첫 번째 항목의 informGrade 값 추출
+                String informGrade = jsonObject.getJSONObject("response")
+                        .getJSONObject("body")
+                        .getJSONArray("items")
+                        .getJSONObject(0)
+                        .getString("informGrade");
 
-            // informGrade에서 충남의 값을 찾음
-            String[] grades = informGrade.split(",");
-            String chungnamGrade = "";
-            for (String grade : grades) {
-                if (grade.trim().startsWith("충남")) {
-                    chungnamGrade = grade.split(":")[1].trim();
-                    break;
+                // informGrade에서 충남의 값을 찾음
+                String[] grades = informGrade.split(",");
+                String chungnamGrade = "";
+                for (String grade : grades) {
+                    // "충남 :"으로 시작하는지 확인
+                    if (grade.trim().startsWith("충남 :")) {
+                        chungnamGrade = grade.split(":")[1].trim();
+                        break;
+                    }
                 }
-            }
 
-            // 충남의 값을 출력
-            System.out.println("충남의 값: " + chungnamGrade);
-            Dust = chungnamGrade;
+                // 충남의 informGrade 값을 출력
+                System.out.println("충남의 informGrade 값은: " + chungnamGrade);
+                Dust = chungnamGrade;
+            } catch (JSONException e) {
+                System.err.println("JSON 예외 발생: " + e.getMessage());
+
+        }
+
         }
 
 
