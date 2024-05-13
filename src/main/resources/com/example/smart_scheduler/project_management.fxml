@@ -29,6 +29,11 @@
                         </Label>
                      </children>
                   </HBox>
+                  <Button fx:id="delete_button" layoutX="400.0" layoutY="7.0" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="23.0" prefWidth="126.0" style="-fx-background-color: #DD3030;" text="프로젝트 초기화" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
                </children>
             </Pane>
             <Pane prefHeight="418.0" prefWidth="537.0">
@@ -72,12 +77,19 @@
                               <Insets bottom="10.0" top="10.0" />
                            </padding>
                         </HBox>
-                        <TableView prefHeight="200.0" prefWidth="200.0">
-                          <columns>
-                            <TableColumn prefWidth="75.0" text="C1" />
-                            <TableColumn prefWidth="75.0" text="C2" />
-                          </columns>
-                        </TableView>
+                        <ScrollPane>
+                           <content>
+                              <TableView prefHeight="359.0" prefWidth="522.0">
+                                <columns>
+                                   <TableColumn maxWidth="238.0" minWidth="238.0" prefWidth="238.0" text="Content" />
+                                   <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Year" />
+                                   <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Month" />
+                                   <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Day" />
+                                   <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Completion" />
+                                </columns>
+                              </TableView>
+                           </content>
+                        </ScrollPane>
                      </children>
                   </VBox>
                </children>
