@@ -130,9 +130,6 @@ public class MainController {
 
 
         String baseTime = closestTime.format(timeFormatter);
-        if(SKY == null){
-            baseTime = secondClosestTime.format(timeFormatter);
-        }
         System.out.println(baseTime);
 
         //자외선 지수 api 를 위한 시간 값
@@ -149,7 +146,9 @@ public class MainController {
         String dustdate = Now.format(dustdateformatter);
 
 
-
+        if(SKY == null){
+            baseTime = secondClosestTime.format(timeFormatter);
+        }
 
         // getApiResponse 함수 호출하여 현재 시간의 데이터 가져오기
         try {
@@ -220,7 +219,7 @@ public class MainController {
         urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
         urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); /*‘21년 6월 28일 발표*/
-        urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode(baseTime, "UTF-8")); /*06시 발표(정시단위) */
+        urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode("0200", "UTF-8")); /*06시 발표(정시단위) */
         urlBuilder.append("&" + URLEncoder.encode("nx", "UTF-8") + "=" + URLEncoder.encode("61", "UTF-8")); /*예보지점의 X 좌표값*/
         urlBuilder.append("&" + URLEncoder.encode("ny", "UTF-8") + "=" + URLEncoder.encode("110", "UTF-8")); /*예보지점의 Y 좌표값*/
         URL url = new URL(urlBuilder.toString());
