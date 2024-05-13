@@ -39,11 +39,9 @@ public class teamname_cptController {
                 }
 
                 try {
-                    // 로그인 화면을 로드하고 컨트롤러를 설정하여 새 창으로 열기
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Login_screen.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("project_management.fxml"));
                     Parent root = loader.load();
 
-                    // 새로운 스테이지를 만들어서 로그인 창을 열기
                     Stage newStage = new Stage();
                     newStage.setScene(new Scene(root));
                     newStage.show();

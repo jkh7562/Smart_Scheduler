@@ -33,14 +33,14 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <TextField fx:id="teamname" prefHeight="22.0" prefWidth="221.0" promptText="팀 이름을 입력하세요.">
+                  <TextField fx:id="teamname_textfield" prefHeight="22.0" prefWidth="221.0" promptText="팀 이름을 입력하세요.">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </TextField>
-                  <Button mnemonicParsing="false" prefHeight="22.0" prefWidth="22.0">
+                  <Button fx:id="okay_button" mnemonicParsing="false" onAction="#okayButtonAction" prefHeight="22.0" prefWidth="22.0">
                      <graphic>
-                        <ImageView fx:id="okay_button" fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="15.0" fitWidth="15.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../check_icon.png" />
                            </image>

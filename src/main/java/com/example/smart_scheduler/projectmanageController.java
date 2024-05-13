@@ -17,9 +17,27 @@ public class projectmanageController {
     ImageView back_image;
     @FXML
     private void backimageClicked(MouseEvent event) {
-        // 현재 창(Stage)을 가져옵니다.
+        // 현재 창을 닫음
         Stage currentStage = (Stage) back_image.getScene().getWindow();
-        // 현재 창을 닫습니다.
         currentStage.close();
+
+        // 다른 열려 있는 창들을 닫음
+        Stage[] openStages = Stage.getWindows().toArray(new Stage[0]);
+        for (Stage stage : openStages) {
+            if (stage != currentStage) {
+                stage.close();
+            }
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Project.fxml"));
+            Parent root = loader.load();
+
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
