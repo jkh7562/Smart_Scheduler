@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="453.0" prefWidth="537.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.WorkaddController">
+<AnchorPane prefHeight="453.0" prefWidth="537.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.projectmanageController">
    <children>
       <VBox>
          <children>
@@ -29,7 +29,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button fx:id="delete_button" layoutX="400.0" layoutY="7.0" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="23.0" prefWidth="126.0" style="-fx-background-color: #DD3030;" text="프로젝트 초기화" textFill="WHITE">
+                  <Button fx:id="delete_button" layoutX="400.0" layoutY="7.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="126.0" style="-fx-background-color: #DD3030;" text="프로젝트 초기화" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -57,7 +57,7 @@
                               </HBox>
                               <HBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Button fx:id="save_button" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #219653;" text="추가" textFill="WHITE">
+                                    <Button fx:id="save_button" mnemonicParsing="false" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #219653;" text="추가" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="13.0" />
                                        </font>
@@ -65,7 +65,7 @@
                                           <Insets right="10.0" />
                                        </HBox.margin>
                                     </Button>
-                                    <Button fx:id="delete_button" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #DD3030;" text="삭제" textFill="WHITE">
+                                    <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #DD3030;" text="삭제" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="13.0" />
                                        </font>

@@ -51,6 +51,11 @@ public class ProjectController {
     @FXML
     private Button[][] dayButtons = new Button[6][7];
 
+    @FXML
+    Button manage_button;
+
+    String Id;
+
     // 다른 필요한 필드 및 메서드들을 추가할 수 있습니다.
 
     // 예시로 몇 가지 초기화 메서드를 추가합니다.
@@ -233,6 +238,118 @@ public class ProjectController {
         } catch (IOException e) {
             e.printStackTrace();
             // 사용자에게 오류 메시지 표시
+        }
+    }
+
+    public String primary() {
+        String primaryid = null;
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/priget.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "&tableName=pri";
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 서버 응답 처리
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                StringBuilder response = new StringBuilder(); // response 초기화 추가
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                // 데이터 파싱 (단순한 문자열을 ,로 분리하여 사용)
+                String[] data = response.toString().split(",");
+                if (data.length > 0) {
+                    primaryid = data[0];
+                    System.out.println(primaryid);
+                } else {
+                    System.out.println("데이터가 존재하지 않습니다.");
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(primaryid);
+
+        return primaryid;
+    }
+
+    @FXML
+    private void manageButtonAction(ActionEvent event) {
+        Id = primary();
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/team.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                String serverResponse = response.toString();
+                System.out.println("Response: " + serverResponse);
+
+                // Id가 존재하는지 여부에 따라 특정 행동 수행
+                if (serverResponse.equals("Id exists in the team table.")) {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("project_management.fxml"));
+                        Parent root = loader.load();
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.show();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("project_teamname.fxml"));
+                        Parent root = loader.load();
+                        Scene scene = new Scene(root);
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.show();
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }
