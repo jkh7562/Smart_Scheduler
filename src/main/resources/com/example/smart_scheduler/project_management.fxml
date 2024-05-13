@@ -44,7 +44,7 @@
                            <children>
                               <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="416.0">
                                  <children>
-                                    <Label text="프로젝트 명">
+                                    <Label fx:id="project_label" text="프로젝트 명">
                                        <font>
                                           <Font size="25.0" />
                                        </font>
@@ -52,7 +52,7 @@
                                           <Insets left="10.0" right="10.0" />
                                        </padding>
                                     </Label>
-                                    <Button mnemonicParsing="false" text="수정" />
+                                    <Button fx:id="change_button" mnemonicParsing="false" onAction="#changeButtonAction" text="수정" />
                                  </children>
                               </HBox>
                               <HBox alignment="BOTTOM_RIGHT">
