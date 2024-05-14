@@ -29,7 +29,7 @@
                         </font>
                     </Label>
                 </children></Pane>
-            <ImageView fitHeight="200.0" fitWidth="182.0" layoutX="400.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true" style="-fx-image: #FFFFFF;">
+            <ImageView fitHeight="200.0" fitWidth="182.0" layoutX="400.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                     <Image url="@../../../Schedule-real.png" />
                 </image></ImageView>
