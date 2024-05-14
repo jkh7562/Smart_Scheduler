@@ -39,7 +39,7 @@ public class teamname_cptController {
                 }
 
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("project_management.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("project_name.fxml"));
                     Parent root = loader.load();
 
                     Stage newStage = new Stage();

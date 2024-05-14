@@ -321,7 +321,7 @@ public class ProjectController {
                 // Id가 존재하는지 여부에 따라 특정 행동 수행
                 if (serverResponse.equals("Id exists in the team table.")) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("project_management.fxml"));
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("project_name.fxml"));
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = new Stage();

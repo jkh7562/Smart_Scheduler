@@ -38,57 +38,18 @@ public class projectnameController {
     @FXML
     private void okayButtonAction(ActionEvent event) {
         String project = project_textfield.getText();
-        Id = primary();
 
         if (!project.isEmpty()) {
             try {
-                String serverURL = "http://hbr2024.dothome.co.kr/saveteamname.php";
-                URL url = new URL(serverURL);
-                HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-                connection.setRequestMethod("POST");
-                connection.setDoOutput(true);
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("project_management.fxml"));
+                Parent root = loader.load();
+                Stage currentStage = (Stage) okay_button.getScene().getWindow();
+                currentStage.setScene(new Scene(root));
 
-                String postData = "Id=" + Id + "&project=" + project;
-                OutputStream os = connection.getOutputStream();
-                os.write(postData.getBytes("UTF-8"));
-                os.close();
+                projectmanageController ProjectmanageController = loader.getController();
+                ProjectmanageController.initData(project);
 
-                int responseCode = connection.getResponseCode();
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                    StringBuilder response = new StringBuilder();
-                    String inputLine;
-
-                    while ((inputLine = in.readLine()) != null) {
-                        response.append(inputLine);
-                    }
-
-                    in.close();
-                    String responseBody = response.toString();
-
-                    // 서버로부터 받은 응답에 따라 처리
-                    if (responseBody.equals("New record created successfully")) {
-                        System.out.println("Team name saved successfully");
-                        try {
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("teamname_cpt.fxml"));
-                            Parent root = loader.load();
-                            Scene scene = new Scene(root);
-                            Stage stage = new Stage();
-                            stage.setScene(scene);
-                            stage.show();
-
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        }
-                    } else if (responseBody.equals("Error: Duplicate teamname")) {
-                        System.out.println("Error: Duplicate teamname. Please choose another team name.");
-                    } else {
-                        System.out.println("Unexpected response from server: " + responseBody);
-                    }
-                } else {
-                    System.out.println("HTTP Error Code: " + responseCode);
-                }
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }

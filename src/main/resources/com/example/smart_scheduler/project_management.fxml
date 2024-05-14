@@ -38,60 +38,72 @@
             </Pane>
             <Pane prefHeight="418.0" prefWidth="537.0">
                <children>
-                  <VBox prefHeight="418.0" prefWidth="537.0">
+                  <HBox prefHeight="59.0" prefWidth="537.0">
                      <children>
-                        <HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="379.0">
                            <children>
-                              <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="416.0">
+                              <Label fx:id="project_label" text="프로젝트 명">
+                                 <font>
+                                    <Font size="25.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets left="10.0" right="10.0" />
+                                 </padding>
+                              </Label>
+                              <Button fx:id="change_button" mnemonicParsing="false" onAction="#changeButtonAction" text="수정" />
+                           </children>
+                        </HBox>
+                        <VBox prefHeight="39.0" prefWidth="149.0">
+                           <children>
+                              <HBox alignment="CENTER_RIGHT">
                                  <children>
-                                    <Label fx:id="project_label" text="프로젝트 명">
-                                       <font>
-                                          <Font size="25.0" />
-                                       </font>
-                                       <padding>
-                                          <Insets left="10.0" right="10.0" />
-                                       </padding>
-                                    </Label>
-                                    <Button fx:id="change_button" mnemonicParsing="false" onAction="#changeButtonAction" text="수정" />
+                                    <Label text="팀 : " />
+                                    <Label fx:id="teamname_label" />
                                  </children>
                               </HBox>
-                              <HBox alignment="BOTTOM_RIGHT">
+                              <HBox alignment="CENTER_RIGHT">
                                  <children>
-                                    <Button fx:id="save_button" mnemonicParsing="false" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #219653;" text="추가" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
-                                       <HBox.margin>
-                                          <Insets right="10.0" />
-                                       </HBox.margin>
-                                    </Button>
-                                    <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #DD3030;" text="삭제" textFill="WHITE">
-                                       <font>
-                                          <Font name="System Bold" size="13.0" />
-                                       </font>
-                                    </Button>
+                                    <Label text="사용자 : " />
+                                    <Label fx:id="id_label" />
                                  </children>
                               </HBox>
                            </children>
-                           <padding>
-                              <Insets bottom="10.0" top="10.0" />
-                           </padding>
-                        </HBox>
-                        <ScrollPane>
-                           <content>
-                              <TableView prefHeight="359.0" prefWidth="522.0">
-                                <columns>
-                                   <TableColumn maxWidth="238.0" minWidth="238.0" prefWidth="238.0" text="Content" />
-                                   <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Year" />
-                                   <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Month" />
-                                   <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Day" />
-                                   <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Completion" />
-                                </columns>
-                              </TableView>
-                           </content>
-                        </ScrollPane>
+                        </VBox>
                      </children>
-                  </VBox>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+                  <ScrollPane layoutY="89.0" prefHeight="329.0" prefWidth="537.0">
+                     <content>
+                        <TableView prefHeight="359.0" prefWidth="522.0">
+                          <columns>
+                             <TableColumn maxWidth="238.0" minWidth="238.0" prefWidth="238.0" text="Content" />
+                             <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Year" />
+                             <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Month" />
+                             <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Day" />
+                             <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Completion" />
+                          </columns>
+                        </TableView>
+                     </content>
+                  </ScrollPane>
+                  <HBox alignment="BOTTOM_RIGHT" layoutX="413.0" layoutY="59.0">
+                     <children>
+                        <Button fx:id="save_button" mnemonicParsing="false" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #219653;" text="추가" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Button>
+                        <Button mnemonicParsing="false" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #DD3030;" text="삭제" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                                 </children>
+                  </HBox>
                </children>
             </Pane>
          </children>
