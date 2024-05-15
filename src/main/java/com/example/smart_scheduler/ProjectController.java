@@ -1,5 +1,6 @@
 package com.example.smart_scheduler;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -40,6 +42,8 @@ public class ProjectController {
     Button work_button;
     @FXML
     Button main_button;
+    @FXML
+    Label project_label;
 
     private int currentYear;
     private int currentMonth;
@@ -55,6 +59,7 @@ public class ProjectController {
     Button manage_button;
 
     String Id;
+    String teamname;
 
     // 다른 필요한 필드 및 메서드들을 추가할 수 있습니다.
 
@@ -88,6 +93,149 @@ public class ProjectController {
 
         year_label.setText(Integer.toString(currentYear));
         month_label.setText(Integer.toString(currentMonth));
+
+        Id = primary();
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/get_teamname.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+
+                // 서버에서 받은 teamname 출력
+                teamname = response.toString();
+                System.out.println("Teamname: " + teamname);
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (IOException e) {
+            // IOException이 발생한 경우에 대한 예외 처리
+            e.printStackTrace();
+            // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+        } catch (Exception e) {
+            // 그 외의 예외에 대한 예외 처리
+            e.printStackTrace();
+            // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+        }
+
+
+        try {
+            // POST 요청을 보낼 PHP 서버의 URL
+            String serverURL = "http://hbr2024.dothome.co.kr/updateproject.php";
+
+            // URL 객체 생성
+            URL url = new URL(serverURL);
+
+            // HTTP 연결 생성
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            // POST 데이터 생성
+            String postData = "teamname=" + teamname;
+
+            // 데이터를 서버로 전송
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            // 서버로부터 응답 코드 받기
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 응답 데이터 읽기
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                String responseData = response.toString();
+                // 데이터가 비어 있는지 확인
+                if (!responseData.isEmpty()) {
+                    try {
+                        // 서버 응답 데이터가 JSON 형식인지 확인
+                        if (responseData.startsWith("[")) {
+                            // JSON 형식일 경우 JSONArray로 변환
+                            JSONArray jsonArray = new JSONArray(responseData);
+
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+
+                                String projectName = jsonObject.getString("projectname");
+                                project_label.setText(projectName);
+
+                                // content, startdate, enddate 가져오기
+                                String content = jsonObject.getString("content");
+                                String startDate = jsonObject.getString("startdate");
+                                String endDate = jsonObject.getString("enddate");
+
+                                // startDate를 year, month, day로 쪼개어 변수에 저장
+                                String[] startDateParts = startDate.split("-");
+                                String syear = startDateParts[0];
+                                String smonth = startDateParts[1];
+                                String sday = startDateParts[2];
+
+                                // endDate를 year, month, day로 쪼개어 변수에 저장
+                                String[] endDateParts = endDate.split("-");
+                                String eyear = endDateParts[0];
+                                String emonth = endDateParts[1];
+                                String eday = endDateParts[2];
+
+                                // 변수에 저장된 값 출력 (테스트용)
+                                System.out.println("Start Year: " + syear);
+                                System.out.println("Start Month: " + smonth);
+                                System.out.println("Start Day: " + sday);
+                                System.out.println("End Year: " + eyear);
+                                System.out.println("End Month: " + emonth);
+                                System.out.println("End Day: " + eday);
+                            }
+                        } else {
+                            // JSON 형식이 아닌 경우에 대한 처리
+                            System.out.println("Response data is not in JSON format.");
+                            // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                        }
+                    } catch (JSONException e) {
+                        // JSON 형식이 잘못된 경우에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    } catch (Exception e) {
+                        // 그 외의 예외에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    }
+                } else {
+                    System.out.println("Response data is empty.");
+                    // 처리할 작업을 추가하세요 (예: 기본 값을 설정하거나 사용자에게 메시지 출력)
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 
     }
 

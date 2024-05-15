@@ -93,7 +93,17 @@ public class projectaddController {
                 in.close();
                 System.out.println("Response: " + response.toString());
 
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("projectadd_cpt.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.show();
 
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
             }

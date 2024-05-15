@@ -15,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -128,33 +129,41 @@ public class projectmanageController {
                 String responseData = response.toString();
                 // 데이터가 비어 있는지 확인
                 if (!responseData.isEmpty()) {
-                    // ObservableList를 ListView와 연결
-                    ObservableList<Node> items = content_listview.getItems();
-                    content_listview.setItems(items);
+                    // 데이터를 JSON 배열로 변환하여 처리
+                    try {
+                        ObservableList<Node> items = content_listview.getItems();
+                        content_listview.setItems(items);
 
-                    JSONArray jsonArray = new JSONArray(responseData);
+                        JSONArray jsonArray = new JSONArray(responseData);
 
-                    for (int i = 0; i < jsonArray.length(); i++) {
-                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        for (int i = 0; i < jsonArray.length(); i++) {
+                            JSONObject jsonObject = jsonArray.getJSONObject(i);
 
-                        String projectName = jsonObject.getString("projectname");
-                        project_label.setText(projectName);
+                            String projectName = jsonObject.getString("projectname");
+                            project_label.setText(projectName);
 
-                        // content, startdate, enddate 가져오기
-                        String content = jsonObject.getString("content");
-                        String startDate = jsonObject.getString("startdate");
-                        String endDate = jsonObject.getString("enddate");
-                        // 리스트뷰 아이템 생성
-                        Label listItemLabel = new Label("계획 :  " + content + "      " + "시작일자 : " + startDate + "      " + "종료일자 : " + endDate);
-                        // 글꼴 크기 설정
-                        listItemLabel.setFont(new Font(15));
+                            // content, startdate, enddate 가져오기
+                            String content = jsonObject.getString("content");
+                            String startDate = jsonObject.getString("startdate");
+                            String endDate = jsonObject.getString("enddate");
+                            // 리스트뷰 아이템 생성
+                            Label listItemLabel = new Label("계획 :  " + content + "      " + "시작일자 : " + startDate + "      " + "종료일자 : " + endDate);
+                            // 글꼴 크기 설정
+                            listItemLabel.setFont(new Font(15));
 
-                        // ListView에 아이템 추가
-                        items.add(listItemLabel);
+                            // ListView에 아이템 추가
+                            items.add(listItemLabel);
+                        }
+                    } catch (JSONException e) {
+                        // 서버에서 반환된 데이터가 JSON 배열 형식이 아닌 경우 처리
+                        System.out.println("Invalid JSON format from the server: " + responseData);
                     }
                 } else {
                     System.out.println("Response data is empty.");
                 }
+            } else if (responseCode == HttpURLConnection.HTTP_NOT_FOUND) {
+                // 데이터가 없는 경우 처리
+                System.out.println("Data not found in the database.");
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
             }

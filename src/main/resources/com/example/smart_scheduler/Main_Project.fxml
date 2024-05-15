@@ -616,7 +616,7 @@
                   </Button>
                </children>
             </Pane>
-            <Label layoutX="25.0" layoutY="10.0" text="Project">
+            <Label fx:id="project_label" layoutX="25.0" layoutY="10.0" text="Project">
                <font>
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
