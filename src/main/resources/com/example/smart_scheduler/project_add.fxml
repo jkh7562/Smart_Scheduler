@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="187.0" prefWidth="374.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.projectaddController">
+   <children>
+      <Pane prefHeight="37.0" prefWidth="373.0" style="-fx-background-color: #c8c4ff;">
+         <children>
+            <HBox layoutY="9.0" prefHeight="30.0" prefWidth="163.0">
+               <children>
+                  <ImageView fx:id="back_image" fitHeight="24.0" fitWidth="32.0" onMouseClicked="#backimageClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../backre.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="프로젝트 추가">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane layoutY="37.0" prefHeight="164.0" prefWidth="373.0">
+         <children>
+            <VBox layoutX="14.0" layoutY="22.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="계획 : ">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin></Label>
+                        <TextField fx:id="content_textfield" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="시작 일자 : ">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin></Label>
+                        <DatePicker fx:id="start_datepicker" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="종료 일자 : ">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin></Label>
+                        <DatePicker fx:id="end_datepicker" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button fx:id="save_button" layoutX="316.0" layoutY="8.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #219653;" text="추가" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+                </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

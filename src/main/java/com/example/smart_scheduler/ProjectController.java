@@ -318,19 +318,67 @@ public class ProjectController {
                 String serverResponse = response.toString();
                 System.out.println("Response: " + serverResponse);
 
+                String teamname = serverResponse.trim();
                 // Id가 존재하는지 여부에 따라 특정 행동 수행
-                if (serverResponse.equals("Id exists in the team table.")) {
+                if (!serverResponse.equals("Id does not exist in the team table.")) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("project_name.fxml"));
-                        Parent root = loader.load();
-                        Scene scene = new Scene(root);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                        stage.show();
+                        String serverURL1 = "http://hbr2024.dothome.co.kr/checkproject.php";
+                        URL url1 = new URL(serverURL1);
+                        HttpURLConnection connection1 = (HttpURLConnection) url1.openConnection();
+                        connection1.setRequestMethod("POST");
+                        connection1.setDoOutput(true);
 
-                    } catch (IOException e) {
+                        String postData1 = "teamname=" + teamname;
+                        OutputStream os1 = connection1.getOutputStream();
+                        os1.write(postData1.getBytes("UTF-8"));
+                        os1.close();
+
+                        int responseCode1 = connection1.getResponseCode();
+                        if (responseCode1 == HttpURLConnection.HTTP_OK) {
+                            BufferedReader in1 = new BufferedReader(new InputStreamReader(connection1.getInputStream()));
+                            StringBuilder response1 = new StringBuilder();
+                            String inputLine1;
+
+                            while ((inputLine1 = in1.readLine()) != null) {
+                                response1.append(inputLine1);
+                            }
+
+                            in1.close();
+                            System.out.println("Response: " + response1.toString());
+
+                            String serverResponse1 = response1.toString();
+                            if (serverResponse1.equals("Teamname exists in the project table.")) {
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("project_management.fxml"));
+                                    Parent root = loader.load();
+                                    Scene scene = new Scene(root);
+                                    Stage stage = new Stage();
+                                    stage.setScene(scene);
+                                    stage.show();
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                try {
+                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("project_name.fxml"));
+                                    Parent root = loader.load();
+                                    Scene scene = new Scene(root);
+                                    Stage stage = new Stage();
+                                    stage.setScene(scene);
+                                    stage.show();
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        } else {
+                            System.out.println("HTTP Error Code: " + responseCode);
+                        }
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
+
                 } else {
                     try {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("project_teamname.fxml"));

@@ -29,7 +29,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button fx:id="delete_button" layoutX="400.0" layoutY="7.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="126.0" style="-fx-background-color: #DD3030;" text="프로젝트 초기화" textFill="WHITE">
+                  <Button fx:id="alldelete_button" layoutX="400.0" layoutY="7.0" mnemonicParsing="false" onAction="#alldeleteButtonAction" prefHeight="23.0" prefWidth="126.0" style="-fx-background-color: #DD3030;" text="프로젝트 초기화" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
@@ -76,20 +76,12 @@
                   </HBox>
                   <ScrollPane layoutY="89.0" prefHeight="329.0" prefWidth="537.0">
                      <content>
-                        <TableView prefHeight="359.0" prefWidth="522.0">
-                          <columns>
-                             <TableColumn maxWidth="238.0" minWidth="238.0" prefWidth="238.0" text="Content" />
-                             <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Year" />
-                             <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Month" />
-                             <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Day" />
-                             <TableColumn maxWidth="71.0" minWidth="71.0" prefWidth="71.0" text="Completion" />
-                          </columns>
-                        </TableView>
+                        <ListView fx:id="content_listview" fixedCellSize="60.0" prefHeight="1000.0" prefWidth="521.0" />
                      </content>
                   </ScrollPane>
                   <HBox alignment="BOTTOM_RIGHT" layoutX="413.0" layoutY="59.0">
                      <children>
-                        <Button fx:id="save_button" mnemonicParsing="false" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #219653;" text="추가" textFill="WHITE">
+                        <Button fx:id="save_button" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #219653;" text="추가" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
