@@ -210,19 +210,6 @@ public class projectmanageController {
     }
 
     @FXML
-    private void changeButtonAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("project_name.fxml"));
-            Parent root = loader.load();
-            Stage currentStage = (Stage) change_button.getScene().getWindow();
-            currentStage.setScene(new Scene(root));
-        } catch (IOException e) {
-            e.printStackTrace();
-            // 사용자에게 오류 메시지 표시
-        }
-    }
-
-    @FXML
     private void saveButtonAction(ActionEvent event) {
         String projectname = project_label.getText();
         try {

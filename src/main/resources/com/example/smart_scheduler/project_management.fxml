@@ -50,7 +50,6 @@
                                     <Insets left="10.0" right="10.0" />
                                  </padding>
                               </Label>
-                              <Button fx:id="change_button" mnemonicParsing="false" onAction="#changeButtonAction" text="수정" />
                            </children>
                         </HBox>
                         <VBox prefHeight="39.0" prefWidth="149.0">

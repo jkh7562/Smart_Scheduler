@@ -137,7 +137,6 @@ public class ProjectController {
                 // 서버에서 받은 teamname 출력
                 teamname = response.toString();
                 System.out.println("Teamname: " + teamname);
-                project_label.setText(teamname);
 
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
@@ -200,6 +199,8 @@ public class ProjectController {
 // 각 콘텐츠에 대해 색상 매핑
                             for (int i = 0; i < jsonArray.length(); i++) {
                                 JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String projectname = jsonObject.getString("projectname");
+                                project_label.setText(projectname);
                                 String content = jsonObject.getString("content");
 
                                 // 콘텐츠에 대한 색상이 매핑되어 있는지 확인
