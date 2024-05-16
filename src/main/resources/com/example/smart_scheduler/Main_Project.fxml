@@ -762,19 +762,9 @@
 
                      </children>
                   </GridPane>
-                  <Button layoutX="437.0" layoutY="110.0" mnemonicParsing="false" style="-fx-background-color: #dbdbdb;" text="▼">
-                     <graphic>
-                        <Label text="팀관리">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets right="5.0" />
-                           </padding>
-                        </Label>
-                     </graphic>
+                  <Button layoutX="464.0" layoutY="104.0" mnemonicParsing="false" text="팀관리">
                      <font>
-                        <Font size="10.0" />
+                        <Font size="20.0" />
                      </font>
                   </Button>
                   <Button fx:id="manage_button" layoutX="400.0" layoutY="60.0" mnemonicParsing="false" onAction="#manageButtonAction" text="프로젝트 관리">
