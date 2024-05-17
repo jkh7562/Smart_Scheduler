@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="453.0" prefWidth="537.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.projectmanageController">
+<AnchorPane prefHeight="453.0" prefWidth="537.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.projectteamController">
    <children>
       <VBox>
          <children>
@@ -69,7 +69,7 @@
                   </HBox>
                   <HBox alignment="CENTER" layoutX="269.0" layoutY="50.0" prefHeight="31.0" prefWidth="268.0">
                      <children>
-                        <TextField prefHeight="37.0" prefWidth="229.0" />
+                        <TextField fx:id="search_textfield" prefHeight="37.0" prefWidth="229.0" />
                         <Button fx:id="search_button" mnemonicParsing="false">
                            <graphic>
                               <ImageView fitHeight="27.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
@@ -85,12 +85,12 @@
                      <children>
                         <ScrollPane prefWidth="268.0">
                            <content>
-                              <ListView fx:id="content_listview" fixedCellSize="60.0" prefHeight="1000.0" prefWidth="253.0" />
+                              <ListView fx:id="team_listview" fixedCellSize="60.0" prefHeight="1000.0" prefWidth="252.0" />
                            </content>
                         </ScrollPane>
                         <ScrollPane prefWidth="268.0">
                            <content>
-                              <ListView prefHeight="1000.0" prefWidth="253.0" />
+                              <ListView fx:id="search_listview" prefHeight="1000.0" prefWidth="252.0" />
                            </content>
                         </ScrollPane>
                      </children>
