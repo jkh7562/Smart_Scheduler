@@ -762,7 +762,7 @@
 
                      </children>
                   </GridPane>
-                  <Button fx:id="team_button" layoutX="400.0" layoutY="104.0" mnemonicParsing="false" prefWidth="151.0" text="팀관리">
+                  <Button fx:id="team_button" layoutX="400.0" layoutY="104.0" mnemonicParsing="false" onAction="#teamButtonClick" prefWidth="151.0" text="팀관리">
                      <font>
                         <Font size="20.0" />
                      </font>
