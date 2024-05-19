@@ -99,6 +99,12 @@ public class ProjectController {
                 {vbox06, vbox16, vbox26, vbox36, vbox46, vbox56, vbox66}
         };
 
+        for (int row = 0; row < vboxs.length; row++) {
+            for (int col = 0; col < vboxs[row].length; col++) {
+                VBox vbox = vboxs[row][col];
+                vbox.setOnMouseClicked(event -> handleVBoxClick(vbox));
+            }
+        }
 
         LocalDate localDate = LocalDate.now();
         currentYear = localDate.getYear();
@@ -276,6 +282,94 @@ public class ProjectController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/projectcpt_get.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "teamname=" + teamname;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                // JSON 응답을 처리하여 각 content에 대해 disableMatchingVBoxes를 호출
+                String jsonResponse = response.toString();
+                JSONArray jsonArray = new JSONArray(jsonResponse);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    String content = jsonArray.getString(i);
+                    disableMatchingVBoxes(content);
+                }
+
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void handleVBoxClick(VBox vbox) {
+        // Check if the VBox has 2 or more children
+        if (vbox.getChildren().size() >= 2) {
+            // Get the last child of the VBox
+            Node lastChild = vbox.getChildren().get(vbox.getChildren().size() - 1);
+            if (lastChild instanceof Label) {
+                Label lastLabel = (Label) lastChild;
+                String content = lastLabel.getText();
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("project_complete.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.show();
+
+                    project_cptController project_cptController = loader.getController();
+                    project_cptController.initData(content, teamname);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //disableMatchingVBoxes(content);
+            }
+        }
+    }
+
+    private void disableMatchingVBoxes(String content) {
+        for (int row = 0; row < vboxs.length; row++) {
+            for (int col = 0; col < vboxs[row].length; col++) {
+                VBox vbox = vboxs[row][col];
+                // Check if the VBox has 2 or more children
+                if (vbox.getChildren().size() >= 2) {
+                    // Get the last child of the VBox
+                    Node lastChild = vbox.getChildren().get(vbox.getChildren().size() - 1);
+                    if (lastChild instanceof Label) {
+                        Label lastLabel = (Label) lastChild;
+                        if (lastLabel.getText().equals(content)) {
+                            // Disable the VBox
+                            vbox.setDisable(true);
+                        }
+                    }
+                }
+            }
         }
     }
 
