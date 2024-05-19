@@ -1,10 +1,9 @@
 package com.example.smart_scheduler;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -12,38 +11,41 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class projectteamController {
-    @FXML
-    ImageView back_image;
-    @FXML
-    Button teamdelete_button;
-    @FXML
-    Label team_label;
-    @FXML
-    Label id_label;
-    @FXML
-    ListView team_listview;
-    @FXML
-    ListView search_listview;
-    @FXML
-    TextField search_textfield;
-    @FXML
-    Button search_button;
-    @FXML
-    Button delete_button;
-    @FXML
-    Button add_button;
 
-    String Id;
+    @FXML
+    private ImageView back_image;
+    @FXML
+    private Button teamdelete_button;
+    @FXML
+    private Label team_label;
+    @FXML
+    private Label id_label;
+    @FXML
+    private ListView<String> team_listview;
+    @FXML
+    private ListView<String> search_listview;
+    @FXML
+    private TextField search_textfield;
+    @FXML
+    private Button search_button;
+    @FXML
+    private Button delete_button;
+    @FXML
+    private Button add_button;
+
+    private String Id;
+    private ObservableList<String> searchList;
 
     @FXML
     private void backimageClicked(MouseEvent event) {
@@ -70,16 +72,17 @@ public class projectteamController {
 
             int responseCode = connection.getResponseCode();
             if (responseCode == HttpURLConnection.HTTP_OK) {
-                // 서버 응답 처리
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
 
-                StringBuilder response = new StringBuilder(); // response 초기화 추가
+                StringBuilder response = new StringBuilder();
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
                     response.append(inputLine);
                 }
 
-                // 데이터 파싱 (단순한 문자열을 ,로 분리하여 사용)
+                in.close();
+
+                // 데이터 파싱
                 String[] data = response.toString().split(",");
                 if (data.length > 0) {
                     primaryid = data[0];
@@ -90,13 +93,9 @@ public class projectteamController {
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        System.out.println(primaryid);
 
         return primaryid;
     }
@@ -105,6 +104,10 @@ public class projectteamController {
     private void initialize() {
         Id = primary();
         id_label.setText(Id);
+
+        searchList = FXCollections.observableArrayList();
+        search_listview.setItems(searchList);
+
         try {
             String serverURL = "http://hbr2024.dothome.co.kr/team.php";
             URL url = new URL(serverURL);
@@ -144,6 +147,7 @@ public class projectteamController {
     @FXML
     private void searchButtonClick(ActionEvent event) {
         String searchid = search_textfield.getText();
+        searchList.clear();
         try {
             String serverURL = "http://hbr2024.dothome.co.kr/teamsearch.php";
             URL url = new URL(serverURL);
@@ -167,9 +171,15 @@ public class projectteamController {
                 }
 
                 in.close();
-                System.out.println("Response: " + response.toString());
-
-
+                // JSON 파싱
+                JSONArray jsonArray = new JSONArray(response.toString());
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String userID = jsonObject.getString("userID");
+                    String userName = jsonObject.getString("userName");
+                    String displayText = userName + " - " + userID;
+                    searchList.add(displayText);
+                }
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
             }
