@@ -26,6 +26,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class projectmanageController {
     @FXML
@@ -184,6 +186,23 @@ public class projectmanageController {
     }
 
     @FXML
+    private void saveButtonAction(ActionEvent event) {
+        String projectname = project_label.getText();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("project_add.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) save_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+
+            projectaddController projectaddController = loader.getController();
+            projectaddController.initData(teamname, projectname);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
     private void backimageClicked(MouseEvent event) {
         // 현재 창을 닫음
         Stage currentStage = (Stage) back_image.getScene().getWindow();
@@ -204,23 +223,6 @@ public class projectmanageController {
             Stage newStage = new Stage();
             newStage.setScene(new Scene(root));
             newStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @FXML
-    private void saveButtonAction(ActionEvent event) {
-        String projectname = project_label.getText();
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("project_add.fxml"));
-            Parent root = loader.load();
-            Stage currentStage = (Stage) save_button.getScene().getWindow();
-            currentStage.setScene(new Scene(root));
-
-            projectaddController projectaddController = loader.getController();
-            projectaddController.initData(teamname, projectname);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -282,6 +284,73 @@ public class projectmanageController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void deleteButtonAction(ActionEvent event) {
+        // 선택된 항목을 Label로 캐스팅
+        Label selectedLabel = (Label) content_listview.getSelectionModel().getSelectedItem();
+
+        // Label의 텍스트를 추출
+        String selectedItem = selectedLabel.getText();
+        String teamname = teamname_label.getText();
+        if (selectedItem != null) {
+            // 정규 표현식을 사용하여 content, startDate, endDate 추출
+            String regex = "계획 :\\s*(.*?)\\s*시작일자 :\\s*(.*?)\\s*종료일자 :\\s*(.*)";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(selectedItem);
+
+            if (matcher.matches()) {
+                String content = matcher.group(1);
+                String startDate = matcher.group(2);
+                String endDate = matcher.group(3);
+
+                try {
+                    String serverURL = "http://hbr2024.dothome.co.kr/projectdelete.php";
+                    URL url = new URL(serverURL);
+                    HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+                    connection.setRequestMethod("POST");
+                    connection.setDoOutput(true);
+
+                    String postData = "teamname=" + teamname + "&content=" + content + "&startDate=" + startDate + "&endDate=" + endDate;
+                    OutputStream os = connection.getOutputStream();
+                    os.write(postData.getBytes("UTF-8"));
+                    os.close();
+
+                    int responseCode = connection.getResponseCode();
+                    if (responseCode == HttpURLConnection.HTTP_OK) {
+                        BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                        StringBuilder response = new StringBuilder();
+                        String inputLine;
+
+                        while ((inputLine = in.readLine()) != null) {
+                            response.append(inputLine);
+                        }
+
+                        in.close();
+                        System.out.println("Response: " + response.toString());
+
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("projectdelete_cpt.fxml"));
+                            Parent root = loader.load();
+                            Scene scene = new Scene(root);
+                            Stage stage = new Stage();
+                            stage.setScene(scene);
+                            stage.show();
+
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    } else {
+                        System.out.println("HTTP Error Code: " + responseCode);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("No match found.");
+            }
         }
     }
 
