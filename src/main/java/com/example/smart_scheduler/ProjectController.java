@@ -326,6 +326,69 @@ public class ProjectController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/teamgauge.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "teamname=" + teamname;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                // JSON 형식의 응답을 파싱하여 총 일수와 완료된 프로젝트의 일수를 출력
+                JSONObject jsonResponse = new JSONObject(response.toString());
+
+                // total_date와 total_completed_date가 없는 경우를 고려하여 기본값 설정
+                int totalDate = jsonResponse.optInt("total_date", 0);
+                int totalCompletedDate = jsonResponse.optInt("total_completed_date", 0);
+
+                System.out.println("Total Date: " + totalDate);
+                System.out.println("Total Completed Date: " + totalCompletedDate);
+
+                if (totalDate != 0) {
+                    double percentageCompleted = ((double) totalCompletedDate / totalDate) * 100;
+                    System.out.println("Percentage Completed: " + percentageCompleted + "%");
+
+                    int nearestTen = (int) Math.round(percentageCompleted / 10) * 10;
+                    System.out.println(nearestTen);
+
+                    Pane[] gauges = {_10_gauge, _20_gauge, _30_gauge, _40_gauge, _50_gauge, _60_gauge, _70_gauge, _80_gauge, _90_gauge, _100_gauge};
+
+                    // nearestTen 이전의 팬까지 배경색 변경
+                    for (int i = 0; i < nearestTen / 10; i++) {
+                        gauges[i].setStyle("-fx-background-color: skyblue;");
+                    }
+                } else {
+                    System.out.println("Total Date is 0, cannot calculate percentage.");
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void handleVBoxClick(VBox vbox) {
