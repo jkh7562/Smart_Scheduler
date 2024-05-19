@@ -44,10 +44,6 @@ public class project_cptController {
                     connection.setRequestMethod("POST");
                     connection.setDoOutput(true);
 
-                    System.out.println("1235123451324532451324324");
-                    System.out.println(teamname);
-                    System.out.println(content);
-                    System.out.println("1235123451324532451324324");
                     String postData = "teamname=" + teamname + "&content=" + content;
                     OutputStream os = connection.getOutputStream();
                     os.write(postData.getBytes("UTF-8"));

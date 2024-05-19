@@ -42,6 +42,8 @@ public class ProjectController {
     @FXML
     private VBox vbox01, vbox11, vbox21, vbox31, vbox41, vbox51, vbox61, vbox02, vbox12, vbox22, vbox32, vbox42, vbox52, vbox62, vbox03, vbox13, vbox23, vbox33, vbox43, vbox53, vbox63, vbox04, vbox14, vbox24, vbox34, vbox44, vbox54, vbox64, vbox05, vbox15, vbox25, vbox35, vbox45, vbox55, vbox65, vbox06, vbox16, vbox26, vbox36, vbox46, vbox56, vbox66;
     @FXML
+    private Pane _10_gauge, _20_gauge, _30_gauge, _40_gauge, _50_gauge, _60_gauge, _70_gauge, _80_gauge, _90_gauge, _100_gauge;
+    @FXML
     Button work_button;
     @FXML
     Button main_button;

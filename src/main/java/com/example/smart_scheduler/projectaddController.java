@@ -22,6 +22,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 
 public class projectaddController {
     @FXML
@@ -76,6 +77,7 @@ public class projectaddController {
 
         String startdate = null;
         String enddate = null;
+        int date = 0;
 
         if (selectedStartDate != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -85,6 +87,9 @@ public class projectaddController {
         if (selectedEndDate != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             enddate = selectedEndDate.format(formatter);
+
+            date = (int) ChronoUnit.DAYS.between(selectedStartDate, selectedEndDate);
+            date++;
         }
         try {
             String serverURL = "http://hbr2024.dothome.co.kr/projectadd.php";
@@ -93,7 +98,7 @@ public class projectaddController {
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
 
-            String postData = "teamname=" + teamname + "&projectname=" + projectname + "&content=" + content + "&startdate=" + startdate + "&enddate=" + enddate;
+            String postData = "teamname=" + teamname + "&projectname=" + projectname + "&content=" + content + "&startdate=" + startdate + "&enddate=" + enddate + "&date=" + date;
             OutputStream os = connection.getOutputStream();
             os.write(postData.getBytes("UTF-8"));
             os.close();
