@@ -379,4 +379,53 @@ public class projectteamController {
             }
         }
     }
+
+    @FXML
+    private void teamdeleteButtonClick(ActionEvent event) {
+        String teamname = team_label.getText();
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/teamdelete_all.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "teamname=" + teamname;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("teamdeleteall_cpt.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = new Stage();
+                    stage.setScene(scene);
+                    stage.show();
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

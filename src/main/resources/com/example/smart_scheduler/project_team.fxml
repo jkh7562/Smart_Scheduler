@@ -29,7 +29,7 @@
                         </Label>
                      </children>
                   </HBox>
-                  <Button fx:id="teamdelete_button" layoutX="449.0" layoutY="7.0" mnemonicParsing="false" prefHeight="23.0" prefWidth="77.0" style="-fx-background-color: #DD3030;" text="팀 삭제" textFill="WHITE">
+                  <Button fx:id="teamdelete_button" layoutX="449.0" layoutY="7.0" mnemonicParsing="false" onAction="#teamdeleteButtonClick" prefHeight="23.0" prefWidth="77.0" style="-fx-background-color: #DD3030;" text="팀 삭제" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>

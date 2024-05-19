@@ -92,29 +92,170 @@
          <children>
             <Pane layoutX="6.0" layoutY="4.0" prefHeight="590.0" prefWidth="560.0">
                <children>
-                  <Pane layoutY="55.0" prefHeight="100.0" prefWidth="400.0">
+                  <Pane layoutY="59.0" prefHeight="100.0" prefWidth="400.0">
                      <children>
-                        <Label prefHeight="30.0" prefWidth="150.0" text="프로젝트 진척률">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <TableView layoutY="35.0" prefHeight="50.0" prefWidth="380.0">
-                          <columns>
-                            <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="10" />
-                            <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="20" />
-                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="30" />
-                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="40" />
-                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="50" />
-                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="60" />
-                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="70" />
-                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="80" />
-                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="90" />
-                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="100" />
-                              <TableColumn prefWidth="34.0" style="-fx-background-color: #eaeaea;" text="\%" />
-                          </columns>
-                        </TableView>
-                        <Button layoutX="140.0" layoutY="5.0" mnemonicParsing="false" prefHeight="20.0" prefWidth="80.0" text="진척률 수정" />
+                        <VBox prefHeight="100.0" prefWidth="394.0">
+                           <children>
+                              <Label prefHeight="30.0" prefWidth="150.0" text="프로젝트 진척률 (%)">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets bottom="7.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <GridPane alignment="CENTER" prefHeight="46.0" prefWidth="300.0">
+                                <columnConstraints>
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="23.0" prefWidth="39.0">
+                                             <children>
+                                                <Label text="10">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="23.0" prefWidth="39.0">
+                                             <children>
+                                                <Label text="20">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children></VBox>
+                                       </children>
+                                    </Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="23.0" prefWidth="39.0">
+                                             <children>
+                                                <Label text="30">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children></Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="23.0" prefWidth="39.0">
+                                             <children>
+                                                <Label text="40">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children></Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="23.0" prefWidth="39.0">
+                                             <children>
+                                                <Label text="50">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children></Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="23.0" prefWidth="39.0">
+                                             <children>
+                                                <Label text="60">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children></Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="23.0" prefWidth="39.0">
+                                             <children>
+                                                <Label text="70">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children></Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="7">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="23.0" prefWidth="39.0">
+                                             <children>
+                                                <Label text="80">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children></Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="8">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="23.0" prefWidth="39.0">
+                                             <children>
+                                                <Label text="90">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children></Pane>
+                                    <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="9">
+                                       <children>
+                                          <VBox alignment="CENTER" prefHeight="23.0" prefWidth="39.0">
+                                             <children>
+                                                <Label text="100">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                </Label>
+                                             </children>
+                                          </VBox>
+                                       </children></Pane>
+                                    <Pane fx:id="_10_gauge" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.rowIndex="1" />
+                                    <Pane fx:id="_20_gauge" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <Pane fx:id="_30_gauge" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                    <Pane fx:id="_40_gauge" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                    <Pane fx:id="_50_gauge" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                                    <Pane fx:id="_60_gauge" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                    <Pane fx:id="_70_gauge" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+                                    <Pane fx:id="_80_gauge" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                                    <Pane fx:id="_90_gauge" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                                    <Pane fx:id="_100_gauge" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff;" GridPane.columnIndex="9" GridPane.rowIndex="1" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </VBox>
                      </children>
                   </Pane>
                   <GridPane fx:id="calendar" layoutX="-3.0" layoutY="225.0" prefHeight="359.0" prefWidth="551.0">
