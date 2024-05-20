@@ -35,6 +35,8 @@ public class MainController {
     @FXML
     private Button work_button;
     @FXML
+    private Label nowtmp;
+    @FXML
     private ImageView weather;
     @FXML
     private Label hightemp;
@@ -79,7 +81,7 @@ public class MainController {
     private static String Dust;
 
 
-    private static String weatherPic;
+    private static String Time;
 
     @FXML
     public void initialize() {
@@ -90,6 +92,8 @@ public class MainController {
 
         // 현재 시간 가져오기
         LocalTime now = LocalTime.now();
+
+
 
         // 날짜를 YYYYMMDD 형식으로 변환
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyyMMdd");
@@ -104,6 +108,7 @@ public class MainController {
         LocalTime secondClosestTime = availableTimes[0]; // 두 번째로 가까운 시간 초기화
         long minDifference = Long.MAX_VALUE; // 최소값을 찾기 위해 최대값으로 초기화
         long secondMinDifference = Long.MAX_VALUE; // 두 번째 최소값을 찾기 위해 최대값으로 초기화
+
 
 // 현재 시간과 가장 가까운 시간을 찾음
         for (LocalTime availableTime : availableTimes) {
@@ -181,12 +186,6 @@ public class MainController {
             }
 
 
-            //현재 시간을 기준으로 비가 오는지 판단
-            /*int nowpopInt = Integer.parseInt(POP);
-            if (nowpopInt >= 40) {
-                SKY = "2";
-            }*/
-
 
             // 날씨 이미지 업데이트
             updateWeatherImage(SKY);
@@ -197,6 +196,10 @@ public class MainController {
 
             //미세먼지 텍스트 업데이트
             updateDUSTText(Dust);
+            //현재 온도 텍스트 업데이트
+            updateNowtmp(TMP);
+
+            System.out.println(Time + "Time 변수");
 
 
 
@@ -314,6 +317,9 @@ public class MainController {
             }
 // 가장 가까운 정시를 출력
             System.out.println("가장 가까운 정시: " + closestTime.format(formatter));
+            LocalTime roundedCurrentTime = closestTime.withMinute(0).withSecond(0).withNano(0);
+            LocalTime twoHoursBefore = roundedCurrentTime.minusHours(2);
+            Time = twoHoursBefore.format(formatter);
 
             // 변수에 할당
             String formattedDate = today.format(dateFormatter);
@@ -340,10 +346,6 @@ public class MainController {
                 String fcstValue = item.getString("fcstValue");
 
 
-                //System.out.println("Category: " + category + ", Forecast Value: " + fcstValue +" 예정 날짜: "+ fcstdate +" 예보 시간: "+ fcsttime );
-
-                //System.out.println(fcstdate + fcsttime);
-
                 // 원하는 작업 수행
                 if(fcstdate.equals((formattedDate))){
                     if (category.equals("POP")) {
@@ -352,17 +354,11 @@ public class MainController {
                         int popValue = Integer.parseInt(popfcstValue);
 
                         // 현재까지의 최댓값보다 크면 갱신
-                        highestPOPValue = Math.max(highestPOPValue, popValue);
+                        //highestPOPValue = Math.max(highestPOPValue, popValue);
+                        if (fcsttime.compareTo(Time) >= 0) {
+                            highestPOPValue = Math.max(highestPOPValue, popValue);
+                        }
 
-                        //현재 시간과 가장 가까운 깞
-                        String fcsttimeclose = item.getString("fcstTime");
-
-                        // fcsttime과 closestTimeString을 분 단위로 변환합니다.
-                        int fcsttimeMinutes = convertTimeToMinutes(fcsttime);
-                        int closestTimeMinutes = convertTimeToMinutes(closestTimeString);
-
-                        // fcsttime과 closestTimeString 사이의 시간 차이를 계산합니다.
-                        int timeDifference = Math.abs(fcsttimeMinutes - closestTimeMinutes);
                     }
                     if (fcsttime.equals(closestTimeString)){
                         switch (category) {
@@ -465,7 +461,7 @@ public class MainController {
                         case "TMN":
                             TMN = fcstValue;
                             break;
-                    } //System.out.println("Category: " + category + ", Forecast Value: " + fcstValue +" 예정 날짜: "+ fcstdate +" 예보 시간: "+ fcsttime );
+                    }
                 }
             }
 
@@ -568,48 +564,10 @@ public class MainController {
         return sb.toString();
     }
 
-   /* private static void parseDust(String responseData) {
-        try {
-            LocalDate today = LocalDate.now();
-            DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            String baseDate = today.format(dateFormatter);
-
-            JSONObject jsonObject = new JSONObject(responseData);
-            JSONObject responseBody = jsonObject.getJSONObject("response").getJSONObject("body");
-            JSONArray items = responseBody.getJSONArray("items");
-
-            // 충남 아산시의 미세먼지 정보 찾기
-            String asanPM10Grade = "";
-            String asanPM25Grade = "";
-            for (int i = 0; i < items.length(); i++) {
-                JSONObject item = items.getJSONObject(i);
-                String informData = item.getString("informData");
-                if (informData.equals(baseDate)) {
-                    String informGrade = item.getString("informGrade");
-                    String[] grades = informGrade.split(",");
-                    for (String grade : grades) {
-                        if (grade.contains("충남")) {
-                            String[] parts = grade.split(":");
-                            asanPM10Grade = parts[1].trim();
-                            asanPM25Grade = parts[2].trim();
-                            break;
-                        }
-                    }
-                    break;
-                }
-            }
-
-            System.out.println("2024년 4월 12일 충남 아산시의 미세먼지(PM10) 등급: " + asanPM10Grade);
-            System.out.println("2024년 4월 12일 충남 아산시의 초미세먼지(PM2.5) 등급: " + asanPM25Grade);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-    }*/
-
 
         public static void parseDust(String responseData) {
             // 예시 데이터
-            String jsonResponse = "{ \"response\": { \"body\": { \"items\": [ { \"informData\": \"2024-05-08\", \"informGrade\": \"서울 : 좋음,제주 : 좋음,전남 : 좋음,전북 : 좋음,광주 : 좋음,경남 : 좋음,경북 : 좋음,울산 : 좋음,대구 : 좋음,부산 : 좋음,충남 : 나쁨,충북 : 좋음,세종 : 좋음,대전 : 좋음,영동 : 좋음,영서 : 좋음,경기남부 : 좋음,경기북부 : 좋음,인천 : 좋음\" } ] } } }";
+           //String jsonResponse = "{ \"response\": { \"body\": { \"items\": [ { \"informData\": \"2024-05-08\", \"informGrade\": \"서울 : 좋음,제주 : 좋음,전남 : 좋음,전북 : 좋음,광주 : 좋음,경남 : 좋음,경북 : 좋음,울산 : 좋음,대구 : 좋음,부산 : 좋음,충남 : 나쁨,충북 : 좋음,세종 : 좋음,대전 : 좋음,영동 : 좋음,영서 : 좋음,경기남부 : 좋음,경기북부 : 좋음,인천 : 좋음\" } ] } } }";
 
             // JSON 파싱
             try {
@@ -662,91 +620,104 @@ public class MainController {
                 itemImg1 = "um.png"; //추천 아이템 1
                 updateWeatherItem2();  //자외선이 쎌 경우 썬크림 추천
                 updateWeatherItem3();// 미세먼지 나쁘면 마스크 추천
-                itemImg3 = "001lighticons-18.png";  //추천아이템 3
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("비");
                 item1.setImage(new Image(itemImg1));
                 break;
             case "3":
-                imagePath = "001lighticons-08.png"; // 구름 많음
+                imagePath = "cloudy.png"; // 구름 많음
                 updateWeatherItem1();//오늘 비가 올경우 우산 추천
                 updateWeatherItem2();  //자외선이 쎌 경우 썬크림 추천
-                itemImg3 = "001lighticons-18.png";  //추천아이템 3
-                weather.setImage(new Image(imagePath));
-                weatherLabel.setText("흐림");
-                item3.setImage(new Image(itemImg3));
-                break;
-            case "4":
-                imagePath = "001lighticons-14.png"; // 흐림 날씨 이미지 경로
-                updateWeatherItem1(); //추천 아이템 1
-                updateWeatherItem2();  //자외선이 쎌 경우 썬크림 추천
-                itemImg3 = "001lighticons-18.png";  //추천아이템 3
+                updateWeatherItem3();// 미세먼지 나쁘면 마스크 추천
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("구름");
-                item3.setImage(new Image(itemImg3));
+                break;
+            case "4":
+                imagePath = "001lighticons-08.png"; // 흐림 날씨 이미지 경로
+                updateWeatherItem1(); //추천 아이템 1
+                updateWeatherItem2();  //자외선이 쎌 경우 썬크림 추천
+                updateWeatherItem3();// 미세먼지 나쁘면 마스크 추천
+                weather.setImage(new Image(imagePath));
+                weatherLabel.setText("흐림");
                 break;
             case "5":
-                imagePath = "001lighticons-08.png"; // 비와 눈이 같이 오는 날씨 이미지 경로
+                imagePath = "cloudy.png"; // 비와 눈이 같이 오는 날씨 이미지 경로
                 updateWeatherItem1();
                 updateWeatherItem2();  //자외선이 쎌 경우 썬크림 추천
-                itemImg3 = "001lighticons-18.png";  //추천아이템 3
+                updateWeatherItem3();// 미세먼지 나쁘면 마스크 추천
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("진눈깨비");
-                item3.setImage(new Image(itemImg3));
                 break;
             case "6":
                 imagePath = "001lighticons-24.png"; // 눈 오는 날씨 이미지 경로
                 updateWeatherItem1();
                 updateWeatherItem2();  //자외선이 쎌 경우 썬크림 추천
-                itemImg3 = "001lighticons-18.png";  //추천아이템 3
+                updateWeatherItem3();// 미세먼지 나쁘면 마스크 추천
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("눈");
-                item3.setImage(new Image(itemImg3));
                 break;
             default:
                 // 아무것도 해당되지 않을 때의 기본 이미지 설정
-                imagePath = "001lighticons-08.png"; // 기본 이미지 경로
-                itemImg1 = "001lighticons-18.png"; //추천 아이템 1
-                updateWeatherItem2();  //자외선이 쎌 경우 썬크림 추천
-                itemImg3 = "001lighticons-18.png";  //추천아이템 3
-                weather.setImage(new Image(imagePath));
+                item1.setImage(null);
+                item2.setImage(null);
+                item3.setImage(null);
+                weather.setImage(null);
                 weatherLabel.setText("오류");
-                item1.setImage(new Image(itemImg1));
-                item3.setImage(new Image(itemImg3));
                 break;
         }
     }
 
-    @FXML  //최저, 최고기온 업데이트
-    public void updateTemperature(String TMX, String TMN)
-    {
-        hightemp.setText(TMX);
-        lowtemp.setText(TMN);
+    @FXML  // 최저, 최고기온 업데이트
+    public void updateTemperature(String TMX, String TMN) {
+        if (TMX == null || TMX.trim().isEmpty()) {
+            hightemp.setText("오류");
+        } else {
+            hightemp.setText(TMX);
+        }
+        if (TMN == null || TMN.trim().isEmpty()) {
+            lowtemp.setText("오류");
+        } else {
+            lowtemp.setText(TMN);
+        }
     }
 
-    @FXML// 자외선 지수 텍스트 업데이트
-    public void updateDUSTText(String Dust)
-    {
-        dust.setText(Dust);
+    @FXML // 자외선 지수 텍스트 업데이트
+    public void updateDUSTText(String Dust) {
+        if (Dust == null || Dust.trim().isEmpty()) {
+            dust.setText("오류");
+        } else {
+            dust.setText(Dust);
+        }
     }
+
+    @FXML
+    public void updateNowtmp(String TMP) {
+        if (TMP == null || TMP.trim().isEmpty()) {
+            nowtmp.setText("오류");
+        } else {
+            nowtmp.setText(TMP);
+        }
+    }
+
+
 
 
 
     @FXML
-    public void updateUVtext(int u)
-    {
-        int uu;
-        uu = UV;
-        if(uu >= 11){
+    public void updateUVtext(int u) {
+        if (u >= 11) {
             uv.setText("위험");
-        } else if(uu <= 10 && uu >= 8){
-            uv.setText(("매우 높음"));
-        } else if(uu <= 7  && uu >= 6){
+        } else if (u <= 10 && u >= 8) {
+            uv.setText("매우 높음");
+        } else if (u <= 7 && u >= 6) {
             uv.setText("높음");
-        } else if(uu <= 5 && uu >= 3){
+        } else if (u <= 5 && u >= 3) {
             uv.setText("보통");
-        } else if(uu <= 2 && uu >= 0){
+        } else if (u <= 2 && u >= 0) {
             uv.setText("낮음");
+        } else {
+            // UV 값이 없는 경우
+            uv.setText("오류");
         }
     }
 
@@ -758,8 +729,7 @@ public class MainController {
             item1.setImage(new Image(itemImg1));
             itemLabel1.setText("우산");
         }else {
-            itemImg1 = "001lighticons-18.png";
-            item1.setImage(new Image(itemImg1));
+            item1.setImage(null);
             itemLabel1.setText("");
         }
     }
@@ -772,8 +742,7 @@ public class MainController {
             item2.setImage(new Image(itemImg2));
             itemLabel2.setText("썬크림");
         }else {
-            itemImg2 = "";
-            item2.setImage(new Image(itemImg2));
+            item2.setImage(null);
             itemLabel2.setText("");
         }
     }
@@ -787,9 +756,8 @@ public class MainController {
             item3.setImage(new Image(itemImg3));
             itemLabel3.setText("마스크");
         }else {
-            itemImg3 = "001lighticons-18.png";
-            item3.setImage(new Image(itemImg3));
-            itemLabel3.setText("");
+            item3.setImage(null);
+            itemLabel3.setText(" ");
         }
     }
 
