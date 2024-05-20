@@ -51,6 +51,8 @@ public class ProjectController {
     Label project_label;
     @FXML
     Button team_button;
+    @FXML
+    GridPane calendar;
     private int currentYear;
     private int currentMonth;
 
@@ -315,11 +317,28 @@ public class ProjectController {
                 String jsonResponse = response.toString();
                 JSONArray jsonArray = new JSONArray(jsonResponse);
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    String content = jsonArray.getString(i);
-                    disableMatchingVBoxes(content);
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String content = jsonObject.getString("content");
+                    String startdate = jsonObject.getString("startdate");
+                    String enddate = jsonObject.getString("enddate");
+
+                    String startYear = startdate.split("-")[0];
+                    String startMonth = String.valueOf(Integer.parseInt(startdate.split("-")[1]));
+                    String endYear = enddate.split("-")[0];
+                    String endMonth = String.valueOf(Integer.parseInt(enddate.split("-")[1]));
+
+                    String year = year_label.getText();
+                    String month = month_label.getText();
+
+                    if ((startYear.equals(year) && startMonth.equals(month)) ||
+                            (endYear.equals(year) && endMonth.equals(month))) {
+                        disableMatchingVBoxes(content);
+                    }else{
+                        int yeari = Integer.parseInt(year);
+                        int monthi = Integer.parseInt(month);
+                        enableMatchingVBoxes(yeari, monthi);
+                    }
                 }
-
-
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
             }
@@ -438,6 +457,19 @@ public class ProjectController {
         }
     }
 
+    private void enableMatchingVBoxes(int year, int month) {
+        for (int row = 0; row < vboxs.length; row++) {
+            for (int col = 0; col < vboxs[row].length; col++) {
+                VBox vbox = vboxs[row][col];
+                // 비활성화된 VBox인지 확인
+                if (vbox.isDisabled()) {
+                    // 비활성화된 VBox를 다시 활성화
+                    vbox.setDisable(false);
+                }
+            }
+        }
+    }
+
     private String toRGBCode(Color color) {
         // Color 객체의 RGB 값을 255로 곱하여 정수 값으로 변환한 후 HEX 문자열로 변환
         int r = (int) (color.getRed() * 255);
@@ -539,7 +571,6 @@ public class ProjectController {
 
     @FXML
     private void onPreviousMonthButtonClick(ActionEvent event) {
-
         try {
             // POST 요청을 보낼 PHP 서버의 URL
             String serverURL = "http://hbr2024.dothome.co.kr/updateproject.php";
@@ -805,11 +836,68 @@ public class ProjectController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/projectcpt_get.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "teamname=" + teamname;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                // JSON 응답을 처리하여 각 content에 대해 disableMatchingVBoxes를 호출
+                String jsonResponse = response.toString();
+                JSONArray jsonArray = new JSONArray(jsonResponse);
+
+                String year = year_label.getText();
+                String month = month_label.getText();
+
+                int yeari = Integer.parseInt(year);
+                int monthi = Integer.parseInt(month);
+                enableMatchingVBoxes(yeari, monthi);
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String content = jsonObject.getString("content");
+                    String startdate = jsonObject.getString("startdate");
+                    String enddate = jsonObject.getString("enddate");
+
+                    String startYear = startdate.split("-")[0];
+                    String startMonth = String.valueOf(Integer.parseInt(startdate.split("-")[1]));
+                    String endYear = enddate.split("-")[0];
+                    String endMonth = String.valueOf(Integer.parseInt(enddate.split("-")[1]));
+
+                    if ((startYear.equals(year) && startMonth.equals(month)) ||
+                            (endYear.equals(year) && endMonth.equals(month))) {
+                        disableMatchingVBoxes(content);
+                    }
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void onNextMonthButtonClick(ActionEvent event) {
-
         try {
             // POST 요청을 보낼 PHP 서버의 URL
             String serverURL = "http://hbr2024.dothome.co.kr/updateproject.php";
@@ -1069,6 +1157,64 @@ public class ProjectController {
                 } else {
                     System.out.println("Response data is empty.");
                     // 처리할 작업을 추가하세요 (예: 기본 값을 설정하거나 사용자에게 메시지 출력)
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/projectcpt_get.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "teamname=" + teamname;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                // JSON 응답을 처리하여 각 content에 대해 disableMatchingVBoxes를 호출
+                String jsonResponse = response.toString();
+                JSONArray jsonArray = new JSONArray(jsonResponse);
+
+                String year = year_label.getText();
+                String month = month_label.getText();
+
+                int yeari = Integer.parseInt(year);
+                int monthi = Integer.parseInt(month);
+                enableMatchingVBoxes(yeari, monthi);
+
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String content = jsonObject.getString("content");
+                    String startdate = jsonObject.getString("startdate");
+                    String enddate = jsonObject.getString("enddate");
+
+                    String startYear = startdate.split("-")[0];
+                    String startMonth = String.valueOf(Integer.parseInt(startdate.split("-")[1]));
+                    String endYear = enddate.split("-")[0];
+                    String endMonth = String.valueOf(Integer.parseInt(enddate.split("-")[1]));
+
+                    if ((startYear.equals(year) && startMonth.equals(month)) ||
+                            (endYear.equals(year) && endMonth.equals(month))) {
+                        disableMatchingVBoxes(content);
+                    }
                 }
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
