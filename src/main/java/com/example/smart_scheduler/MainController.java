@@ -189,7 +189,7 @@ public class MainController {
 
             // 날씨 이미지 업데이트
             updateWeatherImage(SKY);
-            System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());
+            //System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());
 
             //자외선 지수 텍스트 업데이트
             updateUVtext(UV);
@@ -606,6 +606,9 @@ public class MainController {
         System.out.println(SKY);
         String imagePath;
         String itemImg1, itemImg2, itemImg3;
+        if(SKY==null){
+            SKY = "7";
+        }
         switch (SKY){
             case "1":
                 imagePath = "001lighticons-02.png"; // 맑은 날씨 이미지 경로
