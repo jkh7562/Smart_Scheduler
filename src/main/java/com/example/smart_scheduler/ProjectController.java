@@ -316,6 +316,14 @@ public class ProjectController {
                 // JSON 응답을 처리하여 각 content에 대해 disableMatchingVBoxes를 호출
                 String jsonResponse = response.toString();
                 JSONArray jsonArray = new JSONArray(jsonResponse);
+
+                String year = year_label.getText();
+                String month = month_label.getText();
+
+                int yeari = Integer.parseInt(year);
+                int monthi = Integer.parseInt(month);
+                enableMatchingVBoxes(yeari, monthi);
+
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String content = jsonObject.getString("content");
@@ -327,16 +335,9 @@ public class ProjectController {
                     String endYear = enddate.split("-")[0];
                     String endMonth = String.valueOf(Integer.parseInt(enddate.split("-")[1]));
 
-                    String year = year_label.getText();
-                    String month = month_label.getText();
-
                     if ((startYear.equals(year) && startMonth.equals(month)) ||
                             (endYear.equals(year) && endMonth.equals(month))) {
                         disableMatchingVBoxes(content);
-                    }else{
-                        int yeari = Integer.parseInt(year);
-                        int monthi = Integer.parseInt(month);
-                        enableMatchingVBoxes(yeari, monthi);
                     }
                 }
             } else {
