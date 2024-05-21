@@ -83,6 +83,9 @@ public class MainController {
     private static String Dust;
     private static String Time;
 
+    @FXML
+    Label label_08,label_09,label_10,label_11,label_12,label_13,label_14,label_15,label_16,label_17,label_18,label_19,label_20,label_21;
+
 
     @FXML
     public void initialize() {
