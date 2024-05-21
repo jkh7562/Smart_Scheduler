@@ -152,16 +152,6 @@ public class LoginController {
                         if (loginSuccess) {
                             System.out.println("로그인 성공");
 
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
-                            Parent root = loader.load();
-
-                            // 현재 창을 닫음
-                            Stage stage = (Stage) clickedButton.getScene().getWindow();
-                            stage.setScene(new Scene(root));
-                            stage.show();
-
-                            connection.disconnect();
-
                             try{
 
                                 String serverURL1 = "http://hbr2024.dothome.co.kr/primary.php"; // 서버 URL
@@ -192,6 +182,16 @@ public class LoginController {
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
+
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("Main.fxml"));
+                            Parent root = loader.load();
+
+                            // 현재 창을 닫음
+                            Stage stage = (Stage) clickedButton.getScene().getWindow();
+                            stage.setScene(new Scene(root));
+                            stage.show();
+
+                            connection.disconnect();
 
                         } else {
                             System.out.println("로그인 실패");

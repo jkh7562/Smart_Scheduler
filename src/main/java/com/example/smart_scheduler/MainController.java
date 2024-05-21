@@ -1,5 +1,6 @@
 package com.example.smart_scheduler;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import org.json.JSONArray;
@@ -19,7 +21,9 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.time.Duration;
@@ -27,6 +31,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 public class MainController {
 
@@ -83,13 +88,96 @@ public class MainController {
     private static String Dust;
     private static String Time;
 
-    @FXML
-    Label label_08,label_09,label_10,label_11,label_12,label_13,label_14,label_15,label_16,label_17,label_18,label_19,label_20,label_21;
+    String Id;
 
+    @FXML
+    Label label_08,label_09,label_10,label_11,label_12,label_13,label_14,label_15,label_16,label_17,label_18,label_19,label_20,label_21,label_22;
+    @FXML
+    HBox hbox08,hbox09,hbox10,hbox11,hbox12,hbox13,hbox14,hbox15,hbox16,hbox17,hbox18,hbox19,hbox20,hbox21,hbox22;
+
+
+    private Map<String, String> contentColorMap = new HashMap<>();
+    private Random random = new Random();
+
+    private void updateHBoxBackground(String start, String end, String content) {
+        // 시간을 HBox에 매핑하기 위한 로직 추가
+        HBox[] hboxes = {hbox08, hbox09, hbox10, hbox11, hbox12, hbox13, hbox14, hbox15, hbox16, hbox17, hbox18, hbox19, hbox20, hbox21, hbox22};
+        String[] times = {"8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"};
+
+        // 콘텐츠별 색상 설정
+        String color = contentColorMap.get(content);
+        if (color == null) {
+            color = getRandomBrightColor();
+            contentColorMap.put(content, color);
+        }
+
+        // HBox 배경색 업데이트
+        for (int i = 0; i < times.length; i++) {
+            if (start.contains(times[i]) || end.contains(times[i])) {
+                hboxes[i].setStyle("-fx-background-color: " + color + ";");
+            }
+        }
+    }
+
+    private String getRandomBrightColor() {
+        // 밝은 색상 생성 로직 (RGB 값 중 두 개를 높게 설정)
+        int r = random.nextInt(156) + 100; // 100-255
+        int g = random.nextInt(156) + 100; // 100-255
+        int b = random.nextInt(156) + 100; // 100-255
+        return String.format("rgb(%d, %d, %d)", r, g, b);
+    }
 
     @FXML
     public void initialize() {
-        // 화면이 로드되고 초기화된 후에 호출되는 메소드
+        Id = primary();
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/getday.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                // JSON 파싱
+                JSONArray jsonArray = new JSONArray(response.toString());
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String start = jsonObject.getString("start");
+                    String end = jsonObject.getString("end");
+                    String content = jsonObject.getString("content");
+
+                    // 데이터 출력
+                    System.out.println("Start: " + start);
+                    System.out.println("End: " + end);
+                    System.out.println("Content: " + content);
+
+                    updateHBoxBackground(start, end, content);
+                }
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // 오늘 날짜 가져오기
         LocalDate today = LocalDate.now();
@@ -210,6 +298,112 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public String primary() {
+        String primaryid = null;
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/priget.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "&tableName=pri";
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 서버 응답 처리
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                StringBuilder response = new StringBuilder(); // response 초기화 추가
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                // 데이터 파싱 (단순한 문자열을 ,로 분리하여 사용)
+                String[] data = response.toString().split(",");
+                if (data.length > 0) {
+                    primaryid = data[0];
+                    System.out.println(primaryid);
+                } else {
+                    System.out.println("데이터가 존재하지 않습니다.");
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(primaryid);
+
+        return primaryid;
+    }
+
+    @FXML
+    private void plusButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("day_add.fxml"));
+            Parent root = loader.load();
+
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void deleteButtonAction(ActionEvent event) {
+        Id = primary();
+        /*try {
+            String serverURL = "http://hbr2024.dothome.co.kr/delete_allwork.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("work_alldelete.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+                Stage failStage = new Stage();
+                failStage.setScene(scene);
+                failStage.show();
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
     }
 
     public static int convertTimeToMinutes(String timeString) {
@@ -474,7 +668,7 @@ public class MainController {
         }
     }
 
-    public static String UVapi(String formattedDateTime) throws IOException{ //자외선 지수
+    public static String UVapi(String formattedDateTime) throws IOException{
         //public static void main(String[] args) throws IOException
 
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/LivingWthrIdxServiceV4/getUVIdxV4"); /*URL*/

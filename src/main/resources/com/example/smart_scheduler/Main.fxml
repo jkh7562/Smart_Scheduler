@@ -159,15 +159,6 @@
       </Pane>
       <Pane fx:id="_3" layoutX="225.0" layoutY="10.0" prefHeight="580.0" prefWidth="550.0" style="-fx-background-color: #dbdbdb;">
          <children>
-            <Pane layoutX="390.0" layoutY="80.0" prefHeight="130.0" prefWidth="150.0">
-               <children>
-                  <Label alignment="CENTER" layoutX="10.0" text="외출 시간 계산">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
             <Label layoutX="25.0" layoutY="40.0" text="Today">
                <font>
                   <Font name="Arial Rounded MT Bold" size="35.0" />
@@ -287,6 +278,30 @@
                   </font>
                </Label>
             </HBox>
+            <HBox layoutX="370.0" layoutY="186.0">
+               <children>
+                  <Button fx:id="plus_button" mnemonicParsing="false" onAction="#plusButtonAction" style="-fx-background-color: #ffffff;" text="일정추가">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../plus_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="delete_button" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="28.0" prefWidth="82.0" style="-fx-background-color: #DD3030;" text="일정 초기화" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
          </children>
       </Pane>
       <VBox layoutX="240.0" layoutY="230.0">
@@ -320,26 +335,27 @@
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0">
                      <children>
-                        <GridPane prefHeight="600.0" prefWidth="509.0">
+                        <GridPane prefWidth="509.0">
                            <columnConstraints>
-                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" />
                               <ColumnConstraints hgrow="SOMETIMES" minWidth="-Infinity" />
                            </columnConstraints>
                            <rowConstraints>
                               <RowConstraints maxHeight="40.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                              <RowConstraints prefHeight="40.0" />
                            </rowConstraints>
                            <children>
                               <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;">
@@ -481,7 +497,18 @@
                                     </Label>
                                  </children>
                               </Pane>
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="0">
+
+                              <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="14">
+                                 <children>
+                                    <Label alignment="CENTER" prefHeight="40.0" prefWidth="50.0" text="22">
+                                       <font>
+                                          <Font name="Arial Rounded MT Bold" size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </Pane>
+
+                              <HBox fx:id="hbox08" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                  <children>
                                     <Label fx:id="label_08">
                                        <HBox.margin>
@@ -496,7 +523,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                              <HBox fx:id="hbox09" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                  <children>
                                     <Label fx:id="label_09">
                                        <HBox.margin>
@@ -511,7 +538,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                              <HBox fx:id="hbox10" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                  <children>
                                     <Label fx:id="label_10">
                                        <HBox.margin>
@@ -526,7 +553,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                              <HBox fx:id="hbox11" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="3">
                                  <children>
                                     <Label fx:id="label_11">
                                        <HBox.margin>
@@ -541,7 +568,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                              <HBox fx:id="hbox12" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4">
                                  <children>
                                     <Label fx:id="label_12">
                                        <HBox.margin>
@@ -556,7 +583,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                              <HBox fx:id="hbox13" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="5">
                                  <children>
                                     <Label fx:id="label_13">
                                        <HBox.margin>
@@ -571,7 +598,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                              <HBox fx:id="hbox14" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="6">
                                  <children>
                                     <Label fx:id="label_14">
                                        <HBox.margin>
@@ -586,7 +613,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="7">
+                              <HBox fx:id="hbox15" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="7">
                                  <children>
                                     <Label fx:id="label_15">
                                        <HBox.margin>
@@ -601,7 +628,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                              <HBox fx:id="hbox16" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="8">
                                  <children>
                                     <Label fx:id="label_16">
                                        <HBox.margin>
@@ -616,7 +643,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                              <HBox fx:id="hbox17" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="9">
                                  <children>
                                     <Label fx:id="label_17">
                                        <HBox.margin>
@@ -631,7 +658,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="10">
+                              <HBox fx:id="hbox18" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="10">
                                  <children>
                                     <Label fx:id="label_18">
                                        <HBox.margin>
@@ -646,7 +673,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="11">
+                              <HBox fx:id="hbox19" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="11">
                                  <children>
                                     <Label fx:id="label_19">
                                        <HBox.margin>
@@ -661,7 +688,7 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="12">
+                              <HBox fx:id="hbox20" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="12">
                                  <children>
                                     <Label fx:id="label_20">
                                        <HBox.margin>
@@ -676,9 +703,24 @@
                                     <Insets />
                                  </opaqueInsets></HBox>
 
-                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="13">
+                              <HBox fx:id="hbox21" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="13">
                                  <children>
                                     <Label fx:id="label_21">
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="15.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets></HBox>
+
+                              <HBox fx:id="hbox22" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="14">
+                                 <children>
+                                    <Label fx:id="label_22">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
