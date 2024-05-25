@@ -91,18 +91,18 @@ public class MainController {
     String Id;
 
     @FXML
-    Label label_08,label_09,label_10,label_11,label_12,label_13,label_14,label_15,label_16,label_17,label_18,label_19,label_20,label_21,label_22;
+    Label label_08, label_09, label_10, label_11, label_12, label_13, label_14, label_15, label_16, label_17, label_18, label_19, label_20, label_21, label_22;
     @FXML
-    HBox hbox08,hbox09,hbox10,hbox11,hbox12,hbox13,hbox14,hbox15,hbox16,hbox17,hbox18,hbox19,hbox20,hbox21,hbox22;
-
+    HBox hbox08, hbox09, hbox10, hbox11, hbox12, hbox13, hbox14, hbox15, hbox16, hbox17, hbox18, hbox19, hbox20, hbox21, hbox22;
 
     private Map<String, String> contentColorMap = new HashMap<>();
     private Random random = new Random();
 
     private void updateHBoxBackground(String start, String end, String content) {
-        // 시간을 HBox에 매핑하기 위한 로직 추가
+        // 시간을 HBox와 Label에 매핑하기 위한 로직 추가
         HBox[] hboxes = {hbox08, hbox09, hbox10, hbox11, hbox12, hbox13, hbox14, hbox15, hbox16, hbox17, hbox18, hbox19, hbox20, hbox21, hbox22};
-        String[] times = {"8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22"};
+        Label[] labels = {label_08, label_09, label_10, label_11, label_12, label_13, label_14, label_15, label_16, label_17, label_18, label_19, label_20, label_21, label_22};
+        int[] times = {8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22};
 
         // 콘텐츠별 색상 설정
         String color = contentColorMap.get(content);
@@ -111,10 +111,15 @@ public class MainController {
             contentColorMap.put(content, color);
         }
 
-        // HBox 배경색 업데이트
+        // 시작과 끝 시간을 정수로 변환
+        int startTime = Integer.parseInt(start);
+        int endTime = Integer.parseInt(end);
+
+        // HBox 배경색 및 Label 텍스트 업데이트
         for (int i = 0; i < times.length; i++) {
-            if (start.contains(times[i]) || end.contains(times[i])) {
+            if (times[i] >= startTime && times[i] <= endTime) {
                 hboxes[i].setStyle("-fx-background-color: " + color + ";");
+                labels[i].setText(content);
             }
         }
     }
@@ -169,6 +174,7 @@ public class MainController {
                     System.out.println("End: " + end);
                     System.out.println("Content: " + content);
 
+                    // HBox 배경색 및 Label 텍스트 업데이트
                     updateHBoxBackground(start, end, content);
                 }
 
@@ -179,7 +185,7 @@ public class MainController {
             e.printStackTrace();
         }
 
-        // 오늘 날짜 가져오기
+    // 오늘 날짜 가져오기
         LocalDate today = LocalDate.now();
 
         // 현재 시간 가져오기
@@ -366,8 +372,8 @@ public class MainController {
     @FXML
     private void deleteButtonAction(ActionEvent event) {
         Id = primary();
-        /*try {
-            String serverURL = "http://hbr2024.dothome.co.kr/delete_allwork.php";
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/delete_allday.php";
             URL url = new URL(serverURL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
@@ -391,7 +397,7 @@ public class MainController {
                 in.close();
                 System.out.println("Response: " + response.toString());
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("work_alldelete.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("day_alldelete.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
 
@@ -403,7 +409,7 @@ public class MainController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     public static int convertTimeToMinutes(String timeString) {
