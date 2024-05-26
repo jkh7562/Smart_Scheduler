@@ -43,7 +43,15 @@
                   </Button>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="364.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="월간 일정">
+            <Button fx:id="rest_button" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="364.0" mnemonicParsing="false" onAction="#restButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="여유시간 활용">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../rest.png" />
+                     </image></ImageView>
+               </graphic>
+            </Button>
+            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="403.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="월간 일정">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true">
                      <image>

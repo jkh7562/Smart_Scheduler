@@ -70,6 +70,8 @@ public class MainController {
     Label content2_label;
     @FXML
     Label content3_label;
+    @FXML
+    Button rest_button;
 
 
 
@@ -1157,6 +1159,19 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Main_Project.fxml"));
             Parent root = loader.load();
             Stage currentStage = (Stage) project_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
+        }
+    }
+
+    @FXML
+    private void restButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("rest.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) rest_button.getScene().getWindow();
             currentStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
