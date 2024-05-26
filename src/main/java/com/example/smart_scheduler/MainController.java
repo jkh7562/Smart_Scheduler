@@ -1,6 +1,7 @@
 package com.example.smart_scheduler;
 
 import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -63,6 +64,13 @@ public class MainController {
     private Label itemLabel3;
     @FXML
     private Button project_button;
+    @FXML
+    Label content1_label;
+    @FXML
+    Label content2_label;
+    @FXML
+    Label content3_label;
+
 
 
     private static int UV;
@@ -87,6 +95,7 @@ public class MainController {
 
     int istart;
     int iend;
+    String imemo;
     String icontent;
 
     String Id;
@@ -146,7 +155,7 @@ public class MainController {
             Parent root = loader.load();
 
             DayDetail dayDetail = loader.getController();
-            dayDetail.initData(icontent, istart, iend);
+            dayDetail.initData(icontent, istart, iend, imemo);
 
             Stage stage = (Stage) clickedHBox.getScene().getWindow();
             stage.setScene(new Scene(root));
@@ -183,11 +192,14 @@ public class MainController {
                 JSONArray jsonArray = new JSONArray(response.toString());
                 for (int i = 0; i < jsonArray.length(); i++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
-                    istart = jsonObject.getInt("start");
-                    iend = jsonObject.getInt("end");
+                    int start = jsonObject.getInt("start");
+                    int end = jsonObject.getInt("end");
 
-                    if (hour >= istart && hour < iend) {
+                    if (hour >= start && hour < end) {
                         icontent = jsonObject.getString("content");
+                        istart = jsonObject.getInt("start");
+                        iend = jsonObject.getInt("end");
+                        imemo = jsonObject.getString("memo");
                     }
                 }
             } else {
@@ -198,16 +210,86 @@ public class MainController {
         }
     }
 
+
     @FXML
     public void initialize() {
+
+        Id = primary();
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/getprtyday.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                // 응답에서 쉼표로 구분된 값을 가져와서 각각의 변수에 할당
+                String[] contents = response.toString().split(",");
+                if (contents.length >= 3) { // 적어도 3개의 값이 있어야 함
+                    String content1 = contents[0];
+                    String content2 = contents[1];
+                    String content3 = contents[2];
+
+                    // 가져온 값을 각각의 라벨에 설정
+                    content1_label.setText(content1);
+                    content2_label.setText(content2);
+                    content3_label.setText(content3);
+                } else {
+                    // 가져온 값이 3개 미만인 경우에는 해당 값으로 라벨을 설정하고 나머지 라벨은 비움
+                    for (int i = 0; i < contents.length; i++) {
+                        switch (i) {
+                            case 0:
+                                content1_label.setText(contents[i]);
+                                break;
+                            case 1:
+                                content2_label.setText(contents[i]);
+                                break;
+                            case 2:
+                                content3_label.setText(contents[i]);
+                                break;
+                        }
+                    }
+                    // 3개 미만인 경우에는 나머지 라벨을 비움
+                    for (int i = contents.length; i < 3; i++) {
+                        switch (i) {
+                            case 1:
+                                content2_label.setText("");
+                                break;
+                            case 2:
+                                content3_label.setText("");
+                                break;
+                        }
+                    }
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         // HBox 배열 생성
         HBox[] hboxes = {hbox08, hbox09, hbox10, hbox11, hbox12, hbox13, hbox14, hbox15, hbox16, hbox17, hbox18, hbox19, hbox20, hbox21, hbox22};
 
         for (HBox hbox : hboxes) {
             hbox.setOnMouseClicked(this::handleHBoxClick);
         }
-
-        Id = primary();
 
         try {
             String serverURL = "http://hbr2024.dothome.co.kr/getday.php";
@@ -376,6 +458,21 @@ public class MainController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void prtyButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Day_prty.fxml"));
+            Parent root = loader.load();
+
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
         }
     }
 

@@ -35,11 +35,12 @@ public class DayDetail {
     @FXML
     Button delete_button;
 
-    public void initData(String content, int istart, int iend) {
+    public void initData(String content, int istart, int iend, String imemo) {
         Id = primary();
         content_label.setText(content);
         start_label.setText(String.valueOf(istart));
         end_label.setText(String.valueOf(iend));
+        memo_area.setText(imemo);
     }
 
 
@@ -114,6 +115,7 @@ public class DayDetail {
         Id = primary();
         String start = start_label.getText();
         String end = end_label.getText();
+
         try {
             String serverURL = "http://hbr2024.dothome.co.kr/delete_day.php";
             URL url = new URL(serverURL);

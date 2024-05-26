@@ -43,15 +43,7 @@
                   </Button>
                </children>
             </Pane>
-            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="220.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="일정 추가">
-               <graphic>
-                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../../../add.png" />
-                     </image>
-                  </ImageView>
-               </graphic></Button>
-            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="260.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="월간 일정">
+            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="364.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="월간 일정">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true">
                      <image>
@@ -59,7 +51,7 @@
                      </image></ImageView>
                </graphic>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="300.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="외출시간 계산">
+            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="외출시간 계산">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true">
                      <image>
@@ -93,7 +85,7 @@
                      </font></Button>
                </children>
             </Pane>
-            <Pane layoutX="10.0" layoutY="80.0" prefHeight="130.0" prefWidth="180.0">
+            <Pane layoutX="10.0" layoutY="80.0" prefHeight="80.0" prefWidth="180.0">
                <children>
                   <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="오늘 일정">
                      <graphic>
@@ -104,44 +96,69 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Label layoutX="30.0" layoutY="40.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 1">
+                  <Button fx:id="prty_button" alignment="BASELINE_LEFT" layoutY="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#prtyButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="일정 우선순위">
                      <graphic>
-                        <Label prefHeight="10.0" prefWidth="10.0" text="#">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../../../prty.png" />
+                           </image>
+                        </ImageView>
                      </graphic>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="30.0" layoutY="70.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 2">
-                     <graphic>
-                        <Label prefHeight="10.0" prefWidth="10.0" text="#">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </graphic>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="30.0" layoutY="100.0" prefHeight="30.0" prefWidth="140.0" text="중요한 일정 3">
-                     <graphic>
-                        <Label prefHeight="10.0" prefWidth="10.0" text="#">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                     </graphic>
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                  </Label>
+                  </Button>
                </children>
             </Pane>
+            <VBox fx:id="prty_vbox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="155.0" prefHeight="170.0" prefWidth="180.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../first.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="content1_label" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children></HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../second.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="content2_label">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children></HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../third.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="content3_label">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children></HBox>
+               </children>
+            </VBox>
             <Pane layoutX="10.0" layoutY="500.0" prefHeight="42.0" prefWidth="180.0">
                <children>
                   <Button fx:id="work_button" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#workButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
