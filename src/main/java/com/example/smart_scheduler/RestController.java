@@ -2,10 +2,7 @@ package com.example.smart_scheduler;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -15,23 +12,20 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class RestController {
     @FXML
-    ImageView back_image;
+    private ImageView back_image;
     @FXML
-    Button search_button;
+    private ListView<String> rest_listview;
     @FXML
-    ListView rest_listview;
-    @FXML
-    TextField time_textfield;
-    String Id;
+    private TextField time_textfield;
+
+    private String Id;
 
     @FXML
     private void backimageClicked(MouseEvent event) {
@@ -39,6 +33,22 @@ public class RestController {
         Stage currentStage = (Stage) back_image.getScene().getWindow();
         // 현재 창을 닫습니다.
         currentStage.close();
+    }
+
+    public void initialize() {
+        // 셀 팩토리를 설정하여 글자 크기를 조정
+        rest_listview.setCellFactory(param -> new ListCell<String>() {
+            @Override
+            protected void updateItem(String item, boolean empty) {
+                super.updateItem(item, empty);
+                if (item != null && !empty) {
+                    setText(item);
+                    setStyle("-fx-font-size: 16px;");  // 글자 크기를 16px로 설정
+                } else {
+                    setText(null);
+                }
+            }
+        });
     }
 
     @FXML
@@ -79,8 +89,6 @@ public class RestController {
                     rest_listview.getItems().add(content);
                 }
                 System.out.println("Response: " + response.toString());
-
-
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
             }
@@ -89,7 +97,7 @@ public class RestController {
         }
     }
 
-    public String primary() {
+    private String primary() {
         String primaryid = null;
 
         try {
@@ -99,7 +107,7 @@ public class RestController {
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
 
-            String postData = "&tableName=pri";
+            String postData = "tableName=pri";
             OutputStream os = connection.getOutputStream();
             os.write(postData.getBytes("UTF-8"));
             os.close();
@@ -108,7 +116,6 @@ public class RestController {
             if (responseCode == HttpURLConnection.HTTP_OK) {
                 // 서버 응답 처리
                 BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
                 StringBuilder response = new StringBuilder(); // response 초기화 추가
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
@@ -126,9 +133,7 @@ public class RestController {
             } else {
                 System.out.println("HTTP Error Code: " + responseCode);
             }
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

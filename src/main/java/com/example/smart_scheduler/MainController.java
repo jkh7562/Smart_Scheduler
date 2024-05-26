@@ -1168,14 +1168,18 @@ public class MainController {
 
     @FXML
     private void restButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("rest.fxml"));
+        Parent root = null;
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("rest.fxml"));
-            Parent root = loader.load();
-            Stage currentStage = (Stage) rest_button.getScene().getWindow();
-            currentStage.setScene(new Scene(root));
+            root = loader.load();
         } catch (IOException e) {
-            e.printStackTrace();
-            // 사용자에게 오류 메시지 표시
+            throw new RuntimeException(e);
         }
+        Scene scene = new Scene(root);
+
+        // 새로운 Stage를 생성하여 로그인 실패 창을 표시
+        Stage failStage = new Stage();
+        failStage.setScene(scene);
+        failStage.show();
     }
 }
