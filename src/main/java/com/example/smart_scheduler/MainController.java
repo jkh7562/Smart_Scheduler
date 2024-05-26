@@ -18,10 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -88,6 +85,10 @@ public class MainController {
     private static String Dust;
     private static String Time;
 
+    int istart;
+    int iend;
+    String icontent;
+
     String Id;
 
     @FXML
@@ -117,7 +118,7 @@ public class MainController {
 
         // HBox 배경색 및 Label 텍스트 업데이트
         for (int i = 0; i < times.length; i++) {
-            if (times[i] >= startTime && times[i] <= endTime) {
+            if (times[i] >= startTime && times[i] <= endTime-1) {
                 hboxes[i].setStyle("-fx-background-color: " + color + ";");
                 labels[i].setText(content);
             }
@@ -132,8 +133,80 @@ public class MainController {
         return String.format("rgb(%d, %d, %d)", r, g, b);
     }
 
+    private void handleHBoxClick(MouseEvent event) {
+        HBox clickedHBox = (HBox) event.getSource();
+        Label clickedLabel = (Label) clickedHBox.getChildren().get(0);
+        int clickedHour = Integer.parseInt(clickedLabel.getId().replace("label_", ""));
+
+        // DB에서 데이터 가져오기
+        getDayDataForTime(clickedHour);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Day_detail.fxml"));
+            Parent root = loader.load();
+
+            DayDetail dayDetail = loader.getController();
+            dayDetail.initData(icontent, istart, iend);
+
+            Stage stage = (Stage) clickedHBox.getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getDayDataForTime(int hour) {
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/getday.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + primary(); // primary() 메서드는 자신의 구현에 맞게 수정
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                JSONArray jsonArray = new JSONArray(response.toString());
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    istart = jsonObject.getInt("start");
+                    iend = jsonObject.getInt("end");
+
+                    if (hour >= istart && hour < iend) {
+                        icontent = jsonObject.getString("content");
+                    }
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @FXML
     public void initialize() {
+        // HBox 배열 생성
+        HBox[] hboxes = {hbox08, hbox09, hbox10, hbox11, hbox12, hbox13, hbox14, hbox15, hbox16, hbox17, hbox18, hbox19, hbox20, hbox21, hbox22};
+
+        for (HBox hbox : hboxes) {
+            hbox.setOnMouseClicked(this::handleHBoxClick);
+        }
+
         Id = primary();
 
         try {

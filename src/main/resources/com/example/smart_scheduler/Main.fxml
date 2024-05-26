@@ -510,7 +510,7 @@
 
                               <HBox fx:id="hbox08" alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="0">
                                  <children>
-                                    <Label fx:id="label_08">
+                                    <Label fx:id="label_08" minHeight="-Infinity" minWidth="-Infinity">
                                        <HBox.margin>
                                           <Insets left="10.0" />
                                        </HBox.margin>
