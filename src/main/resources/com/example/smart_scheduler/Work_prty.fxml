@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="344.0" prefWidth="471.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.WorkprtyController">
+   <children>
+      <Pane layoutX="5.0" layoutY="41.0" prefHeight="298.0" prefWidth="461.0" style="-fx-background-color: #dbdbdb; -fx-background-radius: 10;">
+         <children>
+            <Pane layoutX="5.0" layoutY="31.0" prefHeight="253.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+               <children>
+                  <Label layoutX="69.0" layoutY="3.0" text="우선순위">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <VBox layoutX="5.0" layoutY="23.0" prefHeight="202.0" prefWidth="220.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                           <children>
+                              <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../first.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="content1_label">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="20.0" />
+                           </padding>
+                        </HBox>
+                         <HBox alignment="CENTER_LEFT">
+                             <VBox.margin>
+                                 <Insets top="10.0" />
+                             </VBox.margin>
+                             <children>
+                                 <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                     <image>
+                                         <Image url="@../../../second.png" />
+                                     </image>
+                                     <HBox.margin>
+                                         <Insets right="10.0" />
+                                     </HBox.margin>
+                                 </ImageView>
+                                 <Label fx:id="content2_label">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                             </children>
+                           <padding>
+                              <Insets bottom="20.0" />
+                           </padding>
+                         </HBox>
+                         <HBox alignment="CENTER_LEFT">
+                             <VBox.margin>
+                                 <Insets top="10.0" />
+                             </VBox.margin>
+                             <children>
+                                 <ImageView fitHeight="30.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
+                                     <image>
+                                         <Image url="@../../../third.png" />
+                                     </image>
+                                     <HBox.margin>
+                                         <Insets right="10.0" />
+                                     </HBox.margin>
+                                 </ImageView>
+                                 <Label fx:id="content3_label">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font></Label>
+                             </children>
+                         </HBox>
+                     </children></VBox>
+               </children>
+            </Pane>
+            <Pane layoutX="231.0" layoutY="31.0" prefHeight="225.0" prefWidth="220.0" style="-fx-background-color: #ffffff; -fx-background-radius: 10;">
+               <children>
+                  <Label layoutX="72.0" layoutY="3.0" text="현재 일정">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane layoutX="10.0" layoutY="26.0">
+                     <content>
+                        <ListView fx:id="list" prefHeight="195.0" prefWidth="200.0" />
+                     </content>
+                  </ScrollPane>
+               </children></Pane>
+            <HBox layoutX="233.0" layoutY="262.0">
+               <children>
+                  <Button fx:id="content1_save" mnemonicParsing="false" onAction="#content1saveButtonAction" text="1순위 저장" />
+                  <Button fx:id="content2_save" mnemonicParsing="false" onAction="#content2saveButtonAction" text="2순위 저장" />
+                  <Button fx:id="content3_save" mnemonicParsing="false" onAction="#content3saveButtonAction" text="3순위 저장" />
+               </children>
+            </HBox>
+         </children></Pane>
+      <Pane prefHeight="37.0" prefWidth="471.0" style="-fx-background-color: #c8c4ff;">
+         <children>
+            <HBox layoutY="9.0" prefHeight="30.0" prefWidth="262.0">
+               <children>
+                  <ImageView fx:id="back_image" fitHeight="24.0" fitWidth="32.0" onMouseClicked="#backimageClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../backre.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="24.0" prefWidth="190.0" text="일정 우선순위 설정">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children></Pane>
+      <HBox layoutX="360.0" layoutY="42.0">
+         <children>
+             <Button fx:id="save_button" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #219653;" text="저장" textFill="WHITE">
+                 <font>
+                     <Font name="System Bold" size="12.0" />
+                 </font>
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+             </Button>
+             <Button fx:id="delete_button" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="24.0" prefWidth="50.0" style="-fx-background-color: #DD3030;" text="초기화" textFill="WHITE">
+                 <font>
+                     <Font name="System Bold" size="11.0" />
+                 </font>
+             </Button>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

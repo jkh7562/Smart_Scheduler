@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.WorkController">
     <children>
         <Pane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff;">
             <children>
                 <Pane layoutX="10.0" layoutY="500.0" prefHeight="130.0" prefWidth="180.0">
                     <children>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
+                        <Button fx:id="project_button" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#projectButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
                             <graphic>
                                 <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
                                     <image>
@@ -41,28 +42,11 @@
                         </Button>
                     </children>
                 </Pane>
-                <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="220.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="전체 일정 보기">
-                    <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
-                            <image>
-                                <Image url="@../../../img.png" />
-                            </image>
-                        </ImageView>
-                    </graphic></Button>
-
-                <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="260.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="회의시간 추천">
-                    <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
-                            <image>
-                                <Image url="@../../../sparetime.png" />
-                            </image>
-                        </ImageView>
-                    </graphic></Button>
 
 
-                <Pane layoutX="10.0" layoutY="550.0" prefHeight="130.0" prefWidth="180.0">
+                <Pane layoutX="10.0" layoutY="550.0" prefHeight="42.0" prefWidth="180.0">
                     <children>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
+                        <Button fx:id="main_button" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mainButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
                             <graphic>
                                 <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -72,7 +56,7 @@
                         </Button>
                     </children>
                 </Pane>
-                <Pane layoutX="10.0" layoutY="80.0" prefHeight="130.0" prefWidth="180.0">
+                <Pane layoutX="10.0" layoutY="80.0" prefHeight="140.0" prefWidth="180.0">
                     <children>
                         <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
                             <graphic>
@@ -81,54 +65,25 @@
                                         <Image url="@../../../works.png" />
                                     </image></ImageView>
                             </graphic></Button>
-                        <Label layoutX="30.0" layoutY="40.0" prefHeight="30.0" prefWidth="80.0" text="출근">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
+      
+                      <Button alignment="BASELINE_LEFT" layoutY="49.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="회의시간 추천">
+                          <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
+                                  <image>
+                                      <Image url="@../../../sparetime.png" />
+                                  </image>
+                              </ImageView>
+                          </graphic>
+                  </Button>
+                        <Button fx:id="prty_button" alignment="BASELINE_LEFT" layoutY="100.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#prtyButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="일정 우선순위">
                             <graphic>
-                                <Label prefHeight="10.0" prefWidth="10.0" text="#">
-                                    <font>
-                                        <Font size="20.0" />
-                                    </font>
-                                </Label>
-                            </graphic></Label>
-                        <Label layoutX="130.0" layoutY="40.0" prefHeight="30.0" prefWidth="50.0" text="09:30">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="15.0" />
-                            </font></Label>
-                        <Label layoutX="30.0" layoutY="70.0" prefHeight="30.0" prefWidth="80.0" text="회의시작">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                            <graphic>
-                                <Label text="#">
-                                    <font>
-                                        <Font size="20.0" />
-                                    </font>
-                                </Label>
+                                <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
+                                    <image>
+                                        <Image url="@../../../prty.png" />
+                                    </image>
+                                </ImageView>
                             </graphic>
-                        </Label>
-                        <Label layoutX="130.0" layoutY="70.0" prefHeight="30.0" prefWidth="50.0" text="12:30">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="15.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="30.0" layoutY="100.0" prefHeight="30.0" prefWidth="80.0" text="퇴근">
-                            <font>
-                                <Font size="15.0" />
-                            </font>
-                            <graphic>
-                                <Label text="#">
-                                    <font>
-                                        <Font size="20.0" />
-                                    </font>
-                                </Label>
-                            </graphic></Label>
-                        <Label layoutX="130.0" layoutY="100.0" prefHeight="30.0" prefWidth="50.0" text="18:30">
-                            <font>
-                                <Font name="Arial Rounded MT Bold" size="15.0" />
-                            </font>
-                        </Label>
+                        </Button>
                     </children></Pane>
                 <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
                     <children>
@@ -156,6 +111,58 @@
                             </font></Button>
                     </children>
                 </Pane>
+            <VBox fx:id="prty_vbox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="215.0" prefHeight="180.0" prefWidth="180.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../first.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="content1_label" textAlignment="JUSTIFY">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children></HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../second.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="content2_label">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children></HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                     <children>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../third.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="content3_label">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                     </children></HBox>
+               </children>
+            </VBox>
             </children>
         </Pane>
         <Pane layoutX="202.5" layoutY="2.5" prefHeight="595.0" prefWidth="595.0" style="-fx-background-color: #dbdbdb;">
@@ -170,16 +177,99 @@
                         <Image url="@../../../logo.png" />
                     </image>
                 </ImageView>
-                <Button alignment="CENTER" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="60.0" style="-fx-background-color: #dbdbdb;" text="&lt;  Back">
-                    <font>
-                        <Font name="Arial Rounded MT Bold" size="12.0" />
-                    </font>
-                </Button>
-                <ScrollPane layoutX="2.0" layoutY="140.0" prefHeight="903.0" prefWidth="589.0">
+                <GridPane layoutX="3.0" layoutY="115.0" style="-fx-border-color: #000000;">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <children>
+                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" />
+                        <Pane fx:id="Mon" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Mon">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+
+                        <Pane fx:id="Tue" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Tue">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+
+                        <Pane fx:id="Wen" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Wed">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+
+                        <Pane fx:id="Thu" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Thu">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+
+                        <Pane fx:id="Fri" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Fri">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+
+                        <Pane fx:id="Sat" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Sat" textFill="#5555ff">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+
+                        <Pane fx:id="Sun" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="7">
+                            <children>
+                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Sun" textFill="#ff5555">
+                                    <font>
+                                        <Font name="Arial Rounded MT Bold" size="15.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </Pane>
+
+                    </children>
+                </GridPane>
+                <ScrollPane layoutX="2.0" layoutY="140.0" prefHeight="457.0" prefWidth="589.0">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="902.0" prefWidth="572.0">
                             <children>
-                                <GridPane prefHeight="490.0" prefWidth="573.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;">
+                                <GridPane fx:id="gridPane" prefHeight="490.0" prefWidth="573.0" style="-fx-border-color: #000000; -fx-background-color: #ffffff;">
                                     <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
@@ -209,7 +299,7 @@
                                     </rowConstraints>
                                     <children>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;">
+                                        <Pane fx:id="T08" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="08">
                                                     <font>
@@ -219,7 +309,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="1">
+                                        <Pane fx:id="T09" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="1">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="09">
                                                     <font>
@@ -229,7 +319,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="2">
+                                        <Pane fx:id="T10" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="2">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="10">
                                                     <font>
@@ -239,7 +329,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="3">
+                                        <Pane fx:id="T11" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="3">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="11">
                                                     <font>
@@ -249,7 +339,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="4">
+                                        <Pane fx:id="T12" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="4">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="12">
                                                     <font>
@@ -259,7 +349,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="5">
+                                        <Pane fx:id="T13" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="5">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="13">
                                                     <font>
@@ -269,7 +359,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="6">
+                                        <Pane fx:id="T14" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="6">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="14">
                                                     <font>
@@ -279,7 +369,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="7">
+                                        <Pane fx:id="T15" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="7">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="15">
                                                     <font>
@@ -289,7 +379,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="8">
+                                        <Pane fx:id="T16" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="8">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="16">
                                                     <font>
@@ -299,7 +389,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="9">
+                                        <Pane fx:id="T17" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="9">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="17">
                                                     <font>
@@ -309,7 +399,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="10">
+                                        <Pane fx:id="T18" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="10">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="18">
                                                     <font>
@@ -319,7 +409,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="11">
+                                        <Pane fx:id="T19" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="11">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="19">
                                                     <font>
@@ -329,7 +419,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="12">
+                                        <Pane fx:id="T20" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="12">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="20">
                                                     <font>
@@ -339,7 +429,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="13">
+                                        <Pane fx:id="T21" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="13">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="21">
                                                     <font>
@@ -349,7 +439,7 @@
                                             </children>
                                         </Pane>
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="14">
+                                        <Pane fx:id="T22" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.rowIndex="14">
                                             <children>
                                                 <Label alignment="CENTER" prefHeight="60.0" prefWidth="25.0" text="22">
                                                     <font>
@@ -367,1057 +457,217 @@
 
 
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="1">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="2">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="3">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
+                                        <Pane fx:id="Mon08" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" />
 
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="8">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="9">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="10">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="11">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="12">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="13">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="14">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="1">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="1">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="1">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="1">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="1">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="1">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="2">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="2">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="2">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="2">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="2">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="2">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="3">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="4">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="5">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="6">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="7">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="8">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="9">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="10">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="11">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="12">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="13">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="14">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="3">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="4">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="5">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="6">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="7">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="8">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="9">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="10">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="11">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="12">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="13">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="14">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="3">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="4">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="5">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="6">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="7">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="8">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="9">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="10">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="11">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="12">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="13">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="14">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="3">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="4">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="5">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="6">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="7">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="8">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="9">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="10">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="11">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="12">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="13">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="14">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="3">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="4">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="5">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="6">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="7">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="8">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="9">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="10">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="11">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="12">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="13">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="14">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="3">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="4">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="5">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="6">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="7">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="8">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="9">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="10">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="11">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="12">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="13">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
-
-                                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="14">
-                                            <children>
-                                                <TextField alignment="TOP_LEFT" layoutX="1.0" layoutY="1.0" prefHeight="58.0" prefWidth="76.0" promptText="일정 추가" style="-fx-background-color: #ffffff;">
-                                                    <font>
-                                                        <Font size="10.0" />
-                                                    </font>
-                                                </TextField>
-                                            </children>
-                                        </Pane>
+                                        <Pane fx:id="Tue08" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" />
+
+                                        <Pane fx:id="Wed08" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" />
+
+                                        <Pane fx:id="Thu08" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" />
+
+                                        <Pane fx:id="Fri08" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" />
+
+                                        <Pane fx:id="Sat08" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" />
+
+                                        <Pane fx:id="Sun08" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" />
+
+                                        <Pane fx:id="Mon09" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                                        <Pane fx:id="Mon10" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+
+                                        <Pane fx:id="Mon11" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+
+                                        <Pane fx:id="Mon12" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+
+                                        <Pane fx:id="Mon13" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+
+                                        <Pane fx:id="Mon14" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+
+                                        <Pane fx:id="Mon15" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="7" />
+
+                                        <Pane fx:id="Mon16" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+
+                                        <Pane fx:id="Mon17" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="9" />
+
+                                        <Pane fx:id="Mon18" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+
+                                        <Pane fx:id="Mon19" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="11" />
+
+                                        <Pane fx:id="Mon20" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="12" />
+
+                                        <Pane fx:id="Mon21" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+
+                                        <Pane fx:id="Mon22" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="14" />
+
+                                        <Pane fx:id="Tue09" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+                                        <Pane fx:id="Wed09" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+
+                                        <Pane fx:id="Thu09" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+
+                                        <Pane fx:id="Fri09" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+
+                                        <Pane fx:id="Sat09" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="1" />
+
+                                        <Pane fx:id="Sun09" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+
+                                        <Pane fx:id="Tue10" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+
+                                        <Pane fx:id="Wed10" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+
+                                        <Pane fx:id="Thu10" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+
+                                        <Pane fx:id="Fri10" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+
+                                        <Pane fx:id="Sat10" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="2" />
+
+                                        <Pane fx:id="Sun10" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="2" />
+
+                                        <Pane fx:id="Tue11" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+
+                                        <Pane fx:id="Tue12" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+
+                                        <Pane fx:id="Tue13" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+
+                                        <Pane fx:id="Tue14" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="6" />
+
+                                        <Pane fx:id="Tue15" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="7" />
+
+                                        <Pane fx:id="Tue16" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="8" />
+
+                                        <Pane fx:id="Tue17" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="9" />
+
+                                        <Pane fx:id="Tue18" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="10" />
+
+                                        <Pane fx:id="Tue19" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="11" />
+
+                                        <Pane fx:id="Tue20" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="12" />
+
+                                        <Pane fx:id="Tue21" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+
+                                        <Pane fx:id="Tue22" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="14" />
+
+                                        <Pane fx:id="Wed11" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+
+                                        <Pane fx:id="Wed12" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="4" />
+
+                                        <Pane fx:id="Wed13" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="5" />
+
+                                        <Pane fx:id="Wed14" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="6" />
+
+                                        <Pane fx:id="Wed15" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="7" />
+
+                                        <Pane fx:id="Wed16" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="8" />
+
+                                        <Pane fx:id="Wed17" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="9" />
+
+                                        <Pane fx:id="Wed18" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="10" />
+
+                                        <Pane fx:id="Wed19" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="11" />
+
+                                        <Pane fx:id="Wed20" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="12" />
+
+                                        <Pane fx:id="Wed21" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="13" />
+
+                                        <Pane fx:id="Wed22" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="14" />
+
+                                        <Pane fx:id="Thu11" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="3" />
+
+                                        <Pane fx:id="Thu12" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="4" />
+
+                                        <Pane fx:id="Thu13" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="5" />
+
+                                        <Pane fx:id="Thu14" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="6" />
+
+                                        <Pane fx:id="Thu15" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="7" />
+
+                                        <Pane fx:id="Thu16" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="8" />
+
+                                        <Pane fx:id="Thu17" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+
+                                        <Pane fx:id="Thu18" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="10" />
+
+                                        <Pane fx:id="Thu19" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="11" />
+
+                                        <Pane fx:id="Thu20" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="12" />
+
+                                        <Pane fx:id="Thu21" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="13" />
+
+                                        <Pane fx:id="Thu22" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="14" />
+
+                                        <Pane fx:id="Fri11" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="3" />
+
+                                        <Pane fx:id="Fri12" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="4" />
+
+                                        <Pane fx:id="Fri13" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="5" />
+
+                                        <Pane fx:id="Fri14" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="6" />
+
+                                        <Pane fx:id="Fri15" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="7" />
+
+                                        <Pane fx:id="Fri16" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="8" />
+
+                                        <Pane fx:id="Fri17" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="9" />
+
+                                        <Pane fx:id="Fri18" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="10" />
+
+                                        <Pane fx:id="Fri19" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="11" />
+
+                                        <Pane fx:id="Fri20" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="12" />
+
+                                        <Pane fx:id="Fri21" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="13" />
+
+                                        <Pane fx:id="Fri22" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="14" />
+
+                                        <Pane fx:id="Sat11" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="3" />
+
+                                        <Pane fx:id="Sat12" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="4" />
+
+                                        <Pane fx:id="Sat13" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="5" />
+
+                                        <Pane fx:id="Sat14" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="6" />
+
+                                        <Pane fx:id="Sat15" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="7" />
+
+                                        <Pane fx:id="Sat16" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="8" />
+
+                                        <Pane fx:id="Sat17" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="9" />
+
+                                        <Pane fx:id="Sat18" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="10" />
+
+                                        <Pane fx:id="Sat19" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="11" />
+
+                                        <Pane fx:id="Sat20" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="12" />
+
+                                        <Pane fx:id="Sat21" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="13" />
+
+                                        <Pane fx:id="Sat22" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="14" />
+
+                                        <Pane fx:id="Sun11" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="3" />
+
+                                        <Pane fx:id="Sun12" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="4" />
+
+                                        <Pane fx:id="Sun13" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="5" />
+
+                                        <Pane fx:id="Sun14" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="6" />
+
+                                        <Pane fx:id="Sun15" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="7" />
+
+                                        <Pane fx:id="Sun16" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="8" />
+
+                                        <Pane fx:id="Sun17" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="9" />
+
+                                        <Pane fx:id="Sun18" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="10" />
+
+                                        <Pane fx:id="Sun19" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="11" />
+
+                                        <Pane fx:id="Sun20" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="12" />
+
+                                        <Pane fx:id="Sun21" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="13" />
+
+                                        <Pane fx:id="Sun22" prefHeight="200.0" prefWidth="200.0" style="-fx-border-color: #eeeeee;" GridPane.columnIndex="7" GridPane.rowIndex="14" />
 
 
 
@@ -1449,94 +699,30 @@
                         </AnchorPane>
                     </content>
                 </ScrollPane>
-                <GridPane layoutX="3.0" layoutY="115.0" style="-fx-border-color: #000000;">
-                    <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="77.0" minWidth="78.0" prefWidth="77.0" />
-                    </columnConstraints>
-                    <rowConstraints>
-                        <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
-                    </rowConstraints>
-                    <children>
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" />
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1">
-                            <children>
-                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Mon">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2">
-                            <children>
-                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Tue">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3">
-                            <children>
-                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Wed">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4">
-                            <children>
-                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Thu">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5">
-                            <children>
-                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Fri">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6">
-                            <children>
-                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Sat" textFill="#5555ff">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-
-                        <Pane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="7">
-                            <children>
-                                <Label alignment="CENTER" prefHeight="25.0" prefWidth="78.0" text="Sun" textFill="#ff5555">
-                                    <font>
-                                        <Font name="Arial Rounded MT Bold" size="15.0" />
-                                    </font>
-                                </Label>
-                            </children>
-                        </Pane>
-
-                    </children>
-                </GridPane>
+            <HBox layoutX="378.0" layoutY="73.0">
+               <children>
+                  <Button fx:id="plus_button" mnemonicParsing="false" onAction="#plusButtonAction" style="-fx-background-color: #ffffff;" text="일정추가">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../plus_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Button>
+                      <Button fx:id="delete_button" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="33.0" prefWidth="95.0" style="-fx-background-color: #DD3030;" text="일정 초기화" textFill="WHITE">
+                          <font>
+                              <Font name="System Bold" size="13.0" />
+                          </font>
+                      </Button>
+               </children>
+            </HBox>
             </children>
         </Pane>
     </children>

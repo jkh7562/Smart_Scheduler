@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="202.0" prefWidth="204.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.project_cptController">
+   <children>
+      <VBox alignment="CENTER" layoutX="39.0" layoutY="61.0">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <Label text="&quot;">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="content_label">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+                  <Label text="&quot;">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
+            </HBox>
+            <Label prefHeight="0.0" prefWidth="133.0" text="완료 처리 하시겠습니까?" />
+         </children>
+      </VBox>
+      <HBox alignment="CENTER" layoutX="39.0" layoutY="117.0" prefHeight="22.0" prefWidth="126.0">
+         <children>
+            <Button fx:id="okay_button" mnemonicParsing="false" onAction="#okayButtonAction" prefWidth="52.0" text="예">
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Button>
+            <Button fx:id="no_button" mnemonicParsing="false" onAction="#noButtonAction" text="아니요" />
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

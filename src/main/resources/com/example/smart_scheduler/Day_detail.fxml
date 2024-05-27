@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.DayDetail">
+    <children>
+        <Pane layoutY="2.5" prefHeight="595.0" prefWidth="800.0" style="-fx-background-color: #dbdbdb;">
+            <children>
+                <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="720.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../logo.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="back_button" alignment="CENTER" layoutX="15.0" layoutY="15.0" mnemonicParsing="false" onAction="#backButtonAction" prefHeight="10.0" prefWidth="60.0" style="-fx-background-color: #dbdbdb;" text="&lt;  Back">
+                    <font>
+                        <Font name="Arial Rounded MT Bold" size="12.0" />
+                    </font>
+                </Button>
+            <Pane layoutX="20.0" layoutY="85.0" prefHeight="500.0" prefWidth="760.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <Pane prefHeight="180.0" prefWidth="760.0">
+                     <children>
+                        <Pane layoutX="10.0" layoutY="10.0" prefHeight="40.0" prefWidth="740.0">
+                           <children>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../title.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label fx:id="content_label" text="일정 제목">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font></Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" layoutY="60.0">
+                                 <children>
+                                    <ImageView fitHeight="45.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../../watch.png" />
+                                       </image>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label fx:id="start_label" text="0">
+                                       <HBox.margin>
+                                          <Insets />
+                                       </HBox.margin>
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="시">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label text="~" textFill="#333333">
+                                       <font>
+                                          <Font name="Arial Rounded MT Bold" size="40.0" />
+                                       </font>
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </Label>
+                                    <Label fx:id="end_label" text="0">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Label>
+                                    <Label text="시">
+                                       <font>
+                                          <Font size="25.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </Pane>
+                        <HBox layoutX="585.0" layoutY="83.0">
+                           <children>
+                              <Button fx:id="save_button" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #219653;" text="저장" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="15.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                               <Button fx:id="delete_button" mnemonicParsing="false" onAction="#deleteButtonAction" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #DD3030;" text="삭제" textFill="WHITE">
+                                   <font>
+                                       <Font name="System Bold" size="15.0" />
+                                   </font>
+                               </Button>
+                           </children>
+                        </HBox>
+                     </children></Pane>
+                  <TextArea fx:id="memo_area" layoutX="10.0" layoutY="119.0" prefHeight="377.0" prefWidth="740.0" promptText="메모를 입력하세요.">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </TextArea>
+               </children>
+            </Pane>
+            </children>
+        </Pane>
+
+
+    </children>
+</AnchorPane>

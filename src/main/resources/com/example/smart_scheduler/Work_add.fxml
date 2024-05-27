@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="307.0" prefWidth="471.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.WorkaddController">
+   <children>
+      <Pane prefHeight="37.0" prefWidth="471.0" style="-fx-background-color: #c8c4ff;">
+         <children>
+            <HBox layoutY="9.0" prefHeight="30.0" prefWidth="163.0">
+               <children>
+                  <ImageView fx:id="back_image" fitHeight="24.0" fitWidth="32.0" onMouseClicked="#backimageClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../backre.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label text="일정추가">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children></Pane>
+       <HBox alignment="BASELINE_LEFT" layoutX="1.0" layoutY="37.0">
+           <children>
+             <HBox alignment="BASELINE_LEFT">
+                 <children>
+                     <Label text="요일 : " />
+                     <MenuButton fx:id="week_button" mnemonicParsing="false" text="요일 선택">
+                         <items>
+                             <MenuItem mnemonicParsing="false" onAction="#weekSelection" text="월" />
+                             <MenuItem mnemonicParsing="false" onAction="#weekSelection" text="화" />
+                             <MenuItem mnemonicParsing="false" onAction="#weekSelection" text="수" />
+                             <MenuItem mnemonicParsing="false" onAction="#weekSelection" text="목" />
+                             <MenuItem mnemonicParsing="false" onAction="#weekSelection" text="금" />
+                             <MenuItem mnemonicParsing="false" onAction="#weekSelection" text="토" />
+                             <MenuItem mnemonicParsing="false" onAction="#weekSelection" text="일" />
+                         </items>
+                     </MenuButton>
+                 </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+             </HBox>
+            <HBox alignment="BASELINE_LEFT">
+               <children>
+                  <Label text="시작시간 : " />
+                  <MenuButton fx:id="ftime_button" mnemonicParsing="false" text="시작시간 선택">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="8" />
+                      <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="9" />
+                      <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="10" />
+                      <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="11" />
+                      <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="12" />
+                      <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="13" />
+                       <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="14" />
+                       <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="15" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="16" />
+                       <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="17" />
+                       <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="18" />
+                       <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="19" />
+                       <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="20" />
+                       <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="21" />
+                       <MenuItem mnemonicParsing="false" onAction="#handleTimeSelection" text="22" />
+                    </items>
+                  </MenuButton>
+               </children>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </HBox>
+            <HBox alignment="BASELINE_LEFT">
+               <children>
+                     <Label text="종료시간 : " />
+                     <MenuButton fx:id="etime_button" mnemonicParsing="false" text="종료시간 선택">
+                         <items>
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="8" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="9" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="10" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="11" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="12" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="13" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="14" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="15" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="16" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="17" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="18" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="19" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="20" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="21" />
+                             <MenuItem mnemonicParsing="false" onAction="#handleETimeSelection" text="22" />
+                         </items>
+                     </MenuButton>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </HBox>
+           </children>
+       </HBox>
+      <HBox alignment="BASELINE_LEFT" layoutX="1.0" layoutY="77.0" prefHeight="31.0" prefWidth="470.0">
+         <children>
+            <Label text="일정 : " />
+            <TextField fx:id="content_textfield" prefHeight="22.0" prefWidth="395.0">
+               <HBox.margin>
+                  <Insets right="4.0" />
+               </HBox.margin></TextField>
+            <Button fx:id="add_button" mnemonicParsing="false" onAction="#addButtonAction" prefHeight="25.0" prefWidth="17.0">
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../check_icon.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER" layoutX="120.0" layoutY="122.0">
+         <children>
+            <Label text="일정에 대한 적절한 시간 추천 ">
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
+             <Button fx:id="search_button" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="25.0" prefWidth="17.0">
+                 <graphic>
+                     <ImageView fitHeight="21.0" fitWidth="17.0" pickOnBounds="true" preserveRatio="true">
+                         <image>
+                             <Image url="@../../../search_icon.png" />
+                         </image>
+                     </ImageView>
+                 </graphic>
+             </Button>
+         </children>
+      </HBox>
+      <Pane layoutY="147.0" prefHeight="157.0" prefWidth="471.0" style="-fx-background-color: #dbdbdb; -fx-background-radius: 30;">
+         <children>
+            <VBox alignment="CENTER" layoutX="10.0" layoutY="44.0">
+               <children>
+                  <Label fx:id="rcmdfail_label" text="해당 일정에 대한 데이터가 존재하지 않습니다." visible="false">
+                     <font>
+                        <Font size="15.0" />
+                     </font></Label>
+                  <HBox fx:id="rcmd_hbox" alignment="CENTER" prefHeight="14.0" prefWidth="452.0" visible="false">
+                     <children>
+                        <Label fx:id="content_label" text="프로젝트" textFill="RED">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="일정은">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="time_label" text="2" textFill="RED">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Label>
+                        <Label text="시간일정이 가장 많았습니다.">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children></Pane>
+   </children>
+</AnchorPane>
