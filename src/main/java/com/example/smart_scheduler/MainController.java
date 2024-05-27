@@ -1002,6 +1002,7 @@ public class MainController {
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("비");
                 item1.setImage(new Image(itemImg1));
+                itemLabel1.setText("우산");
                 break;
             case "3":
                 imagePath = "cloudy.png"; // 구름 많음
