@@ -435,12 +435,13 @@ public class MainController {
             //오늘 비가 올 확률 애 따른 판단
             if(popint >= 40){
                 itememg1 = true;
-                SKY ="2";
             }else {
                 itememg1 = false;
             }
 
-
+            if(Integer.parseInt(POP) >= 40){
+                SKY ="2";
+            }
 
             // 날씨 이미지 업데이트
             updateWeatherImage(SKY);
@@ -595,7 +596,7 @@ public class MainController {
         StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getVilageFcst"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=Hf9Z%2B7fF9N0l2bEfuOAvHN1sxacStyg1c2OdJHO6XE80dGsvI3ms50Wg5pz638TSwTPVy5z%2FPoIe2ex1dCjvyQ%3D%3D"); /*Service Key*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호*/
-        urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("500", "UTF-8")); /*한 페이지 결과 수*/
+        urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("260", "UTF-8")); /*한 페이지 결과 수*/
         urlBuilder.append("&" + URLEncoder.encode("dataType", "UTF-8") + "=" + URLEncoder.encode("JSON", "UTF-8")); /*요청자료형식(XML/JSON) Default: XML*/
         urlBuilder.append("&" + URLEncoder.encode("base_date", "UTF-8") + "=" + URLEncoder.encode(baseDate, "UTF-8")); /*‘21년 6월 28일 발표*/
         urlBuilder.append("&" + URLEncoder.encode("base_time", "UTF-8") + "=" + URLEncoder.encode("0200", "UTF-8")); /*06시 발표(정시단위) */
@@ -1002,6 +1003,7 @@ public class MainController {
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("비");
                 item1.setImage(new Image(itemImg1));
+                itemLabel1.setText("우산");
                 break;
             case "3":
                 imagePath = "cloudy.png"; // 구름 많음

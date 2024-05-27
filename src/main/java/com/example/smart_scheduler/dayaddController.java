@@ -118,7 +118,9 @@ public class dayaddController {
                         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
                         connection.setRequestMethod("POST");
                         connection.setDoOutput(true);
+                        System.out.println("7345627834652473659827345698273456892734652783485");
                         System.out.println(Id);
+                        System.out.println("7345627834652473659827345698273456892734652783485");
                         // POST 데이터 설정
                         String postData = "Id=" + Id + "&start=" + start + "&end=" + end + "&content=" + content + "&time=" + time;
                         OutputStream os = connection.getOutputStream();
