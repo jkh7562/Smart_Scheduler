@@ -95,8 +95,69 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Button fx:id="prty_button" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="120.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#prtyButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="일정 우선순위">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../../../prty.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
+      <VBox fx:id="prty_vbox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="155.0" prefHeight="170.0" prefWidth="180.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../first.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="content1_label" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../second.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="content2_label">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../third.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="content3_label">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
+         </children>
+      </VBox>
       <Pane layoutX="215.0" layoutY="5.0" prefHeight="590.0" prefWidth="560.0" style="-fx-background-color: #dbdbdb;">
          <children>
             <HBox alignment="CENTER" layoutX="460.0" layoutY="80.0">
@@ -777,7 +838,7 @@
 
                </children>
             </GridPane>
-            <Label fx:id="project_label" layoutX="25.0" layoutY="10.0" text="Month">
+            <Label layoutX="25.0" layoutY="10.0" text="월간 일정">
                <font>
                   <Font name="Arial Rounded MT Bold" size="35.0" />
                </font>
