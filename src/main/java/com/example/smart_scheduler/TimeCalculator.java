@@ -26,17 +26,15 @@ public class TimeCalculator {
     private static String StartY;
     private static String EndY;
     private static String data1;
-    private static String BSname;
-    private static String BScode;
-    private static String[] RouteArray = new String[15]; // 대중교통 길찾기
-    private static String[] BSArray = new String[15]; // 버스 정류장 정보들
 
     private static int minTotalTime;
     private static String minFirstStartStation;
     private static String minBusNo;
     private static String minBusLocalBlID;
-    private static String minBusCityCode;
+    private static String minBusID;
     private static String minLastEndStation;
+
+    private static String ArrivingBus;
 
     private static final String API_KEY = "1686f682262a3e2f11756c853e1aee5f";
     private static final String API_URL = "https://dapi.kakao.com/v2/local/search/address.json";
@@ -67,7 +65,8 @@ public class TimeCalculator {
 
         System.out.println("최소 버스 로컬 블 ID: " + minBusLocalBlID);
         System.out.println("최소 버스 번호: " + minBusNo);
-        System.out.println("최소 버스 시티 코드: " + minBusCityCode);
+        System.out.println("최소 버스 ID: " + minBusID);
+        System.out.println(ArrivingBus + " 출발지: " + minFirstStartStation);
     }
 
     private static String getCoordinates(String address, String coordinateType) {
@@ -158,11 +157,13 @@ public class TimeCalculator {
                     if (trafficType == 1) {
                         System.out.println("지하철: " + subPath.getString("startName") + " -> " + subPath.getString("endName") + " (" + subPath.getInt("sectionTime") + "분)");
                     } else if (trafficType == 2) {
-                        JSONArray lanes = subPath.getJSONArray("lane");
-                        JSONObject lane = lanes.getJSONObject(0);
-                        minBusNo = lane.optString("busNo", "정보 없음");
-                        minBusLocalBlID = lane.optString("busLocalBlID", "정보 없음");
-                        minBusCityCode = lane.optString("busCityCode", "정보 없음");
+                        if (minBusNo == null) { // 가장 처음 나오는 버스 정보를 저장
+                            JSONArray lanes = subPath.getJSONArray("lane");
+                            JSONObject lane = lanes.getJSONObject(0);
+                            minBusNo = lane.optString("busNo", "정보 없음");
+                            minBusLocalBlID = lane.optString("busLocalBlID", "정보 없음");
+                            minBusID = lane.optString("busID", "정보 없음");
+                        }
                         System.out.println("버스: " + minBusNo + " (" + subPath.getInt("sectionTime") + "분)");
                     } else if (trafficType == 3) {
                         System.out.println("도보: " + subPath.getInt("sectionTime") + "분");
@@ -172,15 +173,13 @@ public class TimeCalculator {
             }
         }
 
-        // 추가된 부분: 원본 JSON 데이터를 출력
         System.out.println("원본 JSON 데이터: " + jsonData);
     }
 
-    // 오디세이 버스정류장 검색
     private static String ODBSserch(String stationName) throws IOException {
         System.out.println("정류장 검색 ---------");
         String encodedStationName = URLEncoder.encode(stationName, StandardCharsets.UTF_8);
-        String urlTemplate = "https://api.odsay.com/v1/api/searchStation?apiKey=%s&stationName=%s&stationClass=1";
+        String urlTemplate = "https://api.odsay.com/v1/api/searchStation?apiKey=%s&stationName=%s&CID=3060&stationClass=1";
         String urlInfo = String.format(urlTemplate, ODSAY_API_KEY, encodedStationName);
 
         OkHttpClient client = new OkHttpClient();
@@ -194,10 +193,38 @@ public class TimeCalculator {
             }
             String responseBody = response.body().string();
             System.out.println(responseBody);
+
+            parseBusStationData(responseBody);
             return responseBody;
         } catch (IOException e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    private static void parseBusStationData(String jsonData) {
+        JSONObject jsonObject = new JSONObject(jsonData);
+        try {
+            JSONObject result = jsonObject.getJSONObject("result");
+            JSONArray stations = result.getJSONArray("station");
+
+            for (int i = 0; i < stations.length(); i++) {
+                JSONObject station = stations.getJSONObject(i);
+                JSONArray busInfoArray = station.getJSONArray("businfo");
+
+                for (int j = 0; j < busInfoArray.length(); j++) {
+                    JSONObject busInfo = busInfoArray.getJSONObject(j);
+                    String busLocalBlID = busInfo.optString("busLocalBlID", "정보 없음");
+
+                    if (busLocalBlID.equals(minBusLocalBlID)) {
+                        String busNo = busInfo.optString("busNo", "정보 없음");
+                        System.out.println("버스 로컬 블 ID: " + busLocalBlID + ", 버스 번호: " + busNo);
+                        ArrivingBus = busNo;
+                    }
+                }
+            }
+        } catch (JSONException e) {
+            System.out.println("JSON 데이터 파싱 오류: " + e.getMessage());
         }
     }
 }
