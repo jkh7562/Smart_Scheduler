@@ -1,0 +1,921 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.MonthController">
+   <children>
+      <Pane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff;">
+         <children>
+            <Pane layoutX="10.0" layoutY="450.0" prefHeight="145.0" prefWidth="180.0">
+               <children>
+                  <Button fx:id="project_button" alignment="BASELINE_LEFT" layoutY="54.0" mnemonicParsing="false" onAction="#projectButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../../../work.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="main_button" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mainButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="오늘 일정">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../Schedule.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="work_button" alignment="BASELINE_LEFT" layoutY="108.0" mnemonicParsing="false" onAction="#workButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../works.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="5.0" layoutY="10.0" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../../../다운로드.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField layoutX="55.0" layoutY="20.0" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #c8c4ff;" text="User Name........">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </TextField>
+                  <Button layoutX="150.0" layoutY="25.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
+               <children>
+                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../다운로드.jpg" />
+                     </image></ImageView>
+                  <Label layoutX="55.0" layoutY="15.0" prefWidth="115.0" text="User Name. . ." />
+                  <Label layoutX="55.0" layoutY="40.0" text="dlwnsgh0530@naver.com">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Label>
+                  <Button alignment="CENTER" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Button>
+                  <Button alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="정보수정">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Button>
+                  <Button alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="탈퇴">
+                     <font>
+                        <Font size="10.0" />
+                     </font></Button>
+               </children>
+            </Pane>
+            <Button fx:id="month_button" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="월간 일정">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../../../img.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="prty_button" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="120.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#prtyButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="일정 우선순위">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../../../prty.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </Pane>
+      <VBox fx:id="prty_vbox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="155.0" prefHeight="170.0" prefWidth="180.0">
+         <children>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../first.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="content1_label" textAlignment="JUSTIFY">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../second.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="content2_label">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+               <children>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../third.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label fx:id="content3_label">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
+               </children></HBox>
+         </children>
+      </VBox>
+      <Pane layoutX="215.0" layoutY="5.0" prefHeight="590.0" prefWidth="560.0" style="-fx-background-color: #dbdbdb;">
+         <children>
+            <GridPane fx:id="calendar" layoutX="4.0" layoutY="135.0" prefHeight="450.0" prefWidth="551.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" />
+              </columnConstraints>
+              <rowConstraints>
+                  <RowConstraints maxHeight="-Infinity" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="73.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="73.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="73.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="73.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="73.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="73.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;">
+                     <children>
+                        <Label fx:id="sun_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Sun" textFill="#ff5555">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1">
+                     <children>
+                        <Label fx:id="mon_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Mon">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2">
+                     <children>
+                        <Label fx:id="tue_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Tue">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3">
+                     <children>
+                        <Label fx:id="wed_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Wed">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4">
+                     <children>
+                        <Label fx:id="thu_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Thu">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5">
+                     <children>
+                        <Label fx:id="fri_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Fri">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane style="-fx-background-color: #c8c4ff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6">
+                     <children>
+                        <Label fx:id="sat_label" alignment="CENTER" prefHeight="25.0" prefWidth="73.0" text="Sat" textFill="#5555ff">
+                           <font>
+                              <Font name="Arial Rounded MT Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan01" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="1">
+                     <children>
+                        <VBox fx:id="vbox01" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day01_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan11" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <VBox fx:id="vbox11" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day11_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan21" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                     <children>
+                         <VBox fx:id="vbox21" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day21_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan31" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="1">
+                     <children>
+                        <VBox fx:id="vbox31" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day31_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan41" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                     <children>
+                        <VBox fx:id="vbox41" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day41_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan51" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="1">
+                     <children>
+                        <VBox fx:id="vbox51" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day51_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan61" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="1">
+                     <children>
+                        <VBox fx:id="vbox61" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day61_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan02" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="2">
+                     <children>
+                        <VBox fx:id="vbox02" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day02_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan12" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <children>
+                        <VBox fx:id="vbox12" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day12_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan22" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="2">
+                     <children>
+                        <VBox fx:id="vbox22" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day22_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan32" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="2">
+                     <children>
+                        <VBox fx:id="vbox32" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day32_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan42" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="2">
+                     <children>
+                        <VBox fx:id="vbox42" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day42_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan52" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="2">
+                     <children>
+                        <VBox fx:id="vbox52" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day52_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan62" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="2">
+                     <children>
+                        <VBox fx:id="vbox62" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day62_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan03" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="3">
+                     <children>
+                        <VBox fx:id="vbox03" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day03_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan13" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <children>
+                        <VBox fx:id="vbox13" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day13_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan23" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="3">
+                     <children>
+                        <VBox fx:id="vbox23" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day23_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan33" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="3">
+                     <children>
+                        <VBox fx:id="vbox33" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day33_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan43" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="3">
+                     <children>
+                        <VBox fx:id="vbox43" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day43_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan53" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="3">
+                     <children>
+                        <VBox fx:id="vbox53" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day53_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan63" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="3">
+                     <children>
+                        <VBox fx:id="vbox63" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day63_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+
+                  <Pane fx:id="pan04" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="4">
+                     <children>
+                        <VBox fx:id="vbox04" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day04_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan14" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <children>
+                        <VBox fx:id="vbox14" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day14_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan24" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="4">
+                     <children>
+                        <VBox fx:id="vbox24" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day24_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan34" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="4">
+                     <children>
+                        <VBox fx:id="vbox34" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day34_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan44" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="4">
+                     <children>
+                        <VBox fx:id="vbox44" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day44_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan54" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="4">
+                     <children>
+                        <VBox fx:id="vbox54" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day54_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan64" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="4">
+                     <children>
+                        <VBox fx:id="vbox64" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day64_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+
+                  <Pane fx:id="pan05" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.rowIndex="5">
+                     <children>
+                        <VBox fx:id="vbox05" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day05_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan15" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <children>
+                        <VBox fx:id="vbox15" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day15_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan25" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="5">
+                     <children>
+                        <VBox fx:id="vbox25" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day25_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan35" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                     <children>
+                        <VBox fx:id="vbox35" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day35_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan45" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="5">
+                     <children>
+                        <VBox fx:id="vbox45" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day45_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan55" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="5">
+                     <children>
+                        <VBox fx:id="vbox55" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day55_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan65" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="5">
+                     <children>
+                        <VBox fx:id="vbox65" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day65_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan06" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="0" GridPane.rowIndex="6">
+                     <children>
+                        <VBox fx:id="vbox06" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day06_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan16" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <children>
+                        <VBox fx:id="vbox16" minHeight="73.0" minWidth="79.0">
+                           <children>
+                              <Label fx:id="day16_label">
+                                 <font>
+                                    <Font name="Arial Rounded MT Bold" size="10.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="pan26" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="2" GridPane.rowIndex="6">
+                  <children>
+                        <VBox fx:id="vbox26" minHeight="73.0" minWidth="79.0">
+                           <children>
+                           <Label fx:id="day26_label">
+                              <font>
+                                 <Font name="Arial Rounded MT Bold" size="10.0" />
+                              </font>
+                           </Label>
+                           </children>
+                        </VBox>
+                  </children>
+               </Pane>
+                  <Pane fx:id="pan36" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="3" GridPane.rowIndex="6">
+                  <children>
+                        <VBox fx:id="vbox36" minHeight="73.0" minWidth="79.0">
+                           <children>
+                           <Label fx:id="day36_label">
+                              <font>
+                                     <Font name="Arial Rounded MT Bold" size="10.0" />
+                              </font>
+                           </Label>
+                           </children>
+                        </VBox>
+                  </children>
+               </Pane>
+                  <Pane fx:id="pan46" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="4" GridPane.rowIndex="6">
+                  <children>
+                        <VBox fx:id="vbox46" minHeight="73.0" minWidth="79.0">
+                           <children>
+                           <Label fx:id="day46_label">
+                              <font>
+                                 <Font name="Arial Rounded MT Bold" size="10.0" />
+                              </font>
+                           </Label>
+                           </children>
+                        </VBox>
+                  </children>
+               </Pane>
+                  <Pane fx:id="pan56" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="5" GridPane.rowIndex="6">
+                  <children>
+                        <VBox fx:id="vbox56" minHeight="73.0" minWidth="79.0">
+                           <children>
+                           <Label fx:id="day56_label">
+                              <font>
+                                 <Font name="Arial Rounded MT Bold" size="10.0" />
+                              </font>
+                           </Label>
+                           </children>
+                        </VBox>
+                  </children>
+               </Pane>
+                  <Pane fx:id="pan66" maxHeight="73.0" maxWidth="79.0" onMouseClicked="#boxMouseClick" style="-fx-background-color: #ffffff; -fx-border-color: #eeeeee;" GridPane.columnIndex="6" GridPane.rowIndex="6">
+                  <children>
+                        <VBox fx:id="vbox66" minHeight="73.0" minWidth="79.0">
+                           <children>
+                           <Label fx:id="day66_label">
+                              <font>
+                                 <Font name="Arial Rounded MT Bold" size="10.0" />
+                              </font>
+                           </Label>
+                           </children>
+                        </VBox>
+                  </children>
+               </Pane>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+               </children>
+            </GridPane>
+            <Label layoutX="25.0" layoutY="10.0" text="월간 일정">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="35.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="70.0" fitWidth="70.0" layoutX="475.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../logo.png" />
+               </image>
+            </ImageView>
+            <HBox alignment="CENTER" layoutY="80.0" prefWidth="560.0">
+               <children>
+                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onPreviousMonthButtonClick" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fx:id="previous_image" fitHeight="30.0" fitWidth="30.0" onMouseClicked="#initialize" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../chevron_left_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <HBox style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                     <children>
+                        <Label fx:id="year_label" text="2024">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label text="년">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="month_label" text="0">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                        </Label>
+                        <Label text="월">
+                           <font>
+                              <Font size="30.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#onNextMonthButtonClick" style="-fx-background-color: #ffffff; -fx-background-radius: 50;">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../right_arrow_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="460.0" layoutY="80.0">
+               <children>
+                  <Button fx:id="add_button" maxWidth="44.0" minWidth="44.0" mnemonicParsing="false" onAction="#addButtonAction" prefWidth="44.0">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../add_sign_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="2.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="delete_button" mnemonicParsing="false" onAction="#deleteButtonAction" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../trash.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

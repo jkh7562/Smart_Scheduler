@@ -72,6 +72,8 @@ public class MainController {
     Label content3_label;
     @FXML
     Button rest_button;
+    @FXML
+    Button month_button;
 
 
 
@@ -1183,5 +1185,18 @@ public class MainController {
         Stage failStage = new Stage();
         failStage.setScene(scene);
         failStage.show();
+    }
+
+    @FXML
+    private void monthButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Month.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) month_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
+        }
     }
 }

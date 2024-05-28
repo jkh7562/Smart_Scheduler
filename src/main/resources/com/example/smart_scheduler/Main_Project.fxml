@@ -10,37 +10,24 @@
    <children>
       <Pane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff;">
          <children>
-            <Pane layoutX="10.0" layoutY="80.0" prefHeight="180.0" prefWidth="180.0">
-               <children>
-                  <Button alignment="BASELINE_LEFT" layoutY="54.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
-                           <image>
-                              <Image url="@../../../work.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="main_button" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#mainButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../Schedule.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="work_button" alignment="BASELINE_LEFT" layoutY="108.0" mnemonicParsing="false" onAction="#workButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../works.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </Pane>
+            <Button fx:id="main_button" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="504.0" mnemonicParsing="false" onAction="#mainButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bdbff4;" text="일반 일정">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../Schedule.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="work_button" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="558.0" mnemonicParsing="false" onAction="#workButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../works.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <Pane layoutX="5.0" layoutY="10.0" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
                <children>
                   <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
@@ -86,6 +73,15 @@
                      </font></Button>
                </children>
             </Pane>
+            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
+               <graphic>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
+                     <image>
+                        <Image url="@../../../work.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
       <Pane layoutX="215.0" layoutY="5.0" prefHeight="590.0" prefWidth="560.0" style="-fx-background-color: #dbdbdb;">
@@ -258,7 +254,7 @@
                         </VBox>
                      </children>
                   </Pane>
-                  <GridPane fx:id="calendar" layoutX="-3.0" layoutY="225.0" prefHeight="359.0" prefWidth="551.0">
+                  <GridPane fx:id="calendar" layoutX="-2.0" layoutY="223.0" prefHeight="359.0" prefWidth="551.0">
                     <columnConstraints>
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" />
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" />
