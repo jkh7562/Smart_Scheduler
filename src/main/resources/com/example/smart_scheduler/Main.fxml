@@ -196,7 +196,7 @@
                         <font>
                            <Font size="15.0" />
                         </font></Label>
-                     <Label fx:id="uv" alignment="CENTER" layoutX="90.0" layoutY="10.0" text="매우 높음">
+                     <Label fx:id="uv" alignment="CENTER" layoutX="90.0" layoutY="10.0">
                         <font>
                            <Font size="15.0" />
                         </font>
@@ -208,7 +208,7 @@
                            <Font size="15.0" />
                         </font>
                      </Label>
-                     <Label fx:id="dust" alignment="CENTER" layoutX="230.0" layoutY="10.0" text="매우 나쁨">
+                     <Label fx:id="dust" alignment="CENTER" layoutX="230.0" layoutY="10.0">
                         <font>
                            <Font size="15.0" />
                         </font></Label>
@@ -226,7 +226,7 @@
                      <image>
                         <Image url="@../../../um.png" />
                      </image></ImageView>
-                  <Label fx:id="itemLabel1" alignment="CENTER" layoutY="60.0" text="아이템">
+                  <Label fx:id="itemLabel1" alignment="CENTER" layoutY="60.0">
                      <font>
                         <Font size="15.0" />
                      </font>
@@ -236,7 +236,7 @@
                         <Image url="@../../../sun.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="itemLabel2" alignment="CENTER" layoutX="50.0" layoutY="60.0" text="선크림">
+                  <Label fx:id="itemLabel2" alignment="CENTER" layoutX="50.0" layoutY="60.0">
                      <font>
                         <Font size="15.0" />
                      </font></Label>
@@ -252,7 +252,7 @@
                   </Label>
                </children>
             </Pane>
-            <Label fx:id="weatherLabel" layoutX="185.0" layoutY="95.0" prefHeight="50.0" prefWidth="130.0" text="비">
+            <Label fx:id="weatherLabel" layoutX="185.0" layoutY="95.0" prefHeight="50.0" prefWidth="130.0">
                <font>
                   <Font size="35.0" />
                </font>
@@ -274,12 +274,12 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="hightemp" alignment="CENTER" layoutX="57.0" text="15">
+                  <Label fx:id="hightemp" alignment="CENTER" layoutX="57.0">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lowtemp" alignment="CENTER" layoutX="157.0" text="3">
+                  <Label fx:id="lowtemp" alignment="CENTER" layoutX="157.0">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -292,7 +292,7 @@
                </image>
             </ImageView>
             <HBox layoutX="30.0" layoutY="100.0" prefHeight="100.0" prefWidth="200.0">
-               <Label fx:id="nowtmp" layoutX="30.0" layoutY="95.0" text="1">
+               <Label fx:id="nowtmp" layoutX="30.0" layoutY="95.0">
                   <font>
                      <Font size="37.0" />
                   </font>
