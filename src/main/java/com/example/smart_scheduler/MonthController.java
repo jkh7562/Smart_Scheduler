@@ -66,6 +66,12 @@ public class MonthController {
 
     @FXML
     private Label month_label;
+    @FXML
+    Label content1_label;
+    @FXML
+    Label content2_label;
+    @FXML
+    Label content3_label;
     private int currentYear;
     private int currentMonth;
     int year;
@@ -123,6 +129,75 @@ public class MonthController {
     @FXML
     private void initialize() {
         Id = primary();
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/getprtymonth.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                // 응답에서 쉼표로 구분된 값을 가져와서 각각의 변수에 할당
+                String[] contents = response.toString().split(",");
+                if (contents.length >= 3) { // 적어도 3개의 값이 있어야 함
+                    String content1 = contents[0];
+                    String content2 = contents[1];
+                    String content3 = contents[2];
+
+                    // 가져온 값을 각각의 라벨에 설정
+                    content1_label.setText(content1);
+                    content2_label.setText(content2);
+                    content3_label.setText(content3);
+                } else {
+                    // 가져온 값이 3개 미만인 경우에는 해당 값으로 라벨을 설정하고 나머지 라벨은 비움
+                    for (int i = 0; i < contents.length; i++) {
+                        switch (i) {
+                            case 0:
+                                content1_label.setText(contents[i]);
+                                break;
+                            case 1:
+                                content2_label.setText(contents[i]);
+                                break;
+                            case 2:
+                                content3_label.setText(contents[i]);
+                                break;
+                        }
+                    }
+                    // 3개 미만인 경우에는 나머지 라벨을 비움
+                    for (int i = contents.length; i < 3; i++) {
+                        switch (i) {
+                            case 1:
+                                content2_label.setText("");
+                                break;
+                            case 2:
+                                content3_label.setText("");
+                                break;
+                        }
+                    }
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         dayLabels = new Label[]{
                 day01_label, day11_label, day21_label, day31_label, day41_label, day51_label,
                 day61_label, day02_label, day12_label, day22_label, day32_label, day42_label,
@@ -404,7 +479,47 @@ public class MonthController {
 
     @FXML
     private void deleteButtonAction(ActionEvent event) {
+        Id = primary();
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/deleteallmonth.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
 
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("month_alldelete.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+
+                Stage failStage = new Stage();
+                failStage.setScene(scene);
+                failStage.show();
+
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
@@ -424,7 +539,17 @@ public class MonthController {
 
     @FXML
     private void prtyButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("month_prty.fxml"));
+            Parent root = loader.load();
 
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
+        }
     }
 
     @FXML

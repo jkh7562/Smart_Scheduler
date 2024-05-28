@@ -168,12 +168,6 @@ public class MonthDetail {
         Id = primary();
         String content = ((Label) content_listview.getSelectionModel().getSelectedItem()).getText();
 
-        System.out.println("2374856290387456203497856490382756249038756923874562938745629387456295874");
-        System.out.println(Id);
-        System.out.println(date);
-        System.out.println(content);
-        System.out.println("2374856290387456203497856490382756249038756923874562938745629387456295874");
-
         try {
             String serverURL = "http://hbr2024.dothome.co.kr/delete_month.php";
             URL url = new URL(serverURL);
