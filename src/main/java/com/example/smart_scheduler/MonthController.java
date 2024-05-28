@@ -11,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -25,6 +26,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -66,8 +68,61 @@ public class MonthController {
     private Label month_label;
     private int currentYear;
     private int currentMonth;
+    int year;
+    int month;
+    String Id;
+
+    public String primary() {
+        String primaryid = null;
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/priget.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "&tableName=pri";
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 서버 응답 처리
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+
+                StringBuilder response = new StringBuilder(); // response 초기화 추가
+                String inputLine;
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                // 데이터 파싱 (단순한 문자열을 ,로 분리하여 사용)
+                String[] data = response.toString().split(",");
+                if (data.length > 0) {
+                    primaryid = data[0];
+                    System.out.println(primaryid);
+                } else {
+                    System.out.println("데이터가 존재하지 않습니다.");
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println(primaryid);
+
+        return primaryid;
+    }
+
     @FXML
     private void initialize() {
+        Id = primary();
         dayLabels = new Label[]{
                 day01_label, day11_label, day21_label, day31_label, day41_label, day51_label,
                 day61_label, day02_label, day12_label, day22_label, day32_label, day42_label,
@@ -109,6 +164,149 @@ public class MonthController {
 
         year_label.setText(Integer.toString(currentYear));
         month_label.setText(Integer.toString(currentMonth));
+
+        try {
+            // POST 요청을 보낼 PHP 서버의 URL
+            String serverURL = "http://hbr2024.dothome.co.kr/updatemonth.php";
+
+            // URL 객체 생성
+            URL url = new URL(serverURL);
+
+            // HTTP 연결 생성
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            // POST 데이터 생성
+            String postData = "Id=" + Id;
+
+            // 데이터를 서버로 전송
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            // 서버로부터 응답 코드 받기
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 응답 데이터 읽기
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                String responseData = response.toString();
+                // 데이터가 비어 있는지 확인
+                if (!responseData.isEmpty()) {
+                    try {
+                        // 서버 응답 데이터가 JSON 형식인지 확인
+                        if (responseData.startsWith("[")) {
+                            // JSON 형식일 경우 JSONArray로 변환
+                            JSONArray jsonArray = new JSONArray(responseData);
+
+                            Map<String, Color> contentColorMap = new HashMap<>();
+
+// 각 콘텐츠에 대해 색상 매핑
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String content = jsonObject.getString("content");
+
+                                // 콘텐츠에 대한 색상이 매핑되어 있는지 확인
+                                if (!contentColorMap.containsKey(content)) {
+                                    // 랜덤한 밝은색 계열의 색상 생성
+                                    Color color = getRandomBrightColor();
+                                    contentColorMap.put(content, color);
+                                }
+                            }
+
+// 각 날짜에 대해 콘텐츠와 색상을 매핑하여 적용
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String content = jsonObject.getString("content");
+                                String Date = jsonObject.getString("date");
+
+                                LocalDate LDate = LocalDate.parse(Date);
+
+                                year = Integer.parseInt(year_label.getText());
+                                month = Integer.parseInt(month_label.getText());
+
+                                if (LDate.getYear() == year && LDate.getMonthValue() == month) {
+                                    int year = LDate.getYear();
+                                    int month = LDate.getMonthValue();
+                                    int day = LDate.getDayOfMonth();
+
+                                    // 해당 날짜에 맞는 content 라벨을 생성하여 content를 적용시켜주고 팬의 배경색을 적용
+                                    for (int row = 0; row < 6; row++) {
+                                        for (int col = 0; col < 7; col++) {
+                                            Label dayLabel = dayLabels[row * 7 + col];
+                                            String labelText = dayLabel.getText();
+                                            if (!labelText.isEmpty() && Integer.parseInt(labelText) == day) {
+                                                // 해당하는 vbox를 가져와서 content 라벨 생성 및 추가
+                                                VBox vbox = vboxs[row][col];
+                                                Label contentLabel = new Label(content);
+                                                contentLabel.setFont(new Font("Arial", 12));
+                                                // 해당하는 콘텐츠에 맞는 색상 적용
+                                                Color color = contentColorMap.get(content);
+                                                contentLabel.setTextFill(Color.BLACK); // 글씨색은 검정색으로 지정
+                                                vbox.getChildren().add(contentLabel);
+                                                // 배경색을 해당 콘텐츠의 색상으로 지정
+                                                vbox.setStyle("-fx-background-color: " + toRGBCode(color) + ";");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            // JSON 형식이 아닌 경우에 대한 처리
+                            System.out.println("Response data is not in JSON format.");
+                            // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                        }
+                    } catch (JSONException e) {
+                        // JSON 형식이 잘못된 경우에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    } catch (Exception e) {
+                        // 그 외의 예외에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    }
+                } else {
+                    System.out.println("Response data is empty.");
+                    // 처리할 작업을 추가하세요 (예: 기본 값을 설정하거나 사용자에게 메시지 출력)
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private Color getRandomBrightColor() {
+        // 랜덤한 밝은색 계열의 RGB 값을 생성
+        double red = Math.random() * 0.5 + 0.5; // 0.5 ~ 1.0
+        double green = Math.random() * 0.5 + 0.5; // 0.5 ~ 1.0
+        double blue = Math.random() * 0.5 + 0.5; // 0.5 ~ 1.0
+
+        // RGB 값을 기반으로 Color 객체 생성
+        Color color = new Color(red, green, blue, 1.0); // 마지막 매개변수는 알파값(투명도)로, 여기서는 1.0으로 설정하여 완전히 불투명하도록 합니다.
+
+        return color;
+    }
+
+    private String toRGBCode(Color color) {
+        // Color 객체의 RGB 값을 255로 곱하여 정수 값으로 변환한 후 HEX 문자열로 변환
+        int r = (int) (color.getRed() * 255);
+        int g = (int) (color.getGreen() * 255);
+        int b = (int) (color.getBlue() * 255);
+
+        // HEX 문자열로 변환한 RGB 값을 결합하여 RGB 코드 생성
+        String rgbCode = String.format("#%02X%02X%02X", r, g, b);
+
+        return rgbCode;
     }
 
     private void handleVBoxClick(VBox vbox) {
@@ -250,11 +448,149 @@ public class MonthController {
             System.out.println("날짜 레이블의 값: " + clickday);
             clickyear = String.valueOf(currentYear);
             clickmonth = String.valueOf(currentMonth);
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("month_detail.fxml"));
+                Parent root = loader.load();
+
+                Stage newStage = new Stage();
+                newStage.setScene(new Scene(root));
+                newStage.show();
+
+                MonthDetail monthDetail = loader.getController();
+                monthDetail.initData(clickyear, clickmonth, clickday);
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     @FXML
     private void onPreviousMonthButtonClick(ActionEvent event) {
+        try {
+            // POST 요청을 보낼 PHP 서버의 URL
+            String serverURL = "http://hbr2024.dothome.co.kr/updatemonth.php";
+
+            // URL 객체 생성
+            URL url = new URL(serverURL);
+
+            // HTTP 연결 생성
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            // POST 데이터 생성
+            String postData = "Id=" + Id;
+
+            // 데이터를 서버로 전송
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            // 서버로부터 응답 코드 받기
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 응답 데이터 읽기
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                String responseData = response.toString();
+                // 데이터가 비어 있는지 확인
+                if (!responseData.isEmpty()) {
+                    try {
+                        // 서버 응답 데이터가 JSON 형식인지 확인
+                        if (responseData.startsWith("[")) {
+                            // JSON 형식일 경우 JSONArray로 변환
+                            JSONArray jsonArray = new JSONArray(responseData);
+
+                            Map<String, Color> contentColorMap = new HashMap<>();
+
+// 각 콘텐츠에 대해 색상 매핑
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String content = jsonObject.getString("content");
+
+                                // 콘텐츠에 대한 색상이 매핑되어 있는지 확인
+                                if (!contentColorMap.containsKey(content)) {
+                                    // 랜덤한 밝은색 계열의 색상 생성
+                                    Color color = getRandomBrightColor();
+                                    contentColorMap.put(content, color);
+                                }
+                            }
+
+// 각 날짜에 대해 콘텐츠와 색상을 매핑하여 적용
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String content = jsonObject.getString("content");
+                                String Date = jsonObject.getString("date");
+
+                                LocalDate LDate = LocalDate.parse(Date);
+
+                                year = Integer.parseInt(year_label.getText());
+                                month = Integer.parseInt(month_label.getText());
+
+                                if (LDate.getYear() == year && LDate.getMonthValue() == month) {
+                                    int year = LDate.getYear();
+                                    int month = LDate.getMonthValue();
+                                    int day = LDate.getDayOfMonth();
+
+                                    // 해당 날짜에 맞는 content 라벨을 생성하여 content를 적용시켜주고 팬의 배경색을 적용
+                                    for (int row = 0; row < 6; row++) {
+                                        for (int col = 0; col < 7; col++) {
+                                            Label dayLabel = dayLabels[row * 7 + col];
+                                            String labelText = dayLabel.getText();
+                                            if (!labelText.isEmpty() && Integer.parseInt(labelText) == day) {
+                                                // 해당하는 vbox를 찾아서 마지막에 생성된 라벨을 삭제
+                                                VBox vbox = vboxs[row][col];
+                                                // 해당 VBox에서 자식 요소의 개수 확인
+                                                ObservableList<Node> children = vbox.getChildren();
+                                                int numChildren = children.size();
+
+                                                // 자식 요소가 2개 이상인 경우에만 마지막 요소 삭제
+                                                if (numChildren > 1) {
+                                                    // 마지막 요소 제거
+                                                    Node lastChild = children.get(numChildren - 1);
+                                                    vbox.getChildren().remove(lastChild);
+                                                }
+
+                                                // 배경색을 초기화
+                                                vbox.setStyle("-fx-background-color: transparent;");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            // JSON 형식이 아닌 경우에 대한 처리
+                            System.out.println("Response data is not in JSON format.");
+                            // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                        }
+                    } catch (JSONException e) {
+                        // JSON 형식이 잘못된 경우에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    } catch (Exception e) {
+                        // 그 외의 예외에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    }
+                } else {
+                    System.out.println("Response data is empty.");
+                    // 처리할 작업을 추가하세요 (예: 기본 값을 설정하거나 사용자에게 메시지 출력)
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         // 현재 월을 이전 월로 감소시킴
         currentMonth--;
@@ -276,10 +612,252 @@ public class MonthController {
         month_label.setText(Integer.toString(currentMonth));
 
         setDayLabelsVisibility(true, dayLabels);
+
+        try {
+            // POST 요청을 보낼 PHP 서버의 URL
+            String serverURL = "http://hbr2024.dothome.co.kr/updatemonth.php";
+
+            // URL 객체 생성
+            URL url = new URL(serverURL);
+
+            // HTTP 연결 생성
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            // POST 데이터 생성
+            String postData = "Id=" + Id;
+
+            // 데이터를 서버로 전송
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            // 서버로부터 응답 코드 받기
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 응답 데이터 읽기
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                String responseData = response.toString();
+                // 데이터가 비어 있는지 확인
+                if (!responseData.isEmpty()) {
+                    try {
+                        // 서버 응답 데이터가 JSON 형식인지 확인
+                        if (responseData.startsWith("[")) {
+                            // JSON 형식일 경우 JSONArray로 변환
+                            JSONArray jsonArray = new JSONArray(responseData);
+
+                            Map<String, Color> contentColorMap = new HashMap<>();
+
+// 각 콘텐츠에 대해 색상 매핑
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String content = jsonObject.getString("content");
+
+                                // 콘텐츠에 대한 색상이 매핑되어 있는지 확인
+                                if (!contentColorMap.containsKey(content)) {
+                                    // 랜덤한 밝은색 계열의 색상 생성
+                                    Color color = getRandomBrightColor();
+                                    contentColorMap.put(content, color);
+                                }
+                            }
+
+// 각 날짜에 대해 콘텐츠와 색상을 매핑하여 적용
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String content = jsonObject.getString("content");
+                                String Date = jsonObject.getString("date");
+
+                                LocalDate LDate = LocalDate.parse(Date);
+
+                                year = Integer.parseInt(year_label.getText());
+                                month = Integer.parseInt(month_label.getText());
+
+                                if (LDate.getYear() == year && LDate.getMonthValue() == month) {
+                                    int year = LDate.getYear();
+                                    int month = LDate.getMonthValue();
+                                    int day = LDate.getDayOfMonth();
+
+                                    // 해당 날짜에 맞는 content 라벨을 생성하여 content를 적용시켜주고 팬의 배경색을 적용
+                                    for (int row = 0; row < 6; row++) {
+                                        for (int col = 0; col < 7; col++) {
+                                            Label dayLabel = dayLabels[row * 7 + col];
+                                            String labelText = dayLabel.getText();
+                                            if (!labelText.isEmpty() && Integer.parseInt(labelText) == day) {
+                                                // 해당하는 vbox를 가져와서 content 라벨 생성 및 추가
+                                                VBox vbox = vboxs[row][col];
+                                                Label contentLabel = new Label(content);
+                                                contentLabel.setFont(new Font("Arial", 12));
+                                                // 해당하는 콘텐츠에 맞는 색상 적용
+                                                Color color = contentColorMap.get(content);
+                                                contentLabel.setTextFill(Color.BLACK); // 글씨색은 검정색으로 지정
+                                                vbox.getChildren().add(contentLabel);
+                                                // 배경색을 해당 콘텐츠의 색상으로 지정
+                                                vbox.setStyle("-fx-background-color: " + toRGBCode(color) + ";");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            // JSON 형식이 아닌 경우에 대한 처리
+                            System.out.println("Response data is not in JSON format.");
+                            // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                        }
+                    } catch (JSONException e) {
+                        // JSON 형식이 잘못된 경우에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    } catch (Exception e) {
+                        // 그 외의 예외에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    }
+                } else {
+                    System.out.println("Response data is empty.");
+                    // 처리할 작업을 추가하세요 (예: 기본 값을 설정하거나 사용자에게 메시지 출력)
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @FXML
     private void onNextMonthButtonClick(ActionEvent event) {
+        try {
+            // POST 요청을 보낼 PHP 서버의 URL
+            String serverURL = "http://hbr2024.dothome.co.kr/updatemonth.php";
+
+            // URL 객체 생성
+            URL url = new URL(serverURL);
+
+            // HTTP 연결 생성
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            // POST 데이터 생성
+            String postData = "Id=" + Id;
+
+            // 데이터를 서버로 전송
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            // 서버로부터 응답 코드 받기
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 응답 데이터 읽기
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                String responseData = response.toString();
+                // 데이터가 비어 있는지 확인
+                if (!responseData.isEmpty()) {
+                    try {
+                        // 서버 응답 데이터가 JSON 형식인지 확인
+                        if (responseData.startsWith("[")) {
+                            // JSON 형식일 경우 JSONArray로 변환
+                            JSONArray jsonArray = new JSONArray(responseData);
+
+                            Map<String, Color> contentColorMap = new HashMap<>();
+
+// 각 콘텐츠에 대해 색상 매핑
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String content = jsonObject.getString("content");
+
+                                // 콘텐츠에 대한 색상이 매핑되어 있는지 확인
+                                if (!contentColorMap.containsKey(content)) {
+                                    // 랜덤한 밝은색 계열의 색상 생성
+                                    Color color = getRandomBrightColor();
+                                    contentColorMap.put(content, color);
+                                }
+                            }
+
+// 각 날짜에 대해 콘텐츠와 색상을 매핑하여 적용
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String content = jsonObject.getString("content");
+                                String Date = jsonObject.getString("date");
+
+                                LocalDate LDate = LocalDate.parse(Date);
+
+                                year = Integer.parseInt(year_label.getText());
+                                month = Integer.parseInt(month_label.getText());
+
+                                if (LDate.getYear() == year && LDate.getMonthValue() == month) {
+                                    int year = LDate.getYear();
+                                    int month = LDate.getMonthValue();
+                                    int day = LDate.getDayOfMonth();
+
+                                    // 해당 날짜에 맞는 content 라벨을 생성하여 content를 적용시켜주고 팬의 배경색을 적용
+                                    for (int row = 0; row < 6; row++) {
+                                        for (int col = 0; col < 7; col++) {
+                                            Label dayLabel = dayLabels[row * 7 + col];
+                                            String labelText = dayLabel.getText();
+                                            if (!labelText.isEmpty() && Integer.parseInt(labelText) == day) {
+                                                // 해당하는 vbox를 찾아서 마지막에 생성된 라벨을 삭제
+                                                VBox vbox = vboxs[row][col];
+                                                // 해당 VBox에서 자식 요소의 개수 확인
+                                                ObservableList<Node> children = vbox.getChildren();
+                                                int numChildren = children.size();
+
+                                                // 자식 요소가 2개 이상인 경우에만 마지막 요소 삭제
+                                                if (numChildren > 1) {
+                                                    // 마지막 요소 제거
+                                                    Node lastChild = children.get(numChildren - 1);
+                                                    vbox.getChildren().remove(lastChild);
+                                                }
+
+                                                // 배경색을 초기화
+                                                vbox.setStyle("-fx-background-color: transparent;");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            // JSON 형식이 아닌 경우에 대한 처리
+                            System.out.println("Response data is not in JSON format.");
+                            // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                        }
+                    } catch (JSONException e) {
+                        // JSON 형식이 잘못된 경우에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    } catch (Exception e) {
+                        // 그 외의 예외에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    }
+                } else {
+                    System.out.println("Response data is empty.");
+                    // 처리할 작업을 추가하세요 (예: 기본 값을 설정하거나 사용자에게 메시지 출력)
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         // 현재 월을 다음 월로 증가시킴
         currentMonth++;
         if (currentMonth > 12) {
@@ -300,6 +878,125 @@ public class MonthController {
         month_label.setText(Integer.toString(currentMonth));
 
         setDayLabelsVisibility(true, dayLabels);
+
+        try {
+            // POST 요청을 보낼 PHP 서버의 URL
+            String serverURL = "http://hbr2024.dothome.co.kr/updatemonth.php";
+
+            // URL 객체 생성
+            URL url = new URL(serverURL);
+
+            // HTTP 연결 생성
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            // POST 데이터 생성
+            String postData = "Id=" + Id;
+
+            // 데이터를 서버로 전송
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            // 서버로부터 응답 코드 받기
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 응답 데이터 읽기
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                String responseData = response.toString();
+                // 데이터가 비어 있는지 확인
+                if (!responseData.isEmpty()) {
+                    try {
+                        // 서버 응답 데이터가 JSON 형식인지 확인
+                        if (responseData.startsWith("[")) {
+                            // JSON 형식일 경우 JSONArray로 변환
+                            JSONArray jsonArray = new JSONArray(responseData);
+
+                            Map<String, Color> contentColorMap = new HashMap<>();
+
+// 각 콘텐츠에 대해 색상 매핑
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String content = jsonObject.getString("content");
+
+                                // 콘텐츠에 대한 색상이 매핑되어 있는지 확인
+                                if (!contentColorMap.containsKey(content)) {
+                                    // 랜덤한 밝은색 계열의 색상 생성
+                                    Color color = getRandomBrightColor();
+                                    contentColorMap.put(content, color);
+                                }
+                            }
+
+// 각 날짜에 대해 콘텐츠와 색상을 매핑하여 적용
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject jsonObject = jsonArray.getJSONObject(i);
+                                String content = jsonObject.getString("content");
+                                String Date = jsonObject.getString("date");
+
+                                LocalDate LDate = LocalDate.parse(Date);
+
+                                year = Integer.parseInt(year_label.getText());
+                                month = Integer.parseInt(month_label.getText());
+
+                                if (LDate.getYear() == year && LDate.getMonthValue() == month) {
+                                    int year = LDate.getYear();
+                                    int month = LDate.getMonthValue();
+                                    int day = LDate.getDayOfMonth();
+
+                                    // 해당 날짜에 맞는 content 라벨을 생성하여 content를 적용시켜주고 팬의 배경색을 적용
+                                    for (int row = 0; row < 6; row++) {
+                                        for (int col = 0; col < 7; col++) {
+                                            Label dayLabel = dayLabels[row * 7 + col];
+                                            String labelText = dayLabel.getText();
+                                            if (!labelText.isEmpty() && Integer.parseInt(labelText) == day) {
+                                                // 해당하는 vbox를 가져와서 content 라벨 생성 및 추가
+                                                VBox vbox = vboxs[row][col];
+                                                Label contentLabel = new Label(content);
+                                                contentLabel.setFont(new Font("Arial", 12));
+                                                // 해당하는 콘텐츠에 맞는 색상 적용
+                                                Color color = contentColorMap.get(content);
+                                                contentLabel.setTextFill(Color.BLACK); // 글씨색은 검정색으로 지정
+                                                vbox.getChildren().add(contentLabel);
+                                                // 배경색을 해당 콘텐츠의 색상으로 지정
+                                                vbox.setStyle("-fx-background-color: " + toRGBCode(color) + ";");
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        } else {
+                            // JSON 형식이 아닌 경우에 대한 처리
+                            System.out.println("Response data is not in JSON format.");
+                            // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                        }
+                    } catch (JSONException e) {
+                        // JSON 형식이 잘못된 경우에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    } catch (Exception e) {
+                        // 그 외의 예외에 대한 예외 처리
+                        e.printStackTrace();
+                        // 예외 발생 시 사용자에게 메시지 출력 등의 작업 추가 가능
+                    }
+                } else {
+                    System.out.println("Response data is empty.");
+                    // 처리할 작업을 추가하세요 (예: 기본 값을 설정하거나 사용자에게 메시지 출력)
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setDayLabelsVisibility(boolean visible, Label[] dayLabels) {
