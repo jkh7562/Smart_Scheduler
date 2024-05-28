@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="184.0" prefWidth="336.0" style="-fx-background-color: #ffffff;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.monthaddController">
+   <children>
+      <Pane prefHeight="37.0" prefWidth="336.0" style="-fx-background-color: #c8c4ff;">
+         <children>
+            <HBox layoutY="9.0" prefHeight="30.0" prefWidth="186.0">
+               <children>
+                  <ImageView fx:id="back_image" fitHeight="24.0" fitWidth="32.0" onMouseClicked="#backimageClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../backre.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+                  <Label prefHeight="24.0" prefWidth="195.0" text="월간 일정 추가">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+         </children>
+      </Pane>
+      <Pane layoutY="37.0" prefHeight="149.0" prefWidth="336.0">
+         <children>
+            <VBox layoutX="14.0" layoutY="38.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="날짜 : ">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin></Label>
+                        <DatePicker fx:id="date_datepicker" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="일정 : ">
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin></Label>
+                        <TextField fx:id="content_textfield" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button fx:id="save_button" layoutX="280.0" layoutY="7.0" mnemonicParsing="false" onAction="#saveButtonAction" prefHeight="20.0" prefWidth="50.0" style="-fx-background-color: #219653;" text="추가" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+                </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

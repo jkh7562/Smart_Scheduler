@@ -211,6 +211,21 @@ public class MonthController {
 
     @FXML
     private void addButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("month_add.fxml"));
+            Parent root = loader.load();
+
+            Stage newStage = new Stage();
+            newStage.setScene(new Scene(root));
+            newStage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void prtyButtonAction(ActionEvent event) {
 
     }
 

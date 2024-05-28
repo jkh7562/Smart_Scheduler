@@ -160,34 +160,6 @@
       </VBox>
       <Pane layoutX="215.0" layoutY="5.0" prefHeight="590.0" prefWidth="560.0" style="-fx-background-color: #dbdbdb;">
          <children>
-            <HBox alignment="CENTER" layoutX="460.0" layoutY="80.0">
-               <children>
-                  <Button fx:id="add_button" maxWidth="44.0" minWidth="44.0" mnemonicParsing="false" onAction="#addButtonAction" prefWidth="44.0">
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../add_sign_icon.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                     <HBox.margin>
-                        <Insets right="2.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Button fx:id="delete_button" mnemonicParsing="false" onAction="#deleteButtonAction" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="11.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../trash.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </HBox>
             <GridPane fx:id="calendar" layoutX="4.0" layoutY="135.0" prefHeight="450.0" prefWidth="551.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="79.0" />
@@ -912,6 +884,34 @@
                      <HBox.margin>
                         <Insets left="20.0" />
                      </HBox.margin>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="460.0" layoutY="80.0">
+               <children>
+                  <Button fx:id="add_button" maxWidth="44.0" minWidth="44.0" mnemonicParsing="false" onAction="#addButtonAction" prefWidth="44.0">
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../add_sign_icon.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <HBox.margin>
+                        <Insets right="2.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button fx:id="delete_button" mnemonicParsing="false" onAction="#deleteButtonAction" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="11.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../trash.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
                   </Button>
                </children>
             </HBox>
