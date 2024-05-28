@@ -1,5 +1,6 @@
 package com.example.smart_scheduler;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -18,6 +21,8 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MonthDetail {
     String Id;
@@ -38,85 +43,25 @@ public class MonthDetail {
     @FXML
     Button delete_button;
 
+    String date;
+
 
     public void initData(String clickyear, String clickmonth, String clickday) {
+        Id = primary();
         year_label.setText(clickyear);
         month_label.setText(clickmonth);
         day_label.setText(clickday);
-    }
-    @FXML
-    private void backButtonAction(ActionEvent event) {
-        // 현재 창(Stage)을 가져옵니다.
-        Stage currentStage = (Stage) back_button.getScene().getWindow();
-        // 현재 창을 닫습니다.
-        currentStage.close();
-    }
-    @FXML
-    private void saveButtonAction(ActionEvent event) {
-        Id = primary();
-        String year = year_label.getText();
-        String month = month_label.getText();
-        String day = day_label.getText();
-        String memo = memo_area.getText();
 
-        /*try {
-            // 서버의 PHP 스크립트 URL로 설정
-            String serverURL = "http://hbr2024.dothome.co.kr/save_monthschedule.php";
+        date = String.format("%s-%02d-%02d", clickyear, Integer.parseInt(clickmonth), Integer.parseInt(clickday));
 
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/getmonthcontent.php";
             URL url = new URL(serverURL);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setDoOutput(true);
 
-            // 요청 데이터 설정
-            String postData = "Id=" + Id + "&start=" + start + "&end=" + end + "&memo=" + memo;
-            OutputStream os = connection.getOutputStream();
-            os.write(postData.getBytes("UTF-8"));
-            os.close();
-
-            int responseCode = connection.getResponseCode();
-            if (responseCode == HttpURLConnection.HTTP_OK) {
-                // 서버 응답 처리
-                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder response = new StringBuilder();
-                String inputLine;
-
-                while ((inputLine = in.readLine()) != null) {
-                    response.append(inputLine);
-                }
-
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("day_save.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-
-                    Stage failStage = new Stage();
-                    failStage.setScene(scene);
-                    failStage.show();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                System.out.println("HTTP Error Code: " + responseCode);
-            }
-            connection.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }*/
-    }
-
-    @FXML
-    private void deleteButtonAction(ActionEvent event) {
-        Id = primary();
-
-        /*try {
-            String serverURL = "http://hbr2024.dothome.co.kr/delete_day.php";
-            URL url = new URL(serverURL);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("POST");
-            connection.setDoOutput(true);
-
-            String postData = "Id=" + Id + "&start=" + start + "&end=" + end;
+            String postData = "Id=" + Id + "&date=" + date;
             OutputStream os = connection.getOutputStream();
             os.write(postData.getBytes("UTF-8"));
             os.close();
@@ -134,7 +79,127 @@ public class MonthDetail {
                 in.close();
                 System.out.println("Response: " + response.toString());
 
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("day_delete.fxml"));
+                JSONArray jsonArray = new JSONArray(response.toString());
+                List<String> contentList = new ArrayList<>();
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                    String content = jsonObject.getString("content");
+                    contentList.add(content);
+                }
+
+                // ListView에 데이터 설정
+                Platform.runLater(() -> {
+                    content_listview.getItems().clear();
+                    for (String content : contentList) {
+                        Label label = new Label(content);
+                        label.setStyle("-fx-font-size: 25px;"); // 글자 크기 설정
+                        content_listview.getItems().add(label);
+                    }
+                });
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    @FXML
+    private void backButtonAction(ActionEvent event) {
+        // 현재 창(Stage)을 가져옵니다.
+        Stage currentStage = (Stage) back_button.getScene().getWindow();
+        // 현재 창을 닫습니다.
+        currentStage.close();
+    }
+    @FXML
+    private void saveButtonAction(ActionEvent event) {
+        Id = primary();
+        String memo = memo_area.getText();
+        try {
+            // 서버의 PHP 스크립트 URL로 설정
+            String serverURL = "http://hbr2024.dothome.co.kr/save_monthschedule.php";
+
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            // 요청 데이터 설정
+            String postData = "Id=" + Id + "&date=" + date + "&memo=" + memo;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                // 서버 응답 처리
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("month_save.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+
+                    Stage failStage = new Stage();
+                    failStage.setScene(scene);
+                    failStage.show();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+            connection.disconnect();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @FXML
+    private void deleteButtonAction(ActionEvent event) {
+        Id = primary();
+        String content = ((Label) content_listview.getSelectionModel().getSelectedItem()).getText();
+
+        System.out.println("2374856290387456203497856490382756249038756923874562938745629387456295874");
+        System.out.println(Id);
+        System.out.println(date);
+        System.out.println(content);
+        System.out.println("2374856290387456203497856490382756249038756923874562938745629387456295874");
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/delete_month.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id + "&date=" + date + "&content=" + content;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("month_delete.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
 
@@ -146,7 +211,7 @@ public class MonthDetail {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     public String primary() {

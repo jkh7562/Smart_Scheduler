@@ -118,7 +118,11 @@
                         <Font size="20.0" />
                      </font>
                   </TextArea>
-                  <ListView fx:id="content_listview" layoutX="10.0" layoutY="120.0" prefHeight="180.0" prefWidth="740.0" />
+                  <ScrollPane layoutX="10.0" layoutY="120.0" prefHeight="180.0" prefWidth="740.0">
+                     <content>
+                        <ListView fx:id="content_listview" prefHeight="500.0" prefWidth="725.0" />
+                     </content>
+                  </ScrollPane>
                </children>
             </Pane>
             </children>
