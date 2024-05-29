@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import org.json.JSONArray;
@@ -74,6 +75,22 @@ public class MainController {
     Button rest_button;
     @FXML
     Button month_button;
+
+    //유저팬 변수
+    @FXML
+    Pane user_pane;
+    @FXML
+    Label id_label;
+    @FXML
+    Button user_button;
+    @FXML
+    Label name_label;
+    @FXML
+    Button logout_button;
+    @FXML
+    Button pwcg_button;
+    @FXML
+    Button secession_button;
 
 
 
@@ -1198,5 +1215,11 @@ public class MainController {
             e.printStackTrace();
             // 사용자에게 오류 메시지 표시
         }
+    }
+
+    @FXML
+    private void userButtonAction(ActionEvent event) {
+
+
     }
 }
