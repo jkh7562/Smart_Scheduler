@@ -31,11 +31,7 @@
                         <Image url="@../../../다운로드.jpg" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="id_label" layoutX="55.0" layoutY="20.0" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #c8c4ff;" text="User Name........">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </TextField>
+                  <Label fx:id="id_label" layoutX="62.0" layoutY="27.0" text="Label" />
                   <Button fx:id="user_button" layoutX="150.0" layoutY="25.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
                      <font>
                         <Font size="10.0" />
