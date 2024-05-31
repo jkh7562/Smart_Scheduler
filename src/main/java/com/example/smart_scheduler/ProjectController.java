@@ -463,29 +463,64 @@ public class ProjectController {
     }
 
     private void handleVBoxClick(VBox vbox) {
-        // Check if the VBox has 2 or more children
-        if (vbox.getChildren().size() >= 2) {
-            // Get the last child of the VBox
-            Node lastChild = vbox.getChildren().get(vbox.getChildren().size() - 1);
-            if (lastChild instanceof Label) {
-                Label lastLabel = (Label) lastChild;
-                String content = lastLabel.getText();
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("project_complete.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.setScene(scene);
-                    stage.show();
+        Id = primary();
+        try {
+            String serverURL2 = "http://hbr2024.dothome.co.kr/captainfind.php";
+            URL url2 = new URL(serverURL2);
+            HttpURLConnection connection2 = (HttpURLConnection) url2.openConnection();
+            connection2.setRequestMethod("POST");
+            connection2.setDoOutput(true);
 
-                    project_cptController project_cptController = loader.getController();
-                    project_cptController.initData(content, teamname);
+            String postData2 = "Id=" + Id;
+            OutputStream os2 = connection2.getOutputStream();
+            os2.write(postData2.getBytes("UTF-8"));
+            os2.close();
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+            int responseCode2 = connection2.getResponseCode();
+            if (responseCode2 == HttpURLConnection.HTTP_OK) {
+                BufferedReader in2 = new BufferedReader(new InputStreamReader(connection2.getInputStream()));
+                StringBuilder response2 = new StringBuilder();
+                String inputLine2;
+
+                while ((inputLine2 = in2.readLine()) != null) {
+                    response2.append(inputLine2);
                 }
-                //disableMatchingVBoxes(content);
+
+                in2.close();
+                String captainValue = response2.toString();
+                System.out.println("Captain Value: " + captainValue);
+
+                // Check the value of captain attribute
+                if ("1".equals(captainValue)) {
+                    if (vbox.getChildren().size() >= 2) {
+                        // Get the last child of the VBox
+                        Node lastChild = vbox.getChildren().get(vbox.getChildren().size() - 1);
+                        if (lastChild instanceof Label) {
+                            Label lastLabel = (Label) lastChild;
+                            String content = lastLabel.getText();
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("project_complete.fxml"));
+                                Parent root = loader.load();
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setScene(scene);
+                                stage.show();
+
+                                project_cptController project_cptController = loader.getController();
+                                project_cptController.initData(content, teamname);
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            //disableMatchingVBoxes(content);
+                        }
+                    }
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode2);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
