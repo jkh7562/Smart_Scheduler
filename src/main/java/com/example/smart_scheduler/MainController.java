@@ -517,6 +517,9 @@ public class MainController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+            // JSONException이 발생한 경우 처리할 코드
+            e.printStackTrace(); // 혹은 다른 로깅 방법을 사용할 수도 있습니다.
         }
     }
 
