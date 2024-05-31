@@ -1409,14 +1409,51 @@ public class ProjectController {
                             String serverResponse1 = response1.toString();
                             if (serverResponse1.equals("Teamname exists in the project table.")) {
                                 try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("project_management.fxml"));
-                                    Parent root = loader.load();
-                                    Scene scene = new Scene(root);
-                                    Stage stage = new Stage();
-                                    stage.setScene(scene);
-                                    stage.show();
+                                    String serverURL2 = "http://hbr2024.dothome.co.kr/captainfind.php";
+                                    URL url2 = new URL(serverURL2);
+                                    HttpURLConnection connection2 = (HttpURLConnection) url2.openConnection();
+                                    connection2.setRequestMethod("POST");
+                                    connection2.setDoOutput(true);
 
-                                } catch (IOException e) {
+                                    String postData2 = "Id=" + Id;
+                                    OutputStream os2 = connection2.getOutputStream();
+                                    os2.write(postData2.getBytes("UTF-8"));
+                                    os2.close();
+
+                                    int responseCode2 = connection2.getResponseCode();
+                                    if (responseCode2 == HttpURLConnection.HTTP_OK) {
+                                        BufferedReader in2 = new BufferedReader(new InputStreamReader(connection2.getInputStream()));
+                                        StringBuilder response2 = new StringBuilder();
+                                        String inputLine2;
+
+                                        while ((inputLine2 = in2.readLine()) != null) {
+                                            response2.append(inputLine2);
+                                        }
+
+                                        in2.close();
+                                        String captainValue = response2.toString();
+                                        System.out.println("Captain Value: " + captainValue);
+
+                                        // Check the value of captain attribute
+                                        if ("1".equals(captainValue)) {
+                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("project_management.fxml"));
+                                            Parent root = loader.load();
+                                            Scene scene = new Scene(root);
+                                            Stage stage = new Stage();
+                                            stage.setScene(scene);
+                                            stage.show();
+                                        } else {
+                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("notcaptain_management.fxml"));
+                                            Parent root = loader.load();
+                                            Scene scene = new Scene(root);
+                                            Stage stage = new Stage();
+                                            stage.setScene(scene);
+                                            stage.show();
+                                        }
+                                    } else {
+                                        System.out.println("HTTP Error Code: " + responseCode2);
+                                    }
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             } else {
@@ -1494,14 +1531,51 @@ public class ProjectController {
                 // Id가 존재하는지 여부에 따라 특정 행동 수행
                 if (!serverResponse.equals("Id does not exist in the team table.")) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("project_team.fxml"));
-                        Parent root = loader.load();
-                        Scene scene = new Scene(root);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                        stage.show();
+                        String serverURL2 = "http://hbr2024.dothome.co.kr/captainfind.php";
+                        URL url2 = new URL(serverURL2);
+                        HttpURLConnection connection2 = (HttpURLConnection) url2.openConnection();
+                        connection2.setRequestMethod("POST");
+                        connection2.setDoOutput(true);
 
-                    } catch (IOException e) {
+                        String postData2 = "Id=" + Id;
+                        OutputStream os2 = connection2.getOutputStream();
+                        os2.write(postData2.getBytes("UTF-8"));
+                        os2.close();
+
+                        int responseCode2 = connection2.getResponseCode();
+                        if (responseCode2 == HttpURLConnection.HTTP_OK) {
+                            BufferedReader in2 = new BufferedReader(new InputStreamReader(connection2.getInputStream()));
+                            StringBuilder response2 = new StringBuilder();
+                            String inputLine2;
+
+                            while ((inputLine2 = in2.readLine()) != null) {
+                                response2.append(inputLine2);
+                            }
+
+                            in2.close();
+                            String captainValue = response2.toString();
+                            System.out.println("Captain Value: " + captainValue);
+
+                            // Check the value of captain attribute
+                            if ("1".equals(captainValue)) {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("project_team.fxml"));
+                                Parent root = loader.load();
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setScene(scene);
+                                stage.show();
+                            } else {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("notcaptain_team.fxml"));
+                                Parent root = loader.load();
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setScene(scene);
+                                stage.show();
+                            }
+                        } else {
+                            System.out.println("HTTP Error Code: " + responseCode2);
+                        }
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
