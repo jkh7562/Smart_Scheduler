@@ -10,6 +10,28 @@
    <children>
       <Pane prefHeight="600.0" prefWidth="200.0" style="-fx-background-color: #c8c4ff;">
          <children>
+            <Pane layoutX="10.0" layoutY="80.0" prefHeight="80.0" prefWidth="180.0">
+               <children>
+                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="오늘 일정">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../../../Schedule.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+                  <Button fx:id="prty_button" alignment="BASELINE_LEFT" layoutY="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#prtyButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="일정 우선순위">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../../../prty.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
             <Pane layoutX="10.0" layoutY="550.0" prefHeight="130.0" prefWidth="180.0">
                <children>
                   <Button fx:id="project_button" alignment="BASELINE_LEFT" mnemonicParsing="false" onAction="#projectButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
@@ -24,22 +46,56 @@
                </children>
             </Pane>
             <Pane layoutX="10.0" layoutY="280.0" prefHeight="30.0" prefWidth="180.0" />
-            <Pane layoutX="5.0" layoutY="10.0" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
+            <Pane fx:id="user" layoutX="5.0" layoutY="10.0">
                <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../../../다운로드.jpg" />
-                     </image>
-                  </ImageView>
-                  <Label fx:id="id_label" layoutX="62.0" layoutY="27.0" text="Label">
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding></Label>
-                  <Button fx:id="user_button" layoutX="150.0" layoutY="25.0" mnemonicParsing="false" onAction="#userButtonAction" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
+                  <Pane prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../../../다운로드.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="id_label" layoutX="62.0" layoutY="27.0" text="Label">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="user_button" layoutX="150.0" layoutY="25.0" mnemonicParsing="false" onAction="#userButtonAction" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="user_pane" disable="true" layoutY="45.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../다운로드.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="name_label" layoutX="55.0" layoutY="25.0" prefHeight="14.0" prefWidth="113.0" text="User Name. . .">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="logout_button" alignment="CENTER" layoutY="60.0" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="pwcg_button" alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" onAction="#pwcgButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="PW수정">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="secession_button" alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" onAction="#secessionButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="회원탈퇴">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
                </children>
             </Pane>
             <Button fx:id="rest_button" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="364.0" mnemonicParsing="false" onAction="#restButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="여유시간 활용">
@@ -66,28 +122,6 @@
                      </image></ImageView>
                </graphic>
             </Button>
-            <Pane layoutX="10.0" layoutY="80.0" prefHeight="80.0" prefWidth="180.0">
-               <children>
-                  <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="오늘 일정">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
-                           <image>
-                              <Image url="@../../../Schedule.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="prty_button" alignment="BASELINE_LEFT" layoutY="40.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#prtyButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="일정 우선순위">
-                     <graphic>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
-                           <image>
-                              <Image url="@../../../prty.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-               </children>
-            </Pane>
             <VBox fx:id="prty_vbox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="155.0" prefHeight="170.0" prefWidth="180.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="60.0">
@@ -151,31 +185,6 @@
                         </ImageView>
                      </graphic>
                   </Button>
-               </children>
-            </Pane>
-            <Pane fx:id="user_pane" layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;">
-               <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../다운로드.jpg" />
-                     </image></ImageView>
-                  <Label fx:id="name_label" layoutX="55.0" layoutY="25.0" prefHeight="14.0" prefWidth="113.0" text="User Name. . .">
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding></Label>
-                  <Button fx:id="logout_button" alignment="CENTER" layoutY="60.0" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="pwcg_button" alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" onAction="#pwcgButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="PW수정">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Button>
-                  <Button fx:id="secession_button" alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="회원탈퇴">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Button>
                </children>
             </Pane>
          </children>

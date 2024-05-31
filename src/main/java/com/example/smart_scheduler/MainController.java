@@ -1325,4 +1325,16 @@ public class MainController {
         failStage.setScene(scene);
         failStage.show();
     }
+    @FXML
+    private void secessionButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Membership_Withdrawal.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) secession_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
+        }
+    }
 }
