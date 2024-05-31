@@ -31,8 +31,11 @@
                         <Image url="@../../../다운로드.jpg" />
                      </image>
                   </ImageView>
-                  <Label fx:id="id_label" layoutX="62.0" layoutY="27.0" text="Label" />
-                  <Button fx:id="user_button" layoutX="150.0" layoutY="25.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
+                  <Label fx:id="id_label" layoutX="62.0" layoutY="27.0" text="Label">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding></Label>
+                  <Button fx:id="user_button" layoutX="150.0" layoutY="25.0" mnemonicParsing="false" onAction="#userButtonAction" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
                      <font>
                         <Font size="10.0" />
                      </font>
@@ -156,13 +159,16 @@
                      <image>
                         <Image url="@../../../다운로드.jpg" />
                      </image></ImageView>
-                  <Label fx:id="name_label" layoutX="55.0" layoutY="25.0" prefWidth="115.0" text="User Name. . ." />
-                  <Button fx:id="logout_button" alignment="CENTER" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
+                  <Label fx:id="name_label" layoutX="55.0" layoutY="25.0" prefHeight="14.0" prefWidth="113.0" text="User Name. . .">
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding></Label>
+                  <Button fx:id="logout_button" alignment="CENTER" layoutY="60.0" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
                      <font>
                         <Font size="10.0" />
                      </font>
                   </Button>
-                  <Button fx:id="pwcg_button" alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="PW수정">
+                  <Button fx:id="pwcg_button" alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" onAction="#pwcgButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="PW수정">
                      <font>
                         <Font size="10.0" />
                      </font></Button>
