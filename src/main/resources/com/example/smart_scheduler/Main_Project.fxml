@@ -28,51 +28,6 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Pane layoutX="5.0" layoutY="10.0" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
-               <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
-                     <image>
-                        <Image url="@../../../다운로드.jpg" />
-                     </image>
-                  </ImageView>
-                  <TextField layoutX="55.0" layoutY="20.0" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #c8c4ff;" text="User Name........">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </TextField>
-                  <Button layoutX="150.0" layoutY="25.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-               </children>
-            </Pane>
-            <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
-               <children>
-                  <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../다운로드.jpg" />
-                     </image></ImageView>
-                  <Label layoutX="55.0" layoutY="15.0" prefWidth="115.0" text="User Name. . ." />
-                  <Label layoutX="55.0" layoutY="40.0" text="dlwnsgh0530@naver.com">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Label>
-                  <Button alignment="CENTER" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Button>
-                  <Button alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="정보수정">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Button>
-                  <Button alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="탈퇴">
-                     <font>
-                        <Font size="10.0" />
-                     </font></Button>
-               </children>
-            </Pane>
             <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="90.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #c3a8d8;" text="프로젝트">
                <graphic>
                   <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" smooth="false">
@@ -82,6 +37,58 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Pane fx:id="user" layoutX="5.0" layoutY="10.0">
+               <children>
+                  <Pane prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
+                           <image>
+                              <Image url="@../../../다운로드.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="id_label" layoutX="62.0" layoutY="27.0" text="Label">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="user_button" layoutX="150.0" layoutY="25.0" mnemonicParsing="false" onAction="#userButtonAction" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+                  <Pane fx:id="user_pane" disable="true" layoutY="45.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../다운로드.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="name_label" layoutX="55.0" layoutY="25.0" prefHeight="14.0" prefWidth="113.0" text="User Name. . .">
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                        <Button fx:id="logout_button" alignment="CENTER" layoutY="60.0" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="pwcg_button" alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" onAction="#pwcgButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="PW수정">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="secession_button" alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" onAction="#secessionButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="회원탈퇴">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </Pane>
+               </children>
+            </Pane>
          </children>
       </Pane>
       <Pane layoutX="215.0" layoutY="5.0" prefHeight="590.0" prefWidth="560.0" style="-fx-background-color: #dbdbdb;">

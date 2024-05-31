@@ -72,9 +72,23 @@ public class ProjectController {
     int year;
     int month;
 
-    // 다른 필요한 필드 및 메서드들을 추가할 수 있습니다.
 
-    // 예시로 몇 가지 초기화 메서드를 추가합니다.
+    //유저팬 변수
+    @FXML
+    Pane user_pane;
+    @FXML
+    Label id_label;
+    @FXML
+    Button user_button;
+    @FXML
+    Label name_label;
+    @FXML
+    Button logout_button;
+    @FXML
+    Button pwcg_button;
+    @FXML
+    Button secession_button;
+
     @FXML
     private void initialize() {
         dayLabels = new Label[]{
@@ -120,6 +134,43 @@ public class ProjectController {
         month_label.setText(Integer.toString(currentMonth));
 
         Id = primary();
+        id_label.setText(Id);
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/usernameget.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                String userName = response.toString();
+                name_label.setText(userName);
+
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             String serverURL = "http://hbr2024.dothome.co.kr/get_teamname.php";
@@ -1472,6 +1523,89 @@ public class ProjectController {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+    @FXML
+    private void userButtonAction(ActionEvent event) {
+        if (user_pane.isDisable()) {
+            user_pane.setDisable(false);
+            user_pane.setVisible(true);
+        } else {
+            user_pane.setDisable(true);
+            user_pane.setVisible(false);
+        }
+    }
+    @FXML
+    private void logoutButtonAction(ActionEvent event) {
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/delete.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "&tableName=pri";
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Login_screen.fxml"));
+                    Parent root = loader.load();
+                    Stage currentStage = (Stage) logout_button.getScene().getWindow();
+                    currentStage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // 사용자에게 오류 메시지 표시
+                }
+
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void pwcgButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Password_change.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+
+        // 새로운 Stage를 생성하여 로그인 실패 창을 표시
+        Stage failStage = new Stage();
+        failStage.setScene(scene);
+        failStage.show();
+    }
+    @FXML
+    private void secessionButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Membership_Withdrawal.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) secession_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
         }
     }
 }
