@@ -9,6 +9,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.json.JSONArray;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -201,7 +202,49 @@ public class meetingtime {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //여기부터 해야함.
+
+        String teamname = teamname_label.getText();
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/teamuserget.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "teamname=" + teamname;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                String jsonResponse = response.toString();
+                System.out.println("Response: " + response.toString());
+
+                // JSON 데이터 파싱
+                JSONArray jsonArray = new JSONArray(jsonResponse);
+                for (int i = 0; i < jsonArray.length(); i++) {
+                    int id = jsonArray.getInt(i);
+
+                    //여기부터
+                }
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public String primary() {
