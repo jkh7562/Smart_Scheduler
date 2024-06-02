@@ -194,14 +194,16 @@ public class meetingtime {
                                 DayOfWeek dayOfWeek = convertToDayOfWeek(week);
                                 int startHour = Integer.parseInt(start.split(":")[0]);
                                 int endHour = Integer.parseInt(end.split(":")[0]);
+                                endHour--;
 
                                 for (int hour = startHour; hour <= endHour; hour++) {
                                     int hourIndex = hour - START_HOUR;
                                     // 해당 Pane 가져오기
                                     Pane pane = panes[dayOfWeek.ordinal()][hourIndex]; // 'startHourIndex' 대신에 'hourIndex'를 사용합니다.
 
-                                    // Pane의 배경색 업데이트
-                                    pane.setStyle("-fx-background-color: " + "#a9a9a9");
+                                    // Pane의 배경색 삭제하고 보더 색 지정
+                                    pane.setStyle("-fx-background-color: transparent; -fx-border-color: #eeeeee;");
+
                                 }
                             }
                         } else {
