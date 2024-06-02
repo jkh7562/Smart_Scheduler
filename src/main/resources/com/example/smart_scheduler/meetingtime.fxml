@@ -559,6 +559,16 @@
                         </AnchorPane>
                     </content>
                 </ScrollPane>
+            <HBox alignment="CENTER" layoutX="470.0" layoutY="88.0">
+               <children>
+                  <Pane maxHeight="20.0" maxWidth="20.0" minHeight="20.0" minWidth="20.0" prefHeight="20.0" prefWidth="20.0" style="-fx-background-color: #c4d4ff; -fx-border-color: black;">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                  </Pane>
+                  <Label text="추천 회의 시간" />
+               </children>
+            </HBox>
             </children>
         </Pane>
     </children>
