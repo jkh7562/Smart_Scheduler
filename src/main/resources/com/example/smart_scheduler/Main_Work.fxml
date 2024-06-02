@@ -23,25 +23,6 @@
                         </Button>
                     </children>
                 </Pane>
-                <Pane layoutX="5.0" layoutY="10.0" prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
-                    <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
-                            <image>
-                                <Image url="@../../../다운로드.jpg" />
-                            </image>
-                        </ImageView>
-                        <TextField layoutX="55.0" layoutY="20.0" prefHeight="30.0" prefWidth="95.0" style="-fx-background-color: #c8c4ff;" text="User Name........">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </TextField>
-                        <Button layoutX="150.0" layoutY="25.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
-                            <font>
-                                <Font size="10.0" />
-                            </font>
-                        </Button>
-                    </children>
-                </Pane>
 
 
                 <Pane layoutX="10.0" layoutY="550.0" prefHeight="42.0" prefWidth="180.0">
@@ -56,26 +37,18 @@
                         </Button>
                     </children>
                 </Pane>
-                <Pane layoutX="10.0" layoutY="80.0" prefHeight="140.0" prefWidth="180.0">
-                    <children>
-                        <Button alignment="BASELINE_LEFT" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
-                            <graphic>
-                                <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../../../works.png" />
-                                    </image></ImageView>
-                            </graphic></Button>
-      
-                      <Button alignment="BASELINE_LEFT" layoutY="49.0" minWidth="-Infinity" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="회의시간 추천">
-                          <graphic>
-                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
-                                  <image>
-                                      <Image url="@../../../sparetime.png" />
-                                  </image>
-                              </ImageView>
-                          </graphic>
-                  </Button>
-                        <Button fx:id="prty_button" alignment="BASELINE_LEFT" layoutY="100.0" minWidth="-Infinity" mnemonicParsing="false" onAction="#prtyButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="일정 우선순위">
+                  <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="80.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="업무용">
+                      <graphic>
+                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                  <Image url="@../../../works.png" />
+                              </image>
+                  </ImageView>
+                      </graphic>
+            </Button>
+            <Pane layoutX="10.0" layoutY="130.0">
+               <children>
+                        <Button fx:id="prty_button" alignment="BASELINE_LEFT" minWidth="-Infinity" mnemonicParsing="false" onAction="#prtyButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #dbdbdb;" text="일정 우선순위">
                             <graphic>
                                 <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" smooth="false">
                                     <image>
@@ -84,85 +57,115 @@
                                 </ImageView>
                             </graphic>
                         </Button>
-                    </children></Pane>
-                <Pane layoutX="5.0" layoutY="55.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
+                  <VBox fx:id="prty_vbox" alignment="CENTER_LEFT" layoutY="35.0" prefHeight="180.0" prefWidth="180.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../first.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="content1_label" textAlignment="JUSTIFY">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../second.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="content2_label">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="60.0">
+                           <children>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../third.png" />
+                                 </image>
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                              <Label fx:id="content3_label">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+                <Pane fx:id="user" layoutX="5.0" layoutY="10.0">
                     <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../../다운로드.jpg" />
-                            </image></ImageView>
-                        <Label layoutX="55.0" layoutY="15.0" prefWidth="115.0" text="User Name. . ." />
-                        <Label layoutX="55.0" layoutY="40.0" text="dlwnsgh0530@naver.com">
-                            <font>
-                                <Font size="10.0" />
-                            </font></Label>
-                        <Button alignment="CENTER" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
-                            <font>
-                                <Font size="10.0" />
-                            </font>
-                        </Button>
-                        <Button alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="정보수정">
-                            <font>
-                                <Font size="10.0" />
-                            </font></Button>
-                        <Button alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="탈퇴">
-                            <font>
-                                <Font size="10.0" />
-                            </font></Button>
+                        <Pane prefHeight="70.0" prefWidth="185.0" style="-fx-background-color: #c8c4ff;">
+                            <children>
+                                <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="10.0" pickOnBounds="true" smooth="false">
+                                    <image>
+                                        <Image url="@../../../다운로드.jpg" />
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="id_label" layoutX="62.0" layoutY="27.0" text="Label">
+                                    <padding>
+                                        <Insets left="5.0" />
+                                    </padding>
+                                </Label>
+                                <Button fx:id="user_button" layoutX="150.0" layoutY="25.0" mnemonicParsing="false" onAction="#userButtonAction" prefHeight="10.0" prefWidth="30.0" style="-fx-background-color: #c8c4ff;" text="▼">
+                                    <font>
+                                        <Font size="10.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </Pane>
+                        <Pane fx:id="user_pane" disable="true" layoutY="45.0" prefHeight="86.0" prefWidth="170.0" style="-fx-background-color: #FFFFFF;" visible="false">
+                            <children>
+                                <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="5.0" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../../다운로드.jpg" />
+                                    </image>
+                                </ImageView>
+                                <Label fx:id="name_label" layoutX="55.0" layoutY="25.0" prefHeight="14.0" prefWidth="113.0" text="User Name. . .">
+                                    <padding>
+                                        <Insets left="5.0" />
+                                    </padding>
+                                </Label>
+                                <Button fx:id="logout_button" alignment="CENTER" layoutY="60.0" mnemonicParsing="false" onAction="#logoutButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="로그아웃">
+                                    <font>
+                                        <Font size="10.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="pwcg_button" alignment="CENTER" layoutX="57.0" layoutY="60.0" mnemonicParsing="false" onAction="#pwcgButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="PW수정">
+                                    <font>
+                                        <Font size="10.0" />
+                                    </font>
+                                </Button>
+                                <Button fx:id="secession_button" alignment="CENTER" layoutX="115.0" layoutY="60.0" mnemonicParsing="false" onAction="#secessionButtonAction" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #dddddd;" text="회원탈퇴">
+                                    <font>
+                                        <Font size="10.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </Pane>
                     </children>
                 </Pane>
-            <VBox fx:id="prty_vbox" alignment="CENTER_LEFT" layoutX="10.0" layoutY="215.0" prefHeight="180.0" prefWidth="180.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../first.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label fx:id="content1_label" textAlignment="JUSTIFY">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                     </children></HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../second.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label fx:id="content2_label">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                     </children></HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="60.0">
-                     <children>
-                        <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../third.png" />
-                           </image>
-                           <HBox.margin>
-                              <Insets right="10.0" />
-                           </HBox.margin>
-                        </ImageView>
-                        <Label fx:id="content3_label">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                     </children></HBox>
-               </children>
-            </VBox>
             </children>
         </Pane>
         <Pane layoutX="202.5" layoutY="2.5" prefHeight="595.0" prefWidth="595.0" style="-fx-background-color: #dbdbdb;">
@@ -265,7 +268,7 @@
 
                     </children>
                 </GridPane>
-                <ScrollPane layoutX="2.0" layoutY="140.0" prefHeight="457.0" prefWidth="589.0">
+                <ScrollPane layoutX="2.0" layoutY="140.0" prefHeight="454.0" prefWidth="589.0">
                     <content>
                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="902.0" prefWidth="572.0">
                             <children>

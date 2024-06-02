@@ -66,15 +66,31 @@ public class ProjectController {
 
     @FXML
     Button manage_button;
+    @FXML
+    Button meeting_button;
 
     String Id;
     String teamname;
     int year;
     int month;
 
-    // 다른 필요한 필드 및 메서드들을 추가할 수 있습니다.
 
-    // 예시로 몇 가지 초기화 메서드를 추가합니다.
+    //유저팬 변수
+    @FXML
+    Pane user_pane;
+    @FXML
+    Label id_label;
+    @FXML
+    Button user_button;
+    @FXML
+    Label name_label;
+    @FXML
+    Button logout_button;
+    @FXML
+    Button pwcg_button;
+    @FXML
+    Button secession_button;
+
     @FXML
     private void initialize() {
         dayLabels = new Label[]{
@@ -120,6 +136,43 @@ public class ProjectController {
         month_label.setText(Integer.toString(currentMonth));
 
         Id = primary();
+        id_label.setText(Id);
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/usernameget.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                String userName = response.toString();
+                name_label.setText(userName);
+
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             String serverURL = "http://hbr2024.dothome.co.kr/get_teamname.php";
@@ -412,29 +465,64 @@ public class ProjectController {
     }
 
     private void handleVBoxClick(VBox vbox) {
-        // Check if the VBox has 2 or more children
-        if (vbox.getChildren().size() >= 2) {
-            // Get the last child of the VBox
-            Node lastChild = vbox.getChildren().get(vbox.getChildren().size() - 1);
-            if (lastChild instanceof Label) {
-                Label lastLabel = (Label) lastChild;
-                String content = lastLabel.getText();
-                try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("project_complete.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    Stage stage = new Stage();
-                    stage.setScene(scene);
-                    stage.show();
+        Id = primary();
+        try {
+            String serverURL2 = "http://hbr2024.dothome.co.kr/captainfind.php";
+            URL url2 = new URL(serverURL2);
+            HttpURLConnection connection2 = (HttpURLConnection) url2.openConnection();
+            connection2.setRequestMethod("POST");
+            connection2.setDoOutput(true);
 
-                    project_cptController project_cptController = loader.getController();
-                    project_cptController.initData(content, teamname);
+            String postData2 = "Id=" + Id;
+            OutputStream os2 = connection2.getOutputStream();
+            os2.write(postData2.getBytes("UTF-8"));
+            os2.close();
 
-                } catch (IOException e) {
-                    e.printStackTrace();
+            int responseCode2 = connection2.getResponseCode();
+            if (responseCode2 == HttpURLConnection.HTTP_OK) {
+                BufferedReader in2 = new BufferedReader(new InputStreamReader(connection2.getInputStream()));
+                StringBuilder response2 = new StringBuilder();
+                String inputLine2;
+
+                while ((inputLine2 = in2.readLine()) != null) {
+                    response2.append(inputLine2);
                 }
-                //disableMatchingVBoxes(content);
+
+                in2.close();
+                String captainValue = response2.toString();
+                System.out.println("Captain Value: " + captainValue);
+
+                // Check the value of captain attribute
+                if ("1".equals(captainValue)) {
+                    if (vbox.getChildren().size() >= 2) {
+                        // Get the last child of the VBox
+                        Node lastChild = vbox.getChildren().get(vbox.getChildren().size() - 1);
+                        if (lastChild instanceof Label) {
+                            Label lastLabel = (Label) lastChild;
+                            String content = lastLabel.getText();
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("project_complete.fxml"));
+                                Parent root = loader.load();
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setScene(scene);
+                                stage.show();
+
+                                project_cptController project_cptController = loader.getController();
+                                project_cptController.initData(content, teamname);
+
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                            //disableMatchingVBoxes(content);
+                        }
+                    }
+                }
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode2);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -1358,14 +1446,51 @@ public class ProjectController {
                             String serverResponse1 = response1.toString();
                             if (serverResponse1.equals("Teamname exists in the project table.")) {
                                 try {
-                                    FXMLLoader loader = new FXMLLoader(getClass().getResource("project_management.fxml"));
-                                    Parent root = loader.load();
-                                    Scene scene = new Scene(root);
-                                    Stage stage = new Stage();
-                                    stage.setScene(scene);
-                                    stage.show();
+                                    String serverURL2 = "http://hbr2024.dothome.co.kr/captainfind.php";
+                                    URL url2 = new URL(serverURL2);
+                                    HttpURLConnection connection2 = (HttpURLConnection) url2.openConnection();
+                                    connection2.setRequestMethod("POST");
+                                    connection2.setDoOutput(true);
 
-                                } catch (IOException e) {
+                                    String postData2 = "Id=" + Id;
+                                    OutputStream os2 = connection2.getOutputStream();
+                                    os2.write(postData2.getBytes("UTF-8"));
+                                    os2.close();
+
+                                    int responseCode2 = connection2.getResponseCode();
+                                    if (responseCode2 == HttpURLConnection.HTTP_OK) {
+                                        BufferedReader in2 = new BufferedReader(new InputStreamReader(connection2.getInputStream()));
+                                        StringBuilder response2 = new StringBuilder();
+                                        String inputLine2;
+
+                                        while ((inputLine2 = in2.readLine()) != null) {
+                                            response2.append(inputLine2);
+                                        }
+
+                                        in2.close();
+                                        String captainValue = response2.toString();
+                                        System.out.println("Captain Value: " + captainValue);
+
+                                        // Check the value of captain attribute
+                                        if ("1".equals(captainValue)) {
+                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("project_management.fxml"));
+                                            Parent root = loader.load();
+                                            Scene scene = new Scene(root);
+                                            Stage stage = new Stage();
+                                            stage.setScene(scene);
+                                            stage.show();
+                                        } else {
+                                            FXMLLoader loader = new FXMLLoader(getClass().getResource("notcaptain_management.fxml"));
+                                            Parent root = loader.load();
+                                            Scene scene = new Scene(root);
+                                            Stage stage = new Stage();
+                                            stage.setScene(scene);
+                                            stage.show();
+                                        }
+                                    } else {
+                                        System.out.println("HTTP Error Code: " + responseCode2);
+                                    }
+                                } catch (Exception e) {
                                     e.printStackTrace();
                                 }
                             } else {
@@ -1443,14 +1568,51 @@ public class ProjectController {
                 // Id가 존재하는지 여부에 따라 특정 행동 수행
                 if (!serverResponse.equals("Id does not exist in the team table.")) {
                     try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("project_team.fxml"));
-                        Parent root = loader.load();
-                        Scene scene = new Scene(root);
-                        Stage stage = new Stage();
-                        stage.setScene(scene);
-                        stage.show();
+                        String serverURL2 = "http://hbr2024.dothome.co.kr/captainfind.php";
+                        URL url2 = new URL(serverURL2);
+                        HttpURLConnection connection2 = (HttpURLConnection) url2.openConnection();
+                        connection2.setRequestMethod("POST");
+                        connection2.setDoOutput(true);
 
-                    } catch (IOException e) {
+                        String postData2 = "Id=" + Id;
+                        OutputStream os2 = connection2.getOutputStream();
+                        os2.write(postData2.getBytes("UTF-8"));
+                        os2.close();
+
+                        int responseCode2 = connection2.getResponseCode();
+                        if (responseCode2 == HttpURLConnection.HTTP_OK) {
+                            BufferedReader in2 = new BufferedReader(new InputStreamReader(connection2.getInputStream()));
+                            StringBuilder response2 = new StringBuilder();
+                            String inputLine2;
+
+                            while ((inputLine2 = in2.readLine()) != null) {
+                                response2.append(inputLine2);
+                            }
+
+                            in2.close();
+                            String captainValue = response2.toString();
+                            System.out.println("Captain Value: " + captainValue);
+
+                            // Check the value of captain attribute
+                            if ("1".equals(captainValue)) {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("project_team.fxml"));
+                                Parent root = loader.load();
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setScene(scene);
+                                stage.show();
+                            } else {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("notcaptain_team.fxml"));
+                                Parent root = loader.load();
+                                Scene scene = new Scene(root);
+                                Stage stage = new Stage();
+                                stage.setScene(scene);
+                                stage.show();
+                            }
+                        } else {
+                            System.out.println("HTTP Error Code: " + responseCode2);
+                        }
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
                 } else {
@@ -1473,5 +1635,105 @@ public class ProjectController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void userButtonAction(ActionEvent event) {
+        if (user_pane.isDisable()) {
+            user_pane.setDisable(false);
+            user_pane.setVisible(true);
+        } else {
+            user_pane.setDisable(true);
+            user_pane.setVisible(false);
+        }
+    }
+    @FXML
+    private void logoutButtonAction(ActionEvent event) {
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/delete.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "&tableName=pri";
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Login_screen.fxml"));
+                    Parent root = loader.load();
+                    Stage currentStage = (Stage) logout_button.getScene().getWindow();
+                    currentStage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // 사용자에게 오류 메시지 표시
+                }
+
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void pwcgButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Password_change.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+
+        // 새로운 Stage를 생성하여 로그인 실패 창을 표시
+        Stage failStage = new Stage();
+        failStage.setScene(scene);
+        failStage.show();
+    }
+    @FXML
+    private void secessionButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Membership_Withdrawal.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) secession_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
+        }
+    }
+
+    @FXML
+    private void meetingButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("meetingtime.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+
+        // 새로운 Stage를 생성하여 로그인 실패 창을 표시
+        Stage failStage = new Stage();
+        failStage.setScene(scene);
+        failStage.show();
     }
 }

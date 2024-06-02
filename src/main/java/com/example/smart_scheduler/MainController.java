@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import org.json.JSONArray;
@@ -74,6 +75,22 @@ public class MainController {
     Button rest_button;
     @FXML
     Button month_button;
+
+    //유저팬 변수
+    @FXML
+    Pane user_pane;
+    @FXML
+    Label id_label;
+    @FXML
+    Button user_button;
+    @FXML
+    Label name_label;
+    @FXML
+    Button logout_button;
+    @FXML
+    Button pwcg_button;
+    @FXML
+    Button secession_button;
 
 
 
@@ -219,6 +236,43 @@ public class MainController {
     public void initialize() {
 
         Id = primary();
+        id_label.setText(Id);
+
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/usernameget.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "Id=" + Id;
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                String userName = response.toString();
+                name_label.setText(userName);
+
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         try {
             String serverURL = "http://hbr2024.dothome.co.kr/getprtyday.php";
@@ -463,6 +517,9 @@ public class MainController {
 
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (JSONException e) {
+            // JSONException이 발생한 경우 처리할 코드
+            e.printStackTrace(); // 혹은 다른 로깅 방법을 사용할 수도 있습니다.
         }
     }
 
@@ -919,7 +976,7 @@ public class MainController {
         urlBuilder.append("&" + URLEncoder.encode("returnType","UTF-8") + "=" + URLEncoder.encode("json", "UTF-8")); /*xml 또는 json*/
         urlBuilder.append("&" + URLEncoder.encode("numOfRows","UTF-8") + "=" + URLEncoder.encode("10", "UTF-8")); /*한 페이지 결과 수(조회 날짜로 검색 시 사용 안함)*/
         urlBuilder.append("&" + URLEncoder.encode("pageNo","UTF-8") + "=" + URLEncoder.encode("1", "UTF-8")); /*페이지번호(조회 날짜로 검색 시 사용 안함)*/
-        urlBuilder.append("&" + URLEncoder.encode("searchDate","UTF-8") + "=" + URLEncoder.encode("2024-05-11", "UTF-8")); /*통보시간 검색(조회 날짜 입력이 없을 경우 한달동안 예보통보 발령 날짜의 리스트 정보를 확인)*/
+        urlBuilder.append("&" + URLEncoder.encode("searchDate","UTF-8") + "=" + URLEncoder.encode(dustdate, "UTF-8")); /*통보시간 검색(조회 날짜 입력이 없을 경우 한달동안 예보통보 발령 날짜의 리스트 정보를 확인)*/
         urlBuilder.append("&" + URLEncoder.encode("InformCode","UTF-8") + "=" + URLEncoder.encode("PM10", "UTF-8")); /*통보코드검색(PM10, PM25, O3)*/
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -1193,6 +1250,90 @@ public class MainController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Month.fxml"));
             Parent root = loader.load();
             Stage currentStage = (Stage) month_button.getScene().getWindow();
+            currentStage.setScene(new Scene(root));
+        } catch (IOException e) {
+            e.printStackTrace();
+            // 사용자에게 오류 메시지 표시
+        }
+    }
+
+    @FXML
+    private void userButtonAction(ActionEvent event) {
+        if (user_pane.isDisable()) {
+            user_pane.setDisable(false);
+            user_pane.setVisible(true);
+        } else {
+            user_pane.setDisable(true);
+            user_pane.setVisible(false);
+        }
+    }
+    @FXML
+    private void logoutButtonAction(ActionEvent event) {
+        try {
+            String serverURL = "http://hbr2024.dothome.co.kr/delete.php";
+            URL url = new URL(serverURL);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setDoOutput(true);
+
+            String postData = "&tableName=pri";
+            OutputStream os = connection.getOutputStream();
+            os.write(postData.getBytes("UTF-8"));
+            os.close();
+
+            int responseCode = connection.getResponseCode();
+            if (responseCode == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String inputLine;
+
+                while ((inputLine = in.readLine()) != null) {
+                    response.append(inputLine);
+                }
+
+                in.close();
+                System.out.println("Response: " + response.toString());
+
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("Login_screen.fxml"));
+                    Parent root = loader.load();
+                    Stage currentStage = (Stage) logout_button.getScene().getWindow();
+                    currentStage.setScene(new Scene(root));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    // 사용자에게 오류 메시지 표시
+                }
+
+
+            } else {
+                System.out.println("HTTP Error Code: " + responseCode);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    private void pwcgButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Password_change.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+
+        // 새로운 Stage를 생성하여 로그인 실패 창을 표시
+        Stage failStage = new Stage();
+        failStage.setScene(scene);
+        failStage.show();
+    }
+    @FXML
+    private void secessionButtonAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Membership_Withdrawal.fxml"));
+            Parent root = loader.load();
+            Stage currentStage = (Stage) secession_button.getScene().getWindow();
             currentStage.setScene(new Scene(root));
         } catch (IOException e) {
             e.printStackTrace();
