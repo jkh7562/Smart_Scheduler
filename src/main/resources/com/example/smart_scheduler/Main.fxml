@@ -317,12 +317,12 @@
                   </Label>
                   <Label fx:id="hightemp" alignment="CENTER" layoutX="57.0">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Arial" size="20.0" />
                      </font>
                   </Label>
                   <Label fx:id="lowtemp" alignment="CENTER" layoutX="157.0">
                      <font>
-                        <Font size="20.0" />
+                        <Font name="Arial" size="20.0" />
                      </font>
                   </Label>
                </children>
@@ -335,7 +335,7 @@
             <HBox layoutX="30.0" layoutY="100.0" prefHeight="100.0" prefWidth="200.0">
                <Label fx:id="nowtmp" layoutX="30.0" layoutY="95.0">
                   <font>
-                     <Font size="37.0" />
+                     <Font name="Arial" size="37.0" />
                   </font>
                </Label>
                <Label layoutX="70.0" layoutY="105.0" text="℃">
