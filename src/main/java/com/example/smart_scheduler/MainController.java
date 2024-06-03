@@ -95,6 +95,7 @@ public class MainController {
 
 
     private static int UV;
+    private static int UVNOW;
     private static String TMP;
     private static String UUU;
     private static String VVV;
@@ -504,7 +505,7 @@ public class MainController {
             //System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());
 
             //자외선 지수 텍스트 업데이트
-            updateUVtext(UV);
+            updateUVtext(UVNOW);
 
             //미세먼지 텍스트 업데이트
             updateDUSTText(Dust);
@@ -957,6 +958,9 @@ public class MainController {
                     if (item.has(key)) {
                         int value = item.getInt(key);
                         highestValue = Math.max(highestValue, value);
+                    }
+                    if(item.has("h0")){
+                        UVNOW = item.getInt("h0");
                     }
                 }
             }
