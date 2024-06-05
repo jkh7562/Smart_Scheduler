@@ -75,6 +75,12 @@ public class MainController {
     Button rest_button;
     @FXML
     Button month_button;
+    @FXML
+    ImageView rain_event;
+    @FXML
+    ImageView uv_event;
+    @FXML
+    ImageView dust_event;
 
     //유저팬 변수
     @FXML
@@ -95,6 +101,7 @@ public class MainController {
 
 
     private static int UV;
+    private static int UVNOW;
     private static String TMP;
     private static String UUU;
     private static String VVV;
@@ -504,7 +511,7 @@ public class MainController {
             //System.out.println("SKY 변수의 데이터 타입: " + SKY.getClass().getName());
 
             //자외선 지수 텍스트 업데이트
-            updateUVtext(UV);
+            updateUVtext(UVNOW);
 
             //미세먼지 텍스트 업데이트
             updateDUSTText(Dust);
@@ -958,6 +965,9 @@ public class MainController {
                         int value = item.getInt(key);
                         highestValue = Math.max(highestValue, value);
                     }
+                    if(item.has("h0")){
+                        UVNOW = item.getInt("h0");
+                    }
                 }
             }
 
@@ -1166,8 +1176,9 @@ public class MainController {
         String itemImg1;
         if(itememg1){
             itemImg1 = "um.png";
-            item1.setImage(new Image(itemImg1));
+            item1.setVisible(true);
             itemLabel1.setText("우산");
+            rain_event.setVisible(true);
         }else {
             item1.setImage(null);
             itemLabel1.setText("");
@@ -1179,8 +1190,9 @@ public class MainController {
         String itemImg2;
         if(UV >= 5){
             itemImg2 = "sun.png";
-            item2.setImage(new Image(itemImg2));
+            item2.setVisible(true);
             itemLabel2.setText("썬크림");
+            uv_event.setVisible(true);
         }else {
             item2.setImage(null);
             itemLabel2.setText("");
@@ -1193,8 +1205,9 @@ public class MainController {
         dd = Dust;
         if(dd.equals("나쁨")){
             itemImg3 = "mask.png";
-            item3.setImage(new Image(itemImg3));
+            item3.setVisible(true);
             itemLabel3.setText("마스크");
+            dust_event.setVisible(true);
         }else {
             item3.setImage(null);
             itemLabel3.setText(" ");
