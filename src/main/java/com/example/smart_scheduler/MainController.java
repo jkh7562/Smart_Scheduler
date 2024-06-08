@@ -1066,13 +1066,11 @@ public class MainController {
                 break;
             case "2":
                 imagePath = "001lighticons-18.png"; // 비 오는 날씨 이미지 경로
-                itemImg1 = "um.png"; //추천 아이템 1
+                updateWeatherItem1();
                 updateWeatherItem2();  //자외선이 쎌 경우 썬크림 추천
                 updateWeatherItem3();// 미세먼지 나쁘면 마스크 추천
                 weather.setImage(new Image(imagePath));
                 weatherLabel.setText("비");
-                item1.setImage(new Image(itemImg1));
-                itemLabel1.setText("우산");
                 break;
             case "3":
                 imagePath = "cloudy.png"; // 구름 많음
