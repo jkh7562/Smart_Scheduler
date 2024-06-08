@@ -88,6 +88,11 @@
             </Label>
          </children>
       </HBox>
+      <Label fx:id="CN" layoutX="50.0" layoutY="340.0" prefHeight="50.0" prefWidth="300.0" text="">
+         <font>
+            <Font name="Ebrima Bold" size="20.0" />
+         </font>
+      </Label>
 
    </children>
 </AnchorPane>

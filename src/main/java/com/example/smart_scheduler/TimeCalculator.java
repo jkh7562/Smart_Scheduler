@@ -26,9 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -44,9 +42,11 @@ public class TimeCalculator extends Application {
     @FXML
     private Label Time;
     @FXML
+    private Label busname;
+    @FXML
     private Label buslabel;
     @FXML
-    private Label busname;
+    private Label CN;
 
     private static String startpoint;
     private static String endpoint;
@@ -56,6 +56,14 @@ public class TimeCalculator extends Application {
     private static String EndY;
     private static String data1; // 입력 받은 좌표
     private static String noTime = null;
+    private static boolean YN; //버스 정보 있는지 확인하는 용
+    private static boolean Switch;
+    private static int WalkSectionTime;
+    private static String arrivalTimeString;
+    private static boolean triger1; //CN 라벨의 표시 유무 판단
+    private static int AlltotalTime;
+    private static boolean aa; // 올바른 총시간 트리거
+    private static String printTime;
 
     private static int minTotalTime;
     private static int minTotalDistance;
@@ -66,11 +74,10 @@ public class TimeCalculator extends Application {
     private static String minLastEndStation;
     private static String StartTime;
     private static int arrtime; // 버스 도착까지 남은 시간
+    public static LocalTime NowTime;
 
     private static String ArrivingBus;
     private static String localStationID; // localStationID를 저장하기 위한 변수
-    private static JSONArray paths; // paths 변수를 클래스 멤버 변수로 선언
-    private static List<RouteInfo> routeInfos = new ArrayList<>(); // 경로 정보를 저장하는 리스트
 
     private static final String API_KEY = "1686f682262a3e2f11756c853e1aee5f";
     private static final String API_URL = "https://dapi.kakao.com/v2/local/search/address.json";
@@ -80,21 +87,28 @@ public class TimeCalculator extends Application {
 
     @FXML
     private void handleBusButtonAction(ActionEvent event) throws IOException {
+        YN = true;
         executeCommonLogic(false, "bus");
         findValidBusRoute();
+        busname(true);
         updatebuslabel(true);
-        System.out.println("버스 정보 담은거:" + RouteInfo.busNo);
+        System.out.println("워크 섹션:"+WalkSectionTime + "arrTime:" + arrtime);
+        boolean isGreaterThan = (arrtime / 60) > WalkSectionTime;
+        System.out.println("arrtime / 60 > WalkSectionTime: " + isGreaterThan);
+        System.out.println(":AllTime " + AlltotalTime);
+
     }
 
     @FXML
     private void handleWalkButtonAction(ActionEvent event) throws IOException {
         executeCommonLogic(true, "walk");
         if (noTime == null) {
-            updateTimeWalk(StartTime);
+            updateTimeWalk(StartTime,true);
         } else {
-            updateTimeWalk(noTime);
+            updateTimeWalk(noTime,true);
             noTime = null;
         }
+        busname(false);
         updatebuslabel(false);
     }
 
@@ -102,11 +116,12 @@ public class TimeCalculator extends Application {
     private void handleBikeButtonAction(ActionEvent event) throws IOException {
         executeCommonLogic(true, "bike");
         if (noTime == null) {
-            updateTimeWalk(StartTime);
+            updateTimeWalk(StartTime,true);
         } else {
-            updateTimeWalk(noTime);
+            updateTimeWalk(noTime,true);
             noTime = null;
         }
+        busname(false);
         updatebuslabel(false);
     }
 
@@ -116,9 +131,13 @@ public class TimeCalculator extends Application {
         System.out.println("뒤로 가기 이미지가 클릭되었습니다.");
     }
 
-    @FXML //버스 이름 업데이트
-    private void updatebusname() {
-        busname.setText(minBusNo);
+    @FXML
+    private void busname(boolean bus) {
+        if (bus) {
+            busname.setText(minBusNo);
+        } else {
+            busname.setText("");
+        }
     }
 
     @FXML
@@ -131,14 +150,36 @@ public class TimeCalculator extends Application {
     }
 
     @FXML
-    private void updateTimeWalk(String time) {
+    private void updateTimeWalk(String time, boolean can) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime arrivalTime = LocalTime.parse(arrivalTimeString, formatter);
+        LocalTime finalLocalTime = LocalTime.parse(printTime, formatter);
+        LocalTime now = LocalTime.now();
+
+        // printTime과 현재 시간 비교
+        if (finalLocalTime.isAfter(now)) {
+            CN.setText(""); // finalLocalTime이 현재 시간보다 이후일 경우
+        } else if (finalLocalTime.isBefore(now)) {
+            CN.setText("도착할 수 없는 시간대입니다."); // finalLocalTime이 현재 시간보다 이전일 경우
+        }
+
+        // 현재 시간과 비교
+        if (!can) {
+            if (arrivalTime.isBefore(now)) {
+                CN.setText("도착할 수 없는 시간대입니다.");
+            } else {
+                CN.setText("도착 버스 정보가 없습니다.");
+            }
+        }
+
         Time.setText(time);
     }
+
 
     private void executeCommonLogic(boolean calculateDistance, String mode) throws IOException {
         startpoint = name_textfield.getText();
         endpoint = phone_textfield.getText();
-        String arrivalTimeString = id_textfield.getText().trim();
+        arrivalTimeString = id_textfield.getText().trim();
 
         if (startpoint.isEmpty() || endpoint.isEmpty() || arrivalTimeString.isEmpty()) {
             System.out.println("출발지, 도착지, 도착 시간을 모두 입력해주세요.");
@@ -160,7 +201,7 @@ public class TimeCalculator extends Application {
         }
     }
 
-    private String getCoordinates(String address, String coordinateType) {
+    private static String getCoordinates(String address, String coordinateType) {
         String encodedAddress = URLEncoder.encode(address, StandardCharsets.UTF_8);
         String jsonResponse = getCoordinatesFromPlace(encodedAddress);
 
@@ -180,7 +221,7 @@ public class TimeCalculator extends Application {
         }
     }
 
-    private String getCoordinatesFromPlace(String place) {
+    private static String getCoordinatesFromPlace(String place) {
         OkHttpClient client = new OkHttpClient();
         String url = API_URL + "?query=" + place;
 
@@ -200,7 +241,7 @@ public class TimeCalculator extends Application {
         }
     }
 
-    private String searchPublicTransportPath(String startX, String startY, String endX, String endY) throws IOException {
+    private static String searchPublicTransportPath(String startX, String startY, String endX, String endY) throws IOException {
         String urlTemplate = "https://api.odsay.com/v1/api/searchPubTransPathT?SX=%s&SY=%s&EX=%s&EY=%s&apiKey=%s";
         String encodedApiKey = URLEncoder.encode(ODSAY_API_KEY, "UTF-8");
         String urlInfo = String.format(urlTemplate, startX, startY, endX, endY, encodedApiKey);
@@ -225,11 +266,12 @@ public class TimeCalculator extends Application {
     private void parseAndPrintData(String jsonData, boolean calculateDistance, String mode, String arrivalTimeString) {
         JSONObject jsonObject = new JSONObject(jsonData);
         JSONObject result = jsonObject.getJSONObject("result");
-        paths = result.getJSONArray("path"); // paths 변수를 초기화
+        JSONArray paths = result.getJSONArray("path");
+        aa = true;
+        AlltotalTime = Integer.MAX_VALUE; // 초기화
 
         minTotalTime = Integer.MAX_VALUE;
         minTotalDistance = Integer.MAX_VALUE;
-        routeInfos.clear(); // Clear previous route infos
 
         for (int i = 0; i < paths.length(); i++) {
             JSONObject path = paths.getJSONObject(i);
@@ -251,44 +293,52 @@ public class TimeCalculator extends Application {
             }
 
             if (!hasSubway) {
-                RouteInfo routeInfo = new RouteInfo();
-                routeInfo.totalTime = totalTime;
-                routeInfo.totalDistance = totalDistance;
-                routeInfo.firstStartStation = info.getString("firstStartStation");
-                routeInfo.lastEndStation = info.getString("lastEndStation");
-
-                for (int j = 0; j < subPaths.length(); j++) {
-                    JSONObject subPath = subPaths.getJSONObject(j);
-                    int trafficType = subPath.getInt("trafficType");
-
-                    if (trafficType == 2) {
-                        if (routeInfo.busNo == null) {
-                            JSONArray lanes = subPath.getJSONArray("lane");
-                            JSONObject lane = lanes.getJSONObject(0);
-                            routeInfo.busNo = lane.optString("busNo", "정보 없음");
-                            routeInfo.busLocalBlID = lane.optString("busLocalBlID", "정보 없음");
-                            routeInfo.busID = lane.optString("busID", "정보 없음");
-                        }
-                        routeInfo.busTime = subPath.getInt("sectionTime");
-                    } else if (trafficType == 3) {
-                        if (routeInfo.walkTimeToBusStop == 0) {
-                            routeInfo.walkTimeToBusStop = subPath.getInt("sectionTime");
-                        } else {
-                            routeInfo.walkTimeFromBusStop = subPath.getInt("sectionTime");
-                        }
-                    }
+                if (aa == true && AlltotalTime > totalTime) {
+                    AlltotalTime = totalTime; // 총 이동시간 업데이트
                 }
-
-                routeInfos.add(routeInfo);
 
                 if (totalTime < minTotalTime) {
                     minTotalTime = totalTime;
                     minTotalDistance = totalDistance;
-                    minFirstStartStation = routeInfo.firstStartStation;
-                    minLastEndStation = routeInfo.lastEndStation;
-                    minBusNo = routeInfo.busNo;
-                    minBusLocalBlID = routeInfo.busLocalBlID;
-                    minBusID = routeInfo.busID;
+                    minFirstStartStation = info.getString("firstStartStation");
+                    minLastEndStation = info.getString("lastEndStation");
+
+                    minBusNo = null;
+                    minBusLocalBlID = null;
+                    minBusID = null;
+                    Switch = true;
+
+                    for (int j = 0; j < subPaths.length(); j++) {
+                        JSONObject subPath = subPaths.getJSONObject(j);
+                        int trafficType = subPath.getInt("trafficType");
+
+                        if (trafficType == 2) {
+                            if (minBusNo == null) {
+                                JSONArray lanes = subPath.getJSONArray("lane");
+                                JSONObject lane = lanes.getJSONObject(0);
+                                minBusNo = lane.optString("busNo", "정보 없음");
+                                minBusLocalBlID = lane.optString("busLocalBlID", "정보 없음");
+                                minBusID = lane.optString("busID", "정보 없음");
+                            }
+                            System.out.println("버스: " + subPath.getJSONArray("lane").getJSONObject(0).optString("busNo", "정보 없음") + " (" + subPath.getInt("sectionTime") + "분)");
+                        } else if (trafficType == 3) {
+                            System.out.println("도보: " + subPath.getInt("sectionTime") + "분");
+                            if (Switch == true) {
+                                WalkSectionTime = subPath.getInt("sectionTime");
+                                Switch = false;
+                            }
+                        }
+                    }
+                    System.out.println();
+
+                    // 선택된 경로의 모든 항목 이름과 값을 출력
+                    System.out.println("선택된 경로의 정보:");
+                    Iterator<String> keys = info.keys();
+                    while (keys.hasNext()) {
+                        String key = keys.next();
+                        System.out.println(key + ": " + info.get(key));
+                    }
+                    System.out.println();
                 }
             }
         }
@@ -308,36 +358,76 @@ public class TimeCalculator extends Application {
         System.out.println("원본 JSON 데이터: " + jsonData);
     }
 
+    private static String calculateDepartureTimeWithTotalTimeCal(int totalTimeCal, String inputTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+        try {
+            LocalTime currentTime = LocalTime.parse(inputTime, formatter);
+            LocalTime departureTime = currentTime.minusMinutes(totalTimeCal);
+
+            System.out.printf("입력 받은 시간: %s\n", currentTime.format(formatter));
+            System.out.printf("출발 시간: %s\n", departureTime.format(formatter));
+
+            return departureTime.format(formatter);
+        } catch (DateTimeParseException e) {
+            System.out.println("잘못된 시간 형식입니다. 올바른 형식은 HH:mm입니다.");
+            return null;
+        }
+    }
+
     private void calculateDepartureTime(String arrivalTimeString, double travelTimeInMinutes) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         try {
+            // 초 단위 입력값(arrTime)을 시간과 분으로 변환
+            int hours = arrtime / 3600;
+            int minutes = (arrtime % 3600) / 60;
+            String timeFormatted = String.format("%02d:%02d", hours, minutes);
             LocalTime arrivalTime = LocalTime.parse(arrivalTimeString, formatter);
             LocalTime departureTime = arrivalTime.minusMinutes((long) travelTimeInMinutes);
+
+            int calTime = AlltotalTime - WalkSectionTime + (arrtime / 60);
+            System.out.println("총시간:"+calculateDepartureTimeWithTotalTimeCal(calTime,arrivalTimeString));
+            printTime = calculateDepartureTimeWithTotalTimeCal(calTime,arrivalTimeString);
+
+            // 출발 시간 출력
             System.out.printf("출발 시간: %s\n", departureTime.format(formatter));
+
+            // StartTime을 형식에 맞게 저장
             StartTime = departureTime.format(formatter);
-            updateTimeWalk(StartTime);
+            NowTime = LocalTime.now();
+
+            // WalkSectionTime을 분 단위로 비교하여 계산
+            if (arrtime/60 >= WalkSectionTime) {
+                // StartTime에서 WalkSectionTime만큼 빼고 arrTime을 더함
+                //LocalTime IntStartTime = LocalTime.parse(arrivalTimeString, formatter).minusMinutes(WalkSectionTime).plusMinutes(arrtime);
+                //String finalTime = IntStartTime.format(formatter);
+                updateTimeWalk(printTime, YN);
+                LocalTime finalLocalTime = LocalTime.parse(printTime, formatter);
+                LocalTime arrivalLocalTime = LocalTime.parse(arrivalTimeString, formatter);
+
+                if (finalLocalTime.isBefore(NowTime)) {
+                    triger1 = false;  // finalTime이 arrivalTime보다 이전 시간일 경우
+                } else if (finalLocalTime.isAfter(NowTime)) {
+                    triger1 = true;  // finalTime이 arrivalTime보다 이후 시간일 경우
+                }
+            } else if(arrtime/60 <= WalkSectionTime){
+                // updateTimeWalk 메소드 호출 예시
+                updateTimeWalk(StartTime, YN);
+                LocalTime StartLocalTime = LocalTime.parse(StartTime, formatter);
+                LocalTime arrivalLocalTime = LocalTime.parse(arrivalTimeString, formatter);
+
+                if (StartLocalTime.isBefore(NowTime)) {
+                    triger1 = false;  // finalTime이 arrivalTime보다 이전 시간일 경우
+                } else if (StartLocalTime.isAfter(NowTime)) {
+                    triger1 = true;  // finalTime이 arrivalTime보다 이후 시간일 경우
+                }
+            }
+
         } catch (DateTimeParseException e) {
             System.out.println("잘못된 시간 형식입니다. 올바른 형식은 HH:mm입니다.");
-            noTime = "형식에 맞게 입력하세요";
         }
     }
 
-    private void calculateDepartureTimeWithMinTotalTime() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime currentTime = LocalTime.now();
-        LocalTime estimatedDepartureTime = currentTime.plusMinutes(minTotalTime);
-
-        System.out.printf("출발 시간: %s\n", estimatedDepartureTime.format(formatter));
-        StartTime = estimatedDepartureTime.format(formatter);
-        updateTimeWalk(StartTime);
-    }
-
-    private String ODBSserch(String stationName) throws IOException {
-        if (stationName == null || stationName.isEmpty()) {
-            System.out.println("정류장 이름이 올바르지 않습니다.");
-            return null;
-        }
-
+    private static String ODBSserch(String stationName) throws IOException {
         System.out.println("정류장 검색 ---------");
         String encodedStationName = URLEncoder.encode(stationName, StandardCharsets.UTF_8);
         String urlTemplate = "https://api.odsay.com/v1/api/searchStation?apiKey=%s&stationName=%s&CID=3060&stationClass=1";
@@ -363,7 +453,7 @@ public class TimeCalculator extends Application {
         }
     }
 
-    private void parseBusStationData(String jsonData) {
+    private static void parseBusStationData(String jsonData) {
         JSONObject jsonObject = new JSONObject(jsonData);
         try {
             JSONObject result = jsonObject.getJSONObject("result");
@@ -382,7 +472,7 @@ public class TimeCalculator extends Application {
                         localStationID = station.optString("localStationID", "정보 없음");
                         System.out.println("버스 로컬 블 ID: " + busLocalBlID + ", 버스 번호: " + busNo);
                         System.out.println("localStationID: " + localStationID);
-                        ArrivingBus = busLocalBlID;
+                        ArrivingBus = busNo;
                     }
                 }
             }
@@ -391,7 +481,7 @@ public class TimeCalculator extends Application {
         }
     }
 
-    private void getBusArrivalInfo(String nodeId, String routeId) {
+    private static void getBusArrivalInfo(String nodeId, String routeId) {
         OkHttpClient client = new OkHttpClient();
         try {
             StringBuilder urlBuilder = new StringBuilder(PUBLIC_DATA_API_URL);
@@ -430,6 +520,7 @@ public class TimeCalculator extends Application {
                 JSONObject jsonObject = new JSONObject(sb.toString());
                 if (!jsonObject.has("response") || jsonObject.getJSONObject("response").getJSONObject("body").isNull("items")) {
                     System.out.println("도착하는 버스가 없습니다.");
+                    YN = false;
                 } else {
                     Object items = jsonObject.getJSONObject("response").getJSONObject("body").get("items");
                     boolean busFound = false;
@@ -445,6 +536,7 @@ public class TimeCalculator extends Application {
                                         arrtime = itemObj.getInt("arrtime");
                                         System.out.println("arrtime: " + arrtime);
                                         busFound = true;
+                                        aa = true;
                                         break;
                                     }
                                 }
@@ -454,6 +546,7 @@ public class TimeCalculator extends Application {
                                     arrtime = itemObj.getInt("arrtime");
                                     System.out.println("arrtime: " + arrtime);
                                     busFound = true;
+                                    aa = true;
                                 }
                             }
                         }
@@ -465,6 +558,7 @@ public class TimeCalculator extends Application {
                                 arrtime = item.getInt("arrtime");
                                 System.out.println("arrtime: " + arrtime);
                                 busFound = true;
+                                aa = false;
                                 break;
                             }
                         }
@@ -472,8 +566,6 @@ public class TimeCalculator extends Application {
 
                     if (!busFound) {
                         findAlternateBusRoute();
-                    } else {
-                        calculateFinalDepartureTime(arrtime);
                     }
                 }
             } else {
@@ -485,58 +577,12 @@ public class TimeCalculator extends Application {
         }
     }
 
-    private void calculateFinalDepartureTime(int arrtime) {
-        for (int i = 0; i < paths.length(); i++) {
-            JSONObject path = paths.getJSONObject(i);
-            JSONObject info = path.getJSONObject("info");
-
-            boolean hasSubway = false;
-            JSONArray subPaths = path.getJSONArray("subPath");
-            int walkTimeToBusStop = 0;
-
-            for (int j = 0; j < subPaths.length(); j++) {
-                JSONObject subPath = subPaths.getJSONObject(j);
-                int trafficType = subPath.getInt("trafficType");
-
-                if (trafficType == 1) {
-                    hasSubway = true;
-                    break;
-                }
-
-                if (trafficType == 3 && minBusNo != null) {
-                    walkTimeToBusStop = subPath.getInt("sectionTime");
-                    break;
-                }
-            }
-
-            if (!hasSubway && minBusNo != null) {
-                if (walkTimeToBusStop > arrtime) {
-                    calculateDepartureTimeWithMinTotalTime();
-                } else {
-                    int adjustedTotalTime = minTotalTime - walkTimeToBusStop + arrtime / 60;
-                    calculateAdjustedDepartureTime(adjustedTotalTime);
-                }
-                return;
-            }
-        }
-    }
-
-    private void calculateAdjustedDepartureTime(int adjustedTotalTime) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
-        LocalTime currentTime = LocalTime.now();
-        LocalTime estimatedDepartureTime = currentTime.plusMinutes(adjustedTotalTime);
-
-        System.out.printf("출발 시간: %s\n", estimatedDepartureTime.format(formatter));
-        StartTime = estimatedDepartureTime.format(formatter);
-        updateTimeWalk(StartTime);
-    }
-
-    private void findAlternateBusRoute() throws IOException {
+    private static void findAlternateBusRoute() throws IOException {
         System.out.println("찾는 버스가 없습니다. 대체 경로를 찾습니다.");
         // Use alternate path if no suitable non-subway path was found
         JSONObject jsonObject = new JSONObject(data1);
         JSONObject result = jsonObject.getJSONObject("result");
-        paths = result.getJSONArray("path");
+        JSONArray paths = result.getJSONArray("path");
 
         boolean alternateFound = false;
 
@@ -568,8 +614,9 @@ public class TimeCalculator extends Application {
                 minBusLocalBlID = null;
                 minBusID = null;
 
-                for (int j = 0; j < subPaths.length(); j++) {
-                    JSONObject subPath = subPaths.getJSONObject(j);
+                JSONArray subPathsAlt = path.getJSONArray("subPath");
+                for (int j = 0; j < subPathsAlt.length(); j++) {
+                    JSONObject subPath = subPathsAlt.getJSONObject(j);
                     int trafficType = subPath.getInt("trafficType");
 
                     if (trafficType == 2) {
@@ -582,9 +629,6 @@ public class TimeCalculator extends Application {
                         }
                         System.out.println("버스: " + subPath.getJSONArray("lane").getJSONObject(0).optString("busNo", "정보 없음") + " (" + subPath.getInt("sectionTime") + "분)");
                     } else if (trafficType == 3) {
-                        if (RouteInfo.sectionTime == 0) {
-                            RouteInfo.sectionTime = subPath.getInt("sectionTime");
-                        }
                         System.out.println("도보: " + subPath.getInt("sectionTime") + "분");
                     }
                 }
@@ -594,6 +638,7 @@ public class TimeCalculator extends Application {
                     getBusArrivalInfo(localStationID, minBusID);
                 } else {
                     System.out.println("버스 도착 정보가 없습니다.");
+                    YN = false;
                 }
 
                 alternateFound = true;
@@ -603,14 +648,11 @@ public class TimeCalculator extends Application {
 
         if (!alternateFound) {
             System.out.println("버스 도착 정보가 없습니다.");
+            YN = false;
         }
     }
 
-    private void findValidBusRoute() throws IOException {
-        if (minFirstStartStation == null || minFirstStartStation.isEmpty()) {
-            System.out.println("최초 시작 정류장이 올바르지 않습니다.");
-            return;
-        }
+    private static void findValidBusRoute() throws IOException {
         ODBSserch(minFirstStartStation);
         if (localStationID != null && minBusID != null) {
             getBusArrivalInfo(localStationID, minBusID);
@@ -629,20 +671,5 @@ public class TimeCalculator extends Application {
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    // 경로 정보를 저장하는 클래스
-    private static class RouteInfo {
-        int totalTime;
-        int totalDistance;
-        String firstStartStation;
-        String lastEndStation;
-        static String busNo;
-        String busLocalBlID;
-        String busID;
-        int busTime;
-        int walkTimeToBusStop;
-        int walkTimeFromBusStop;
-        static int sectionTime;
     }
 }
