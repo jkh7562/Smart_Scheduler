@@ -1310,7 +1310,7 @@ public class MainController {
         } catch (IOException e) {
             e.printStackTrace();
             // 사용자에게 오류 메시지 표시
-            .
+
         }
     }
 }
