@@ -114,7 +114,7 @@
                      </image></ImageView>
                </graphic>
             </Button>
-            <Button alignment="BASELINE_LEFT" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="외출시간 계산">
+            <Button fx:id="out_button" alignment="BASELINE_LEFT" layoutX="10.0" layoutY="325.0" mnemonicParsing="false" onAction="#outButtonAction" prefHeight="30.0" prefWidth="180.0" style="-fx-background-color: #bfbff3;" text="외출시간 계산">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true">
                      <image>

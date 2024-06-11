@@ -80,6 +80,8 @@ public class MainController {
     ImageView uv_event;
     @FXML
     ImageView dust_event;
+    @FXML
+    Button out_button;
 
     // 유저패널 변수
     @FXML
@@ -1312,5 +1314,22 @@ public class MainController {
             // 사용자에게 오류 메시지 표시
 
         }
+    }
+
+    @FXML
+    private void outButtonAction(ActionEvent event) {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("TimeCalculator.fxml"));
+        Parent root = null;
+        try {
+            root = loader.load();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Scene scene = new Scene(root);
+
+        // 새로운 Stage를 생성하여 로그인 실패 창을 표시
+        Stage failStage = new Stage();
+        failStage.setScene(scene);
+        failStage.show();
     }
 }

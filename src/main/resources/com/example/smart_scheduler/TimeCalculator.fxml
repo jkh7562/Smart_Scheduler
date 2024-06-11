@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="400.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.smart_scheduler.TimeCalculator">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="182.0" layoutX="-12.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../Schedule-real.png" />
+         </image></ImageView>
+      <Label layoutX="54.0" layoutY="149.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="188.0" text="TimeCalculator" textFill="#a1a1a1">
+         <font>
+            <Font name="Ebrima Bold" size="12.0" />
+         </font></Label>
+      <Label layoutX="54.0" layoutY="123.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="171.0" text="외출시간 계산">
+         <font>
+            <Font name="Ebrima Bold" size="20.0" />
+         </font></Label>
+      <TextField fx:id="id_textfield" layoutX="50.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="도착 시간 ex) 13:00">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <TextField fx:id="phone_textfield" layoutX="50.0" layoutY="245.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="도착지 도로명 주소">
+         <font>
+            <Font size="14.0" />
+         </font></TextField>
+      <Button fx:id="walk" layoutX="50.0" layoutY="464.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleWalkButtonAction" prefHeight="50.0" prefWidth="90.0" style="-fx-background-color: #c8c4ff;" text="Walk" textFill="WHITE">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="bike" layoutX="150.0" layoutY="464.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBikeButtonAction" prefHeight="50.0" prefWidth="90.0" style="-fx-background-color: #c8c4ff;" text="Bike" textFill="WHITE">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font></Button>
+      <Button fx:id="bus" layoutX="250.0" layoutY="464.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleBusButtonAction" prefHeight="50.0" prefWidth="90.0" style="-fx-background-color: #c8c4ff;" text="Bus" textFill="WHITE">
+         <font>
+            <Font name="Ebrima Bold" size="14.0" />
+         </font></Button>
+      <TextField fx:id="name_textfield" layoutX="50.0" layoutY="194.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="출발지 도로명 주소">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </TextField>
+      <ImageView fx:id="back_image" fitHeight="22.0" fitWidth="22.0" layoutX="14.0" layoutY="26.0" onMouseClicked="#backimageClicked" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../back.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="30.0" fitWidth="300.0" layoutX="320.0" layoutY="570.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../ODsay_bi.png" />
+         </image></ImageView>
+      <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="375.0" prefHeight="50.0" prefWidth="300.0">
+         <children>
+            <Label alignment="CENTER_LEFT" text="외출 시간:">
+               <font>
+                  <Font name="Ebrima Bold" size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="Time" alignment="CENTER_LEFT" text="">
+               <font>
+                  <Font name="Ebrima Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" layoutX="50.0" layoutY="400.0" prefHeight="50.0" prefWidth="300.0">
+         <children>
+            <Label fx:id="buslabel" alignment="CENTER_LEFT" text="TimeCalculator">
+               <font>
+                  <Font name="Ebrima Bold" size="20.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin>
+            </Label>
+            <Label fx:id="busname" alignment="CENTER_LEFT" text="">
+               <font>
+                  <Font name="Ebrima Bold" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label fx:id="CN" layoutX="50.0" layoutY="340.0" prefHeight="50.0" prefWidth="300.0" text="">
+         <font>
+            <Font name="Ebrima Bold" size="20.0" />
+         </font>
+      </Label>
+
+   </children>
+</AnchorPane>
