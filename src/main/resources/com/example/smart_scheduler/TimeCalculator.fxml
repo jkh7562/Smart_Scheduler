@@ -20,7 +20,7 @@
          <font>
             <Font name="Ebrima Bold" size="20.0" />
          </font></Label>
-      <TextField fx:id="id_textfield" layoutX="50.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="도착 시간 ex) 13:00">
+      <TextField fx:id="id_textfield" layoutX="50.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="목표 도착 시간 ex) 13:00">
          <font>
             <Font size="14.0" />
          </font></TextField>
