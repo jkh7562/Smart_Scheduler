@@ -85,6 +85,8 @@ public class MonthDetail {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String content = jsonObject.getString("content");
                     contentList.add(content);
+                    String memo = jsonObject.getString("memo");
+                    memo_area.setText(memo);
                 }
 
                 // ListView에 데이터 설정
