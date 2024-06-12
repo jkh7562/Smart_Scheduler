@@ -3,7 +3,6 @@ package com.example.smart_scheduler;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.ImageCursor;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -33,7 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class TimeCalculator{
+public class TimeCalculator {
 
     @FXML
     private TextField name_textfield;
@@ -50,7 +49,7 @@ public class TimeCalculator{
     @FXML
     private Label CN;
     @FXML
-    private ImageView back_image;
+    ImageView back_image;
 
     private static String startpoint;
     private static String endpoint;
@@ -68,6 +67,8 @@ public class TimeCalculator{
     private static int AlltotalTime;
     private static boolean aa; // 올바른 총시간 트리거
     private static String printTime;
+    private static int usebusArr;
+    private static int calTime;
 
     private static int minTotalTime;
     private static int minTotalDistance;
@@ -90,25 +91,20 @@ public class TimeCalculator{
     private static final String PUBLIC_DATA_API_URL = "http://apis.data.go.kr/1613000/ArvlInfoInqireService/getSttnAcctoArvlPrearngeInfoList";
 
     @FXML
-    private void backimageClicked(MouseEvent event) {
-        // 현재 창(Stage)을 가져옵니다.
-        Stage currentStage = (Stage) back_image.getScene().getWindow();
-        // 현재 창을 닫습니다.
-        currentStage.close();
-    }
-
-    @FXML
     private void handleBusButtonAction(ActionEvent event) throws IOException {
         YN = true;
         executeCommonLogic(false, "bus");
         findValidBusRoute();
         busname(true);
         updatebuslabel(true);
-        System.out.println("워크 섹션:"+WalkSectionTime + "arrTime:" + arrtime);
-        boolean isGreaterThan = (arrtime / 60) > WalkSectionTime;
-        System.out.println("arrtime / 60 > WalkSectionTime: " + isGreaterThan);
-        System.out.println(":AllTime " + AlltotalTime);
 
+        // arrtime 값이 올바르게 설정된 후 출력
+        System.out.println("워크 섹션: " + WalkSectionTime + " arrTime: " + arrtime/60);
+        usebusArr = arrtime / 60;
+        calTime = AlltotalTime - WalkSectionTime + usebusArr;
+        boolean isGreaterThan = usebusArr > WalkSectionTime;
+        System.out.println("arrtime / 60 > WalkSectionTime: " + isGreaterThan);
+        System.out.println("AllTime: " + AlltotalTime);
     }
 
     @FXML
@@ -136,6 +132,7 @@ public class TimeCalculator{
         busname(false);
         updatebuslabel(false);
     }
+
 
     @FXML
     private void busname(boolean bus) {
@@ -327,6 +324,7 @@ public class TimeCalculator{
                                 minBusID = lane.optString("busID", "정보 없음");
                             }
                             System.out.println("버스: " + subPath.getJSONArray("lane").getJSONObject(0).optString("busNo", "정보 없음") + " (" + subPath.getInt("sectionTime") + "분)");
+                            ArrivingBus = subPath.getJSONArray("lane").getJSONObject(0).optString("busNo", "정보 없음");
                         } else if (trafficType == 3) {
                             System.out.println("도보: " + subPath.getInt("sectionTime") + "분");
                             if (Switch == true) {
@@ -384,13 +382,16 @@ public class TimeCalculator{
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
         try {
             // 초 단위 입력값(arrTime)을 시간과 분으로 변환
+            System.out.println("arrtime 0인지 확인용:"+arrtime);
             int hours = arrtime / 3600;
             int minutes = (arrtime % 3600) / 60;
             String timeFormatted = String.format("%02d:%02d", hours, minutes);
             LocalTime arrivalTime = LocalTime.parse(arrivalTimeString, formatter);
             LocalTime departureTime = arrivalTime.minusMinutes((long) travelTimeInMinutes);
-
-            int calTime = AlltotalTime - WalkSectionTime + (arrtime / 60);
+            System.out.println("계산된 걸리는 시간:"+calTime);
+            System.out.println("계산할때 사용할 총 시간:"+AlltotalTime);
+            System.out.println("계산할때 사용할 버스 정류장까지 걸어가는 시간:"+WalkSectionTime);
+            System.out.println("계산할때 사용하는 버스 도착 시간:"+ usebusArr);
             System.out.println("총시간:"+calculateDepartureTimeWithTotalTimeCal(calTime,arrivalTimeString));
             printTime = calculateDepartureTimeWithTotalTimeCal(calTime,arrivalTimeString);
 
@@ -402,10 +403,7 @@ public class TimeCalculator{
             NowTime = LocalTime.now();
 
             // WalkSectionTime을 분 단위로 비교하여 계산
-            if (arrtime/60 >= WalkSectionTime) {
-                // StartTime에서 WalkSectionTime만큼 빼고 arrTime을 더함
-                //LocalTime IntStartTime = LocalTime.parse(arrivalTimeString, formatter).minusMinutes(WalkSectionTime).plusMinutes(arrtime);
-                //String finalTime = IntStartTime.format(formatter);
+            if (arrtime / 60 >= WalkSectionTime) {
                 updateTimeWalk(printTime, YN);
                 LocalTime finalLocalTime = LocalTime.parse(printTime, formatter);
                 LocalTime arrivalLocalTime = LocalTime.parse(arrivalTimeString, formatter);
@@ -415,8 +413,7 @@ public class TimeCalculator{
                 } else if (finalLocalTime.isAfter(NowTime)) {
                     triger1 = true;  // finalTime이 arrivalTime보다 이후 시간일 경우
                 }
-            } else if(arrtime/60 <= WalkSectionTime){
-                // updateTimeWalk 메소드 호출 예시
+            } else if (arrtime / 60 <= WalkSectionTime){
                 updateTimeWalk(StartTime, YN);
                 LocalTime StartLocalTime = LocalTime.parse(StartTime, formatter);
                 LocalTime arrivalLocalTime = LocalTime.parse(arrivalTimeString, formatter);
@@ -540,7 +537,7 @@ public class TimeCalculator{
                                     JSONObject itemObj = itemArray.getJSONObject(i);
                                     if (itemObj.getString("routeid").equals(minBusLocalBlID)) {
                                         arrtime = itemObj.getInt("arrtime");
-                                        System.out.println("arrtime: " + arrtime);
+                                        System.out.println("arrtime: " + arrtime); // 여기서 arrtime 값 출력
                                         busFound = true;
                                         aa = true;
                                         break;
@@ -550,7 +547,7 @@ public class TimeCalculator{
                                 JSONObject itemObj = (JSONObject) item;
                                 if (itemObj.getString("routeid").equals(minBusLocalBlID)) {
                                     arrtime = itemObj.getInt("arrtime");
-                                    System.out.println("arrtime: " + arrtime);
+                                    System.out.println("arrtime: " + arrtime); // 여기서 arrtime 값 출력
                                     busFound = true;
                                     aa = true;
                                 }
@@ -562,7 +559,7 @@ public class TimeCalculator{
                             JSONObject item = itemArray.getJSONObject(i);
                             if (item.getString("routeid").equals(minBusLocalBlID)) {
                                 arrtime = item.getInt("arrtime");
-                                System.out.println("arrtime: " + arrtime);
+                                System.out.println("arrtime: " + arrtime); // 여기서 arrtime 값 출력
                                 busFound = true;
                                 aa = false;
                                 break;
@@ -665,5 +662,13 @@ public class TimeCalculator{
         } else {
             findAlternateBusRoute();
         }
+    }
+
+    @FXML
+    private void backimageClicked(MouseEvent event) {
+        // 현재 창(Stage)을 가져옵니다.
+        Stage currentStage = (Stage) back_image.getScene().getWindow();
+        // 현재 창을 닫습니다.
+        currentStage.close();
     }
 }
