@@ -85,7 +85,9 @@ public class MonthDetail {
                     JSONObject jsonObject = jsonArray.getJSONObject(i);
                     String content = jsonObject.getString("content");
                     contentList.add(content);
-                    String memo = jsonObject.getString("memo");
+
+                    // memo가 null이거나 값이 없는 경우 처리
+                    String memo = jsonObject.optString("memo", "");
                     memo_area.setText(memo);
                 }
 
@@ -105,7 +107,6 @@ public class MonthDetail {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
