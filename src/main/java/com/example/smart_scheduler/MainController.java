@@ -482,14 +482,14 @@ public class MainController {
 
             System.out.println("pop 값: " + popint);
             // 오늘 비가 올 확률에 따른 판단
-            if (popint >= 40) {
-                itememg1 = true;
-            } else {
-                itememg1 = false;
-            }
+            itememg1 = (popint >= 40);
 
-            if (Integer.parseInt(POP) >= 40) {
-                SKY = "2";
+            try {
+                if (Integer.parseInt(POP) >= 40) {
+                    SKY = "2";
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("POP 값을 정수로 변환할 수 없습니다: " + POP);
             }
 
             // 날씨 이미지 업데이트
@@ -512,6 +512,14 @@ public class MainController {
             // JSONException이 발생한 경우 처리할 코드
             e.printStackTrace(); // 혹은 다른 로깅 방법을 사용할 수도 있습니다.
         }
+
+// initialize 메소드에서 예외 처리 추가
+        try {
+            // 기존 initialize 메소드 내용
+        } catch (NumberFormatException e) {
+            System.out.println("정수를 파싱할 수 없습니다: " + e.getMessage());
+        }
+
     }
 
     @FXML
